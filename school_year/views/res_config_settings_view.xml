@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_school_year_view" model="ir.ui.view">
+        <field name="name">res.config.settings.school.year.view</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="School Year"
+                     string="School Year" data-key="school_year">
+                    <h2>School Year</h2>
+                    <div class="row mt16 o_settings_container" id="school_year">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <strong>School Year Automatic Generation Settings</strong>
+                                <div class="text-muted">
+                                    This data will be used to create automatic academic years
+                                </div>
+                                <div class="o_row w-30">
+                                    <span class="o_light_label">
+                                        <label for="school_year_months_duration"/>
+                                        <field name="school_year_months_duration" class="col-lg-2" min="1"/>
+                                        months
+                                    </span>
+                                </div>
+                                <div class="o_row w-30">
+                                    <span class="o_light_label">
+                                        <label for="school_year_start_month"/>
+                                        <field name="school_year_start_month" class="col-lg-2" max="12" min="1"/>
+                                    </span>
+                                </div>
+                                <div class="o_row w-30">
+                                    <span class="o_light_label">
+                                        <label for="school_year_start_day"/>
+                                        <field name="school_year_start_day" class="col-lg-2" max="31" min="1"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_school_year_tree" model="ir.ui.view">
+        <field name="name">school.year.tree</field>
+        <field name="model">school.year</field>
+        <field name="arch" type="xml">
+            <tree string="School Year" editable="bottom">
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="is_active" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="school_year_action">
+        <field name="name">School Year</field>
+        <field name="res_model">school.year</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_school_year_tree"/>
+    </record>
+
+    <menuitem id="menu_partner_category_form"
+              action="school_year_action"
+              name="School Years"
+              sequence="1" parent="contacts.res_partner_menu_config"/>
+</odoo>

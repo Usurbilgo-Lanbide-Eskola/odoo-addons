@@ -1,0 +1,479 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hezkuntza_student_importer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-20 12:51+0000\n"
+"PO-Revision-Date: 2022-01-20 12:51+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields.selection,name:hezkuntza_student_importer.selection__hezkuntza_language__odoo_code__basque
+msgid "Basque"
+msgstr "Euskera"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields.selection,name:hezkuntza_student_importer.selection__hezkuntza_language__odoo_code__bilingual
+msgid "Bilingual"
+msgstr "Elebiduna"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__birthdate_date
+msgid "Birth Date"
+msgstr "Jaiotze data"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__city
+msgid "City"
+msgstr "Herria"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__odoo_code
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__country_id
+msgid "Country"
+msgstr "Herrialdea"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_country_mapping_tree
+msgid "Country Mapping"
+msgstr "Herrialde mapatzea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_state_code__odoo_code
+msgid "Country State"
+msgstr "Probintzia"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+msgid "Create Students"
+msgstr "Sortu ikasleak"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__create_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_gender__create_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_language__create_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_state_code__create_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__create_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__create_date
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_gender__create_date
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_language__create_date
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_state_code__create_date
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__create_date
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_gender__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_language__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_state_code__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: code:addons/hezkuntza_student_importer/models/hezkuntza_student_import.py:0
+#, python-format
+msgid "Doesn't has country\n"
+msgstr "Ez du herrialderik\n"
+
+#. module: hezkuntza_student_importer
+#: code:addons/hezkuntza_student_importer/models/hezkuntza_student_import.py:0
+#, python-format
+msgid "Doesn't has state\n"
+msgstr "Ez du probintziarik\n"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__personal_email
+msgid "Email"
+msgstr "Helbide elektronikoa"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__file
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+msgid "Enrollment File"
+msgstr "Matrikulazio fitxategia"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__error_lines
+msgid "Error Lines"
+msgstr "Akatsdun lerroak"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__error_mapped_lines
+msgid "Error Mapped Lines"
+msgstr "Akatsdun lerroak"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__errors
+msgid "Errors"
+msgstr "Akatsak"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields.selection,name:hezkuntza_student_importer.selection__hezkuntza_gender__odoo_code__female
+msgid "Female"
+msgstr "Emakumea"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+msgid "Filter Lines with Errors"
+msgstr "Iragazi akatsdun lerroak"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__gender
+msgid "Gender"
+msgstr "Generoa"
+
+#. module: hezkuntza_student_importer
+#: model:ir.ui.menu,name:hezkuntza_student_importer.hezkuntza_importer
+msgid "Hezkuntza"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__hezkuntza_code
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_gender__hezkuntza_code
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_language__hezkuntza_code
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_state_code__hezkuntza_code
+msgid "Hezkuntza Code"
+msgstr "Hezkuntza kodea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.actions.act_window,name:hezkuntza_student_importer.action_hezkuntza_country_map
+#: model:ir.ui.menu,name:hezkuntza_student_importer.hezkuntza_country_mapping
+msgid "Hezkuntza Country"
+msgstr "Hezkuntza herrialdea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.actions.act_window,name:hezkuntza_student_importer.action_hezkuntza_gender_map
+#: model:ir.ui.menu,name:hezkuntza_student_importer.hezkuntza_gender_mapping
+msgid "Hezkuntza Gender"
+msgstr "Hezkuntza generoa"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_gender_mapping_tree
+msgid "Hezkuntza Gender Mapping"
+msgstr "Hezkuntza genero mapatzea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__id_hezkuntza
+msgid "Hezkuntza ID"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.actions.act_window,name:hezkuntza_student_importer.hezkuntza_student_importer_action
+msgid "Hezkuntza Importer"
+msgstr "Hezkuntza inportatzailea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.actions.act_window,name:hezkuntza_student_importer.action_hezkuntza_language_map
+#: model:ir.ui.menu,name:hezkuntza_student_importer.hezkuntza_language_mapping
+msgid "Hezkuntza Language"
+msgstr "Hezkuntza hizkuntza"
+
+#. module: hezkuntza_student_importer
+#: model:ir.ui.menu,name:hezkuntza_student_importer.hezkuntza_file_mapping
+msgid "Hezkuntza Mapping"
+msgstr "Hezkuntza mapatzea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.actions.act_window,name:hezkuntza_student_importer.action_hezkuntza_state_map
+msgid "Hezkuntza State"
+msgstr "Hezkuntza probintzia"
+
+#. module: hezkuntza_student_importer
+#: model:ir.ui.menu,name:hezkuntza_student_importer.hezkuntza_state_mapping
+msgid "Hezkuntza States"
+msgstr "Hezkuntza probintziak"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_language_mapping_tree
+msgid "Hezkuntza language Mapping"
+msgstr "Hezkuntza hizkuntza mapatzea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__id
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_gender__id
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_language__id
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_state_code__id
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__id
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__id
+msgid "ID"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__image_path
+msgid "Image Path"
+msgstr "Irudien kokapena"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__image_zip
+msgid "Image Zip"
+msgstr "Irudien zip-a"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__import_id
+msgid "Import"
+msgstr "Inportatu"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+msgid "Import Lines"
+msgstr "Inportatu lerroak"
+
+#. module: hezkuntza_student_importer
+#: model:ir.ui.menu,name:hezkuntza_student_importer.hezkuntza_student
+msgid "Import Students"
+msgstr "Inportatu ikasleak"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+msgid "Importation Data"
+msgstr "Importazio datuak"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__name
+msgid "Importation Name"
+msgstr "Inportazio izena"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__imported_partner_id
+msgid "Imported Partner"
+msgstr "Inportatutako kontaktua"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__hezkuntza_language
+msgid "Language"
+msgstr "Hizkuntza"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_gender____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_language____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_state_code____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__write_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_gender__write_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_language__write_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_state_code__write_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__write_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__write_date
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_gender__write_date
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_language__write_date
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_state_code__write_date
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__write_date
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__location
+msgid "Location"
+msgstr "Kokapena"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields.selection,name:hezkuntza_student_importer.selection__hezkuntza_gender__odoo_code__male
+msgid "Male"
+msgstr "Gizona"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__mapped_lines
+msgid "Mapped Lines"
+msgstr "Mapatutako lerroak"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__name
+msgid "Name"
+msgstr "Izena"
+
+#. module: hezkuntza_student_importer
+#: code:addons/hezkuntza_student_importer/models/hezkuntza_student_import.py:0
+#, python-format
+msgid "No image found\n"
+msgstr "Ez da irudia aurkitu\n"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields.selection,name:hezkuntza_student_importer.selection__hezkuntza_language__odoo_code__none
+msgid "None"
+msgstr "Bat ere ez"
+
+#. module: hezkuntza_student_importer
+#: code:addons/hezkuntza_student_importer/models/hezkuntza_student_import.py:0
+#, python-format
+msgid "Not ID or Passport supplied\n"
+msgstr "Ez du NAN edo pasaporterik"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_gender__odoo_code
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_language__odoo_code
+msgid "Odoo Code"
+msgstr "Odoo kodea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields.selection,name:hezkuntza_student_importer.selection__hezkuntza_gender__odoo_code__other
+msgid "Other"
+msgstr "Beste bat"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__overwrite
+msgid "Overwrite"
+msgstr "Gainidatzi"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+msgid "Overwrite fields"
+msgstr "Gainidatzi eremuak"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+msgid ""
+"Overwrite fields if has a discrepancy. Note: Empty fields will not be "
+"overwritten."
+msgstr ""
+"Gainidatzi eremuak desberdintasun bat badago. Oharra: Hutsik dauden eremuak ez dira "
+"gainidatziko."
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__school_year
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__school_year
+msgid "School Year"
+msgstr "Eskola urtea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields.selection,name:hezkuntza_student_importer.selection__hezkuntza_language__odoo_code__spanish
+msgid "Spanish"
+msgstr "Gaztelania"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__state_id
+msgid "State"
+msgstr "Probintzia"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_state_mapping_tree
+msgid "State Mapping"
+msgstr "Probintzia mapatzea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__street
+msgid "Street"
+msgstr "Kalea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__personal_id
+msgid "Student ID"
+msgstr "Ikaslearen ID"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_tree
+msgid "Student Importer"
+msgstr "Ikasle inportatzailea"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+msgid "Student Importer Lines"
+msgstr "Ikasle inportatzailearen lerroak"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__image
+msgid "Student Photo"
+msgstr "Ikaslearen argazkia"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+msgid "Student Photos"
+msgstr "Ikasleen argazkiak"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__phone
+msgid "Telephone1"
+msgstr "Telefonoa1"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__phone2
+msgid "Telephone2"
+msgstr "Telefonoa2"
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+msgid "Test Lines"
+msgstr "Test lerroak"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,help:hezkuntza_student_importer.field_hezkuntza_student_import__image_path
+msgid ""
+"To specify smb path first set shared folder name and then the path joined by"
+" a slash. Ex.: sharedfolder/path/to/dest"
+msgstr ""
+"smb kokapena zehazteko lehenik partekatutako karpeta jarri eta ondoren kokapena barra zeiharra"
+" erabiliaz. Adb.: karpetapartekatua/helburuko/kokapena"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,help:hezkuntza_student_importer.field_hezkuntza_student_import__image_zip
+msgid "Upload student images in a zip file"
+msgstr "Igo ikasleen irudien zip fitxategia"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__zip
+msgid "ZIP"
+msgstr "Posta kodea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_country_code
+msgid "hezkuntza.country.code"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_gender
+msgid "hezkuntza.gender"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_language
+msgid "hezkuntza.language"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_state_code
+msgid "hezkuntza.state.code"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_student_import
+msgid "hezkuntza.student.import"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_student_import_line
+msgid "hezkuntza.student.import.line"
+msgstr ""
+
+#. module: hezkuntza_student_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
+msgid "if there is a filter applied, only filtered items will be treated"
+msgstr "Iragazki bat jarrita badago, iragazitakoak soilik tratatuko dira"

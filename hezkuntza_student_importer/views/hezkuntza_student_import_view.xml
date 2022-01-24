@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hezkuntza_student_import_tree" model="ir.ui.view">
+        <field name="name">view.hezkuntza.student.import.tree</field>
+        <field name="model">hezkuntza.student.import</field>
+        <field name="arch" type="xml">
+            <tree string="Student Importer">
+                <field name="name"/>
+                <field name="school_year"/>
+                <field name="image_path" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hezkuntza_student_import_form" model="ir.ui.view">
+        <field name="name">view.hezkuntza.student.import.form</field>
+        <field name="model">hezkuntza.student.import</field>
+        <field name="arch" type="xml">
+            <form string="Student Importer">
+                <separator string="Importation Data"/>
+                <group col="4">
+                    <field name="name" required="1"/>
+                    <field name="school_year" required="1"/>
+                </group>
+                <separator string="Enrollment File"/>
+                <group>
+                    <group>
+                        <field name="file" required="1"/>
+                    </group>
+                </group>
+                <separator string="Student Photos"/>
+                <group col="4">
+                    <field name="image_zip"/>
+                    <field name="image_path" invisible="1"/>
+                </group>
+                <button name="import_lines" string="Import Lines" type="object"/>
+                <button name="test_lines" string="Test Lines" type="object"/>
+                <button name="create_partners" string="Create Students" type="object" class="oe_highlight" help="if there is a filter applied, only filtered items will be treated"/>
+                <label for="error_lines" string="Filter Lines with Errors" style="margin-left:10px;"/>
+                <field name="error_lines"/>
+                <label for="error_lines" string="Overwrite fields"/>
+                <field name="overwrite"
+                       help="Overwrite fields if has a discrepancy. Note: Empty fields will not be overwritten."/>
+                <group>
+                    <field name="mapped_lines" nolabel="1" attrs="{'invisible':[('error_lines','=', True)]}">
+                        <tree string="Student Importer Lines" editable="top">
+                            <field name="id_hezkuntza"/>
+                            <field name="school_year"/>
+                            <field name="personal_id"/>
+                            <field name="name"/>
+                            <field name="birthdate_date"/>
+                            <field name="gender"/>
+                            <field name="country_id"/>
+                            <field name="state_id"/>
+                            <field name="city"/>
+                            <field name="location"/>
+                            <field name="street"/>
+                            <field name="zip"/>
+                            <field name="phone"/>
+                            <field name="phone2"/>
+                            <field name="personal_email"/>
+                            <field name="hezkuntza_language"/>
+                            <field name="image"/>
+                            <field name="imported_partner_id"/>
+                            <field name="errors"/>
+                        </tree>
+                    </field>
+                </group>
+                <group>
+                    <field name="error_mapped_lines" nolabel="1" attrs="{'invisible':[('error_lines','=',False)]}">
+                        <tree string="Student Importer Lines" editable="top">
+                            <field name="id_hezkuntza"/>
+                            <field name="school_year"/>
+                            <field name="personal_id"/>
+                            <field name="name"/>
+                            <field name="birthdate_date"/>
+                            <field name="gender"/>
+                            <field name="country_id"/>
+                            <field name="state_id"/>
+                            <field name="city"/>
+                            <field name="location"/>
+                            <field name="street"/>
+                            <field name="zip"/>
+                            <field name="phone"/>
+                            <field name="phone2"/>
+                            <field name="personal_email"/>
+                            <field name="hezkuntza_language"/>
+                            <field name="image"/>
+                            <field name="imported_partner_id"/>
+                            <field name="errors"/>
+                        </tree>
+                    </field>
+                </group>
+
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hezkuntza_student_importer_action">
+        <field name="name">Hezkuntza Importer</field>
+        <field name="res_model">hezkuntza.student.import</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hezkuntza_student_import_tree"/>
+    </record>
+
+    <menuitem id="hezkuntza_importer"
+              name="Hezkuntza"
+              parent="contacts.menu_contacts"
+              sequence="5"/>
+
+    <menuitem id="hezkuntza_student"
+              name="Import Students"
+              parent="hezkuntza_importer"
+              action="hezkuntza_student_importer_action"
+              sequence="10"/>
+
+</odoo>

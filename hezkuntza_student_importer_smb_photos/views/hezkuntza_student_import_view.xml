@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_smb_students_photo_form" model="ir.ui.view">
+        <field name="name">hezkuntza.student.importer.smb.photo.view</field>
+        <field name="model">hezkuntza.student.import</field>
+        <field name="inherit_id" ref="hezkuntza_student_importer.view_hezkuntza_student_import_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='image_zip']" position="before">
+                <field name="use_zip_file"/>
+            </xpath>
+            <xpath expr="//field[@name='image_path']" position="before">
+                <field name="smb_user" attrs="{'invisible': [('use_zip_file', '=', True)]}"/>
+                <field name="smb_password" password="True" attrs="{'invisible': [('use_zip_file', '=', True)]}"/>
+                <field name="smb_host" attrs="{'invisible': [('use_zip_file', '=', True)]}"/>
+                <field name="smb_port" attrs="{'invisible': [('use_zip_file', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='image_zip']" position="attributes">
+                <attribute name="attrs">{'invisible': [('use_zip_file', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='image_path']" position="attributes">
+                <attribute name="invisible"></attribute>
+                <attribute name="attrs">{'required': [('use_zip_file', '=', False)], 'invisible': [('use_zip_file', '=',
+                    True)]}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

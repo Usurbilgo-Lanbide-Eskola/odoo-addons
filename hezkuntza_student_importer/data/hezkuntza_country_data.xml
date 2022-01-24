@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="hezkuntza_spain" model="hezkuntza.country.code">
+            <field name="hezkuntza_code">108</field>
+            <field name="odoo_code" ref="base.es"/>
+        </record>
+    </data>
+</odoo>

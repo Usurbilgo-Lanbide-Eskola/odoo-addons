@@ -1,0 +1,13 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"hezkuntza_student_import_manager","hezkuntza_student_import_manager","model_hezkuntza_student_import","base.group_partner_manager",1,1,1,1
+"hezkuntza_student_import_user","hezkuntza_student_import_user","model_hezkuntza_student_import","base.group_user",1,0,0,0
+"hezkuntza_student_import_line_manager","hezkuntza_student_import_line_manager","model_hezkuntza_student_import_line","base.group_partner_manager",1,1,1,1
+"hezkuntza_student_import_line_user","hezkuntza_student_import_line_user","model_hezkuntza_student_import_line","base.group_user",1,0,0,0
+"hezkuntza_mapping_country_code_manager","hezkuntza_mapping_country_manager","model_hezkuntza_country_code","base.group_partner_manager",1,1,1,1
+"hezkuntza_mapping_country_code_user","hezkuntza_mapping_country_user","model_hezkuntza_country_code","base.group_user",1,0,0,0
+"hezkuntza_mapping_state_code_manager","hezkuntza_mapping_state_manager","model_hezkuntza_state_code","base.group_partner_manager",1,1,1,1
+"hezkuntza_mapping_state_code_user","hezkuntza_mapping_state_user","model_hezkuntza_state_code","base.group_user",1,0,0,0
+"hezkuntza_mapping_gender_manager","hezkuntza_mapping_gender_manager","model_hezkuntza_gender","base.group_partner_manager",1,1,1,1
+"hezkuntza_mapping_gender_user","hezkuntza_mapping_gender_user","model_hezkuntza_gender","base.group_user",1,0,0,0
+"hezkuntza_mapping_language_manager","hezkuntza_mapping_language_manager","model_hezkuntza_language","base.group_partner_manager",1,1,1,1
+"hezkuntza_mapping_language_user","hezkuntza_mapping_language_user","model_hezkuntza_language","base.group_user",1,0,0,0

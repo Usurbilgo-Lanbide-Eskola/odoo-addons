@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="hezkuntza_file_mapping"
+              name="Hezkuntza Mapping"
+              parent="hezkuntza_importer"
+              sequence="12"/>
+
+    <record id="view_hezkuntza_country_mapping_tree" model="ir.ui.view">
+        <field name="name">hezkuntza.country.map</field>
+        <field name="model">hezkuntza.country.code</field>
+        <field name="arch" type="xml">
+            <tree string="Country Mapping" editable="bottom">
+                <field name="hezkuntza_code"/>
+                <field name="odoo_code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hezkuntza_country_map">
+        <field name="name">Hezkuntza Country</field>
+        <field name="res_model">hezkuntza.country.code</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_hezkuntza_country_mapping_tree"/>
+    </record>
+
+    <menuitem id="hezkuntza_country_mapping"
+              name="Hezkuntza Country"
+              parent="hezkuntza_file_mapping"
+              action="action_hezkuntza_country_map"
+              sequence="2"/>
+
+    <record id="view_hezkuntza_state_mapping_tree" model="ir.ui.view">
+        <field name="name">hezkuntza.state.map</field>
+        <field name="model">hezkuntza.state.code</field>
+        <field name="arch" type="xml">
+            <tree string="State Mapping" editable="bottom">
+                <field name="hezkuntza_code"/>
+                <field name="odoo_code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hezkuntza_state_map">
+        <field name="name">Hezkuntza State</field>
+        <field name="res_model">hezkuntza.state.code</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_hezkuntza_state_mapping_tree"/>
+    </record>
+    <menuitem id="hezkuntza_state_mapping"
+              name="Hezkuntza States"
+              parent="hezkuntza_file_mapping"
+              action="action_hezkuntza_state_map"
+              sequence="4"/>
+
+    <record id="view_hezkuntza_gender_mapping_tree" model="ir.ui.view">
+        <field name="name">hezkuntza.gender.map</field>
+        <field name="model">hezkuntza.gender</field>
+        <field name="arch" type="xml">
+            <tree string="Hezkuntza Gender Mapping" editable="bottom">
+                <field name="hezkuntza_code"/>
+                <field name="odoo_code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hezkuntza_gender_map">
+        <field name="name">Hezkuntza Gender</field>
+        <field name="res_model">hezkuntza.gender</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_hezkuntza_gender_mapping_tree"/>
+    </record>
+
+    <menuitem id="hezkuntza_gender_mapping"
+              name="Hezkuntza Gender"
+              parent="hezkuntza_file_mapping"
+              action="action_hezkuntza_gender_map"
+              sequence="6"/>
+
+    <record id="view_hezkuntza_language_mapping_tree" model="ir.ui.view">
+        <field name="name">hezkuntza.language.map</field>
+        <field name="model">hezkuntza.language</field>
+        <field name="arch" type="xml">
+            <tree string="Hezkuntza language Mapping" editable="bottom">
+                <field name="hezkuntza_code"/>
+                <field name="odoo_code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hezkuntza_language_map">
+        <field name="name">Hezkuntza Language</field>
+        <field name="res_model">hezkuntza.language</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_hezkuntza_language_mapping_tree"/>
+    </record>
+
+    <menuitem id="hezkuntza_language_mapping"
+              name="Hezkuntza Language"
+              parent="hezkuntza_file_mapping"
+              action="action_hezkuntza_language_map"
+              sequence="8"/>
+</odoo>

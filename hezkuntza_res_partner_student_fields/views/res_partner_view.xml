@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hezkuntza_res_partner_form" model="ir.ui.view">
+        <field name="name">hezkuntza.res.partner.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='street']" position="after">
+                <field name="location" placeholder="location..." class="o_address_street"
+                       attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)], 'invisible': [('location', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='email']" position="after">
+                <field name="personal_email" widget="email"/>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="personal_id"/>
+                <field name="id_hezkuntza"/>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="before">
+                <field name="hezkuntza_language"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ss" model="hezkuntza.state.code">
+        <field name="hezkuntza_code">20</field>
+        <field name="odoo_code" model="res.country.state"
+               eval="obj().env['res.country.state'].search([
+                        ('code', '=', 'SS'), ('country_id', '=', obj().env.ref('base.es').id)
+                    ], limit=1)"/>
+    </record>
+    <record id="bi" model="hezkuntza.state.code">
+        <field name="hezkuntza_code">48</field>
+        <field name="odoo_code" model="res.country.state"
+               eval="obj().env['res.country.state'].search([
+                        ('code', '=', 'BI'), ('country_id', '=', obj().env.ref('base.es').id)
+                    ], limit=1)"/>
+    </record>
+    <record id="vi" model="hezkuntza.state.code">
+        <field name="hezkuntza_code">01</field>
+        <field name="odoo_code" model="res.country.state"
+               eval="obj().env['res.country.state'].search([
+                        ('code', '=', 'VI'), ('country_id', '=', obj().env.ref('base.es').id)
+                    ], limit=1)"/>
+    </record>
+    <record id="na" model="hezkuntza.state.code">
+        <field name="hezkuntza_code">31</field>
+        <field name="odoo_code" model="res.country.state"
+               eval="obj().env['res.country.state'].search([
+                        ('code', '=', 'NA'), ('country_id', '=', obj().env.ref('base.es').id)
+                    ], limit=1)"/>
+    </record>
+</odoo>
+

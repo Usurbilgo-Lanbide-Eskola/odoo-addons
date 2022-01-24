@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="gender_male" model="hezkuntza.gender">
+        <field name="hezkuntza_code">1</field>
+        <field name="odoo_code">male</field>
+    </record>
+    <record id="gender_female" model="hezkuntza.gender">
+        <field name="hezkuntza_code">2</field>
+        <field name="odoo_code">female</field>
+    </record>
+    <record id="gender_other" model="hezkuntza.gender">
+        <field name="hezkuntza_code">3</field>
+        <field name="odoo_code">other</field>
+    </record>
+</odoo>
