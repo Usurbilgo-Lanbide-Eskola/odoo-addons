@@ -12,6 +12,8 @@ class ResPartner(models.Model):
                                    string="School Year")
     internship_count = fields.Integer(compute="_compute_internship_count",
                                       store=True)
+    internship_count_dummy = fields.Integer(
+        compute="_compute_internship_count")
     in_active_school_year = fields.Boolean(
         compute="_compute_in_active_school_year", store=True)
 
@@ -27,9 +29,11 @@ class ResPartner(models.Model):
 
     def _compute_internship_count(self):
         for student_id in self:
-            student_id.internship_count = self.env[
+            internship_count = self.env[
                 'sale.order.line'].search_count([("student_ids", "=",
                                                   student_id.id)])
+            student_id.internship_count = internship_count
+            student_id.internship_count_dummy = internship_count
 
     def action_view_sale_lines(self):
         '''
