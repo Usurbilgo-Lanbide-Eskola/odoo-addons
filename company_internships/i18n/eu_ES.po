@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-20 12:35+0000\n"
-"PO-Revision-Date: 2022-01-20 12:35+0000\n"
+"POT-Creation-Date: 2022-01-27 07:45+0000\n"
+"PO-Revision-Date: 2022-01-27 07:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_tutor_search
 msgid "Archived"
 msgstr "Artxibatua"
+
+#. module: company_internships
+#: code:addons/company_internships/models/sale_order.py:0
+#, python-format
+msgid ""
+"At least in one line there are students with a product that is not a "
+"internship"
+msgstr ""
+"Gutxienez lerro batean praktika ez den produktu batekin ikasleak "
+"daude"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_search
@@ -99,6 +109,12 @@ msgid "Internship Count"
 msgstr "Praktika kopurua"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_res_partner__internship_count_dummy
+#: model:ir.model.fields,field_description:company_internships.field_res_users__internship_count_dummy
+msgid "Internship Count Dummy"
+msgstr ""
+
+#. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_tutor_form
 msgid "Internships"
 msgstr "Praktikak"
@@ -135,7 +151,9 @@ msgstr "Azken aldaketa"
 #: model_terms:ir.actions.act_window,help:company_internships.action_internships_students
 #: model_terms:ir.actions.act_window,help:company_internships.action_internships_tutors
 msgid "Odoo helps you to easily track all activities related to a student."
-msgstr "Odook ikasle batekin zerikusia duten jarduera guztiak erraz egiten laguntzen dizu."
+msgstr ""
+"Odook ikasle batekin zerikusia duten jarduera guztiak erraz egiten laguntzen"
+" dizu."
 
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_res_partner_category

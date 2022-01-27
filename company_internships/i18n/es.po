@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-17 09:54+0000\n"
-"PO-Revision-Date: 2022-01-17 09:54+0000\n"
+"POT-Creation-Date: 2022-01-27 07:56+0000\n"
+"PO-Revision-Date: 2022-01-27 07:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_tutor_search
 msgid "Archived"
 msgstr "Archivado"
+
+#. module: company_internships
+#: code:addons/company_internships/models/sale_order.py:0
+#, python-format
+msgid ""
+"At least in one line there are students with a product that is not a "
+"internship"
+msgstr ""
+"Al menos en una linea hay estudiantes con un producto que no es "
+"de prácticas"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_search
@@ -85,7 +95,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__in_active_school_year
 #: model:ir.model.fields,field_description:company_internships.field_res_users__in_active_school_year
 msgid "In Active School Year"
-msgstr "En el año escolar activo"
+msgstr "En año escolar activo"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_search
@@ -96,31 +106,37 @@ msgstr "En prácticas"
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__internship_count
 #: model:ir.model.fields,field_description:company_internships.field_res_users__internship_count
 msgid "Internship Count"
-msgstr "Cantidad de prácticas"
+msgstr ""
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_res_partner__internship_count_dummy
+#: model:ir.model.fields,field_description:company_internships.field_res_users__internship_count_dummy
+msgid "Internship Count Dummy"
+msgstr ""
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_tutor_form
 msgid "Internships"
-msgstr "Practicas"
+msgstr "Prácticas"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_product_product__is_internship
 #: model:ir.model.fields,field_description:company_internships.field_product_template__is_internship
 #: model:ir.model.fields,field_description:company_internships.field_sale_order_line__internship_line
 msgid "Is Internship"
-msgstr "Es una práctica"
+msgstr "Prácticas"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__is_student
 #: model:ir.model.fields,field_description:company_internships.field_res_users__is_student
 msgid "Is Student"
-msgstr "Es estudiante"
+msgstr "Estudiante"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__is_tutor
 #: model:ir.model.fields,field_description:company_internships.field_res_users__is_tutor
 msgid "Is Tutor"
-msgstr "Es tutor"
+msgstr "Tutor"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_product_template____last_update
@@ -135,7 +151,9 @@ msgstr "Última modificación el"
 #: model_terms:ir.actions.act_window,help:company_internships.action_internships_students
 #: model_terms:ir.actions.act_window,help:company_internships.action_internships_tutors
 msgid "Odoo helps you to easily track all activities related to a student."
-msgstr "Odoo te ayuda a seguir fácilmente todas las actividades relacionadas con un estudiante."
+msgstr ""
+"Odoo te ayuda a seguir fácilmente todas las actividades relacionadas con un "
+"estudiante."
 
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_res_partner_category

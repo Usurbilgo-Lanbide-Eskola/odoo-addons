@@ -12,6 +12,7 @@ class ResPartner(models.Model):
                                    string="School Year")
     internship_count = fields.Integer(compute="_compute_internship_count",
                                       store=True)
+    # Field to trigger the compute function
     internship_count_dummy = fields.Integer(
         compute="_compute_internship_count")
     in_active_school_year = fields.Boolean(
