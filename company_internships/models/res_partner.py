@@ -17,6 +17,8 @@ class ResPartner(models.Model):
         compute="_compute_internship_count")
     in_active_school_year = fields.Boolean(
         compute="_compute_in_active_school_year", store=True)
+    student_tutor = fields.Many2one(comodel_name="res.partner")
+    student_instructor = fields.Many2one(comodel_name="res.partner")
 
     @api.depends("school_year")
     def _compute_in_active_school_year(self):
