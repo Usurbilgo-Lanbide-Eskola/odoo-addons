@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"survey_type_manager","survey.type.manager","model_survey_type","base.group_partner_manager",1,1,1,1
+"survey_type_user","survey.type.user","model_survey_type","base.group_user",1,0,0,0
+"create_instance_surveys_manager","create.instance.surveys.manager","model_create_surveys_from_template","base.group_partner_manager",1,1,1,1
+"create_instance_surveys_user","create.instance.surveys.user","model_create_surveys_from_template","base.group_user",1,0,0,0
