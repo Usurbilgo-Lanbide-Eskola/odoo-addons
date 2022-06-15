@@ -7,6 +7,7 @@ import tempfile
 from io import BytesIO
 import xlrd
 from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class HezkuntzaStudentImport(models.Model):
@@ -81,10 +82,6 @@ class HezkuntzaStudentImport(models.Model):
             line_values.append(sheet.row(row)[col].value)
         return line_values
 
-    def _format_student_name(self, firstname='', lastname1='', lastname2=''):
-        surnames = '{} {}'.format(lastname1, lastname2).strip()
-        return '{}, {}'.format(surnames, firstname)
-
     def _get_country_by_hezkuntza_code(self, country_code):
         if country_code:
             return self.env['hezkuntza.country.code'].search([(
@@ -114,9 +111,9 @@ class HezkuntzaStudentImport(models.Model):
             'id_hezkuntza': raw_dict['DIE_ALU'],
             'personal_id': raw_dict['DOCU_IDENTI_ALU'] or
             raw_dict['PASAPORTE_ALU'],
-            'name': self._format_student_name(
-                raw_dict['NOMBRE_ALU'], raw_dict['APELLIDO_1_ALU'],
-                raw_dict['APELLIDO_2_ALU']),
+            'name': raw_dict['NOMBRE_ALU'],
+            'lastname': raw_dict['APELLIDO_1_ALU'],
+            'lastname2': raw_dict['APELLIDO_2_ALU'],
             'birthdate_date': raw_dict['FECHA_NACI_ALU'],
             'gender': self._get_gender_by_hezkuntza_code(
                 raw_dict['COD_SEXO_ALU']),
@@ -155,6 +152,8 @@ class HezkuntzaStudentImport(models.Model):
             return res_lines
 
     def import_lines(self):
+        if not self.file:
+            raise UserError(_("Add a enrollment file"))
         if self.image_zip:
             with tempfile.TemporaryDirectory() as working_dir:
                 old_path = self.image_path
@@ -206,6 +205,8 @@ class HezkuntzaStudentImportLine(models.Model):
                                   related='import_id.school_year')
     personal_id = fields.Char("Student ID")
     name = fields.Char("Name")
+    lastname = fields.Char("Lastname")
+    lastname2 = fields.Char("Second Lastname")
     birthdate_date = fields.Date("Birth Date")
     gender = fields.Char("Gender")
     country_id = fields.Many2one(comodel_name="res.country", string="Country")
@@ -239,13 +240,21 @@ class HezkuntzaStudentImportLine(models.Model):
             errors += _("No image found\n")
         return errors and errors[:-1] or ""
 
+    def _select_odoo_language(self, hezkuntza_language):
+        if hezkuntza_language:
+            return self.env['hezkuntza.language'].search([(
+                'odoo_code', '=', hezkuntza_language)], limit=1).odoo_lang.code
+        return None
+
     def _get_partner_dict(self):
         return {
             'company_type': 'person',
             'id_hezkuntza': self.id_hezkuntza,
             'school_year': [(4, self.school_year.id,)],
             'personal_id': self.personal_id,
-            'name': self.name,
+            'firstname': self.name,
+            'lastname': self.lastname,
+            'lastname2': self.lastname2,
             'birthdate_date': self.birthdate_date,
             'gender': self.gender,
             'country_id': self.country_id.id,
@@ -259,6 +268,7 @@ class HezkuntzaStudentImportLine(models.Model):
             'personal_email': self.personal_email,
             'hezkuntza_language': self.hezkuntza_language,
             'image_1920': self.image,
+            'lang': self._select_odoo_language(self.hezkuntza_language)
         }
 
     def _get_partner_by_hezkuntza_id(self, hezkuntza_id):

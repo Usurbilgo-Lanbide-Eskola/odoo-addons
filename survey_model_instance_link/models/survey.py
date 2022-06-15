@@ -14,9 +14,9 @@ class SurveyType(models.Model):
     @api.constrains("model_id")
     def unique_model_id(self):
         for type in self.filtered(lambda x: x.model_id):
-            existing_type = self.env['survey.type'].search([('model_id', '=',
-                                                             type.model_id.id)]
-                                                           )
+            existing_type = self.env['survey.type'].search([
+                ('model_id', '=', type.model_id.id), ('id', '!=', self.id)
+            ])
             if existing_type:
                 raise ValidationError(_("Already exist another type with "
                                         "the same model"))

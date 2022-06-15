@@ -3,7 +3,7 @@
 
 {
     "name": "Hezkuntza Student Fields",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "category": "Customer Relationship Management",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",
@@ -16,5 +16,6 @@
     "data": [
         "views/res_partner_view.xml",
     ],
+    "post_init_hook": "activate_hezkuntza_languages",
     "installable": True,
 }

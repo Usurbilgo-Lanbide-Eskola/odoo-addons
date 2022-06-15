@@ -36,3 +36,4 @@ class HezkuntzaLanguage(models.Model):
 
     hezkuntza_code = fields.Char("Hezkuntza Code")
     odoo_code = fields.Selection(HEZKUNTZA_LANGUAGES)
+    odoo_lang = fields.Many2one(comodel_name="res.lang")

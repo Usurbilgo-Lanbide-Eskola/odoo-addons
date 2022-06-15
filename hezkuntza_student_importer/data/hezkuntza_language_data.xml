@@ -7,13 +7,16 @@
     <record id="language_spanish" model="hezkuntza.language">
         <field name="hezkuntza_code">1</field>
         <field name="odoo_code">spanish</field>
+        <field name="odoo_lang" ref="base.lang_es"/>
     </record>
     <record id="language_basque" model="hezkuntza.language">
         <field name="hezkuntza_code">2</field>
         <field name="odoo_code">basque</field>
+        <field name="odoo_lang" ref="base.lang_eu_ES"/>
     </record>
     <record id="language_bilingual" model="hezkuntza.language">
         <field name="hezkuntza_code">3</field>
         <field name="odoo_code">bilingual</field>
+        <field name="odoo_lang" ref="base.lang_eu_ES"/>
     </record>
 </odoo>

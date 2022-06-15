@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_survery_type_form" model="ir.ui.view">
+    <record id="view_survey_type_form" model="ir.ui.view">
         <field name="name">survey.type.form</field>
         <field name="model">survey.type</field>
         <field name="arch" type="xml">
@@ -34,7 +34,7 @@
         </field>
     </record>
 
-    <record id="view_survery_type_tree" model="ir.ui.view">
+    <record id="view_survey_type_tree" model="ir.ui.view">
         <field name="name">survey.type.tree</field>
         <field name="model">survey.type</field>
         <field name="arch" type="xml">
@@ -74,7 +74,7 @@
                            readonly="True"/>
                     <field name="survey_type" attrs="{'invisible': [('survey_template', '=', False)]}"/>
                     <field name="instance_id" attrs="{'invisible': [('instance_id', '=', 0)]}"/>
-                    <button name="see_related_instance" string="See instance" type="object"/>
+                    <button name="see_related_instance" string="See instance" type="object" attrs="{'invisible': [('instance_id', '=', 0)]}"/>
                 </group>
             </xpath>
         </field>
@@ -84,7 +84,7 @@
         <field name="name">Survey Type</field>
         <field name="res_model">survey.type</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_survery_type_tree"/>
+        <field name="view_id" ref="view_survey_type_tree"/>
     </record>
 
     <menuitem id="survey_type_menu"

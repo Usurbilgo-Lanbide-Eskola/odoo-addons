@@ -83,6 +83,7 @@
             <tree string="Hezkuntza language Mapping" editable="bottom">
                 <field name="hezkuntza_code"/>
                 <field name="odoo_code"/>
+                <field name="odoo_lang"/>
             </tree>
         </field>
     </record>
