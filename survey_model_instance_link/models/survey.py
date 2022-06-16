@@ -73,3 +73,9 @@ class SurveySurvey(models.Model):
                 "views": [(view.id, "form")],
                 "res_id": self.instance_id,
             }
+
+    def get_related_instance(self):
+        self.ensure_one()
+        if self.instance_id:
+            model = self.survey_type.model_id.model
+            return self.env[model].browse(self.instance_id)

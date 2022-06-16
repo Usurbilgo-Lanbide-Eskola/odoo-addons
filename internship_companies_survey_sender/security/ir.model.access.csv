@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"send_company_internships_manager","send_company_internships_manager","model_send_company_internships","base.group_partner_manager",1,1,1,1
+"send_company_internships_user","send_company_internships_user","model_send_company_internships","base.group_user",1,0,0,0
+"send_company_internships_line_manager","send_company_internships_line_manager","model_send_company_internships_line","base.group_partner_manager",1,1,1,1
+"send_company_internships_line_user","send_company_internships_line_user","model_send_company_internships_line","base.group_user",1,0,0,0
+"answers_bundle_manager","answers_bundle_manager","model_tutor_answer_bundle","base.group_partner_manager",1,1,1,1
+"answers_bundle_user","answers_bundle_user","model_tutor_answer_bundle","base.group_user",1,0,0,0

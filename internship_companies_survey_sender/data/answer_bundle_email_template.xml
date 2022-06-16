@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mail_template_tutor_invite" model="mail.template">
+        <field name="name">Survey: Invite</field>
+        <field name="model_id" ref="survey.model_survey_user_input"/>
+        <field name="subject">Participate to your students internships surveys</field>
+        <field name="email_to">${(object.tutor_id.email_formatted) |safe}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px; font-size: 13px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear ${object.tutor_id.name or 'participant'}
+                    <br/>
+                    <br/>
+                    We are conducting a survey and your response would be appreciated.
+                    % for answer in object.answer_ids:
+                    <div style="margin: 16px 0px 16px 0px;">
+                        <a href="${(answer.get_start_url()) | safe}"
+                           style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                            % if answer.survey_id.certification:
+                            Start ${answer.survey_id.get_related_instance().display_name} Certification
+                            % else:
+                            Start ${answer.survey_id.get_related_instance().display_name} Survey
+                            % endif
+                        </a>
+                    </div>
+                    % if answer.deadline:
+                    Please answer the survey for ${format_date(answer.deadline)}.
+                    <br/>
+                    <br/>
+                    % endif
+                    %endfor
+                    Thank you for your participation.
+                </p>
+            </div>
+        </field>
+        <field name="lang">${object.tutor_id.lang}</field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+</odoo>

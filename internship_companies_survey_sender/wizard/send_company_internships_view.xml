@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_send_company_internship_form" model="ir.ui.view">
+        <field name="name">view.send.company.internship.form</field>
+        <field name="model">send.company.internships</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="survey.survey_invite_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='survey_id']" position="attributes">
+                <attribute name="readonly">0</attribute>
+                <attribute name="string">Template Survey</attribute>
+                <attribute name="domain">[('survey_template', '=', True)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='survey_start_url']" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_ids']" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='emails']" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_ids']" position="after">
+                <field name="tutor_survey_line_ids" attrs="{'readonly': [('survey_id', '=', False)]}">
+                    <tree editable="top">
+                        <field name="tutor_id"/>
+                        <field name="survey_ids" widget="many2many_tags"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_send_company_internship" model="ir.actions.act_window">
+        <field name="name">Send surveys to tutors</field>
+        <field name="res_model">send.company.internships</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_send_company_internship_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">list</field>
+        <field name="context" eval="{
+                'default_template_id': ref('mail_template_tutor_invite'),
+                'default_use_template': bool(ref('mail_template_tutor_invite')),
+                'notif_layout': 'mail.mail_notification_light',
+                }"/>
+    </record>
+</odoo>

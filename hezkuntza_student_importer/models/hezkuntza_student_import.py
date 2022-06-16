@@ -242,8 +242,10 @@ class HezkuntzaStudentImportLine(models.Model):
 
     def _select_odoo_language(self, hezkuntza_language):
         if hezkuntza_language:
-            return self.env['hezkuntza.language'].search([(
-                'odoo_code', '=', hezkuntza_language)], limit=1).odoo_lang.code
+            lang = self.env['hezkuntza.language'].search([(
+                'odoo_code', '=', hezkuntza_language)], limit=1)
+            if lang:
+                return lang.odoo_lang.code
         return None
 
     def _get_partner_dict(self):
