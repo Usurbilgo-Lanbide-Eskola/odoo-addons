@@ -69,13 +69,23 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='title']/parent::h1" position="after">
                 <group col="4" colspan="4">
-                    <field name="survey_template" string="is template?" attrs="{'invisible': [('instance_id', '!=', 0)]}"/>
-                    <field name="parent_template_id" attrs="{'invisible': [('instance_id', '=', 0)]}"
-                           readonly="True"/>
-                    <field name="survey_type" attrs="{'invisible': [('survey_template', '=', False)]}"/>
-                    <field name="instance_id" attrs="{'invisible': [('instance_id', '=', 0)]}"/>
-                    <button name="see_related_instance" string="See instance" type="object" attrs="{'invisible': [('instance_id', '=', 0)]}"/>
+                    <group>
+                        <field name="survey_template" string="is template?"
+                               attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('instance_id', '!=', 0)]}"/>
+                        <field name="parent_template_id" attrs="{'invisible': [('instance_id', '=', 0)]}"
+                               readonly="True"/>
+                    </group>
+                    <group>
+                        <field name="survey_type"
+                               attrs="{'invisible': [('survey_template', '=', False), ('instance_id', '=', 0)]}"/>
+                        <field name="instance_id" invisible="1"/>
+                        <button name="see_related_instance" string="See instance" type="object"
+                                attrs="{'invisible': [('instance_id', '=', 0)]}"/>
+                    </group>
                 </group>
+            </xpath>
+            <xpath expr="//header" position="attributes">
+                <attribute name="attrs">{'invisible':[('survey_template', '=', True)]}</attribute>
             </xpath>
         </field>
     </record>

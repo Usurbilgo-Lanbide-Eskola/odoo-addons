@@ -1,0 +1,275 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hezkuntza_student_group_importer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-18 10:49+0000\n"
+"PO-Revision-Date: 2022-07-18 10:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__code
+msgid "Code"
+msgstr "Kodea"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model,name:hezkuntza_student_group_importer.model_res_partner
+msgid "Contact"
+msgstr "Kontaktua"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__course_id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_partner__course_id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_users__course_id
+msgid "Course"
+msgstr "Kurtsoa"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__create_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree__create_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree_mode__create_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_educational_level__create_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__create_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__create_date
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree__create_date
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree_mode__create_date
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_educational_level__create_date
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__create_date
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__degree_id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_partner__degree_id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_users__degree_id
+msgid "Degree"
+msgstr "Gradua"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__degree_mode_id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_partner__degree_mode_id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_users__degree_mode_id
+msgid "Degree Mode"
+msgstr "Gradu mota"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__description
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree__description
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree_mode__description
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_educational_level__description
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__description
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__description
+msgid "Description"
+msgstr "Deskripzioa"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree_mode__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_educational_level__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_import__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_import_line__display_name
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Izena erakutsi"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__educational_level_id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_partner__educational_level_id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_users__educational_level_id
+msgid "Educational Level"
+msgstr "Hezkuntza maila"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_import_line__group_id
+msgid "Group"
+msgstr "Taldea"
+
+#. module: hezkuntza_student_group_importer
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer.view_hezkuntza_course_tree
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer.view_hezkuntza_degree_tree
+msgid "Hezkuntza"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__hezkuntza_code
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree__hezkuntza_code
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree_mode__hezkuntza_code
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_educational_level__hezkuntza_code
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__hezkuntza_code
+msgid "Hezkuntza Code"
+msgstr "Hezkuntza kodea"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.actions.act_window,name:hezkuntza_student_group_importer.action_hezkuntza_course
+#: model:ir.ui.menu,name:hezkuntza_student_group_importer.hezkuntza_course_menu
+msgid "Hezkuntza Course"
+msgstr "Hezkuntza kurtsoa"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.actions.act_window,name:hezkuntza_student_group_importer.action_hezkuntza_degree
+#: model:ir.ui.menu,name:hezkuntza_student_group_importer.hezkuntza_degree_menu
+msgid "Hezkuntza Degree"
+msgstr "Hezkuntza gradua"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.actions.act_window,name:hezkuntza_student_group_importer.action_hezkuntza_degree_mode
+#: model:ir.ui.menu,name:hezkuntza_student_group_importer.hezkuntza_degree_mode_menu
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer.view_hezkuntza_degree_mode_tree
+msgid "Hezkuntza Degree Mode"
+msgstr "Hezkuntza gradu mota"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.actions.act_window,name:hezkuntza_student_group_importer.action_hezkuntza_educational_level
+#: model:ir.ui.menu,name:hezkuntza_student_group_importer.hezkuntza_educational_level_menu
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer.view_hezkuntza_educational_level_tree
+msgid "Hezkuntza Educational Level"
+msgstr "Hezkuntza hezkuntza maila"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.actions.act_window,name:hezkuntza_student_group_importer.action_hezkuntza_linguistic_model
+#: model:ir.ui.menu,name:hezkuntza_student_group_importer.hezkuntza_linguistic_model_menu
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer.view_hezkuntza_linguistic_model_tree
+msgid "Hezkuntza Linguistic Model"
+msgstr "Hezkuntza hizkuntza eredua"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.actions.act_window,name:hezkuntza_student_group_importer.action_hezkuntza_student_group
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer.view_hezkuntza_student_group_form
+#: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer.view_hezkuntza_student_group_tree
+msgid "Hezkuntza Student Group"
+msgstr "Hezkuntza ikasle taldea"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.ui.menu,name:hezkuntza_student_group_importer.hezkuntza_student_group_menu
+msgid "Hezkuntza Student Groups"
+msgstr "Hezkuntza ikasle taldeak"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree__id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree_mode__id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_educational_level__id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_import__id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_import_line__id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree_mode____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_educational_level____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_import____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_import_line____last_update
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "Azken aldaketa"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__write_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree__write_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree_mode__write_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_educational_level__write_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__write_uid
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__write_date
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree__write_date
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree_mode__write_date
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_educational_level__write_date
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__write_date
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__linguistic_model_id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_partner__linguistic_model_id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_users__linguistic_model_id
+msgid "Linguistic Model"
+msgstr "Hizkuntza eredua"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__odoo_code
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree__odoo_code
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_degree_mode__odoo_code
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_educational_level__odoo_code
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__odoo_code
+msgid "Odoo Code"
+msgstr "Odoo kodea"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.actions.server,name:hezkuntza_student_group_importer.action_recalculate_student_group_code
+msgid "Recalculate Student Group Code"
+msgstr "Berkalkulatu ikasle taldearen kodea"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_partner__hezkuntza_group_id
+#: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_users__hezkuntza_group_id
+msgid "Student Group"
+msgstr "Ikasle taldea"
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_course
+msgid "hezkuntza.course"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_degree
+msgid "hezkuntza.degree"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_degree_mode
+msgid "hezkuntza.degree.mode"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_educational_level
+msgid "hezkuntza.educational.level"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_linguistic_model
+msgid "hezkuntza.linguistic.model"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_student_group
+msgid "hezkuntza.student.group"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_student_import
+msgid "hezkuntza.student.import"
+msgstr ""
+
+#. module: hezkuntza_student_group_importer
+#: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_student_import_line
+msgid "hezkuntza.student.import.line"
+msgstr ""

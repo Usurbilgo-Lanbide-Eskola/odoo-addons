@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hezkuntza_course_tree" model="ir.ui.view">
+        <field name="name">hezkuntza.course.tree</field>
+        <field name="model">hezkuntza.course</field>
+        <field name="arch" type="xml">
+            <tree string="Hezkuntza " editable="bottom">
+                <field name="hezkuntza_code"/>
+                <field name="odoo_code"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hezkuntza_course">
+        <field name="name">Hezkuntza Course</field>
+        <field name="res_model">hezkuntza.course</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_hezkuntza_course_tree"/>
+    </record>
+
+    <menuitem id="hezkuntza_course_menu"
+              name="Hezkuntza Course"
+              parent="hezkuntza_student_importer.hezkuntza_file_mapping"
+              action="action_hezkuntza_course"
+              sequence="10"/>
+
+    <record id="view_hezkuntza_linguistic_model_tree" model="ir.ui.view">
+        <field name="name">hezkuntza.linguistic.model.tree</field>
+        <field name="model">hezkuntza.linguistic.model</field>
+        <field name="arch" type="xml">
+            <tree string="Hezkuntza Linguistic Model" editable="bottom">
+                <field name="hezkuntza_code"/>
+                <field name="odoo_code"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hezkuntza_linguistic_model">
+        <field name="name">Hezkuntza Linguistic Model</field>
+        <field name="res_model">hezkuntza.linguistic.model</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_hezkuntza_linguistic_model_tree"/>
+    </record>
+
+    <menuitem id="hezkuntza_linguistic_model_menu"
+              name="Hezkuntza Linguistic Model"
+              parent="hezkuntza_student_importer.hezkuntza_file_mapping"
+              action="action_hezkuntza_linguistic_model"
+              sequence="12"/>
+
+    <record id="view_hezkuntza_degree_tree" model="ir.ui.view">
+        <field name="name">hezkuntza.degree.tree</field>
+        <field name="model">hezkuntza.degree</field>
+        <field name="arch" type="xml">
+            <tree string="Hezkuntza " editable="bottom">
+                <field name="hezkuntza_code"/>
+                <field name="odoo_code"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hezkuntza_degree">
+        <field name="name">Hezkuntza Degree</field>
+        <field name="res_model">hezkuntza.degree</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_hezkuntza_degree_tree"/>
+    </record>
+
+    <menuitem id="hezkuntza_degree_menu"
+              name="Hezkuntza Degree"
+              parent="hezkuntza_student_importer.hezkuntza_file_mapping"
+              action="action_hezkuntza_degree"
+              sequence="14"/>
+
+    <record id="view_hezkuntza_educational_level_tree" model="ir.ui.view">
+        <field name="name">hezkuntza.educational.level.tree</field>
+        <field name="model">hezkuntza.educational.level</field>
+        <field name="arch" type="xml">
+            <tree string="Hezkuntza Educational Level" editable="bottom">
+                <field name="hezkuntza_code"/>
+                <field name="odoo_code"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hezkuntza_educational_level">
+        <field name="name">Hezkuntza Educational Level</field>
+        <field name="res_model">hezkuntza.educational.level</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_hezkuntza_educational_level_tree"/>
+    </record>
+
+    <menuitem id="hezkuntza_educational_level_menu"
+              name="Hezkuntza Educational Level"
+              parent="hezkuntza_student_importer.hezkuntza_file_mapping"
+              action="action_hezkuntza_educational_level"
+              sequence="16"/>
+
+    <record id="view_hezkuntza_degree_mode_tree" model="ir.ui.view">
+        <field name="name">hezkuntza.degree.mode.tree</field>
+        <field name="model">hezkuntza.degree.mode</field>
+        <field name="arch" type="xml">
+            <tree string="Hezkuntza Degree Mode" editable="bottom">
+                <field name="hezkuntza_code"/>
+                <field name="odoo_code"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hezkuntza_degree_mode">
+        <field name="name">Hezkuntza Degree Mode</field>
+        <field name="res_model">hezkuntza.degree.mode</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_hezkuntza_degree_mode_tree"/>
+    </record>
+
+    <menuitem id="hezkuntza_degree_mode_menu"
+              name="Hezkuntza Degree Mode"
+              parent="hezkuntza_student_importer.hezkuntza_file_mapping"
+              action="action_hezkuntza_degree_mode"
+              sequence="18"/>
+</odoo>
+

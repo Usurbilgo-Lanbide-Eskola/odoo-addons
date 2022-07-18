@@ -13,7 +13,10 @@ class SchoolYear(models.Model):
                        compute="_compute_school_year_name")
     start_date = fields.Date(string="Start Date", required=True)
     end_date = fields.Date(string="End Date", required=True)
-    is_active = fields.Boolean(compute="_compute_active_school_year", store=True)
+    is_active = fields.Boolean(string="Is Active", )
+    current_active_year = fields.Boolean(
+        string="Current School Year", compute="_compute_active_school_year",
+        store=True)
 
     @api.depends("start_date", "end_date")
     def _compute_school_year_name(self):
@@ -65,12 +68,15 @@ class SchoolYear(models.Model):
         for school_year in self:
             if school_year.start_date and school_year.end_date:
                 if school_year.start_date <= today <= school_year.end_date:
-                    school_year.is_active = True
+                    school_year.current_active_year = True
                     continue
-            school_year.is_active = False
+            school_year.current_active_year = False
 
     def get_school_year(self):
         return self.search([("is_active", "=", True)])
+
+    def get_current_school_year(self):
+        return self.search([("current_active_year", "=", True)])
 
     def get_next_school_year(self):
         today = fields.Date.to_string(fields.Date.today())
@@ -102,3 +108,19 @@ class SchoolYear(models.Model):
             school_year = self.create({'start_date': start_date,
                                        'end_date': end_date})
         return school_year
+
+    def school_year_deactivate_process(self):
+        pass
+
+    def school_year_activate_process(self):
+        pass
+
+    def active_year_change_process(self):
+        self.ensure_one()
+        active_year = self.get_school_year()
+        if active_year != self:
+            active_year.school_year_deactivate_process()
+            old_active_year = self.get_school_year()
+            old_active_year.is_active = False
+            self.is_active = True
+            self.school_year_activate_process()

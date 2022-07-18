@@ -252,7 +252,6 @@ class HezkuntzaStudentImportLine(models.Model):
         return {
             'company_type': 'person',
             'id_hezkuntza': self.id_hezkuntza,
-            'school_year': [(4, self.school_year.id,)],
             'personal_id': self.personal_id,
             'firstname': self.name,
             'lastname': self.lastname,
@@ -302,10 +301,6 @@ class HezkuntzaStudentImportLine(models.Model):
             already_imported = self._already_imported()
             if already_imported:
                 self.imported_partner_id = already_imported
-                school_year = self.school_year
-                if school_year not in self.imported_partner_id.school_year:
-                    self.imported_partner_id.school_year = [
-                        (4, self.school_year.id)]
             else:
                 errors = self.test_line()
                 # TODO block partner creation if errors?

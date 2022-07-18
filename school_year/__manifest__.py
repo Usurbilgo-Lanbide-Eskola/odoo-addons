@@ -3,7 +3,7 @@
 
 {
     "name": "School Year",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Customer Relationship Management",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",

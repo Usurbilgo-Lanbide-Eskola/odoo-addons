@@ -32,7 +32,7 @@
     </record>
 
     <record id="action_send_company_internship" model="ir.actions.act_window">
-        <field name="name">Send surveys to tutors</field>
+        <field name="name">Send Surveys to Tutors</field>
         <field name="res_model">send.company.internships</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_send_company_internship_form"/>

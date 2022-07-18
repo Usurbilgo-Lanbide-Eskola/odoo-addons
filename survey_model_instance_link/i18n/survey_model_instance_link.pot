@@ -1,0 +1,178 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_model_instance_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-18 10:15+0000\n"
+"PO-Revision-Date: 2022-07-18 10:15+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__action_id
+msgid "Action"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: code:addons/survey_model_instance_link/models/survey.py:0
+#, python-format
+msgid "Already exist another type with the same model"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model_terms:ir.ui.view,arch_db:survey_model_instance_link.create_surveys_from_template_form
+msgid "Cancel"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model_terms:ir.ui.view,arch_db:survey_model_instance_link.create_surveys_from_template_form
+msgid "Create"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model_terms:ir.ui.view,arch_db:survey_model_instance_link.view_survey_type_form
+msgid "Create Action"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__create_uid
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__create_date
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model_terms:ir.ui.view,arch_db:survey_model_instance_link.view_survey_type_form
+msgid "Delete Action"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__display_name
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_survey__display_name
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__id
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_survey__id
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__id
+msgid "ID"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_survey__instance_id
+msgid "Instance ID"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template____last_update
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_survey____last_update
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__write_uid
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__write_date
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__model_id
+msgid "Model"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__name
+msgid "Name"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_survey__parent_template_id
+msgid "Parent Template"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model_terms:ir.ui.view,arch_db:survey_model_instance_link.view_survey_model_link_form
+msgid "See instance"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model,name:survey_model_instance_link.model_survey_survey
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__survey_id
+msgid "Survey"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__survey_template_ids
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_survey__survey_template
+msgid "Survey Template"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.actions.act_window,name:survey_model_instance_link.survey_type_action
+#: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_survey__survey_type
+#: model:ir.ui.menu,name:survey_model_instance_link.survey_type_menu
+msgid "Survey Type"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model_terms:ir.ui.view,arch_db:survey_model_instance_link.view_survey_type_form
+#: model_terms:ir.ui.view,arch_db:survey_model_instance_link.view_survey_type_tree
+msgid "Survey Types"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model_terms:ir.ui.view,arch_db:survey_model_instance_link.view_survey_template_search
+msgid "Templates"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: code:addons/survey_model_instance_link/wizard/create_surveys_from_template.py:0
+#, python-format
+msgid "There is not an survey type with model {}. Create one"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model_terms:ir.ui.view,arch_db:survey_model_instance_link.view_survey_template_search
+msgid "Type"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model_terms:ir.ui.view,arch_db:survey_model_instance_link.create_surveys_from_template_form
+msgid "create surveys"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model,name:survey_model_instance_link.model_create_surveys_from_template
+msgid "create.surveys.from.template"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model_terms:ir.ui.view,arch_db:survey_model_instance_link.view_survey_model_link_form
+msgid "is template?"
+msgstr ""
+
+#. module: survey_model_instance_link
+#: model:ir.model,name:survey_model_instance_link.model_survey_type
+msgid "survey.type"
+msgstr ""

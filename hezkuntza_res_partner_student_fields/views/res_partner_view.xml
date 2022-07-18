@@ -9,8 +9,8 @@
                 <field name="location" placeholder="location..." class="o_address_street"
                        attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)], 'invisible': [('location', '=', False)]}"/>
             </xpath>
-            <xpath expr="//field[@name='email']" position="after">
-                <field name="personal_email" widget="email"/>
+            <xpath expr="//field[@name='website']" position="before">
+                <field name="personal_email" string="Personal Email" widget="email"/>
             </xpath>
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="personal_id"/>

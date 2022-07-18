@@ -1,0 +1,169 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* school_year
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-18 10:06+0000\n"
+"PO-Revision-Date: 2022-07-18 10:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: school_year
+#: model_terms:ir.ui.view,arch_db:school_year.res_config_settings_school_year_view
+msgid "<strong>School Year Automatic Generation Settings</strong>"
+msgstr "<strong>Aurtengo ikasturtearen konfigurazio automatikoa</strong>"
+
+#. module: school_year
+#: model:ir.model,name:school_year.model_res_config_settings
+msgid "Config Settings"
+msgstr "Konfigurazio ezarpenak"
+
+#. module: school_year
+#: model:ir.actions.server,name:school_year.create_school_year_ir_actions_server
+#: model:ir.cron,cron_name:school_year.create_school_year
+#: model:ir.cron,name:school_year.create_school_year
+msgid "Create School Year"
+msgstr "Sortu ikasturtea"
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_school_year__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_school_year__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_school_year__current_active_year
+msgid "Current School Year"
+msgstr "Aurtengo ikasturtea"
+
+#. module: school_year
+#: code:addons/school_year/models/res_config_settings.py:0
+#, python-format
+msgid "Day number must be between 1 and 31"
+msgstr "Egun zenbakiak 1 eta 31 artean egon behar du"
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:school_year.field_school_year__display_name
+msgid "Display Name"
+msgstr "Izena erakutsi"
+
+#. module: school_year
+#: code:addons/school_year/models/res_config_settings.py:0
+#, python-format
+msgid "Duration must be between 1 and 12"
+msgstr "Iraupenak 1 eta 12 artean egon behar du"
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_school_year__end_date
+msgid "End Date"
+msgstr "Amaiera data"
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_res_config_settings__id
+#: model:ir.model.fields,field_description:school_year.field_school_year__id
+msgid "ID"
+msgstr ""
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_school_year__is_active
+msgid "Is Active"
+msgstr "Aktibo"
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:school_year.field_school_year____last_update
+msgid "Last Modified on"
+msgstr "Azken aldaketa"
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_school_year__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_school_year__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: school_year
+#: code:addons/school_year/models/res_config_settings.py:0
+#, python-format
+msgid "Month number must be between 1 and 12"
+msgstr "Hilak 1 eta 12 artean egon behar du"
+
+#. module: school_year
+#: model:ir.actions.act_window,name:school_year.school_year_action
+#: model:ir.model.fields,field_description:school_year.field_school_year__name
+#: model_terms:ir.ui.view,arch_db:school_year.res_config_settings_school_year_view
+#: model_terms:ir.ui.view,arch_db:school_year.view_school_year_tree
+msgid "School Year"
+msgstr "Ikasturtea"
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_res_config_settings__school_year_months_duration
+msgid "School Year Duration"
+msgstr "Ikasturtearen iraupena"
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_res_config_settings__school_year_start_day
+msgid "School Year Start Day"
+msgstr "Ikasturte hasiera data"
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_res_config_settings__school_year_start_month
+msgid "School Year Start Month"
+msgstr "Ikasturte hasiera hila"
+
+#. module: school_year
+#: model:ir.ui.menu,name:school_year.menu_partner_category_form
+msgid "School Years"
+msgstr "Ikasturteak"
+
+#. module: school_year
+#: code:addons/school_year/models/school_year.py:0
+#, python-format
+msgid "School years can't overlap"
+msgstr "Ikastuteak ezin dute gainjarri"
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_school_year__start_date
+msgid "Start Date"
+msgstr "Hasiera data"
+
+#. module: school_year
+#: code:addons/school_year/models/school_year.py:0
+#, python-format
+msgid "Start date cannot be earlier to end date"
+msgstr "Hasiera datak amaierakoa baiño aurreragokoa izan behar du"
+
+#. module: school_year
+#: model_terms:ir.ui.view,arch_db:school_year.res_config_settings_school_year_view
+msgid "This data will be used to create automatic academic years"
+msgstr "Datu hauek ikasturte automatikoak sortzeko erabiliko dira"
+
+#. module: school_year
+#: model_terms:ir.ui.view,arch_db:school_year.view_school_year_tree
+msgid "Toggle Active"
+msgstr "Aktibatu"
+
+#. module: school_year
+#: model_terms:ir.ui.view,arch_db:school_year.res_config_settings_school_year_view
+msgid "months"
+msgstr "hilak"
+
+#. module: school_year
+#: model:ir.model,name:school_year.model_school_year
+msgid "school.year"
+msgstr ""

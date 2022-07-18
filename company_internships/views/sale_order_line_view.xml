@@ -11,7 +11,7 @@
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
                     <field name="internship_line" invisible="True"/>
                     <field name="student_ids" widget="many2many_tags" options="{'no_create': True}"
-                           attrs="{'readonly': [('internship_line', '=', False)]}"/>
+                           attrs="{'readonly': ['|', ('internship_line', '=', False), ('state', '!=', 'sale')]}" domain="[('student_group_id', '=', product_id)]"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
                     <field name="internship_line" invisible="True"/>

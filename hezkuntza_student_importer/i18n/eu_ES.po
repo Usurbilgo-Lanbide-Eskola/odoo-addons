@@ -6,14 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-20 12:51+0000\n"
-"PO-Revision-Date: 2022-01-20 12:51+0000\n"
+"POT-Creation-Date: 2022-07-18 09:34+0000\n"
+"PO-Revision-Date: 2022-07-18 09:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: hezkuntza_student_importer
+#: code:addons/hezkuntza_student_importer/models/hezkuntza_student_import.py:0
+#, python-format
+msgid "Add a enrollment file"
+msgstr "Gehitu matrikulazio fitxategia"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields.selection,name:hezkuntza_student_importer.selection__hezkuntza_language__odoo_code__basque
@@ -291,6 +297,11 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__lastname
+msgid "Lastname"
+msgstr "Abizena"
+
+#. module: hezkuntza_student_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__location
 msgid "Location"
 msgstr "Kokapena"
@@ -334,6 +345,11 @@ msgid "Odoo Code"
 msgstr "Odoo kodea"
 
 #. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_language__odoo_lang
+msgid "Odoo Lang"
+msgstr "Odoo hizkuntza"
+
+#. module: hezkuntza_student_importer
 #: model:ir.model.fields.selection,name:hezkuntza_student_importer.selection__hezkuntza_gender__odoo_code__other
 msgid "Other"
 msgstr "Beste bat"
@@ -354,14 +370,19 @@ msgid ""
 "Overwrite fields if has a discrepancy. Note: Empty fields will not be "
 "overwritten."
 msgstr ""
-"Gainidatzi eremuak desberdintasun bat badago. Oharra: Hutsik dauden eremuak ez dira "
-"gainidatziko."
+"Gainidatzi eremuak desberdintasun bat badago. Oharra: Hutsik dauden eremuak "
+"ez dira gainidatziko."
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__school_year
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__school_year
 msgid "School Year"
 msgstr "Eskola urtea"
+
+#. module: hezkuntza_student_importer
+#: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__lastname2
+msgid "Second Lastname"
+msgstr "Bigarren Abizena"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields.selection,name:hezkuntza_student_importer.selection__hezkuntza_language__odoo_code__spanish
@@ -430,8 +451,9 @@ msgid ""
 "To specify smb path first set shared folder name and then the path joined by"
 " a slash. Ex.: sharedfolder/path/to/dest"
 msgstr ""
-"smb kokapena zehazteko lehenik partekatutako karpeta jarri eta ondoren kokapena barra zeiharra"
-" erabiliaz. Adb.: karpetapartekatua/helburuko/kokapena"
+"smb kokapena zehazteko lehenik partekatutako karpeta jarri eta ondoren "
+"kokapena barra zeiharra erabiliaz. Adb.: "
+"karpetapartekatua/helburuko/kokapena"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,help:hezkuntza_student_importer.field_hezkuntza_student_import__image_zip

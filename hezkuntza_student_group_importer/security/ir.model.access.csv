@@ -1,0 +1,13 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"hezkuntza_mapping_course_manager","hezkuntza_mapping_course_manager","model_hezkuntza_course","base.group_partner_manager",1,1,1,1
+"hezkuntza_mapping_course_user","hezkuntza_mapping_course_user","model_hezkuntza_course","base.group_user",1,0,0,0
+"hezkuntza_mapping_linguistic_model_manager","hezkuntza_mapping_linguistic_model_manager","model_hezkuntza_linguistic_model","base.group_partner_manager",1,1,1,1
+"hezkuntza_mapping_linguistic_model_user","hezkuntza_mapping_linguistic_model_user","model_hezkuntza_linguistic_model","base.group_user",1,0,0,0
+"hezkuntza_mapping_degree_manager","hezkuntza_mapping_degree_manager","model_hezkuntza_degree","base.group_partner_manager",1,1,1,1
+"hezkuntza_mapping_degree_user","hezkuntza_mapping_degree_user","model_hezkuntza_degree","base.group_user",1,0,0,0
+"hezkuntza_mapping_educational_level_manager","hezkuntza_mapping_educational_level_manager","model_hezkuntza_educational_level","base.group_partner_manager",1,1,1,1
+"hezkuntza_mapping_educational_level_user","hezkuntza_mapping_educational_level_user","model_hezkuntza_educational_level","base.group_user",1,0,0,0
+"hezkuntza_mapping_degree_mode_manager","hezkuntza_mapping_degree_mode_manager","model_hezkuntza_degree_mode","base.group_partner_manager",1,1,1,1
+"hezkuntza_mapping_degree_mode_user","hezkuntza_mapping_degree_mode_user","model_hezkuntza_degree_mode","base.group_user",1,0,0,0
+"hezkuntza_student_group_manager","hezkuntza_student_group_manager","model_hezkuntza_student_group","base.group_partner_manager",1,1,1,1
+"hezkuntza_student_group_user","hezkuntza_student_group_user","model_hezkuntza_student_group","base.group_user",1,0,0,0

@@ -3,21 +3,22 @@
 
 {
     "name": "Company internships",
-    "version": "14.0.1.0.2",
+    "version": "14.0.1.1.2",
     "category": "Customer Relationship Management",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",
     "website": "http://www.lhusurbil.eus",
     "depends": [
-        "crm", "sale_order_line_menu", "school_year",
+        "sale_crm", "sale_order_line_menu", "school_year",
         "partner_second_lastname",
     ],
     "excludes": [],
     "data": [
+        "security/ir.model.access.csv",
         "views/product_template_view.xml",
-        "views/res_partner_category_view.xml",
         "views/res_partner_view.xml",
         "views/sale_order_line_view.xml",
+        "views/crm_lead_view.xml",
     ],
     "installable": True,
 }

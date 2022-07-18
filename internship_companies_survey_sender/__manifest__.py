@@ -3,7 +3,7 @@
 
 {
     "name": "Internship Survey Sender",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Tools",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",
@@ -15,6 +15,7 @@
     "data": [
         "data/answer_bundle_email_template.xml",
         "security/ir.model.access.csv",
+        "views/res_partner_view.xml",
         "wizard/send_company_internships_view.xml",
     ],
     "installable": True,
