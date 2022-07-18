@@ -75,6 +75,8 @@
                             <field name="school_year"/>
                             <field name="personal_id"/>
                             <field name="name"/>
+                            <field name="lastname"/>
+                            <field name="lastname2"/>
                             <field name="birthdate_date"/>
                             <field name="gender"/>
                             <field name="country_id"/>

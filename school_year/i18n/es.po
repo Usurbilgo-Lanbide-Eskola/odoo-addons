@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-17 12:39+0000\n"
-"PO-Revision-Date: 2022-01-17 12:39+0000\n"
+"POT-Creation-Date: 2022-07-18 10:07+0000\n"
+"PO-Revision-Date: 2022-07-18 10:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,8 @@ msgstr ""
 #. module: school_year
 #: model_terms:ir.ui.view,arch_db:school_year.res_config_settings_school_year_view
 msgid "<strong>School Year Automatic Generation Settings</strong>"
-msgstr "<strong>Configuración de la generación automática del año escolar</strong>"
+msgstr ""
+"<strong>Configuración de la generación automática del año escolar</strong>"
 
 #. module: school_year
 #: model:ir.model,name:school_year.model_res_config_settings
@@ -41,6 +42,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:school_year.field_school_year__create_date
 msgid "Created on"
 msgstr ""
+
+#. module: school_year
+#: model:ir.model.fields,field_description:school_year.field_school_year__current_active_year
+msgid "Current School Year"
+msgstr "Año escolar actual"
 
 #. module: school_year
 #: code:addons/school_year/models/res_config_settings.py:0
@@ -147,6 +153,11 @@ msgstr "La fecha de inicio no puede ser anterior a la fecha de finalización"
 #: model_terms:ir.ui.view,arch_db:school_year.res_config_settings_school_year_view
 msgid "This data will be used to create automatic academic years"
 msgstr "Estos datos se utilizarán para crear años académicos automáticos"
+
+#. module: school_year
+#: model_terms:ir.ui.view,arch_db:school_year.view_school_year_tree
+msgid "Toggle Active"
+msgstr "Activar"
 
 #. module: school_year
 #: model_terms:ir.ui.view,arch_db:school_year.res_config_settings_school_year_view

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hezkuntza_student_group_tree" model="ir.ui.view">
+        <field name="name">hezkuntza.student.group.tree</field>
+        <field name="model">hezkuntza.student.group</field>
+        <field name="arch" type="xml">
+            <tree string="Hezkuntza Student Group">
+                <field name="code"/>
+                <field name="description"/>
+                <field name="course_id"/>
+                <field name="linguistic_model_id"/>
+                <field name="degree_id"/>
+                <field name="educational_level_id"/>
+                <field name="degree_mode_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hezkuntza_student_group_form" model="ir.ui.view">
+        <field name="name">hezkuntza.student.group.form</field>
+        <field name="model">hezkuntza.student.group</field>
+        <field name="arch" type="xml">
+            <form string="Hezkuntza Student Group">
+                <group>
+                    <field name="code"/>
+                    <field name="description"/>
+                    <field name="course_id"/>
+                    <field name="linguistic_model_id"/>
+                    <field name="degree_id"/>
+                    <field name="educational_level_id"/>
+                    <field name="degree_mode_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hezkuntza_student_group">
+        <field name="name">Hezkuntza Student Group</field>
+        <field name="res_model">hezkuntza.student.group</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hezkuntza_student_group_tree"/>
+    </record>
+
+    <menuitem id="hezkuntza_student_group_menu"
+              name="Hezkuntza Student Groups"
+              parent="hezkuntza_student_importer.hezkuntza_importer"
+              action="action_hezkuntza_student_group"
+              sequence="12"/>
+
+    <record id="action_recalculate_student_group_code" model="ir.actions.server">
+        <field name="name">Recalculate Student Group Code</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_hezkuntza_student_group"/>
+        <field name="binding_model_id" ref="model_hezkuntza_student_group"/>
+        <field name="code">
+            if records:
+            action = records.recalculate_code()
+        </field>
+    </record>
+</odoo>

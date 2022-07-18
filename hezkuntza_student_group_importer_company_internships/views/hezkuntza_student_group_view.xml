@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hezkuntza_student_group_product_form" model="ir.ui.view">
+        <field name="name">hezkuntza.student.group.product.form</field>
+        <field name="model">hezkuntza.student.group</field>
+        <field name="inherit_id" ref="hezkuntza_student_group_importer.view_hezkuntza_student_group_form"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="product_ids" string="Groups by year">
+                    <tree edit="False">
+                        <field name="name"/>
+                        <field name="school_year_id"/>
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
+</odoo>

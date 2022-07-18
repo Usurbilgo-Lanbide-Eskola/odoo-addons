@@ -61,12 +61,18 @@ class CreateSurveysFromTemplate(models.TransientModel):
                 new_survey = wizard.survey_id.sudo().copy(survey_dict)
                 new_survey.title = f"{wizard.survey_id.title} {instance.name}"
                 new_surveys |= new_survey
-            survey_view_id = self.env.ref("survey.survey_kanban").id
+            survey_kanban_view_id = self.env.ref("survey.survey_kanban").id
+            survey_form_view_id = self.env.ref("survey.survey_form").id
+            survey_tree_view_id = self.env.ref("survey.survey_tree").id
+            views = [(survey_kanban_view_id, "kanban"),
+                     (survey_tree_view_id, "tree"),
+                     (survey_form_view_id, "form"),]
+
             return {
                 "type": "ir.actions.act_window",
                 "res_model": "survey.survey",
-                "view_mode": "kanban",
-                "view_id": survey_view_id,
+                "view_mode": "kanban, tree, form",
+                "views": views,
                 "domain": [('id', 'in', new_surveys.ids)],
                 "context": {
                     "search_default_parent_template_id": parent_survey,

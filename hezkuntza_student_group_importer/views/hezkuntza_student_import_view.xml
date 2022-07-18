@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hezkuntza_student_group_import_form" model="ir.ui.view">
+            <field name="name">view.hezkuntza.student.group.import.form</field>
+            <field name="model">hezkuntza.student.import</field>
+            <field name="inherit_id" ref="hezkuntza_student_importer.view_hezkuntza_student_import_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lastname2']" position="after">
+                    <field name="group_id"/>
+                </xpath>
+            </field>
+        </record>
+</odoo>

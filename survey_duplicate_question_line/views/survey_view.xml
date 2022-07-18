@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_duplicate_question_form" model="ir.ui.view">
+            <field name="name">survey.survey</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='question_and_page_ids']//tree/control" position="before">
+                    <button name="duplicate_question_line" type="object" string="Duplicate" icon="fal fa-copy"/>
+                </xpath>
+            </field>
+        </record>
+</odoo>
