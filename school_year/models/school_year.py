@@ -88,7 +88,7 @@ class SchoolYear(models.Model):
 
     @api.model
     def create_school_year(self):
-        school_year = self.get_school_year() or self.get_next_school_year()
+        school_year = self.get_current_school_year()
         if not school_year:
             today = fields.Date.today()
             res_param = self.env['ir.config_parameter'].sudo()
