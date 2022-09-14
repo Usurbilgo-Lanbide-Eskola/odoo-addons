@@ -11,6 +11,14 @@ class HezkuntzaCourse(models.Model):
     odoo_code = fields.Char("Odoo Code")
     description = fields.Char("Description")
 
+    _sql_constraints = [
+        (
+            "hezkuntza_code_uniq",
+            "unique(hezkuntza_code)",
+            "Hezkuntza code must be unique",
+        )
+    ]
+
 
 class HezkutzaLinguisticModel(models.Model):
     _name = "hezkuntza.linguistic.model"
@@ -19,6 +27,14 @@ class HezkutzaLinguisticModel(models.Model):
     hezkuntza_code = fields.Char("Hezkuntza Code")
     odoo_code = fields.Char("Odoo Code")
     description = fields.Char("Description")
+
+    _sql_constraints = [
+        (
+            "hezkuntza_code_uniq",
+            "unique(hezkuntza_code)",
+            "Hezkuntza code must be unique",
+        )
+    ]
 
 
 class HezkuntzaDegree(models.Model):
@@ -29,6 +45,14 @@ class HezkuntzaDegree(models.Model):
     odoo_code = fields.Char("Odoo Code")
     description = fields.Char("Description")
 
+    _sql_constraints = [
+        (
+            "hezkuntza_code_uniq",
+            "unique(hezkuntza_code)",
+            "Hezkuntza code must be unique",
+        )
+    ]
+
 
 class HezkuntzaEducationalLevel(models.Model):
     _name = "hezkuntza.educational.level"
@@ -38,6 +62,14 @@ class HezkuntzaEducationalLevel(models.Model):
     odoo_code = fields.Char("Odoo Code")
     description = fields.Char("Description")
 
+    _sql_constraints = [
+        (
+            "hezkuntza_code_uniq",
+            "unique(hezkuntza_code)",
+            "Hezkuntza code must be unique",
+        )
+    ]
+
 
 class HezkuntzaDegreeMode(models.Model):
     _name = "hezkuntza.degree.mode"
@@ -46,3 +78,11 @@ class HezkuntzaDegreeMode(models.Model):
     hezkuntza_code = fields.Char("Hezkuntza Code")
     odoo_code = fields.Char("Odoo Code")
     description = fields.Char("Description")
+
+    _sql_constraints = [
+        (
+            "hezkuntza_code_uniq",
+            "unique(hezkuntza_code)",
+            "Hezkuntza code must be unique",
+        )
+    ]

@@ -15,8 +15,7 @@ class HezkuntzaStudentImport(models.Model):
 
     name = fields.Char("Importation Name", copy=False)
     file = fields.Binary("Enrollment File", copy=False)
-    school_year = fields.Many2one(comodel_name="school.year",
-                                  compute="_compute_school_year")
+    school_year = fields.Many2one(comodel_name="school.year")
     image_path = fields.Char("Image Path")
     image_zip = fields.Binary("Image Zip", copy=False,
                               help="Upload student images in a zip file")
@@ -39,14 +38,13 @@ class HezkuntzaStudentImport(models.Model):
     def _inverse_changes(self):
         pass
 
-    @api.depends('name')
-    def _compute_school_year(self):
+    @api.onchange('name')
+    def onchange_name(self):
         school_year_obj = self.env['school.year']
         for school_year in self:
-            active_school_year = school_year_obj.get_school_year()
-            if not active_school_year:
-                active_school_year = school_year_obj.create(school_year)
-            self.school_year = active_school_year
+            active_school_year = school_year_obj.get_current_school_year()
+            if active_school_year:
+                school_year.school_year = active_school_year
 
     def unzip_images_in_path(self):
         if self.image_zip and self.image_path:
@@ -166,6 +164,11 @@ class HezkuntzaStudentImport(models.Model):
         res_lines = []
         for line in lines_dict:
             line_name = line.get('id_hezkuntza')
+            partner_obj = self.with_context(active_test=False
+                                            ).env['res.partner']
+            partner_map = partner_obj.search([('id_hezkuntza', '=ilike',
+                                               line_name)], limit=1)
+            line.update(imported_partner_id=partner_map.id)
             already_mapped = self.mapped_lines.filtered(
                 lambda x: x.id_hezkuntza == line_name)
             if already_mapped:
@@ -277,7 +280,8 @@ class HezkuntzaStudentImportLine(models.Model):
                                                hezkuntza_id)], limit=1)
 
     def _already_imported(self):
-        return self._get_partner_by_hezkuntza_id(self.id_hezkuntza)
+        return self.imported_partner_id or self.with_context(
+            active_test=False)._get_partner_by_hezkuntza_id(self.id_hezkuntza)
 
     def _overwrite_partner(self):
         if self.imported_partner_id:
@@ -296,18 +300,22 @@ class HezkuntzaStudentImportLine(models.Model):
             return self._overwrite_partner()
         return self.env['res.partner']
 
+    def enroll_in_school_year(self, student):
+        student.active = True
+
     def create_partner(self):
-        if not self.imported_partner_id:
-            already_imported = self._already_imported()
-            if already_imported:
-                self.imported_partner_id = already_imported
-            else:
-                errors = self.test_line()
-                # TODO block partner creation if errors?
-                if errors:
-                    pass
-                partner_dict = self._get_partner_dict()
-                partner_id = self.env['res.partner'].create(partner_dict)
-                self.imported_partner_id = partner_id.id
-                return partner_id
+        already_imported = self._already_imported()
+        if already_imported:
+            if self.school_year.is_active:
+                self.enroll_in_school_year(already_imported)
+            self.imported_partner_id = already_imported
+        else:
+            errors = self.test_line()
+            # TODO block partner creation if errors?
+            if errors:
+                pass
+            partner_dict = self._get_partner_dict()
+            partner_id = self.env['res.partner'].create(partner_dict)
+            self.imported_partner_id = partner_id.id
+            return partner_id
         return self.env['res.partner']

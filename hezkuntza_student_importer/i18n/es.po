@@ -60,7 +60,7 @@ msgstr "Provincia"
 #. module: hezkuntza_student_importer
 #: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
 msgid "Create Students"
-msgstr "Crear estudiante"
+msgstr "Crear estudiantes"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__create_uid
@@ -443,7 +443,7 @@ msgstr "Telefono2"
 #. module: hezkuntza_student_importer
 #: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form
 msgid "Test Lines"
-msgstr "Lineas test"
+msgstr "Testear lineas"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,help:hezkuntza_student_importer.field_hezkuntza_student_import__image_path
