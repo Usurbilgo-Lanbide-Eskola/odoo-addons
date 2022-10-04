@@ -29,7 +29,7 @@ class SurveyType(models.Model):
     def create_action(self):
         for type in self:
             wizard_view_id = self.env.ref(
-                "survery_model_instance_link.create_surveys_from_template_form"
+                "survey_model_instance_link.create_surveys_from_template_form"
             ).id
             type.action_id = self.env["ir.actions.act_window"].with_user(
                 SUPERUSER_ID).create({
