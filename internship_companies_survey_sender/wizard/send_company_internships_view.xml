@@ -11,6 +11,9 @@
                 <attribute name="string">Template Survey</attribute>
                 <attribute name="domain">[('survey_template', '=', True)]</attribute>
             </xpath>
+            <xpath expr="//field[@name='survey_id']" position="after">
+                <field name="school_year"/>
+            </xpath>
             <xpath expr="//field[@name='survey_start_url']" position="attributes">
                 <attribute name="attrs">{'invisible': True}</attribute>
             </xpath>

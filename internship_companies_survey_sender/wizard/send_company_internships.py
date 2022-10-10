@@ -1,6 +1,7 @@
 # Copyright 2022 Mikel Arregi Etxaniz - CIFP Usurbil LHII
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -36,16 +37,47 @@ class SendCompanyInternships(models.TransientModel):
         ]"""
     )
 
+    def _add_tutor_surveys(self):
+        survey_type = self.env['survey.type'].search([('model_id', '=',
+                                                       'res.partner')])
+        if not survey_type:
+            raise UserError(_("There is not an survey type of a "
+                              "'res.partner' model. Create one"))
+        for line in self.tutor_survey_line_ids:
+            tutor = line.tutor_id
+            search_domain = [('is_student', '=', True),
+                             ('student_tutor', '=', tutor.id)]
+            if self.school_year:
+                search_domain.append(('school_year', '=', self.school_year.id))
+            tutor_students = self.env['res.partner'].search(search_domain)
+            students_companies = tutor_students.mapped(
+                "student_instructor.parent_id")
+            self.env['survey.survey'].create_child_surveys(
+                students_companies, self.survey_id, survey_type)
+            surveys = self._get_tutor_survey_lines(
+                tutor, self.survey_id, self.school_year)._ids
+            line.survey_ids = surveys
+
     def _get_tutor_survey_lines(self, tutor, survey, school_year=False):
         if not isinstance(tutor, int):
             tutor = tutor.id
         search_domain = [('is_student', '=', True),
                          ('student_tutor', '=', tutor)]
+        model = "res.partner"
+        field = "student_instructor"
         if school_year:
-            search_domain.append(('school_year', '=', self.school_year.id))
-        tutor_students = self.env['res.partner'].search(search_domain)
+            active_year = self.env['school.year'].get_school_year()
+            if school_year.id != active_year.id:
+                field = 'student_instructor_id'
+                model = 'school.year.historical'
+                search_domain = [
+                    ('school_year_id', '=', school_year.id),
+                    ('student_tutor_id', '=', tutor.id)]
+            else:
+                search_domain.append(('school_year', '=', school_year.id))
+        tutor_students = self.env[model].search(search_domain)
         students_companies = tutor_students.mapped(
-            "student_instructor.parent_id.id")
+            f"{field}.parent_id.id")
         return self.env["survey.survey"].search([
             ('parent_template_id', '=', survey.id),
             ('instance_id', 'in', students_companies)])
@@ -57,10 +89,9 @@ class SendCompanyInternships(models.TransientModel):
             lines.append((2, old_line.id))
         if self.survey_id:
             tutors = self._context.get("active_ids")
-            lines = []
             for tutor in tutors:
-                surveys = self._get_tutor_survey_lines(tutor, self.survey_id,
-                                                       self.school_year)._ids
+                surveys = self._get_tutor_survey_lines(
+                    tutor, self.survey_id, self.school_year)._ids
                 line = {'tutor_id': tutor}
                 if surveys:
                     line.update(survey_ids=[(6, 0, surveys)])
@@ -97,11 +128,13 @@ class SendCompanyInternships(models.TransientModel):
         """ Create mail specific for recipient containing notably
         its access token """
         subject = self.env['mail.render.mixin'].with_context(
-            safe=True)._render_template(self.subject, 'tutor.answer.bundle',
+            safe=True)._render_template(self.subject,
+                                        'tutor.answer.bundle',
                                         bundle.ids, post_process=True)[
             bundle.id]
         body = self.env['mail.render.mixin']._render_template(
-            self.body, 'tutor.answer.bundle', bundle.ids, post_process=True)[
+            self.body, 'tutor.answer.bundle', bundle.ids,
+            post_process=True)[
             bundle.id]
         # post the message
         mail_values = {
@@ -122,7 +155,8 @@ class SendCompanyInternships(models.TransientModel):
                                                 'custom_layout'))
         if notif_layout:
             try:
-                template = self.env.ref(notif_layout, raise_if_not_found=True)
+                template = self.env.ref(notif_layout,
+                                        raise_if_not_found=True)
             except ValueError:
                 _logger.warning(
                     'QWeb template %s not found when sending survey mails. '
@@ -145,6 +179,7 @@ class SendCompanyInternships(models.TransientModel):
         return self.env['mail.mail'].sudo().create(mail_values)
 
     def action_invite(self):
+        self._add_tutor_surveys()
         answers = self._prepare_answers()
         answer_bundle = self.env['tutor.answer.bundle']
         for tutor, answer_ids in answers.items():
@@ -161,7 +196,8 @@ class SendCompanyInternshipsLine(models.TransientModel):
     tutor_id = fields.Many2one(comodel_name="res.partner", domain=[(
         'is_tutor', '=', True)])
     survey_ids = fields.Many2many(comodel_name="survey.survey")
-    send_wizard_id = fields.Many2one(comodel_name="send.company.internships")
+    send_wizard_id = fields.Many2one(
+        comodel_name="send.company.internships")
 
 
 class TutorAnswerBundle(models.TransientModel):
