@@ -45,13 +45,8 @@ class SendCompanyInternships(models.TransientModel):
                               "'res.partner' model. Create one"))
         for line in self.tutor_survey_line_ids:
             tutor = line.tutor_id
-            search_domain = [('is_student', '=', True),
-                             ('student_tutor', '=', tutor.id)]
-            if self.school_year:
-                search_domain.append(('school_year', '=', self.school_year.id))
-            tutor_students = self.env['res.partner'].search(search_domain)
-            students_companies = tutor_students.mapped(
-                "student_instructor.parent_id")
+            students_companies = tutor._search_tutor_tutored_students(
+                self.school_year)
             self.env['survey.survey'].create_child_surveys(
                 students_companies, self.survey_id, survey_type)
             surveys = self._get_tutor_survey_lines(
@@ -59,28 +54,12 @@ class SendCompanyInternships(models.TransientModel):
             line.survey_ids = surveys
 
     def _get_tutor_survey_lines(self, tutor, survey, school_year=False):
-        if not isinstance(tutor, int):
-            tutor = tutor.id
-        search_domain = [('is_student', '=', True),
-                         ('student_tutor', '=', tutor)]
-        model = "res.partner"
-        field = "student_instructor"
-        if school_year:
-            active_year = self.env['school.year'].get_school_year()
-            if school_year.id != active_year.id:
-                field = 'student_instructor_id'
-                model = 'school.year.historical'
-                search_domain = [
-                    ('school_year_id', '=', school_year.id),
-                    ('student_tutor_id', '=', tutor.id)]
-            else:
-                search_domain.append(('school_year', '=', school_year.id))
-        tutor_students = self.env[model].search(search_domain)
-        students_companies = tutor_students.mapped(
-            f"{field}.parent_id.id")
+        if isinstance(tutor, int):
+            tutor = self.env['res.partner'].browse(tutor)
+        students_companies = tutor._search_tutor_tutored_students(school_year)
         return self.env["survey.survey"].search([
             ('parent_template_id', '=', survey.id),
-            ('instance_id', 'in', students_companies)])
+            ('instance_id', 'in', students_companies.ids)])
 
     @api.onchange('survey_id')
     def _onchange_survey_id(self):

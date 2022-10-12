@@ -19,6 +19,28 @@ class ResPartner(models.Model):
                                   string="Reputation",
                                   compute="compute_partner_reputation")
 
+    def _search_tutor_tutored_students(self, school_year=False):
+        self.ensure_one()
+        if not self.is_tutor:
+            raise UserWarning(_(f"{self.name} is not a tutor"))
+        if not school_year:
+            school_year = self.env['school.year'].get_school_year()
+        active_year = self.env['school.year'].get_school_year()
+        search_domain = [('is_student', '=', True),
+                         ('student_tutor', '=', self.id)]
+        model = "res.partner"
+        field = "student_instructor"
+        # if not active school year search in historical data
+        if school_year.id != active_year.id:
+            field = 'student_instructor_id'
+            model = 'school.year.historical'
+            search_domain = [
+                ('school_year_id', '=', school_year.id),
+                ('student_tutor_id', '=', self.id)]
+        tutor_students = self.env[model].search(search_domain)
+        return tutor_students.mapped(
+            f"{field}.parent_id")
+
     def _get_partner_surveys(self):
         self.ensure_one()
         partner_model_id = self.env['ir.model'].search(
