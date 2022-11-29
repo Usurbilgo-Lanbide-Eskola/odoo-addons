@@ -58,6 +58,30 @@
     </record>
 
 
+    <record id="view_product_template_student_group_kanban" model="ir.ui.view">
+        <field name="name">product.template.student.group.kanban</field>
+        <field name="model">product.template</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='product_lst_price']" position="replace">
+                <div name="student_total" class="mt-1">
+                    Students Total:
+                    <field name="students_count"/>
+                </div>
+                <div name="lead_qty" class="mt-1">
+                    Assigned:
+                    <field name="lead_qty"/>
+                </div>
+                <div name="pending_qty" class="mt-1">
+                    Pending:
+                    <field name="pending_qty"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
     <record id="view_product_template_student_group_search" model="ir.ui.view">
         <field name="name">product.template.student.group.search</field>
         <field name="model">product.template</field>
@@ -87,6 +111,7 @@
     <record model="ir.actions.act_window.view" id="action_student_group_product_kanban">
         <field name="sequence" eval="1"/>
         <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_product_template_student_group_kanban"/>
         <field name="act_window_id" ref="action_student_group_product"/>
     </record>
 

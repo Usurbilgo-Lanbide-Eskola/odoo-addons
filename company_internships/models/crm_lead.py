@@ -11,7 +11,7 @@ OPPORTUNITY_TYPE = [
 class CrmLead(models.Model):
     _inherit = "crm.lead"
 
-    opportunity_type = fields.Selection(string="Type",
+    opportunity_type = fields.Selection(string="Service Type",
                                         selection=OPPORTUNITY_TYPE)
     internship_line_ids = fields.One2many(comodel_name="internship.line",
                                           inverse_name="lead_id",

@@ -10,4 +10,19 @@
             </field>
         </field>
     </record>
+
+    <record id="view_hezkuntza_group_search" model="ir.ui.view">
+        <field name="name">view.hezkuntza.group.search</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="company_internships.view_product_template_student_group_search"/>
+        <field name="arch" type="xml">
+            <field name="is_student_group" position="before">
+                <field name="course_id"/>
+                <field name="linguistic_model_id"/>
+                <field name="degree_id"/>
+                <field name="educational_level_id"/>
+                <field name="degree_mode_id"/>
+            </field>
+        </field>
+    </record>
 </odoo>

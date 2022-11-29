@@ -1,17 +1,20 @@
-# Copyright 2021 Mikel Arregi Etxaniz - CIFP Usurbil LHII
+# Copyright 2022 Mikel Arregi Etxaniz - CIFP Usurbil LHII
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Send Notifications Only to Internal Users",
+    "name": "Change Surveys Status Wizard",
     "version": "14.0.1.0.0",
-    "category": "Customer Relationship Management",
+    "category": "ToolMarketing/Surveys",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",
     "website": "http://www.lhusurbil.eus",
     "depends": [
-        "calendar",
+        "survey",
     ],
     "excludes": [],
-    "data": [],
+    "data": [
+        "security/ir.model.access.csv",
+        "wizard/survey_state_changer_view.xml",
+    ],
     "installable": True,
 }

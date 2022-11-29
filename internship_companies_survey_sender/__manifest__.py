@@ -3,7 +3,7 @@
 
 {
     "name": "Internship Survey Sender",
-    "version": "14.0.1.0.4",
+    "version": "14.0.1.0.5",
     "category": "Tools",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",

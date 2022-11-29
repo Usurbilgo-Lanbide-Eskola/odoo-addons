@@ -15,15 +15,16 @@ AVAILABLE_SCORES = [
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    dummy_reputation = fields.Float(string="Reputation",
-                                    compute="compute_partner_reputation")
     reputation = fields.Selection(selection=AVAILABLE_SCORES,
                                   string="Reputation",
                                   compute="compute_partner_reputation",
                                   store=True)
-    raw_reputation = fields.Float(string="Reputation",
+    raw_reputation = fields.Float(string="Numerical Reputation",
                                   compute="compute_partner_reputation",
                                   store=True)
+    review_qty = fields.Integer(string="Number of Reviews",
+                                compute="compute_partner_reputation",
+                                compute_sudo=True)
 
     def _search_tutor_tutored_students(self, school_year=False):
         self.ensure_one()
@@ -64,12 +65,13 @@ class ResPartner(models.Model):
                 [('survey_id', 'in', partner_surveys.ids),
                  ('scoring_percentage', '!=', 0)])
             avg_percentage = 0
+            answers_qty = len(answers)
+            partner.review_qty = answers_qty
             if answers:
                 avg_percentage = sum(x.scoring_percentage for x in answers) / \
-                    len(answers)
+                    answers_qty
             max_score = int(max(x[0] for x in AVAILABLE_SCORES))
             raw_reputation = avg_percentage * max_score / 100
-            partner.dummy_reputation = raw_reputation
             partner.raw_reputation = raw_reputation
             partner.reputation = str(round(raw_reputation))
 

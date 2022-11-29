@@ -8,8 +8,7 @@ Send Notifications Only to Internal Users
 
 |badge1|
 
-With this module notifications are sent only to internal users, if in the privacy drop-down menu the option "only internal users" is selected.
-
+With this module email notifications are sent fulfilling the privacy of the event
 **Table of contents**
 
 .. contents::

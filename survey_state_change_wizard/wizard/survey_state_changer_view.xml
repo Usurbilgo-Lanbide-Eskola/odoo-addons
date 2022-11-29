@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_survey_state_changer_form" model="ir.ui.view">
+        <field name="name">Survey State Changer</field>
+        <field name="model">survey.state.changer</field>
+        <field name="arch" type="xml">
+            <form string="Survey State Changer">
+                <group>
+                    <field name="dest_state"/>
+                </group>
+                <footer>
+                    <button string="Create" name="change_state" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="state_change_state_wizard_action">
+        <field name="name">Change State</field>
+        <field name="res_model">survey.state.changer</field>
+        <field name="binding_model_id" ref="survey.model_survey_survey"/>
+        <field name="binding_view_types">list</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_survey_state_changer_form"/>
+    </record>
+</odoo>

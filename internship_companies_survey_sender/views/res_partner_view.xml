@@ -5,6 +5,9 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_res_partner_filter"/>
         <field name="arch" type="xml">
+            <filter name="type_company" position="after">
+                <filter name="valued_partners" string="Valued Companies" domain="[('is_company', '=', True), ('raw_reputation', '&gt;', 0)]"/>
+            </filter>
             <filter name="group_country" position="after">
                 <filter name="reputation" string="Reputation" context="{'group_by': 'reputation'}"/>
             </filter>
@@ -17,13 +20,12 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <field name="category_id" position="after">
-                <field name="dummy_reputation" invisible="1"/>
                 <label for="reputation" string="Reputation" class="oe_inline"
                        attrs="{'invisible': [('is_company', '=', False)]}"/>
                 <div class="o_row no-gutters d-flex" attrs="{'invisible': [('is_company', '=', False)]}">
                     <field name="reputation" widget="priority" class="oe_inline text-left"/>
-                    <label for="raw_reputation" string="" class="oe_inline"/>
-                    (<field name="raw_reputation" nolabel="1" class="oe_inline"/>)
+                    <label for="review_qty" string="" class="oe_inline"/>
+                    (<field name="review_qty" nolabel="1" class="oe_inline"/>)
                 </div>
             </field>
         </field>
@@ -36,9 +38,8 @@
         <field name="arch" type="xml">
             <xpath expr="//kanban/templates//field[@name='display_name']" position="after">
                 <div attrs="{'invisible': [('is_company', '=', False)]}">
-                    <field name="dummy_reputation" invisible="1"/>
                     <field name="reputation" widget="priority"/>
-                    (<field name="raw_reputation"/>)
+                    (<field name="review_qty"/>)
                 </div>
             </xpath>
         </field>

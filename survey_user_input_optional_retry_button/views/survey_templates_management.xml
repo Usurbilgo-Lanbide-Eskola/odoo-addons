@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <template id="survey_button_retake_no_retry" name="Optional Retry Button" inherit_id="survey.survey_button_retake">
+            <xpath expr="//div[1]/t[1]/t[2]" position="replace">
+                <t t-if="survey.repeat_survey">
+                    <p><a role="button" class="btn btn-primary btn-lg" t-att-href="'/survey/retry/%s/%s' % (survey.access_token, answer.access_token)">
+                        Retry</a></p>
+                </t>
+            </xpath>
+        </template>
+
+</odoo>

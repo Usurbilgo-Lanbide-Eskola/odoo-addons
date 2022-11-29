@@ -23,6 +23,18 @@ class ProductTemplate(models.Model):
         compute="_compute_internship_count")
     no_internship_students_count = fields.Integer(
         compute="_compute_students_count")
+    lead_qty = fields.Integer(compute="_compute_student_group_leads")
+    pending_qty = fields.Integer(compute="_compute_student_group_leads")
+
+    @api.depends("students_count")
+    def _compute_student_group_leads(self):
+        lead_lines = self.env['internship.line']
+        for group in self:
+            lead_qty = sum(lead_lines.search(
+                [('student_group_id', '=', group.id)]
+                                  ).mapped('student_qty'))
+            group.lead_qty = lead_qty
+            group.pending_qty = group.students_count - lead_qty
 
     @api.depends('internship_students_count')
     def _compute_students_count(self):

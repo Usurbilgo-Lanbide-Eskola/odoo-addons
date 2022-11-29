@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"survey_state_changer_manager","survey.state.changer","model_survey_state_changer","survey.group_survey_manager",1,1,1,1
+"survey_state_changer_user","survey.state.changer","model_survey_state_changer","survey.group_survey_user",1,0,0,0
