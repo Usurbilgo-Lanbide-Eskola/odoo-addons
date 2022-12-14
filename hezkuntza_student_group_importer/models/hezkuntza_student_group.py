@@ -16,6 +16,9 @@ class HezkuntzaStudentgroup(models.Model):
     educational_level_id = fields.Many2one(
         comodel_name="hezkuntza.educational.level")
     degree_mode_id = fields.Many2one(comodel_name="hezkuntza.degree.mode")
+    speciality_id = fields.Many2one(comodel_name="hezkuntza.speciality",
+                                    related="degree_id.speciality_id",
+                                    store=True)
 
     def recalculate_code(self):
         for group in self:

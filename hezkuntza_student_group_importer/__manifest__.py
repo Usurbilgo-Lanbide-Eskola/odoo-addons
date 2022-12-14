@@ -3,7 +3,7 @@
 
 {
     "name": "Hezkuntza Student Group Importer",
-    "version": "14.0.1.0.2",
+    "version": "14.0.1.0.3",
     "category": "Tools",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",
@@ -16,6 +16,7 @@
     "data": [
         "data/student_group_sequence.xml",
         "security/ir.model.access.csv",
+        "views/hezkuntza_speciality_view.xml",
         "views/hezkuntza_group_data_maps_view.xml",
         "views/hezkuntza_student_group_view.xml",
         "views/hezkuntza_student_import_view.xml",

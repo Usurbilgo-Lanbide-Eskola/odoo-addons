@@ -25,21 +25,35 @@ class ResPartner(models.Model):
         compute="_compute_internships")
     in_active_school_year = fields.Boolean(
         compute="_compute_in_active_school_year", store=True)
-    student_tutor = fields.Many2one(comodel_name="res.partner")
-    student_instructor = fields.Many2one(comodel_name="res.partner")
+    #student_tutor = fields.Many2one(comodel_name="res.partner")
+    #student_instructor = fields.Many2one(comodel_name="res.partner")
+    student_active_tutor_ids = fields.Many2many(
+        "res.partner", 'student_active_tutors', 'student_id', 'tutor_id',
+        compute="compute_tutor_students", store=True)
     student_record_ids = fields.One2many(
         comodel_name="school.year.historical", inverse_name="student_id")
+    active_student_record_ids = fields.One2many(
+        comodel_name="school.year.historical", inverse_name="student_id",
+        domain=[('is_active', '=', True)])
     company_instructor = fields.Boolean("Instructor")
     tutor_students_qty = fields.Integer("Students Qty",
-                                        compute="compute_tutor_students")
+                                        compute="compute_count_tutor_students")
 
-    @api.depends('student_tutor')
+    @api.depends('active_student_record_ids', 'student_record_ids')
+    def compute_count_tutor_students(self):
+        school_year = self.env['school.year'].get_school_year()
+        domain = [('school_year_id', '=', school_year.id),
+                  ('student_tutor_id', '=', self.id)]
+        self.tutor_students_qty = self.env[
+            'school.year.historical'].search_count(domain)
+
+    @api.depends('active_student_record_ids', 'student_record_ids')
     def compute_tutor_students(self):
         school_year = self.env['school.year'].get_school_year()
-        domain = [('is_student', '=', True),
-         ('school_year', '=', school_year.id),
-         ('student_tutor', '=', self.id)]
-        self.tutor_students_qty = self.search_count(domain)
+        domain = [('school_year_id', '=', school_year.id),
+                  ('student_id', '=', self.id)]
+        records = self.env['school.year.historical'].search(domain)
+        self.student_active_tutor_ids = records.mapped("student_tutor_id")
 
     @api.depends("school_year", "active")
     def _compute_in_active_school_year(self):
@@ -54,6 +68,10 @@ class ResPartner(models.Model):
     @api.depends("school_year", "student_group_id")
     def _compute_internships(self):
         for student_id in self:
+            if not student_id.is_student:
+                student_id.internship_count_dummy = 0
+                student_id.internship_of_group_year = False
+                continue
             internships = self.env['sale.order.line'].search(
                 [("student_ids", "=", student_id.id), ("state", "in",
                                                        ["sale", "done"])])
@@ -68,11 +86,20 @@ class ResPartner(models.Model):
             student_id.internship_count = internship_count
             student_id.internship_count_dummy = internship_count
 
+    def action_view_tutor_internships(self):
+        if self.is_tutor:
+            action = self.env['ir.actions.act_window']._for_xml_id(
+                'company_internships.action_school_year_historical')
+            action['domain'] = [('student_tutor_id', '=', self.id)]
+            action['context'] = {"search_default_filter_active_year": 1}
+            return action
+        return None
+
     def action_view_tutor_students(self):
         school_year = self.env['school.year'].get_school_year()
         domain = [('is_student', '=', True),
                   ('school_year', '=', school_year.id),
-                  ('student_tutor', '=', self.id)]
+                  ('student_active_tutor_ids', '=', self.id)]
         action = self.env['ir.actions.act_window']._for_xml_id(
             'company_internships.action_internships_students')
         action['domain'] = domain
@@ -91,7 +118,6 @@ class ResPartner(models.Model):
             return action
         return None
 
-
     def archive_year_data(self):
         for student in self.filtered(lambda x: x.is_student):
             student_group = student.student_group_id
@@ -103,13 +129,13 @@ class ResPartner(models.Model):
                 student.student_record_ids = [(0, 0, {
                     'group_id': student_group.id,
                     'school_year_id': school_year.id,
-                    'student_tutor_id': student.student_tutor.id,
-                    'student_instructor_id': student.student_instructor.id,
+                    #'student_tutor_id': student.student_tutor.id,
+                    #'student_instructor_id': student.student_instructor.id,
                 })]
             student.write({
                 'student_group_id': False,
-                'student_tutor': False,
-                'student_instructor': False,
+                #'student_tutor': False,
+                #'student_instructor': False,
             })
 
 
@@ -121,14 +147,26 @@ class SchoolYearHistorical(models.Model):
     group_id = fields.Many2one(comodel_name="product.template")
     student_tutor_id = fields.Many2one(comodel_name="res.partner")
     student_instructor_id = fields.Many2one(comodel_name="res.partner")
+    student_company_id = fields.Many2one(comodel_name="res.partner",
+        related="student_instructor_id.parent_id", store=True)
+    is_active = fields.Boolean(related="school_year_id.is_active", store=True)
+    user_id = fields.Many2one(comodel_name="res.users",
+                              compute="_compute_user_id", store=True)
 
     def unarchive_year_data(self):
         students = self.env['res.partner']
         for record in self:
             record.student_id.write({
                 'student_group_id': record.group_id.id,
-                'student_tutor': record.student_tutor_id.id,
-                'student_instructor': record.student_instructor_id.id,
+                #'student_tutor': record.student_tutor_id.id,
+                #'student_instructor': record.student_instructor_id.id,
             })
             students |= record.student_id
         return students
+
+    @api.depends("student_tutor_id")
+    def _compute_user_id(self):
+        for record in self:
+            user = self.env['res.users'].search(
+                [('partner_id', '=', record.student_tutor_id.id)])
+            record.user_id = user[0].id if len(user) > 0 else False

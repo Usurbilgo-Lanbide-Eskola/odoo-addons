@@ -73,42 +73,40 @@
         </field>
     </record>
 
-    <record id="view_res_partner_instructor_form" model="ir.ui.view">
-        <field name="name">view.res.partner.instructor.form</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//kanban//field[@name='display_name']" position="after">
-                <field name="company_instructor"/>
-            </xpath>
-            <xpath expr="//templates//field[@name='name']" position="after">
-                <span class="badge badge-pill" t-if="record.company_instructor.raw_value"><i class="fa fa-graduation-cap" aria-label="Instructor" role="img" title="Instructor"/></span>
-            </xpath>
-            <xpath expr="//form//form//field[@name='function']" position="after">
-                <field name="company_instructor"/>
-            </xpath>
-            <xpath expr="//field[@name='function']" position="after">
-                <field name="company_instructor" attrs="{'invisible': [('is_company', '=', True)]}"/>
-            </xpath>
-        </field>
-    </record>
-
     <record id="view_res_partner_student_tutor_form" model="ir.ui.view">
         <field name="name">view.res.partner.student.tutor.form</field>
         <field name="model">res.partner</field>
         <field name="mode">primary</field>
+        <field name="priority">999</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <div name="button_box" position="inside">
-                <button class="oe_stat_button o_res_partner_tip_opp" type="object" name="action_view_sale_lines"
-                        icon="fa-briefcase" groups="sales_team.group_sale_salesman"
-                        context="{'default_partner_id': active_id}">
-                    <field string="Internships" name="internship_count_dummy" widget="statinfo"/>
-                </button>
-                <button class="oe_stat_button o_res_partner_tip_opp" type="object" name="action_view_tutor_students"
-                        icon="fa-users" context="{'default_partner_id': active_id}" attrs="{'invisible': [('is_tutor', '=', False)]}">
-                    <field string="Students" name="tutor_students_qty" widget="statinfo"/>
-                </button>
+            <div name="button_box" position="replace">
+                <div class="oe_button_box" name="button_box">
+                    <button class="oe_stat_button" type="object" name="schedule_meeting" icon="fa-calendar"
+                            groups="sales_team.group_sale_salesman"
+                            context="{'partner_id': active_id, 'partner_name': name}">
+                        <field string="Meetings" name="meeting_count" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button o_res_partner_tip_opp" type="object" name="action_view_sale_lines"
+                            icon="fa-briefcase" groups="sales_team.group_sale_salesman"
+                            context="{'default_partner_id': active_id}"
+                            attrs="{'invisible': [('is_student', '=', False)]}">
+                        <field string="Internships" name="internship_count_dummy" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button o_res_partner_tip_opp" type="object"
+                            name="action_view_tutor_internships"
+                            icon="fa-briefcase" groups="sales_team.group_sale_salesman"
+                            context="{'default_partner_id': active_id}"
+                            attrs="{'invisible': [('is_tutor', '=', False)]}"
+                            string="Internships">
+
+                    </button>
+                    <button class="oe_stat_button o_res_partner_tip_opp" type="object" name="action_view_tutor_students"
+                            icon="fa-users" context="{'default_partner_id': active_id}"
+                            attrs="{'invisible': [('is_tutor', '=', False)]}">
+                        <field string="Students" name="tutor_students_qty" widget="statinfo"/>
+                    </button>
+                </div>
             </div>
             <xpath expr="//div[hasclass('oe_title')]" position="after">
                 <div class="portal_user">
@@ -121,7 +119,8 @@
                 </div>
             </xpath>
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="student_group_id" attrs="{'invisible': [('is_student', '=', False)], 'required': [('is_student', '=', True)]}"/>
+                <field name="student_group_id"
+                       attrs="{'invisible': [('is_student', '=', False)], 'required': [('is_student', '=', True)]}"/>
                 <field name="internship_of_group_year" attrs="{'invisible': [('is_student', '=', False)]}"/>
             </xpath>
             <xpath expr="//field[@name='company_type']" position="attributes">
@@ -133,24 +132,116 @@
             <xpath expr="//page[@name='internal_notes']" position="after">
                 <page name="internship_data" string="Internship Data"
                       attrs="{'invisible': [('is_student', '=', False)]}">
-                    <group>
-                        <field name="student_tutor" domain="[('is_tutor', '=', True)]"
-                               context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
-                        <field name="student_instructor"
-                               domain="[('is_tutor', '=', False), ('is_student', '=', False)]"/>
-                    </group>
-                </page>
-                <page string="Student Records">
-                    <field name="student_record_ids">
-                        <tree>
+                    <field name="active_student_record_ids" domain="[('is_active', '=', True)]" create="0">
+                        <kanban class="o_kanban_mobile" sample="1" create="0">
+                            <field name="is_active"/>
                             <field name="school_year_id"/>
                             <field name="group_id"/>
+                            <field name="student_tutor_id"/>
+                            <field name="student_instructor_id"/>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_global_click">
+                                        <div class="oe_kanban_details d-flex flex-column">
+                                            <ul>
+                                                <li t-if="record.student_tutor_id.raw_value">
+                                                    <strong class="o_kanban_record_title oe_partner_heading">
+                                                        <strong>Tutor: </strong><field name="student_tutor_id"
+                                                               context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
+                                                    </strong>
+                                                </li>
+                                                <li t-if="record.student_instructor_id.raw_value">
+                                                    <strong>Instructor: </strong><strong class="o_kanban_record_title oe_partner_heading">
+                                                        <field name="student_instructor_id"/>
+                                                    </strong>
+                                                </li>
+                                                <li t-if="record.group_id.raw_value">
+                                                    <field name="group_id"/>
+                                                </li>
+                                                <li>
+                                                    <field name="school_year_id"/>
+                                                </li>
+                                            </ul>
+                                            <field name="is_active" invisible="1"/>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                        <form>
+                            <group>
+                                <field name="is_active" invisible="1"/>
+                                <field name="school_year_id" readonly="1" invisible="1"/>
+                                <field name="group_id" readonly="1" invisible="1"/>
+                                <field name="student_tutor_id"
+                                       context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
+                                <field name="student_instructor_id"/>
+                            </group>
+                        </form>
+                    </field>
+                </page>
+                <page string="Student Records" attrs="{'invisible': [('is_student', '=', False)]}">
+                    <field name="student_record_ids">
+                        <tree>
+                            <field name="is_active" invisible="1"/>
+                            <field name="school_year_id" readonly="1"/>
+                            <field name="group_id" readonly="1"/>
                             <field name="student_tutor_id"
                                    context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
                             <field name="student_instructor_id"/>
                         </tree>
                     </field>
                 </page>
+            </xpath>
+            <xpath expr="//page[@name='contact_addresses']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//form//form//field[@name='company_instructor']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='company_instructor']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_student_no_invoicing_form" model="ir.ui.view">
+        <field name="name">student.no.invoicing.page</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <field name="bank_ids" position="after">
+                <field name="is_student" invisible="1"/>
+                <field name="is_tutor" invisible="1"/>
+            </field>
+            <page name="accounting" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('is_tutor', '=', True), ('is_student', '=', True)]}
+                </attribute>
+            </page>
+        </field>
+    </record>
+
+    <record id="view_res_partner_instructor_form" model="ir.ui.view">
+        <field name="name">view.res.partner.instructor.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban//field[@name='display_name']" position="after">
+                <field name="company_instructor"/>
+            </xpath>
+            <xpath expr="//templates//field[@name='name']" position="after">
+                <span class="badge badge-pill" t-if="record.company_instructor.raw_value">
+                    <i class="fa fa-graduation-cap" aria-label="Instructor" role="img" title="Instructor"/>
+                </span>
+            </xpath>
+            <xpath expr="//form//form//field[@name='function']" position="after">
+                <field name="company_instructor"/>
+            </xpath>
+            <xpath expr="//field[@name='function']" position="after">
+                <field name="company_instructor" attrs="{'invisible': [('is_company', '=', True)]}"/>
             </xpath>
         </field>
     </record>

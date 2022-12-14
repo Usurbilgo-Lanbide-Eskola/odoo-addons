@@ -12,6 +12,7 @@
                 <field name="degree_id"/>
                 <field name="educational_level_id"/>
                 <field name="degree_mode_id"/>
+                <field name="speciality_id"/>
             </tree>
         </field>
     </record>
@@ -29,6 +30,7 @@
                     <field name="degree_id"/>
                     <field name="educational_level_id"/>
                     <field name="degree_mode_id"/>
+                    <field name="speciality_id"/>
                 </group>
             </form>
         </field>

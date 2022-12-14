@@ -12,6 +12,7 @@
                 <field name="degree_id" invisible="1"/>
                 <field name="educational_level_id" invisible="1"/>
                 <field name="degree_mode_id" invisible="1"/>
+                <field name="speciality_id" invisible="1"/>
             </xpath>
         </field>
     </record>

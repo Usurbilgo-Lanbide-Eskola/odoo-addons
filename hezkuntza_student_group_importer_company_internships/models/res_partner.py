@@ -6,5 +6,13 @@ from odoo import api, fields, models, _
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    student_group_id = fields.Many2one(
+        inverse="_set_student_group_historical_record")
     hezkuntza_group_id = fields.Many2one(
         related='student_group_id.hezkuntza_student_group_id')
+
+    def _set_student_group_historical_record(self):
+        for student in self:
+            student.active_student_record_ids.write({
+                'group_id': student.student_group_id}
+            )

@@ -14,7 +14,8 @@ class ProductTemplate(models.Model):
     school_year_id = fields.Many2one(
         comodel_name="school.year", default=get_active_school_year,
         string="School Year")
-    students_count = fields.Integer(compute="_compute_students_count")
+    students_count = fields.Integer(compute="_compute_students_count",
+                                    store=True)
     internship_quotations_count = fields.Integer(
         compute="_compute_internship_quotations_count")
     internship_students_count = fields.Integer(
@@ -23,8 +24,11 @@ class ProductTemplate(models.Model):
         compute="_compute_internship_count")
     no_internship_students_count = fields.Integer(
         compute="_compute_students_count")
-    lead_qty = fields.Integer(compute="_compute_student_group_leads")
-    pending_qty = fields.Integer(compute="_compute_student_group_leads")
+    lead_qty = fields.Integer(compute="_compute_student_group_leads",
+                              store=True)
+    pending_qty = fields.Integer(compute="_compute_student_group_leads",
+                                 store=True)
+    lead_qty_dummy = fields.Integer(compute="_compute_student_group_leads")
 
     @api.depends("students_count")
     def _compute_student_group_leads(self):
@@ -34,7 +38,9 @@ class ProductTemplate(models.Model):
                 [('student_group_id', '=', group.id)]
                                   ).mapped('student_qty'))
             group.lead_qty = lead_qty
+            group.lead_qty_dummy = lead_qty
             group.pending_qty = group.students_count - lead_qty
+
 
     @api.depends('internship_students_count')
     def _compute_students_count(self):

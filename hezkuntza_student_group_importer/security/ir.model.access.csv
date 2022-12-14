@@ -11,3 +11,5 @@
 "hezkuntza_mapping_degree_mode_user","hezkuntza_mapping_degree_mode_user","model_hezkuntza_degree_mode","base.group_user",1,0,0,0
 "hezkuntza_student_group_manager","hezkuntza_student_group_manager","model_hezkuntza_student_group","base.group_partner_manager",1,1,1,1
 "hezkuntza_student_group_user","hezkuntza_student_group_user","model_hezkuntza_student_group","base.group_user",1,0,0,0
+"hezkuntza_speciality_manager","hezkuntza_speciality_manager","model_hezkuntza_speciality","base.group_partner_manager",1,1,1,1
+"hezkuntza_speciality_user","hezkuntza_speciality_user","model_hezkuntza_speciality","base.group_user",1,0,0,0

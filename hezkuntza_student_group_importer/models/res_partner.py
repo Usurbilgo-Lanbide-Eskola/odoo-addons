@@ -23,3 +23,6 @@ class ResPartner(models.Model):
     degree_mode_id = fields.Many2one(
         comodel_name="hezkuntza.degree.mode",
         related="hezkuntza_group_id.degree_mode_id", store=True)
+    speciality_id = fields.Many2one(
+        comodel_name="hezkuntza.speciality",
+        related="hezkuntza_group_id.speciality_id", store=True)

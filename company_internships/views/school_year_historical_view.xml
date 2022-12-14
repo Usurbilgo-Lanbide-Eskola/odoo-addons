@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_school_year_historical_tree" model="ir.ui.view">
+        <field name="name">school.year.historical.tree</field>
+        <field name="model">school.year.historical</field>
+        <field name="arch" type="xml">
+            <tree string="School Year Records" editable="top">
+                <field name="school_year_id" readonly="1"/>
+                <field name="student_id" readonly="1"/>
+                <field name="group_id" readonly="1"/>
+                <field name="student_tutor_id"
+                       context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
+                <field name="student_instructor_id"/>
+                <field name="student_company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_school_year_historical_form" model="ir.ui.view">
+        <field name="name">school.year.historical.form</field>
+        <field name="model">school.year.historical</field>
+        <field name="arch" type="xml">
+            <form string="School Year Records">
+                <group>
+                    <field name="school_year_id" readonly="1"/>
+                    <field name="student_id" readonly="1"/>
+                    <field name="group_id" readonly="1"/>
+                    <field name="student_tutor_id"
+                           context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
+                    <field name="student_instructor_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_school_year_historical_search" model="ir.ui.view">
+        <field name="name">school.year.historical.search</field>
+        <field name="model">school.year.historical</field>
+        <field name="arch" type="xml">
+            <search string="School Year Records">
+                <field name="is_active" invisible="1"/>
+                <field name="school_year_id"/>
+                <field name="student_id"/>
+                <field name="group_id"/>
+                <field name="student_tutor_id"/>
+                <field name="student_instructor_id"/>
+                <separator/>
+                <filter name="filter_active_year" string="Active Internships" domain="[('is_active', '=', True)]" />
+                <filter name="user_internships" string="User Internships" domain="[('user_id', '=', uid)]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter name="school_year_group" string="School Year" domain=""
+                            context="{'group_by': 'school_year_id'}"/>
+                    <filter name="group_id_group" string="Student Group" domain="" context="{'group_by': 'group_id'}"/>
+                    <filter name="student_tutor_id_group" string="Tutor" domain=""
+                            context="{'group_by': 'student_tutor_id'}"/>
+                    <filter name="student_instructor_id_group" string="Instructor" domain=""
+                            context="{'group_by': 'student_instructor_id'}"/>
+                    <filter name="student_company_id" string="Company" domain=""
+                            context="{'group_by': 'student_instructor_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_school_year_historical">
+        <field name="name">Action School Year Historical</field>
+        <field name="res_model">school.year.historical</field>
+        <field name="context">{'default_search_user_internships': 1}</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_school_year_historical_tree"/>
+    </record>
+
+    <menuitem id="menu_school_year_historical"
+              name="Students Records"
+              action="action_school_year_historical"
+              parent="contacts.menu_contacts"
+              sequence="3"/>
+</odoo>

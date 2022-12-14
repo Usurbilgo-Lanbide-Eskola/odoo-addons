@@ -3,7 +3,7 @@
 
 {
     "name": "Company internships",
-    "version": "14.0.1.1.3",
+    "version": "14.0.1.1.4",
     "category": "Customer Relationship Management",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",
@@ -19,6 +19,7 @@
         "views/res_partner_view.xml",
         "views/sale_order_line_view.xml",
         "views/crm_lead_view.xml",
+        "views/school_year_historical_view.xml",
     ],
     "installable": True,
 }

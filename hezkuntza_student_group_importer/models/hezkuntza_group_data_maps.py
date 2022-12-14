@@ -67,6 +67,8 @@ class HezkuntzaDegree(models.Model):
     hezkuntza_code = fields.Char("Hezkuntza Code")
     odoo_code = fields.Char("Odoo Code")
     description = fields.Char("Description")
+    speciality_id = fields.Many2one(
+        comodel_name="hezkuntza.speciality", string="Speciality")
 
     _sql_constraints = [
         (

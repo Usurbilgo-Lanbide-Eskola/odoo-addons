@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hezkuntza_speciality_form" model="ir.ui.view">
+        <field name="name">Specialities</field>
+        <field name="model">hezkuntza.speciality</field>
+        <field name="arch" type="xml">
+            <form string="Specialilty">
+                <sheet>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="active" widget="boolean_toggle"/>
+                        <field name="parent_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hezkuntza_speciality_list" model="ir.ui.view">
+        <field name="name">Specialities</field>
+        <field name="model">hezkuntza.speciality</field>
+        <field eval="6" name="priority"/>
+        <field name="arch" type="xml">
+            <tree string="Specialilties">
+                <field name="display_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hezkuntza_specilaity_category_view_search" model="ir.ui.view">
+        <field name="name">hezkuntza.speciality.category.view.search</field>
+        <field name="model">hezkuntza.speciality</field>
+        <field name="arch" type="xml">
+            <search string="Search Speciality">
+                <field name="name"/>
+                <field name="display_name"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hezkuntza_speciality_action">
+        <field name="name">Hezkuntza Speciality</field>
+        <field name="res_model">hezkuntza.speciality</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hezkuntza_speciality_list"/>
+    </record>
+
+    <menuitem id="menu_hezkuntza_speciality_list"
+              action="hezkuntza_speciality_action"
+              name="Specialities"
+              sequence="13" parent="hezkuntza_student_importer.hezkuntza_file_mapping"/>
+</odoo>

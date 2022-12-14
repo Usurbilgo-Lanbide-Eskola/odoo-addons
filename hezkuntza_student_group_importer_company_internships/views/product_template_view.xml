@@ -22,6 +22,10 @@
                 <field name="degree_id"/>
                 <field name="educational_level_id"/>
                 <field name="degree_mode_id"/>
+                <field name="speciality_id"/>
+                <group expand="0" name="group_by" string="Group By">
+                    <filter name="speciality" string="Speciality" context="{'group_by': 'speciality_id'}"/>
+                </group>
             </field>
         </field>
     </record>

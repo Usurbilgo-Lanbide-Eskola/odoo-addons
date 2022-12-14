@@ -71,13 +71,30 @@
                 </div>
                 <div name="lead_qty" class="mt-1">
                     Assigned:
-                    <field name="lead_qty"/>
+                    <field name="lead_qty" invisible="1"/>
+                    <field name="lead_qty_dummy"/>
                 </div>
                 <div name="pending_qty" class="mt-1">
                     Pending:
                     <field name="pending_qty"/>
                 </div>
             </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_template_student_group_tree" model="ir.ui.view">
+        <field name="name">product.template.student.group.tree</field>
+        <field name="model">product.template</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree string="Student Groups">
+                <field name="sequence" widget="handle" readonly="1"/>
+                <field name="name" string="Product Name"/>
+                <field name="students_count" sum="Students"/>
+                <field name="lead_qty" sum="Assigned"/>
+                <field name="lead_qty_dummy" invisible="1"/>
+                <field name="pending_qty" sum="Pending"/>
+            </tree>
         </field>
     </record>
 
@@ -125,6 +142,7 @@
     <record model="ir.actions.act_window.view" id="action_student_group_product_tree">
         <field name="sequence" eval="3"/>
         <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_product_template_student_group_tree"/>
         <field name="act_window_id" ref="action_student_group_product"/>
     </record>
 

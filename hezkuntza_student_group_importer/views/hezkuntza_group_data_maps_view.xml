@@ -58,6 +58,7 @@
                 <field name="hezkuntza_code"/>
                 <field name="odoo_code"/>
                 <field name="description"/>
+                <field name="speciality_id"/>
             </tree>
         </field>
     </record>
