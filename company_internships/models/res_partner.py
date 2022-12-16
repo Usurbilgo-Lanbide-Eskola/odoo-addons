@@ -41,19 +41,21 @@ class ResPartner(models.Model):
 
     @api.depends('active_student_record_ids', 'student_record_ids')
     def compute_count_tutor_students(self):
-        school_year = self.env['school.year'].get_school_year()
-        domain = [('school_year_id', '=', school_year.id),
-                  ('student_tutor_id', '=', self.id)]
-        self.tutor_students_qty = self.env[
-            'school.year.historical'].search_count(domain)
+        for tutor in self:
+            school_year = self.env['school.year'].get_school_year()
+            domain = [('school_year_id', '=', school_year.id),
+                      ('student_tutor_id', '=', tutor.id)]
+            tutor.tutor_students_qty = self.env[
+                'school.year.historical'].search_count(domain)
 
     @api.depends('active_student_record_ids', 'student_record_ids')
     def compute_tutor_students(self):
-        school_year = self.env['school.year'].get_school_year()
-        domain = [('school_year_id', '=', school_year.id),
-                  ('student_id', '=', self.id)]
-        records = self.env['school.year.historical'].search(domain)
-        self.student_active_tutor_ids = records.mapped("student_tutor_id")
+        for tutor in self:
+            school_year = self.env['school.year'].get_school_year()
+            domain = [('school_year_id', '=', school_year.id),
+                      ('student_id', '=', tutor.id)]
+            records = self.env['school.year.historical'].search(domain)
+            tutor.student_active_tutor_ids = records.mapped("student_tutor_id")
 
     @api.depends("school_year", "active")
     def _compute_in_active_school_year(self):
