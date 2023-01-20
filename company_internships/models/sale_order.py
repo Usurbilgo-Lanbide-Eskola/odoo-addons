@@ -43,6 +43,8 @@ class SaleOrderLine(models.Model):
     internship_line = fields.Boolean(related="product_id."
                                              "product_tmpl_id.is_student_group"
                                      )
+    internship_type = fields.Many2one(comodel_name="internship.type",
+                                      string="Internship Type")
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      related="product_id.product_tmpl_id."
                                      "school_year_id")

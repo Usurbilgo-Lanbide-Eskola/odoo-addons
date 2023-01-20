@@ -3,4 +3,5 @@
 "lead_internship_line_user","lead_internship_line_user","model_internship_line","base.group_user",1,0,0,0
 "school_year_historical_manager","school_year_historical_manager","model_school_year_historical","base.group_partner_manager",1,1,1,1
 "school_year_historical_user","school_year_historical_user","model_school_year_historical","base.group_user",1,0,0,0
-
+"internship_type_manager","internship_type_manager","model_internship_type","base.group_partner_manager",1,1,1,1
+"internship_type_user","internship_type_user","model_internship_type","base.group_user",1,0,0,0

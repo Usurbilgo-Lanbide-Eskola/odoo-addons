@@ -1,6 +1,7 @@
 # Copyright 2021 Mikel Arregi Etxaniz - CIFP Usurbil LHII
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models, _
+from odoo.osv import expression
 from odoo.exceptions import UserError
 
 
@@ -38,6 +39,56 @@ class ResPartner(models.Model):
     company_instructor = fields.Boolean("Instructor")
     tutor_students_qty = fields.Integer("Students Qty",
                                         compute="compute_count_tutor_students")
+    company_internship_record_groups = fields.Many2many(
+        comodel_name="school.year.historical",
+        compute="compute_company_records",
+        search="_search_historical_records_groups")
+    company_internship_record_types = fields.Many2many(
+        comodel_name="school.year.historical",
+        compute="compute_company_records",
+        search="_search_historical_records_types")
+
+
+    def _search_historical_records_groups(self, operator, value):
+        if operator == 'in':
+            return [('id', 'in', value)]
+        if operator not in [
+                '=', '!=', 'like', 'ilike', 'not like', 'not ilike']:
+            raise UserError(_('Operation not supported'))
+        return [('company_internship_record_groups.group_id.display_name',
+                 operator, value)]
+
+    def _search_historical_records_types(self, operator, value):
+        # if operator not in ['=', '!='] or not isinstance(value, bool):
+        #     raise UserError(_('Operation not supported'))
+        # if operator != '=':
+        #     value = not value
+        # self._cr.execute("""
+        #     SELECT id FROM account_account account
+        #     WHERE EXISTS (SELECT * FROM account_move_line aml WHERE aml.account_id = account.id LIMIT 1)
+        # """)
+        if operator not in [
+                '=', '!=', 'like', 'ilike', 'not like', 'not ilike']:
+            raise UserError(_('Operation not supported'))
+        return [('company_internship_record_groups.internship_type.display_name',
+                 operator, value)]
+
+    def compute_company_records(self):
+        historical_obj = self.env['school.year.historical']
+        for company in self.filtered(lambda x: x.is_company):
+            records = historical_obj.search({'student_company_id': company.id}).ids
+            company.company_internship_record_groups = [(6, 0, records)]
+            company.company_internship_record_types = [(6, 0, records)]
+
+    # @api.depends('company_internship_records')
+    # def compute_company_internship_data(self):
+    #     for company in self.filtered(lambda x: x.is_company):
+    #         groups = company.company_internship_records.mapped(
+    #             'group_id')
+    #         internship_types = company.company_internship_records.mapped(
+    #             'internship_type')
+    #         company.company_internship_groups = [(6, 0, groups.ids)]
+    #         company.company_internship_types = [(6, 0, internship_types.ids)]
 
     @api.depends('active_student_record_ids', 'student_record_ids')
     def compute_count_tutor_students(self):
@@ -120,35 +171,85 @@ class ResPartner(models.Model):
             return action
         return None
 
+    def deactivate_student_group(self):
+        for student in self:
+            student.write({
+                'student_group_id': False,
+                # 'student_tutor': False,
+                # 'student_instructor': False,
+            })
+
     def archive_year_data(self):
         for student in self.filtered(lambda x: x.is_student):
             student_group = student.student_group_id
             school_year = student_group.school_year_id
             if not school_year:
                 school_year = self.env['school.year'].get_school_year()
-            if school_year not in self.student_record_ids.mapped(
-                    "school_year_id"):
+            record = student.student_record_ids.filtered(
+                lambda x: x.school_year_id == school_year)
+            if record:
+                record.group_id = student_group
+            else:
                 student.student_record_ids = [(0, 0, {
                     'group_id': student_group.id,
                     'school_year_id': school_year.id,
                     #'student_tutor_id': student.student_tutor.id,
                     #'student_instructor_id': student.student_instructor.id,
                 })]
-            student.write({
-                'student_group_id': False,
-                #'student_tutor': False,
-                #'student_instructor': False,
-            })
+            student.deactivate_student_group()
+
+    @api.model
+    def create(self, values):
+        if values.get('is_student'):
+            if not values.get('student_record_ids'):
+                student_group = values.get('student_group_id')
+                if student_group:
+                    if isinstance(student_group, int):
+                        student_group = self.env['product.template'].browse(
+                            student_group)
+                    school_year = student_group.school_year_id
+                else:
+                    school_year = self.env['school.year'].get_school_year()
+                values.update({
+                    'student_record_ids': [(0, 0,
+                                            {'school_year_id': school_year.id,
+                                             'group_id': student_group.id})]
+                })
+        return super().create(values)
+
+    def write(self, values):
+        if values.get('is_student'):
+            historical_obj = self.env['school.year.historical']
+            if not historical_obj.get_active_historical_lines(self):
+                student_group = values.get('student_group_id') or \
+                                self.student_group_id
+                if student_group:
+                    if isinstance(student_group, int):
+                        student_group = self.env['product.template'].browse(
+                            student_group)
+                    school_year = student_group.school_year_id
+                else:
+                    school_year = self.env['school.year'].get_school_year()
+                values.update({
+                    'student_record_ids': [(0, 0,
+                                            {'school_year_id': school_year.id,
+                                             'group_id': student_group.id})]
+                })
+        return super().write(values)
 
 
 class SchoolYearHistorical(models.Model):
     _name = "school.year.historical"
+    _rec_name = "student_id"
 
-    student_id = fields.Many2one(comodel_name="res.partner")
+    student_id = fields.Many2one(comodel_name="res.partner",
+                                 ondelete='cascade')
     school_year_id = fields.Many2one(comodel_name="school.year")
     group_id = fields.Many2one(comodel_name="product.template")
     student_tutor_id = fields.Many2one(comodel_name="res.partner")
     student_instructor_id = fields.Many2one(comodel_name="res.partner")
+    internship_type = fields.Many2one(comodel_name="internship.type",
+                                      string="Internship Type")
     student_company_id = fields.Many2one(comodel_name="res.partner",
         related="student_instructor_id.parent_id", store=True)
     is_active = fields.Boolean(related="school_year_id.is_active", store=True)
@@ -172,3 +273,12 @@ class SchoolYearHistorical(models.Model):
             user = self.env['res.users'].search(
                 [('partner_id', '=', record.student_tutor_id.id)])
             record.user_id = user[0].id if len(user) > 0 else False
+
+    def get_active_historical_lines(self, student_id):
+        active_year = self.env['school.year'].get_school_year()
+        if not isinstance(student_id, int):
+            student_id = student_id.id
+        if active_year:
+            return self.search([
+                ('student_id', '=', student_id),
+                ('school_year_id', '=', active_year.id)])

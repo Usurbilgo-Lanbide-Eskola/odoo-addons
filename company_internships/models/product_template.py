@@ -16,6 +16,7 @@ class ProductTemplate(models.Model):
         string="School Year")
     students_count = fields.Integer(compute="_compute_students_count",
                                     store=True)
+    students_count_dummy = fields.Integer(compute="_compute_students_count")
     internship_quotations_count = fields.Integer(
         compute="_compute_internship_quotations_count")
     internship_students_count = fields.Integer(
@@ -50,6 +51,7 @@ class ProductTemplate(models.Model):
             students = self.env['res.partner'].search(domain)
             students_count = len(students)
             product.students_count = students_count
+            product.students_count_dummy = students_count
             assigned_students = len(students.filtered(
                 lambda x: x.internship_of_group_year))
             product.internship_students_count = assigned_students

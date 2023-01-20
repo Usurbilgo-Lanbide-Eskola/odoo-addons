@@ -7,4 +7,5 @@ class HezkuntzaStudentGroup(models.Model):
     _inherit = "hezkuntza.student.group"
 
     product_ids = fields.One2many(comodel_name="product.template",
-                                  inverse_name="hezkuntza_student_group_id")
+                                  inverse_name="hezkuntza_student_group_id",
+                                  context={'active_test': False})

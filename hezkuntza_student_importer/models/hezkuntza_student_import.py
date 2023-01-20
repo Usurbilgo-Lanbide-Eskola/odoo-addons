@@ -187,6 +187,10 @@ class HezkuntzaStudentImport(models.Model):
                 line.errors = ""
 
     def create_partners(self):
+        school_year_obj = self.env['school.year']
+        if self.school_year != school_year_obj.get_school_year():
+            raise UserError(_(f"Active {self.school_year.name} school year "
+                              f"before importation"))
         created_partners = self.env['res.partner']
         lines = self.error_mapped_lines if self.error_lines else \
             self.mapped_lines

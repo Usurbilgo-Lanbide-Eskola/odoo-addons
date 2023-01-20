@@ -13,6 +13,7 @@ class ResPartner(models.Model):
 
     def _set_student_group_historical_record(self):
         for student in self:
-            student.active_student_record_ids.write({
-                'group_id': student.student_group_id}
-            )
+            if student.student_group_id:
+                student.active_student_record_ids.write({
+                    'group_id': student.student_group_id}
+                )

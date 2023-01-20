@@ -105,8 +105,10 @@ class SchoolYear(models.Model):
                 if not today <= end_date:
                     start_date = start_date + relativedelta(years=1)
             end_date = start_date + relativedelta(months=duration)
+            is_active = False if self.get_school_year() else True
             school_year = self.create({'start_date': start_date,
-                                       'end_date': end_date})
+                                       'end_date': end_date,
+                                       'is_active': is_active})
         return school_year
 
     def school_year_deactivate_process(self):

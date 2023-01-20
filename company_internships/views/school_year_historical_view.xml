@@ -12,6 +12,7 @@
                        context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
                 <field name="student_instructor_id"/>
                 <field name="student_company_id"/>
+                <field name="internship_type"/>
             </tree>
         </field>
     </record>
@@ -28,6 +29,7 @@
                     <field name="student_tutor_id"
                            context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
                     <field name="student_instructor_id"/>
+                    <field name="internship_type"/>
                 </group>
             </form>
         </field>
@@ -44,6 +46,7 @@
                 <field name="group_id"/>
                 <field name="student_tutor_id"/>
                 <field name="student_instructor_id"/>
+                <field name="internship_type"/>
                 <separator/>
                 <filter name="filter_active_year" string="Active Internships" domain="[('is_active', '=', True)]" />
                 <filter name="user_internships" string="User Internships" domain="[('user_id', '=', uid)]"/>
@@ -58,6 +61,8 @@
                             context="{'group_by': 'student_instructor_id'}"/>
                     <filter name="student_company_id" string="Company" domain=""
                             context="{'group_by': 'student_instructor_id'}"/>
+                    <filter name="internship_type" string="Internship Type" domain=""
+                            context="{'group_by': 'internship_type'}"/>
                 </group>
             </search>
         </field>

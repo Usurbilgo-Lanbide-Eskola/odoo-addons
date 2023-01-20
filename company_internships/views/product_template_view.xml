@@ -67,7 +67,7 @@
             <xpath expr="//div[@name='product_lst_price']" position="replace">
                 <div name="student_total" class="mt-1">
                     Students Total:
-                    <field name="students_count"/>
+                    <field name="students_count_dummy"/>
                 </div>
                 <div name="lead_qty" class="mt-1">
                     Assigned:

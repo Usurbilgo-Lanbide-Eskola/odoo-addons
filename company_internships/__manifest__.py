@@ -3,7 +3,7 @@
 
 {
     "name": "Company internships",
-    "version": "14.0.1.1.4",
+    "version": "14.0.1.1.5",
     "category": "Customer Relationship Management",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",
@@ -15,6 +15,7 @@
     "excludes": [],
     "data": [
         "security/ir.model.access.csv",
+        "views/internship_type_view.xml",
         "views/product_template_view.xml",
         "views/res_partner_view.xml",
         "views/sale_order_line_view.xml",

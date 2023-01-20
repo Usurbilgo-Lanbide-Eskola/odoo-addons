@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_internship_type_tree" model="ir.ui.view">
+        <field name="name">internship.type</field>
+        <field name="model">internship.type</field>
+        <field name="arch" type="xml">
+            <tree string="Internship Type" editable="top">
+                <field name="name" required="1"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_internship_type">
+        <field name="name">Internship Type</field>
+        <field name="res_model">internship.type</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_internship_type_tree"/>
+    </record>
+
+    <menuitem id="menu_internship_types"
+              action="action_internship_type"
+              name="Internship Types"
+              sequence="1" parent="contacts.res_partner_menu_config"/>
+</odoo>
