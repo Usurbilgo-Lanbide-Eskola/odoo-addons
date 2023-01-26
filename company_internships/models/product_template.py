@@ -131,7 +131,7 @@ class ProductTemplate(models.Model):
     def action_assigned_students(self):
         sale_lines = self.env['sale.order.line'].search(
             [('state', 'in', ['sale', 'done']), ('product_id', '=', self.id)])
-        domain = [('id', 'in', sale_lines.student_ids.ids)]
+        domain = [('id', 'in', sale_lines.mapped("internship_record_id.student_id.id"))]
         return self._get_student_action(domain)
 
     def action_not_assigned_students(self):
@@ -139,5 +139,5 @@ class ProductTemplate(models.Model):
             [('state', 'in', ['sale', 'done']), ('product_id', '=', self.id)])
         domain = [('is_student', '=', True),
                   ('student_group_id', '=', self.id),
-                  ('id', 'not in', sale_lines.student_ids.ids)]
+                  ('id', 'not in', sale_lines.mapped("internship_record_id.student_id.id"))]
         return self._get_student_action(domain)

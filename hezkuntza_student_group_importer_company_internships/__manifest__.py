@@ -3,7 +3,7 @@
 
 {
     "name": "Hezkuntza Group Importer and Company Internships Glue Module",
-    "version": "14.0.1.0.4",
+    "version": "14.0.1.0.5",
     "category": "Tools",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",
@@ -17,6 +17,8 @@
         "views/hezkuntza_student_group_view.xml",
         "views/product_template_view.xml",
         "views/res_partner_view.xml",
+        "views/crm_lead_view.xml",
+        "views/school_year_historical_view.xml",
     ],
     "installable": True,
     "auto_install": True,

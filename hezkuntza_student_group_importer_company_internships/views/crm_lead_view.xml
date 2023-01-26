@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_lead_quick_form_internship_hezkuntza" model="ir.ui.view">
+        <field name="name">crm.lead.quick.form.internship.hezkuntza</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="company_internships.crm_lead_quick_form_internship"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='student_group_id']" position="after">
+                <field name="internship_type_id"/>
+                <field name="speciality_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_lead_form_internship_hezkuntza" model="ir.ui.view">
+        <field name="name">crm.lead.form.internship.hezkuntza</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="company_internships.crm_lead_form_internship"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='student_group_id']" position="attributes">
+                <attribute name="domain">[('speciality_id', '=', speciality_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='student_group_id']" position="after">
+                <field name="internship_type_id"/>
+                <field name="speciality_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

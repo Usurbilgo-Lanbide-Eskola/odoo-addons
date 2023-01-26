@@ -10,7 +10,8 @@
     "website": "http://www.lhusurbil.eus",
     "depends": [
         "sale_crm", "sale_order_line_menu", "school_year",
-        "partner_second_lastname", "product"
+        "partner_second_lastname", "product", "partner_contact_gender",
+        "partner_contact_birthdate", "partner_phone_secondary"
     ],
     "excludes": [],
     "data": [

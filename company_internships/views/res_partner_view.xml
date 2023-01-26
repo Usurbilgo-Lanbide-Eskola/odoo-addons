@@ -242,6 +242,29 @@
         </field>
     </record>
 
+    <record id="view_student_personal_form" model="ir.ui.view">
+        <field name="name">Driving License</field>
+        <field name="model">res.partner</field>
+        <field
+            name="inherit_id"
+            ref="partner_contact_personal_information_page.personal_information"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='personal_information_page']//group[@name='personal_information_group']"
+            >
+                <field
+                    name="driving_license"
+                    attrs="{'invisible': [('is_student', '=', False)]}"
+                />
+                <field
+                    name="car_owned"
+                    attrs="{'invisible': [('is_student', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
     <record id="view_student_no_invoicing_form" model="ir.ui.view">
         <field name="name">student.no.invoicing.page</field>
         <field name="model">res.partner</field>

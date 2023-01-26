@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_school_year_historical_hezkuntza_search" model="ir.ui.view">
+        <field name="name">school.year.historical.hezkuntza.search</field>
+        <field name="model">school.year.historical</field>
+        <field name="inherit_id" ref="company_internships.view_school_year_historical_search"/>
+        <field name="arch" type="xml">
+            <field name="group_id" position="before">
+                <field name="speciality_id" position="before"/>
+            </field>
+            <filter name="group_id_group" position="before">
+                <filter name="speciality_id_group" string="Speciality" domain=""
+                        context="{'group_by': 'speciality_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_school_year_historical_hezkuntza_form" model="ir.ui.view">
+        <field name="name">school.year.historical.hezkuntza.form</field>
+        <field name="model">school.year.historical</field>
+        <field name="inherit_id" ref="company_internships.view_school_year_historical_form"/>
+        <field name="arch" type="xml">
+            <field name="group_id" position="before">
+                <field name="speciality_id" position="before"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_school_year_historical_hezkuntza_tree" model="ir.ui.view">
+        <field name="name">school.year.historical.hezkuntza.tree</field>
+        <field name="model">school.year.historical</field>
+        <field name="inherit_id" ref="company_internships.view_school_year_historical_tree"/>
+        <field name="arch" type="xml">
+            <field name="group_id" position="before">
+                <field name="speciality_id" position="before"/>
+            </field>
+        </field>
+    </record>
+</odoo>

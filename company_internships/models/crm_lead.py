@@ -22,13 +22,10 @@ class CrmLead(models.Model):
         if self.internship_line_ids:
             sale_lines = []
             for line in self.internship_line_ids:
-                sale_lines.append((0, 0,
-                                   {'name': line.student_group_id.name,
-                                    'product_id': line.student_group_id.id,
-                                    'product_uom_qty': line.student_qty,
-                                    'product_uom':
-                                        line.student_group_id.uom_id.id,
-                                    'price_unit': 0}))
+                for sale_line_index in range(line.student_qty):
+                    sale_line = line._get_sale_line_info()
+                    sale_line.update({'product_uom_qty': 1, 'price_unit': 0})
+                    sale_lines.append((0, 0, sale_line))
             action['context'].update(default_order_line=sale_lines)
         return action
 
@@ -40,3 +37,11 @@ class InternshipLines(models.Model):
     student_group_id = fields.Many2one(comodel_name="product.product",
                                        string="Student Group")
     student_qty = fields.Integer()
+
+    def _get_sale_line_info(self):
+        self.ensure_one()
+        return{
+            'name': self.student_group_id.name,
+            'product_id': self.student_group_id.id,
+            'product_uom': self.student_group_id.uom_id.id,
+        }

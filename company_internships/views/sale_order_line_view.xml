@@ -9,15 +9,26 @@
                     <field name="has_internship_line" invisible="1"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
-                    <field name="internship_line" invisible="True"/>
-                    <field name="student_ids" widget="many2many_tags" options="{'no_create': True}"
-                           attrs="{'readonly': ['|', ('internship_line', '=', False), ('state', '!=', 'sale')]}" domain="[('student_group_id', '=', product_id)]"/>
+                    <field name="order_partner_id" invisible="1"/>
+                    <field name="school_year_id" invisible="1"/>
+                    <field name="internship_record_id"
+                           domain="[('school_year_id', '=', school_year_id), ('student_company_id', '=', False), ('group_id', '=', product_id)]"
+                           attrs="{'readonly': ['|', ('internship_line', '=', False), ('state', '!=', 'sale')],
+                           'column_invisible': ['|', ('parent.has_internship_line', '=', False), ('parent.state', '!=', 'sale')]}" options="{'no_create': True}"/>
+                    <field name="internship_line" invisible="1"/>
+                    <field name="instructor_id" domain="[('parent_id', 'child_of', order_partner_id), ('company_instructor', '=', True)]"/>
+                    <field name="tutor_id" domain="[('is_tutor', '=', True)]"/>
+                    <field name="internship_type_id"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
-                    <field name="internship_line" invisible="True"/>
-                    <div name="student_ids" attrs="{'invisible': [('internship_line', '=', False)]}">
-                        <label for="student_ids"/>
-                        <field name="student_ids" options="{'no_create': True}"/>
+                    <field name="order_partner_id" invisible="1"/>
+                    <field name="school_year_id" invisible="1"/>
+                    <field name="internship_line" invisible="1"/>
+                    <div name="internship_record_id" attrs="{'invisible': [('internship_line', '=', False)]}">
+                        <label for="internship_record_id"/>
+                        <field name="internship_record_id"
+                               domain="[('school_year_id', '=', school_year_id), ('student_company_id', '=', False), ('group_id', '=', product_id)]"
+                               options="{'no_create': True}"/>
                     </div>
                 </xpath>
             </field>

@@ -16,18 +16,6 @@ class SaleOrder(models.Model):
             sale.has_internship_line = any(
                 sale.order_line.mapped("internship_line"))
 
-    def action_confirm(self):
-        for order in self:
-            for line in order.order_line:
-                already_has_internship = line.student_ids.filtered(
-                    lambda x: x.internship_of_group_year)
-                if already_has_internship:
-                    raise ValidationError(_(
-                        f"Those students already has an "
-                        f"assigned internship:\n "
-                        f"{';'.join(already_has_internship.mapped('name'))}"))
-        return super().action_confirm()
-
     # TODO add constrains all lines has same school_year_id lines.map(
     #  "school_year_id") < 2
 
@@ -37,23 +25,83 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    student_ids = fields.Many2many(comodel_name="res.partner",
-                                   domain="[('is_student', '=', True)]",
-                                   copy=False)
+    internship_record_id = fields.Many2one(
+        comodel_name="school.year.historical", copy=False)
+    instructor_id = fields.Many2one(
+        comodel_name='res.partner',
+        related="internship_record_id.student_instructor_id",
+        domain=[('company_instructor', '=', True)],
+        inverse="set_internship_instructor")
+    tutor_id = fields.Many2one(
+        comodel_name='res.partner',
+        related="internship_record_id.student_tutor_id",
+        domain=[('is_tutor', '=', True)],
+        inverse="set_internship_tutor")
+    internship_type_id = fields.Many2one(
+        comodel_name='internship.type',
+        string="Internship Type",
+        related="internship_record_id.internship_type",
+        inverse="set_internship_type")
     internship_line = fields.Boolean(related="product_id."
                                              "product_tmpl_id.is_student_group"
                                      )
-    internship_type = fields.Many2one(comodel_name="internship.type",
-                                      string="Internship Type")
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      related="product_id.product_tmpl_id."
                                      "school_year_id")
 
-    @api.constrains('product_id', 'student_ids')
+    @api.depends('internship_record_id')
+    def get_internship_type(self):
+        for line in self:
+            if line.internship_record_id:
+                type_id = line.internship_record_id.internship_type.id
+                line.instructor_id = type_id
+
+    def set_internship_type(self):
+        if self.instructor_id:
+            type_id = self.internship_type_id.id
+            self.internship_record_id.internship_type = type_id
+
+    @api.depends('internship_record_id')
+    def get_internship_tutor(self):
+        for line in self:
+            if line.internship_record_id:
+                tutor_id = line.internship_record_id.student_tutor_id.id
+                line.instructor_id = tutor_id
+
+    def set_internship_tutor(self):
+        if self.instructor_id:
+            tutor_id = self.tutor_id.id
+            self.internship_record_id.student_tutor_id = tutor_id
+
+    @api.depends('internship_record_id')
+    def get_internship_instructor(self):
+        for line in self:
+            if line.internship_record_id:
+                instructor = line.internship_record_id.student_instructor_id.id
+                line.instructor_id = instructor.id
+
+    def set_internship_instructor(self):
+        if self.instructor_id:
+            instructor = self.instructor_id
+            self.internship_record_id.student_instructor_id = instructor.id
+            company_id = instructor.id if instructor.is_company else \
+                instructor.parent_id.id
+            self.internship_record_id.student_company_id = company_id
+
+    @api.onchange("internship_record_id")
+    def onchange_student_id(self):
+        for line in self:
+            if line.internship_record_id:
+                partner = line.order_id.partner_id
+                company_id = partner.id if partner.is_company else \
+                    partner.parent_id.id
+                line.internship_record_id.student_company_id = company_id
+
+    @api.constrains('product_id', 'internship_record_id')
     def check_internship_students(self):
         for line in self:
             is_internship = line.product_id.product_tmpl_id.is_student_group
-            if line.student_ids and not is_internship:
+            if line.internship_record_id and not is_internship:
                 raise ValidationError(_("At least in one line there are "
                                         "students with a product that is not "
                                         "a internship"))
@@ -61,6 +109,6 @@ class SaleOrderLine(models.Model):
     @api.constrains('product_uom_qty', 'state', 'students_ids')
     def check_all_students_are_assign(self):
         for line in self:
-            if line.internship_line and len(line.student_ids) > \
-                    line.product_uom_qty and line.state == 'sale':
-                raise ValidationError(_("To many students assigned in a line"))
+            if line.internship_line and line.product_uom_qty != 1 \
+                    and line.state == 'sale':
+                raise ValidationError(_("Internship line qty must be 1"))

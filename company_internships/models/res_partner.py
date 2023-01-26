@@ -47,7 +47,8 @@ class ResPartner(models.Model):
         comodel_name="school.year.historical",
         compute="compute_company_records",
         search="_search_historical_records_types")
-
+    driving_license = fields.Boolean(string="Driving License")
+    car_owned = fields.Boolean(string="Car in Property")
 
     def _search_historical_records_groups(self, operator, value):
         if operator == 'in':
@@ -126,8 +127,8 @@ class ResPartner(models.Model):
                 student_id.internship_of_group_year = False
                 continue
             internships = self.env['sale.order.line'].search(
-                [("student_ids", "=", student_id.id), ("state", "in",
-                                                       ["sale", "done"])])
+                [("internship_record_id.student_id.id", "=", student_id.id),
+                 ("state", "in", ["sale", "done"])])
             student_group_year = student_id.student_group_id.school_year_id
             internship_of_group_year = internships.filtered(
                 lambda x: x.school_year_id.id == student_group_year.id)
@@ -167,7 +168,7 @@ class ResPartner(models.Model):
         if self.is_student:
             action = self.env['ir.actions.act_window']._for_xml_id(
                 'sale_order_line_menu.action_orders_lines')
-            action['domain'] = [('student_ids', '=', self.id)]
+            action['domain'] = [('internship_record_id.student_id.id', '=', self.id)]
             return action
         return None
 
@@ -247,7 +248,9 @@ class SchoolYearHistorical(models.Model):
     school_year_id = fields.Many2one(comodel_name="school.year")
     group_id = fields.Many2one(comodel_name="product.template")
     student_tutor_id = fields.Many2one(comodel_name="res.partner")
-    student_instructor_id = fields.Many2one(comodel_name="res.partner")
+    student_instructor_id = fields.Many2one(comodel_name="res.partner",
+                                            domain=[('company_instructor',
+                                                     '=', True)])
     internship_type = fields.Many2one(comodel_name="internship.type",
                                       string="Internship Type")
     student_company_id = fields.Many2one(comodel_name="res.partner",
@@ -255,6 +258,22 @@ class SchoolYearHistorical(models.Model):
     is_active = fields.Boolean(related="school_year_id.is_active", store=True)
     user_id = fields.Many2one(comodel_name="res.users",
                               compute="_compute_user_id", store=True)
+
+    @api.onchange('student_company_id')
+    def onchange_company(self):
+        for record in self.filtered(lambda x: x.student_company_id):
+            company = record.student_company_id
+            instructor = record.student_instructor_id
+            if instructor.parent_id != company:
+                record.student_instructor_id = False
+
+    @api.onchange('student_instructor_id')
+    def onchange_instructor(self):
+        for record in self.filtered(lambda x: x.student_instructor_id):
+            company = record.student_company_id
+            instructor = record.student_instructor_id
+            if instructor.parent_id and instructor.parent_id != company:
+                record.student_company_id = instructor.parent_id.id
 
     def unarchive_year_data(self):
         students = self.env['res.partner']
@@ -282,3 +301,8 @@ class SchoolYearHistorical(models.Model):
             return self.search([
                 ('student_id', '=', student_id),
                 ('school_year_id', '=', active_year.id)])
+
+    def name_get(self):
+        return [(record.id,
+                 f"{record.student_id.display_name} "
+                 f"({record.school_year_id.name})") for record in self]
