@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--###############CONTACTS###############-->
+    <menuitem
+            id="menu_internships_root"
+            name="Internships"
+            web_icon="company_internships,static/description/icon.png"
+            groups="base.group_user"
+            action="company_internships.action_student_group_product"
+            sequence="4"/>
+
+    <menuitem id="student_tutor_menu"
+              name="Students and Tutors"
+              parent="menu_internships_root"
+              sequence="2"/>
+
+    <menuitem id="student_menu"
+              name="Students"
+              action="action_internships_students"
+              parent="student_tutor_menu"
+              sequence="2"/>
+    <menuitem id="tutor_menu"
+              name="Tutors"
+              action="action_internships_tutors"
+              parent="student_tutor_menu"
+              sequence="3"/>
+
+    <!--###############Assignments###############-->
+    <menuitem id="assignment_menu"
+              name="Assignments"
+              parent="menu_internships_root"
+              sequence="2"/>
+
+    <menuitem id="assignments_opportunity"
+              name="Opportunity"
+              action="crm.crm_lead_action_pipeline"
+              parent="assignment_menu"
+              sequence="2"/>
+    <menuitem id="assignments_quotation"
+              name="Quotation"
+              action="sale.action_quotations_with_onboarding"
+              parent="assignment_menu"
+              sequence="4"/>
+    <menuitem id="assignments_order"
+              name="Orders"
+              action="sale.action_orders"
+              parent="assignment_menu"
+              sequence="6"/>
+    <menuitem id="assignments_assignment_line"
+              name="Assignment Lines"
+              action="sale_order_line_menu.action_orders_lines"
+              parent="assignment_menu"
+              sequence="8"/>
+
+</odoo>
