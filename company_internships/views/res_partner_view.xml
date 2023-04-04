@@ -253,6 +253,7 @@
             <xpath
                 expr="//page[@name='personal_information_page']//group[@name='personal_information_group']"
             >
+                <field name="is_student" invisible="1"/>
                 <field
                     name="driving_license"
                     attrs="{'invisible': [('is_student', '=', False)]}"

@@ -51,13 +51,61 @@ class ResPartner(models.Model):
     car_owned = fields.Boolean(string="Car in Property")
 
     def _search_historical_records_groups(self, operator, value):
+
         if operator == 'in':
             return [('id', 'in', value)]
-        if operator not in [
-                '=', '!=', 'like', 'ilike', 'not like', 'not ilike']:
-            raise UserError(_('Operation not supported'))
-        return [('company_internship_record_groups.group_id.display_name',
-                 operator, value)]
+        query = f"""
+            SELECT h.id
+                FROM school_year_historical h
+                LEFT JOIN hezkuntza_speciality hs
+                ON h.speciality_id = hs.id
+                WHERE hs.name ilike '%{value}%'
+        """
+        self._cr.execute(query)
+        res = self._cr.fetchall()
+        if not res:
+            return [(0, '=', 1)]
+        return [('company_internship_record_groups.id', 'in',
+                 [r[0] for r in res])]
+
+
+        # # Assumes operator is '=' or '!=' and value is True or False
+        # self._assert_phone_field()
+        # if operator != '=':
+        #     if operator == '!=' and isinstance(value, bool):
+        #         value = not value
+        #     else:
+        #         raise NotImplementedError()
+        #
+        # if value:
+        #     query = """
+        #         SELECT m.id
+        #             FROM phone_blacklist bl
+        #             JOIN %s m
+        #             ON m.phone_sanitized = bl.number AND bl.active
+        #     """
+        # else:
+        #     query = """
+        #         SELECT m.id
+        #             FROM %s m
+        #             LEFT JOIN phone_blacklist bl
+        #             ON m.phone_sanitized = bl.number AND bl.active
+        #             WHERE bl.id IS NULL
+        #     """
+
+
+
+
+
+
+
+        # if operator == 'in':
+        #     return [('id', 'in', value)]
+        # if operator not in [
+        #         '=', '!=', 'like', 'ilike', 'not like', 'not ilike']:
+        #     raise UserError(_('Operation not supported'))
+        # return [('company_internship_record_groups.group_id.display_name',
+        #          operator, value)]
 
     def _search_historical_records_types(self, operator, value):
         # if operator not in ['=', '!='] or not isinstance(value, bool):
@@ -198,6 +246,74 @@ class ResPartner(models.Model):
                     #'student_instructor_id': student.student_instructor.id,
                 })]
             student.deactivate_student_group()
+
+    def _search_partners(self, domain):
+        query = """
+                    SELECT h.student_company_id
+                        FROM school_year_historical h
+                        LEFT JOIN hezkuntza_speciality hs
+                        ON h.speciality_id = hs.id
+                        LEFT JOIN internship_type it
+                        ON h.internship_type = it.id
+        """
+        where_cond = """
+        WHERE h.student_company_id is not null
+        """
+        for leaf in domain:
+            if 'company_internship_record_groups' in leaf[0]:
+                where_cond += f" and hs.name ilike '%{leaf[2] or ''}%'"
+            elif 'company_internship_record_types' in leaf[0]:
+                where_cond += f" and it.name ilike '%{leaf[2] or ''}%'"
+        query += where_cond
+        self._cr.execute(query)
+        res = self._cr.fetchall()
+        ids = [r[0] for r in res]
+
+        return [('id', 'in', ids)]
+
+    def _transform(self, leaf, condition=False, domain=[]):
+        if len(leaf) == 0:
+            new_domain = self._search_partners(domain)
+
+            domain.clear()
+            domain.extend(new_domain)
+            return []
+        if leaf[0] in ['&', '|']:
+            condition = leaf[0]
+        else:# is list
+            if 'company_internship_record_groups' in leaf[0][0] or \
+                    'company_internship_record_types' in leaf[0][0]:
+                if condition == '&':
+                    domain.append(leaf[0])
+                    res = self._transform(leaf[1:], condition=condition,
+                                     domain=domain)
+                    res.extend(domain)
+                    return res
+                else:  # condition is or
+                    condition = 'x' if condition == '|' else '&'
+                    res = self._transform(leaf[1:], condition=condition,
+                                    domain=domain)
+                    or_leaf = domain + list(leaf[0])
+                    new_leaf = or_leaf
+                    res.extend(new_leaf)
+                    return res
+            condition = 'x' if condition == '|' else '&'
+        res = self._transform(leaf[1:], condition=condition, domain=domain)
+        res.append(leaf[0])
+        return res
+
+    def transform(self, args):
+        res = self._transform(args)
+        res.reverse()
+        return res
+
+    @api.model
+    def search(self, args, offset=0, limit=0, order=None, count=False):
+        if self.env.context.get('from_search_view'):
+            args = expression.normalize_domain(args)
+            args = self.transform(args)
+        return super().search(args, offset=offset, limit=limit, order=order,
+                              count=count)
 
     @api.model
     def create(self, values):
