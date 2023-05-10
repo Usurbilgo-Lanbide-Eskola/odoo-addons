@@ -80,18 +80,22 @@ class SurveySurvey(models.Model):
             model = self.survey_type.model_id.model
             return self.env[model].browse(self.instance_id)
 
+    def search_child_survey(self, instance, template_survey, survey_type):
+        instance.ensure_one()
+        domain = [
+            ('survey_template', '=', False),
+            ('instance_id', '=', instance.id),
+            ('survey_type', '=', survey_type.id),
+            ('parent_template_id', '=', template_survey.id),
+        ]
+        return self.env['survey.survey'].search(domain)
+
     def create_child_surveys(self, instances, template_survey, survey_type,
                              duplicate=False):
         new_surveys = self.env['survey.survey']
         for instance in instances:
             if not duplicate:
-                domain = [
-                    ('survey_template', '=', False),
-                    ('instance_id', '=', instance.id),
-                    ('survey_type', '=', survey_type.id),
-                    ('parent_template_id', '=', template_survey.id),
-                ]
-                if self.env['survey.survey'].search(domain):
+                if self.search_child_survey(instance, template_survey, survey_type):
                     continue
             survey_dict = {
                 'survey_template': False,

@@ -6,14 +6,45 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-18 09:42+0000\n"
-"PO-Revision-Date: 2022-07-18 09:42+0000\n"
+"POT-Creation-Date: 2023-05-10 06:46+0000\n"
+"PO-Revision-Date: 2023-05-10 06:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: internship_companies_survey_sender
+#: model:mail.template,body_html:internship_companies_survey_sender.mail_template_student_invite
+msgid ""
+"<div style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                    Dear ${object.student_id.name or 'participant'}\n"
+"                    <br/>\n"
+"                    <br/>\n"
+"                    We are conducting a survey and your response would be appreciated.\n"
+"                    % for answer in object.answer_ids:\n"
+"                    <div style=\"margin: 16px 0px 16px 0px;\">\n"
+"                        <a href=\"${(answer.get_start_url()) | safe}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
+"                            % if answer.survey_id.certification:\n"
+"                            Start ${answer.survey_id.get_related_instance().display_name} Certification\n"
+"                            % else:\n"
+"                            Start ${answer.survey_id.get_related_instance().display_name} Survey\n"
+"                            % endif\n"
+"                        </a>\n"
+"                    </div>\n"
+"                    % if answer.deadline:\n"
+"                    Please answer the survey for ${format_date(answer.deadline)}.\n"
+"                    <br/>\n"
+"                    <br/>\n"
+"                    % endif\n"
+"                    %endfor\n"
+"                    Thank you for your participation.\n"
+"                </p>\n"
+"            </div>\n"
+"        "
+msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:mail.template,body_html:internship_companies_survey_sender.mail_template_tutor_invite
@@ -74,36 +105,43 @@ msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__survey_access_mode
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__survey_access_mode
 msgid "Access Mode"
 msgstr "Modo de acceso"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__emails
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__emails
 msgid "Additional emails"
 msgstr ""
 
 #. module: internship_companies_survey_sender
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__answer_ids
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__answer_ids
 msgid "Answer"
 msgstr "Respuesta"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__deadline
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__deadline
 msgid "Answer deadline"
 msgstr "Plazo de respuesta"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__attachment_ids
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__attachment_ids
 msgid "Attachments"
 msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__author_id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__author_id
 msgid "Author"
 msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,help:internship_companies_survey_sender.field_send_company_internships__author_id
+#: model:ir.model.fields,help:internship_companies_survey_sender.field_send_student_company_internships__author_id
 msgid "Author of the message."
 msgstr "Autor del mensaje"
 
@@ -114,12 +152,15 @@ msgstr "Contacto"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__body
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__body
 msgid "Contents"
 msgstr "Contenido"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__create_uid
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships_line__create_uid
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__create_uid
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__create_uid
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__create_uid
 msgid "Created by"
 msgstr ""
@@ -127,66 +168,118 @@ msgstr ""
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__create_date
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships_line__create_date
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__create_date
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__create_date
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: internship_companies_survey_sender
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_school_year_search
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_survey_school_year_search
+msgid "Current School Year"
+msgstr "Año escolar actual"
+
+#. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_partner__display_name
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_school_year_historical__display_name
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__display_name
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships_line__display_name
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__display_name
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__display_name
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_survey__display_name
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input__display_name
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input_line__display_name
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,help:internship_companies_survey_sender.field_send_company_internships__email_from
+#: model:ir.model.fields,help:internship_companies_survey_sender.field_send_student_company_internships__email_from
 msgid "Email address of the sender."
 msgstr "Correo electronico del remitente"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__existing_partner_ids
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__existing_partner_ids
 msgid "Existing Partner"
-msgstr ""
+msgstr "Contacto existente"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__existing_emails
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__existing_emails
 msgid "Existing emails"
-msgstr ""
+msgstr "Correos electronicos existentes"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__email_from
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__email_from
 msgid "From"
 msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__existing_mode
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__existing_mode
 msgid "Handle existing"
 msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__reputation__4
+#: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__student_reputation__4
 msgid "High"
 msgstr "Alto"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_partner__id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_school_year_historical__id
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__id
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships_line__id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_survey__id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input__id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input_line__id
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__id
 msgid "ID"
 msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,help:internship_companies_survey_sender.field_send_company_internships__survey_users_login_required
+#: model:ir.model.fields,help:internship_companies_survey_sender.field_send_student_company_internships__survey_users_login_required
 msgid ""
 "If checked, users have to login before answering even with a valid token."
 msgstr ""
 
 #. module: internship_companies_survey_sender
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_survey__current_school_year
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input__current_school_year
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input_line__current_school_year
+msgid "In Current School Year"
+msgstr "En año escolar actual"
+
+#. module: internship_companies_survey_sender
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input__is_student
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input_line__is_student
+msgid "Is Student"
+msgstr "Es estudiante"
+
+#. module: internship_companies_survey_sender
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input__is_tutor
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input_line__is_tutor
+msgid "Is Tutor"
+msgstr "Es tutor"
+
+#. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_partner____last_update
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_school_year_historical____last_update
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships____last_update
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships_line____last_update
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships____last_update
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle____last_update
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_survey____last_update
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input____last_update
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input_line____last_update
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
@@ -194,6 +287,8 @@ msgstr "Última modificación el"
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__write_uid
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships_line__write_uid
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__write_uid
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__write_uid
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -201,34 +296,62 @@ msgstr ""
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__write_date
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships_line__write_date
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__write_date
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__write_date
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__survey_users_login_required
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__survey_users_login_required
 msgid "Login Required"
 msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__reputation__2
+#: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__student_reputation__2
 msgid "Low"
 msgstr "Bajo"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__reputation__3
+#: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__student_reputation__3
 msgid "Medium"
 msgstr "Normal"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__reputation__0
+#: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__student_reputation__0
 msgid "No Score"
 msgstr "Sin puntuación"
 
 #. module: internship_companies_survey_sender
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_partner__review_qty
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_partner__student_review_qty
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_users__review_qty
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_users__student_review_qty
+msgid "Number of Reviews"
+msgstr "Numero de revisiones"
+
+#. module: internship_companies_survey_sender
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_partner__raw_reputation
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_partner__student_raw_reputation
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_users__raw_reputation
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_users__student_raw_reputation
+msgid "Numerical Reputation"
+msgstr "Reputación numerico"
+
+#. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__mail_server_id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__mail_server_id
 msgid "Outgoing mail server"
 msgstr ""
+
+#. module: internship_companies_survey_sender
+#: model:mail.template,subject:internship_companies_survey_sender.mail_template_student_invite
+msgid "Participate in your internship survey"
+msgstr "Participe en las encuestas de prácticas"
 
 #. module: internship_companies_survey_sender
 #: model:mail.template,subject:internship_companies_survey_sender.mail_template_tutor_invite
@@ -237,24 +360,46 @@ msgstr "Participe en las encuestas de las prácticas de sus alumnos"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__partner_ids
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__partner_ids
 msgid "Recipients"
 msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_partner__reputation
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_partner__student_reputation
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_users__reputation
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_users__student_reputation
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_companies_reputation_form
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_res_partner_reputation_search
 msgid "Reputation"
 msgstr "Reputación"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__existing_text
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__existing_text
 msgid "Resend Comment"
 msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__school_year
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__school_year
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_survey__school_year_id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input__school_year_id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input_line__school_year_id
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_school_year_search
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_survey_school_year_search
 msgid "School Year"
 msgstr ""
+
+#. module: internship_companies_survey_sender
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_send_student_company_internship_form
+msgid "Send"
+msgstr ""
+
+#. module: internship_companies_survey_sender
+#: model:ir.actions.act_window,name:internship_companies_survey_sender.action_send_student_company_internship
+msgid "Send Surveys to Students"
+msgstr "Enviar la encuesta a los alumnos"
 
 #. module: internship_companies_survey_sender
 #: model:ir.actions.act_window,name:internship_companies_survey_sender.action_send_company_internship
@@ -267,28 +412,77 @@ msgid "Send Wizard"
 msgstr ""
 
 #. module: internship_companies_survey_sender
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input__speciality_id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input_line__speciality_id
+msgid "Speciality"
+msgstr ""
+
+#. module: internship_companies_survey_sender
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__student_id
+msgid "Student"
+msgstr ""
+
+#. module: internship_companies_survey_sender
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_school_year_search
+msgid "Student Participation"
+msgstr "Participación estudiantil"
+
+#. module: internship_companies_survey_sender
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_companies_reputation_form
+msgid "Student Reputation"
+msgstr "Reputación entre alumnos"
+
+#. module: internship_companies_survey_sender
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_school_year_historical__answer_id
+msgid "Student Survey"
+msgstr "Encuesta de alumnos"
+
+#. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__subject
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__subject
 msgid "Subject"
 msgstr ""
 
 #. module: internship_companies_survey_sender
+#: model:ir.model,name:internship_companies_survey_sender.model_survey_survey
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__survey_id
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships_line__survey_ids
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__survey_id
 msgid "Survey"
-msgstr ""
+msgstr "Encuesta"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__survey_start_url
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__survey_start_url
 msgid "Survey URL"
 msgstr ""
 
 #. module: internship_companies_survey_sender
+#: model:ir.model,name:internship_companies_survey_sender.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Entrada de usuario de la encuesta"
+
+#. module: internship_companies_survey_sender
+#: model:ir.model,name:internship_companies_survey_sender.model_survey_user_input_line
+msgid "Survey User Input Line"
+msgstr "Línea de entrada de usuario de la encuesta"
+
+#. module: internship_companies_survey_sender
 #: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_send_company_internship_form
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_send_student_company_internship_form
 msgid "Template Survey"
 msgstr ""
 
 #. module: internship_companies_survey_sender
+#: code:addons/internship_companies_survey_sender/wizard/send_company_internships.py:0
+#: code:addons/internship_companies_survey_sender/wizard/send_student_company_internships.py:0
+#, python-format
+msgid "There is not an survey type of a 'res.partner' model. Create one"
+msgstr ""
+
+#. module: internship_companies_survey_sender
 #: model:ir.model.fields,help:internship_companies_survey_sender.field_send_company_internships__emails
+#: model:ir.model.fields,help:internship_companies_survey_sender.field_send_student_company_internships__emails
 msgid ""
 "This list of emails of recipients will not be converted in contacts.        "
 "Emails must be separated by commas, semicolons or newline."
@@ -301,29 +495,48 @@ msgid "Tutor"
 msgstr ""
 
 #. module: internship_companies_survey_sender
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_school_year_search
+msgid "Tutor Participation"
+msgstr "Participación de los tutores"
+
+#. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__tutor_survey_line_ids
 msgid "Tutor Survey Line"
-msgstr ""
+msgstr "Linea de la encuesta del tutor"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__template_id
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__template_id
 msgid "Use template"
 msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__survey_users_can_signup
+#: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__survey_users_can_signup
 msgid "Users can signup"
 msgstr ""
 
 #. module: internship_companies_survey_sender
+#: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_res_partner_reputation_search
+msgid "Valued Companies"
+msgstr "Enpresas valoradas"
+
+#. module: internship_companies_survey_sender
 #: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__reputation__5
+#: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__student_reputation__5
 msgid "Very High"
 msgstr "Muy alto"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__reputation__1
+#: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__student_reputation__1
 msgid "Very Low"
 msgstr "Muy bajo"
+
+#. module: internship_companies_survey_sender
+#: model:ir.model,name:internship_companies_survey_sender.model_school_year_historical
+msgid "school.year.historical"
+msgstr ""
 
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_send_company_internships
@@ -333,6 +546,16 @@ msgstr ""
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_send_company_internships_line
 msgid "send.company.internships.line"
+msgstr ""
+
+#. module: internship_companies_survey_sender
+#: model:ir.model,name:internship_companies_survey_sender.model_send_student_company_internships
+msgid "send.student.company.internships"
+msgstr ""
+
+#. module: internship_companies_survey_sender
+#: model:ir.model,name:internship_companies_survey_sender.model_student_answer_bundle
+msgid "student.answer.bundle"
 msgstr ""
 
 #. module: internship_companies_survey_sender

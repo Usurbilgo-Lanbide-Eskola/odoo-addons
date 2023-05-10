@@ -1,0 +1,41 @@
+<odoo>
+    <record id="view_school_year_search" model="ir.ui.view">
+        <field name="name">View School Year Search</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_search"/>
+        <field name="arch" type="xml">
+            <filter name="completed" position="before">
+                <filter name="current_school_year" string="Current School Year"
+                        domain="[('current_school_year', '=', True)]"/>
+                <filter name="is_tutor" string="Tutor Participation"
+                        domain="[('is_tutor', '=', True)]"/>
+                <filter name="is_student" string="Student Participation"
+                        domain="[('is_student', '=', True)]"/>
+            </filter>
+            <filter name="group_by_survey" position="after">
+                <filter name="group_by_school_year" string="School Year" domain="[]"
+                        context="{'group_by':'school_year_id'}"/>
+            </filter>
+        </field>
+    </record>
+    <record id="view_school_year_form" model="ir.ui.view">
+        <field name="name">View School Year Form</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form"/>
+        <field name="arch" type="xml">
+            <field name="create_date" position="before">
+                <field name="school_year_id" readonly="1"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_school_year_tree" model="ir.ui.view">
+        <field name="name">View School Year Tree</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="create_date" position="before">
+                <field name="school_year_id" readonly="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

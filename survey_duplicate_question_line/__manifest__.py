@@ -3,7 +3,7 @@
 
 {
     "name": "Duplicate Survey Question",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Marketing/Surveys",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",

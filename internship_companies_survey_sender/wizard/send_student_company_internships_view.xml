@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_send_student_company_internship_form" model="ir.ui.view">
+        <field name="name">view.send.company.internship.form</field>
+        <field name="model">send.student.company.internships</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="survey.survey_invite_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='survey_id']" position="attributes">
+                <attribute name="readonly">0</attribute>
+                <attribute name="string">Template Survey</attribute>
+                <attribute name="domain">[('survey_template', '=', True)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='survey_id']" position="after">
+                <field name="school_year"/>
+            </xpath>
+            <xpath expr="//field[@name='survey_start_url']" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_ids']" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='emails']" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_invite']" position="replace">
+                <button string="Send" name="action_invite_students" type="object" class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_send_student_company_internship" model="ir.actions.act_window">
+        <field name="name">Send Surveys to Students</field>
+        <field name="res_model">send.student.company.internships</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_send_student_company_internship_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="company_internships.model_school_year_historical"/>
+        <field name="binding_view_types">list</field>
+        <field name="context" eval="{
+                'default_template_id': ref('mail_template_student_invite'),
+                'default_use_template': bool(ref('mail_template_student_invite')),
+                'notif_layout': 'mail.mail_notification_light',
+                }"/>
+    </record>
+</odoo>

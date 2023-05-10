@@ -47,8 +47,9 @@ class SendCompanyInternships(models.TransientModel):
             tutor = line.tutor_id
             students_companies = tutor._search_tutor_tutored_students(
                 self.school_year)
-            self.env['survey.survey'].create_child_surveys(
+            new_surveys = self.env['survey.survey'].create_child_surveys(
                 students_companies, self.survey_id, survey_type)
+            new_surveys.write({'school_year_id': self.school_year.id})
             surveys = self._get_tutor_survey_lines(
                 tutor, self.survey_id, self.school_year)._ids
             line.survey_ids = surveys
@@ -63,21 +64,22 @@ class SendCompanyInternships(models.TransientModel):
 
     @api.onchange('survey_id')
     def _onchange_survey_id(self):
-        lines = []
-        for old_line in self.tutor_survey_line_ids:
-            lines.append((2, old_line.id))
-        if self.survey_id:
-            tutors = self._context.get("active_ids")
-            for tutor in tutors:
-                surveys = self._get_tutor_survey_lines(
-                    tutor, self.survey_id, self.school_year)._ids
-                line = {'tutor_id': tutor}
-                if surveys:
-                    line.update(survey_ids=[(6, 0, surveys)])
-                lines.append((0, 0, line))
-        self.update({
-            'tutor_survey_line_ids': lines
-        })
+        if self.env.context.get('active_model') == 'res.partner':
+            lines = []
+            for old_line in self.tutor_survey_line_ids:
+                lines.append((2, old_line.id))
+            if self.survey_id:
+                tutors = self._context.get("active_ids")
+                for tutor in tutors:
+                    surveys = self._get_tutor_survey_lines(
+                        tutor, self.survey_id, self.school_year)._ids
+                    line = {'tutor_id': tutor}
+                    if surveys:
+                        line.update(survey_ids=[(6, 0, surveys)])
+                    lines.append((0, 0, line))
+            self.update({
+                'tutor_survey_line_ids': lines
+            })
 
     def _prepare_answers(self):
         def _update_answers(answers, tutor, answer):

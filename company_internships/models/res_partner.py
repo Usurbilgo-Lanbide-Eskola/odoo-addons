@@ -125,7 +125,7 @@ class ResPartner(models.Model):
     def compute_company_records(self):
         historical_obj = self.env['school.year.historical']
         for company in self.filtered(lambda x: x.is_company):
-            records = historical_obj.search({'student_company_id': company.id}).ids
+            records = historical_obj.search([('student_company_id', '=', company.id)]).ids
             company.company_internship_record_groups = [(6, 0, records)]
             company.company_internship_record_types = [(6, 0, records)]
 

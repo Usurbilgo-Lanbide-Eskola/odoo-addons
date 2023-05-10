@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_survey_answers_link_tree" model="ir.ui.view">
+            <field name="name">view survey answers link form</field>
+            <field name="model">school.year.historical</field>
+            <field name="inherit_id" ref="company_internships.view_school_year_historical_tree"/>
+            <field name="arch" type="xml">
+                <field name="internship_type" position="after">
+                    <field name="answer_id" readonly="1"/>
+                </field>
+            </field>
+        </record>
+</odoo>

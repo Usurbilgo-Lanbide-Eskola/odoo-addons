@@ -3,7 +3,7 @@
 
 {
     "name": "Hezkuntza Student Group Importer",
-    "version": "14.0.1.0.3",
+    "version": "14.0.1.0.4",
     "category": "Tools",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",

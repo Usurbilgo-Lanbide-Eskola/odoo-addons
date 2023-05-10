@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_state_change_wizard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-10 06:35+0000\n"
+"PO-Revision-Date: 2023-05-10 06:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: survey_state_change_wizard
+#: model_terms:ir.ui.view,arch_db:survey_state_change_wizard.view_survey_state_changer_form
+msgid "Cancel"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model:ir.actions.act_window,name:survey_state_change_wizard.state_change_state_wizard_action
+msgid "Change State"
+msgstr "Cambio de estado"
+
+#. module: survey_state_change_wizard
+#: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__dest_state
+msgid "Change to State"
+msgstr "Cambiar al estado"
+
+#. module: survey_state_change_wizard
+#: model:ir.model.fields.selection,name:survey_state_change_wizard.selection__survey_state_changer__dest_state__closed
+msgid "Closed"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model_terms:ir.ui.view,arch_db:survey_state_change_wizard.view_survey_state_changer_form
+msgid "Create"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model:ir.model.fields.selection,name:survey_state_change_wizard.selection__survey_state_changer__dest_state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__id
+msgid "ID"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model:ir.model.fields.selection,name:survey_state_change_wizard.selection__survey_state_changer__dest_state__open
+msgid "In progress"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: survey_state_change_wizard
+#: model_terms:ir.ui.view,arch_db:survey_state_change_wizard.view_survey_state_changer_form
+msgid "Survey State Changer"
+msgstr "Cambiar la encuesta de estado"
+
+#. module: survey_state_change_wizard
+#: model:ir.model,name:survey_state_change_wizard.model_survey_state_changer
+msgid "survey.state.changer"
+msgstr ""

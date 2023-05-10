@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_survey_school_year_search" model="ir.ui.view">
+        <field name="name">view.survey.school.year.search</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='title']" position="after">
+                <field name="school_year_id" />
+            </xpath>
+            <xpath expr="//filter[@name='groupby_state']" position="after">
+                <filter name="group_by_school_year" string="School Year" domain="[]"
+                        context="{'group_by':'school_year_id'}"/>
+                <filter name="current_school_year" string="Current School Year"
+                        domain="[('current_school_year', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_survey_school_year_form" model="ir.ui.view">
+        <field name="name">view.survey.school.year.form</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='title']/parent::h1" position="after">
+                <group>
+                    <field name="school_year_id" attrs="{'invisible': [('survey_template', '=', True)]}"/>
+                </group>
+            </xpath>
+            <xpath expr="//header" position="attributes">
+                <attribute name="attrs">{'invisible':[('survey_template', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

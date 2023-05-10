@@ -27,6 +27,13 @@
                     <label for="review_qty" string="" class="oe_inline"/>
                     (<field name="review_qty" nolabel="1" class="oe_inline"/>)
                 </div>
+                <label for="reputation" string="Student Reputation" class="oe_inline"
+                       attrs="{'invisible': [('is_company', '=', False)]}"/>
+                <div class="o_row no-gutters d-flex" attrs="{'invisible': [('is_company', '=', False)]}">
+                    <field name="student_reputation" widget="priority" class="oe_inline text-left"/>
+                    <label for="student_review_qty" string="" class="oe_inline"/>
+                    (<field name="student_review_qty" nolabel="1" class="oe_inline"/>)
+                </div>
             </field>
         </field>
     </record>

@@ -10,6 +10,8 @@ class ResPartner(models.Model):
         inverse="_set_student_group_historical_record")
     hezkuntza_group_id = fields.Many2one(
         related='student_group_id.hezkuntza_student_group_id')
+    tutor_speciality_id = fields.Many2one(
+        comodel_name="hezkuntza.speciality")
 
     def _set_student_group_historical_record(self):
         for student in self:

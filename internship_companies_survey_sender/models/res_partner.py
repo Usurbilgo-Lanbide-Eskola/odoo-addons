@@ -25,6 +25,15 @@ class ResPartner(models.Model):
     review_qty = fields.Integer(string="Number of Reviews",
                                 compute="compute_partner_reputation",
                                 compute_sudo=True)
+    student_reputation = fields.Selection(
+        selection=AVAILABLE_SCORES, string="Reputation",
+        compute="compute_student_partner_reputation", store=True)
+    student_raw_reputation = fields.Float(
+        string="Numerical Reputation",
+        compute="compute_student_partner_reputation", store=True)
+    student_review_qty = fields.Integer(
+        string="Number of Reviews",
+        compute="compute_student_partner_reputation", compute_sudo=True)
 
     def _search_tutor_tutored_students(self, school_year=False):
         self.ensure_one()
@@ -55,15 +64,33 @@ class ResPartner(models.Model):
             partner_surveys = partner._get_partner_surveys()
             answers = self.env['survey.user_input'].search(
                 [('survey_id', 'in', partner_surveys.ids),
-                 ('scoring_percentage', '!=', 0)])
+                 ('scoring_percentage', '!=', 0),
+                 ('partner_id.is_student', '=', False)])
             avg_percentage = 0
             answers_qty = len(answers)
             partner.review_qty = answers_qty
             if answers:
                 avg_percentage = sum(x.scoring_percentage for x in answers) / \
-                    answers_qty
+                                 answers_qty
             max_score = int(max(x[0] for x in AVAILABLE_SCORES))
             raw_reputation = avg_percentage * max_score / 100
             partner.raw_reputation = raw_reputation
             partner.reputation = str(round(raw_reputation))
 
+    def compute_student_partner_reputation(self):
+        for partner in self:
+            student_partner_surveys = partner._get_partner_surveys()
+            answers = self.env['survey.user_input'].search(
+                [('survey_id', 'in', student_partner_surveys.ids),
+                 ('scoring_percentage', '!=', 0),
+                 ('partner_id.is_student', '=', True)])
+            avg_percentage = 0
+            answers_qty = len(answers)
+            partner.student_review_qty = answers_qty
+            if answers:
+                avg_percentage = sum(x.scoring_percentage for x in answers) / \
+                                 answers_qty
+            max_score = int(max(x[0] for x in AVAILABLE_SCORES))
+            raw_reputation = avg_percentage * max_score / 100
+            partner.student_raw_reputation = raw_reputation
+            partner.student_reputation = str(round(raw_reputation))

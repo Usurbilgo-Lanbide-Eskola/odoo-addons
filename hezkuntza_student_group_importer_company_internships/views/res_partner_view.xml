@@ -23,7 +23,12 @@
         <field name="inherit_id" ref="hezkuntza_student_group_importer.view_hezkuntza_group_res_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='hezkuntza_group_id']" position="attributes">
-                <field name="invisible">1</field>
+                <attribute name="attrs">{'invisible': [('is_student', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='hezkuntza_group_id']" position="after">
+                <field name="is_tutor" invisible="1"/>
+                <field name="is_student" invisible="1"/>
+                <field name="tutor_speciality_id" attrs="{'invisible': [('is_tutor', '=', False)]}"/>
             </xpath>
         </field>
     </record>
