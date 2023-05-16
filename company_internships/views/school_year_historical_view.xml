@@ -10,8 +10,9 @@
                 <field name="group_id" readonly="1"/>
                 <field name="student_tutor_id"
                        context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
+                <field name="allowed_instructors" invisible="1"/>
                 <field name="student_instructor_id"/>
-                <field name="student_company_id"/>
+                <field name="student_company_id" domain='[("is_company", "=", True)]'/>
                 <field name="internship_type"/>
             </tree>
         </field>
@@ -26,10 +27,12 @@
                     <field name="school_year_id" readonly="1"/>
                     <field name="student_id" readonly="1"/>
                     <field name="group_id" readonly="1"/>
-                    <field name="student_tutor_id"
+                    <field name="allowed_instructors" invisible="1"/>
+                    <field name="student_tutor_id" domain="[('is_tutor', '=', True)]"
                            context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
-                    <field name="student_instructor_id"/>
-                    <field name="student_company_id"/>
+                    <field name="allowed_instructors" invisible="1"/>
+                    <field name="student_instructor_id" />
+                    <field name="student_company_id" domain='[("is_company", "=", True)]'/>
                     <field name="internship_type"/>
                 </group>
             </form>

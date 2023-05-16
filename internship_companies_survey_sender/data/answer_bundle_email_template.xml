@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="mail_template_tutor_invite" model="mail.template">
-        <field name="name">Survey: Invite</field>
+        <field name="name">Survey: Invite Tutor</field>
         <field name="model_id" ref="survey.model_survey_user_input"/>
         <field name="subject">Participate to your students internships surveys</field>
         <field name="email_to">${(object.tutor_id.email_formatted) |safe}</field>
@@ -38,7 +38,7 @@
     </record>
 
     <record id="mail_template_student_invite" model="mail.template">
-        <field name="name">Survey: Invite</field>
+        <field name="name">Survey: Invite Student</field>
         <field name="model_id" ref="survey.model_survey_user_input"/>
         <field name="subject">Participate in your internship survey</field>
         <field name="email_to">${(object.student_id.email_formatted) |safe}</field>

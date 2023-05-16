@@ -10,3 +10,9 @@ class InternshipLines(models.Model):
                                          string="Internship Type")
     speciality_id = fields.Many2one(
         comodel_name="hezkuntza.speciality", string="Speciality")
+
+    @api.onchange("student_group_id")
+    def onchange_student_group(self):
+        for line in self:
+            if line.student_group_id:
+                line.speciality_id = line.student_group_id.speciality_id

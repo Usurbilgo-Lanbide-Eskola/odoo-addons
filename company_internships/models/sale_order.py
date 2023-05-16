@@ -30,7 +30,8 @@ class SaleOrderLine(models.Model):
     instructor_id = fields.Many2one(
         comodel_name='res.partner',
         related="internship_record_id.student_instructor_id",
-        domain=[('company_instructor', '=', True)],
+        domain="[('company_instructor', '=', True),"
+               "('parent_id', '=', order_id.partner_id)]",
         inverse="set_internship_instructor")
     tutor_id = fields.Many2one(
         comodel_name='res.partner',
@@ -49,36 +50,15 @@ class SaleOrderLine(models.Model):
                                      related="product_id.product_tmpl_id."
                                      "school_year_id")
 
-    @api.depends('internship_record_id')
-    def get_internship_type(self):
-        for line in self:
-            if line.internship_record_id:
-                type_id = line.internship_record_id.internship_type.id
-                line.instructor_id = type_id
-
     def set_internship_type(self):
         if self.instructor_id:
             type_id = self.internship_type_id.id
             self.internship_record_id.internship_type = type_id
 
-    @api.depends('internship_record_id')
-    def get_internship_tutor(self):
-        for line in self:
-            if line.internship_record_id:
-                tutor_id = line.internship_record_id.student_tutor_id.id
-                line.instructor_id = tutor_id
-
     def set_internship_tutor(self):
         if self.instructor_id:
             tutor_id = self.tutor_id.id
             self.internship_record_id.student_tutor_id = tutor_id
-
-    @api.depends('internship_record_id')
-    def get_internship_instructor(self):
-        for line in self:
-            if line.internship_record_id:
-                instructor = line.internship_record_id.student_instructor_id.id
-                line.instructor_id = instructor.id
 
     def set_internship_instructor(self):
         if self.instructor_id:
@@ -87,15 +67,6 @@ class SaleOrderLine(models.Model):
             company_id = instructor.id if instructor.is_company else \
                 instructor.parent_id.id
             self.internship_record_id.student_company_id = company_id
-
-    @api.onchange("internship_record_id")
-    def onchange_student_id(self):
-        for line in self:
-            if line.internship_record_id:
-                partner = line.order_id.partner_id
-                company_id = partner.id if partner.is_company else \
-                    partner.parent_id.id
-                line.internship_record_id.student_company_id = company_id
 
     @api.constrains('product_id', 'internship_record_id')
     def check_internship_students(self):

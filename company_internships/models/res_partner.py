@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models, _
 from odoo.osv import expression
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class ResPartner(models.Model):
@@ -364,23 +364,44 @@ class SchoolYearHistorical(models.Model):
     school_year_id = fields.Many2one(comodel_name="school.year")
     group_id = fields.Many2one(comodel_name="product.template")
     student_tutor_id = fields.Many2one(comodel_name="res.partner")
-    student_instructor_id = fields.Many2one(comodel_name="res.partner",
-                                            domain=[('company_instructor',
-                                                     '=', True)])
+    student_instructor_id = fields.Many2one(
+        comodel_name="res.partner", domain="[('id', 'in', "
+                                           "allowed_instructors)]")
+    allowed_instructors = fields.Many2many(
+        comodel_name="res.partner", compute="_compute_allowed_instructors")
     internship_type = fields.Many2one(comodel_name="internship.type",
                                       string="Internship Type")
-    student_company_id = fields.Many2one(comodel_name="res.partner",
-        related="student_instructor_id.parent_id", store=True)
+    student_company_id = fields.Many2one(comodel_name="res.partner")
     is_active = fields.Boolean(related="school_year_id.is_active", store=True)
     user_id = fields.Many2one(comodel_name="res.users",
                               compute="_compute_user_id", store=True)
 
+    @api.constrains("student_company_id", "student_instructor_id")
+    def instructor_is_companies_child(self):
+        if self.student_company_id and self.student_instructor_id and \
+                self.student_instructor_id.parent_id != \
+                self.student_company_id:
+            raise ValidationError(_("Instructor must belong to the company"))
+
+    @api.depends("student_company_id")
+    def _compute_allowed_instructors(self):
+        partner_obj = self.env['res.partner']
+        for record in self:
+            domain = [('company_instructor', '=', True)]
+            if record.student_company_id:
+                domain.append(('parent_id', '=', record.student_company_id.id))
+            allowed = partner_obj.search(domain)
+            record.allowed_instructors = [(6, 0, allowed.ids)]
+
     @api.onchange('student_company_id')
     def onchange_company(self):
-        for record in self.filtered(lambda x: x.student_company_id):
+        for record in self:
             company = record.student_company_id
             instructor = record.student_instructor_id
-            if instructor.parent_id != company:
+            if company:
+                if instructor.parent_id != company:
+                    record.student_instructor_id = False
+            else:
                 record.student_instructor_id = False
 
     @api.onchange('student_instructor_id')

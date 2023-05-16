@@ -172,6 +172,7 @@
                             <field name="school_year_id"/>
                             <field name="group_id"/>
                             <field name="student_tutor_id"/>
+                            <field name="allowed_instructors" invisible="1"/>
                             <field name="student_instructor_id"/>
                             <templates>
                                 <t t-name="kanban-box">
@@ -209,6 +210,7 @@
                                 <field name="group_id" readonly="1" invisible="1"/>
                                 <field name="student_tutor_id"
                                        context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
+                                <field name="allowed_instructors" invisible="1"/>
                                 <field name="student_instructor_id"/>
                             </group>
                         </form>
@@ -222,6 +224,7 @@
                             <field name="group_id" readonly="1"/>
                             <field name="student_tutor_id"
                                    context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
+                            <field name="allowed_instructors" invisible="1"/>
                             <field name="student_instructor_id"/>
                         </tree>
                     </field>
