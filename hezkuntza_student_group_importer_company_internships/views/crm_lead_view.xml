@@ -27,4 +27,16 @@
         </field>
     </record>
 
+    <record id="view_opportunity_speciality_filter" model="ir.ui.view">
+        <field name="name">view.opportunity.speciality.filter</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="company_internships.view_lead_with_order_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='allowed_group_ids']" position="after">
+                <field name="allowed_speciality_ids" filter_domain="[('allowed_speciality_ids.name', 'ilike', self)]"
+                       string="Student Speciality"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

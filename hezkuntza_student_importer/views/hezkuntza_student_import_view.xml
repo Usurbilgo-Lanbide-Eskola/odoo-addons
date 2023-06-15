@@ -109,8 +109,10 @@
 
     <menuitem id="hezkuntza_importer"
               name="Hezkuntza"
-              parent="contacts.menu_contacts"
-              sequence="5"/>
+              web_icon="hezkuntza_student_importer,static/description/icon.png"
+              action="hezkuntza_student_importer_action"
+              groups="base.group_user"
+              sequence="4"/>
 
     <menuitem id="hezkuntza_student"
               name="Import Students"

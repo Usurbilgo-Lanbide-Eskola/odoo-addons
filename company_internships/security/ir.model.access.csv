@@ -5,3 +5,5 @@
 "school_year_historical_user","school_year_historical_user","model_school_year_historical","base.group_user",1,0,0,0
 "internship_type_manager","internship_type_manager","model_internship_type","base.group_partner_manager",1,1,1,1
 "internship_type_user","internship_type_user","model_internship_type","base.group_user",1,0,0,0
+"resigned_internship_manager","resigned_internship_manager","model_resigned_internship_line","base.group_partner_manager",1,1,1,1
+"resigned_internship_user","resigned_internship_user","model_resigned_internship_line","base.group_user",1,0,0,0

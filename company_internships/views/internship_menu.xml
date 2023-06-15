@@ -24,6 +24,12 @@
               action="action_internships_tutors"
               parent="student_tutor_menu"
               sequence="3"/>
+    <menuitem id="menu_product_template_menu"
+              name="Student Groups"
+              action="action_student_group_product"
+              parent="student_tutor_menu"
+              sequence="4"
+              />
 
     <!--###############Assignments###############-->
     <menuitem id="assignment_menu"
@@ -51,5 +57,9 @@
               action="sale_order_line_menu.action_orders_lines"
               parent="assignment_menu"
               sequence="8"/>
-
+    <menuitem id="student_record_lines"
+              name="Student Records"
+              action="action_school_year_historical"
+              parent="assignment_menu"
+              sequence="10"/>
 </odoo>

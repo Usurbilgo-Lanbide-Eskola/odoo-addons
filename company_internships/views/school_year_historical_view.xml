@@ -14,6 +14,8 @@
                 <field name="student_instructor_id"/>
                 <field name="student_company_id" domain='[("is_company", "=", True)]'/>
                 <field name="internship_type"/>
+                <field name="student_without_internship"/>
+                <button name="action_open_form" icon="fa-file" type="object" context="{'xxx': active_id}"/>
             </tree>
         </field>
     </record>
@@ -31,9 +33,22 @@
                     <field name="student_tutor_id" domain="[('is_tutor', '=', True)]"
                            context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
                     <field name="allowed_instructors" invisible="1"/>
-                    <field name="student_instructor_id" />
+                    <field name="student_instructor_id"/>
                     <field name="student_company_id" domain='[("is_company", "=", True)]'/>
                     <field name="internship_type"/>
+                    <field name="student_without_internship"/>
+                </group>
+                <group>
+                    <notebook>
+                        <page string="Resignations">
+                            <field name="resignation_line_ids">
+                                <tree edit="1" editable="top">
+                                    <field name="resignation_date"/>
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </group>
             </form>
         </field>
@@ -52,8 +67,16 @@
                 <field name="student_instructor_id"/>
                 <field name="internship_type"/>
                 <separator/>
-                <filter name="filter_active_year" string="Active Internships" domain="[('is_active', '=', True)]" />
+                <filter name="filter_active_year" string="Active Internships" domain="[('is_active', '=', True)]"/>
                 <filter name="user_internships" string="User Internships" domain="[('user_id', '=', uid)]"/>
+                <filter name="students_no_assigned_internship" string="Internship No Assigned"
+                        domain="[('student_without_internship', '=', False), ('student_company_id', '=', False)]"/>
+                <filter name="students_assigned_internship" string="Internship Assigned"
+                        domain="[('student_without_internship', '=', False), ('student_company_id', '!=', False)]"/>
+                <filter name="students_without_internship" string="Students Without Internship"
+                        domain="[('student_without_internship', '=', True)]"/>
+                <filter name="students_with_internship" string="Students With Internship"
+                        domain="[('student_without_internship', '=', False)]"/>
                 <separator/>
                 <group expand="0" string="Group By">
                     <filter name="school_year_group" string="School Year" domain=""

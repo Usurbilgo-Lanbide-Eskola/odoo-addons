@@ -11,18 +11,28 @@
                 <field name="is_student_group"/>
             </xpath>
             <div name="button_box" position="inside">
+                <button class="oe_stat_button" name="action_get_opportunities"
+                        type="object" icon="fa-handshake-o" groups="sales_team.group_sale_salesman"
+                        help="Internships pre-agreed with companies">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="pending_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                        </span>
+                        <span class="o_stat_text">To be accepted</span>
+                    </div>
+                </button>
 
                 <button class="oe_stat_button" name="action_student_group_sale_lines"
-                        type="object" icon="fa-handshake-o" groups="sales_team.group_sale_salesman"
+                        type="object" icon="fa-thumbs-up" groups="sales_team.group_sale_salesman"
                         help="Internships agreed with companies">
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_value">
-                            <field name="internship_quotations_count" widget="statinfo" nolabel="1" class="mr4"/>
-                            (<field name="accepted_internships" widget="statinfo" nolabel="1" class="mr4"/>)
+                            <field name="accepted_internships" widget="statinfo" nolabel="1" class="mr4"/>
                         </span>
-                        <span class="o_stat_text">Agreements</span>
+                        <span class="o_stat_text">To be assigned</span>
                     </div>
                 </button>
+
                 <button class="oe_stat_button" name="action_group_students"
                         type="object" icon="fa-users" groups="sales_team.group_sale_salesman"
                         help="Students enrolled in group">
@@ -33,7 +43,8 @@
                         <span class="o_stat_text">Students</span>
                     </div>
                 </button>
-                <button class="oe_stat_button" name="action_assigned_students"
+
+                <button class="oe_stat_button" name="action_assigned_internship_lines"
                         type="object" icon="fa-suitcase" groups="sales_team.group_sale_salesman"
                         help="Students with assigned internship">
                     <div class="o_field_widget o_stat_info">
@@ -43,7 +54,7 @@
                         <span class="o_stat_text">In Internship</span>
                     </div>
                 </button>
-                <button class="oe_stat_button" name="action_not_assigned_students"
+                <button class="oe_stat_button" name="action_no_assigned_internship_lines"
                         type="object" icon="fa-coffee" groups="sales_team.group_sale_salesman"
                         help="Students without assigned internship">
                     <div class="o_field_widget o_stat_info">
@@ -67,16 +78,15 @@
             <xpath expr="//div[@name='product_lst_price']" position="replace">
                 <div name="student_total" class="mt-1">
                     Students Total:
-                    <field name="students_count_dummy"/>
+                    <field name="students_count"/>(<field name="internship_excluded_count"/> without internships)
                 </div>
                 <div name="lead_qty" class="mt-1">
                     Assigned:
-                    <field name="lead_qty" invisible="1"/>
-                    <field name="lead_qty_dummy"/>
+                    <field name="internship_students_count"/>
                 </div>
                 <div name="pending_qty" class="mt-1">
                     Pending:
-                    <field name="pending_qty"/>
+                    <field name="no_internship_students_count"/>
                 </div>
             </xpath>
         </field>
@@ -91,9 +101,8 @@
                 <field name="sequence" widget="handle" readonly="1"/>
                 <field name="name" string="Product Name"/>
                 <field name="students_count" sum="Students"/>
-                <field name="lead_qty" sum="Assigned"/>
-                <field name="lead_qty_dummy" invisible="1"/>
-                <field name="pending_qty" sum="Pending"/>
+                <field name="internship_students_count" sum="Assigned"/>
+                <field name="no_internship_students_count" sum="Pending"/>
             </tree>
         </field>
     </record>

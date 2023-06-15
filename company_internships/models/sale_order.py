@@ -2,13 +2,33 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
+from itertools import groupby
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    def get_current_school_year(self):
+        return self.env['school.year'].get_current_school_year()
+
     has_internship_line = fields.Boolean(
         compute="_compute_has_internship_line")
+    state = fields.Selection(selection_add=[('internship', 'Internship')],
+                             default="draft")
+    school_year_id = fields.Many2one(comodel_name="school.year",
+                                     default=get_current_school_year)
+
+    @api.onchange("has_internship_line")
+    def change_status(self):
+        if self.has_internship_line:
+            self.state = 'internship'
+
+    @api.constrains("opportunity_id")
+    def check_lead_has_other_sale(self):
+        opportunity = self.opportunity_id
+        if opportunity.opportunity_type == 'internship' and len(
+                opportunity.internship_sale_ids) > 0:
+            raise ValidationError(_("Opportunity has already a sale"))
 
     @api.depends("order_line.internship_line")
     def _compute_has_internship_line(self):
@@ -16,10 +36,43 @@ class SaleOrder(models.Model):
             sale.has_internship_line = any(
                 sale.order_line.mapped("internship_line"))
 
-    # TODO add constrains all lines has same school_year_id lines.map(
-    #  "school_year_id") < 2
+    def action_cancel(self):
+        res = super().action_cancel()
+        if self.has_internship_line:
+            self.order_line.write({'internship_record_id': False})
+        return res
 
-    # TODO if one line is internship all lines need to be internships
+    @api.constrains("school_year_id", "has_internship_line", "partner_id")
+    def unique_sale_per_school_year(self):
+        for sale in self.filtered(
+                lambda x: x.school_year_id and x.has_internship_line and
+                x.partner_id):
+            other_lead = self.env['crm.lead'].search([
+                ("opportunity_type", "=", "internship"),
+                ("partner_id", "=", sale.partner_id.id),
+                ("school_year_id", "=", sale.school_year_id.id)])
+            if other_lead:
+                raise ValidationError(_("Internship sale must be "
+                                        "unique per school year and customer"))
+
+    @api.constrains("school_year_id", "order_line")
+    def same_school_year(self):
+        for sale in self.filtered(lambda x: x.has_internship_line):
+            lines = sale.order_line.filtered(
+                lambda x: x.internship_line and x.school_year_id.id !=
+                          sale.school_year_id.id)
+            if lines:
+                raise ValidationError(_("All internship lines must have the "
+                                        "same school year of the sale order"))
+
+    @api.constrains("order_line")
+    def all_lines_internships(self):
+        for sale in self.filtered(lambda x: x.order_line):
+            internship_lines = sale.order_line.filtered(
+                lambda x: x.display_type == False).mapped("internship_line")
+            if any(internship_lines) and not all(internship_lines):
+                raise ValidationError(_("if a line has a internship all "
+                                        "lines must be internship lines"))
 
 
 class SaleOrderLine(models.Model):
@@ -43,12 +96,18 @@ class SaleOrderLine(models.Model):
         string="Internship Type",
         related="internship_record_id.internship_type",
         inverse="set_internship_type")
-    internship_line = fields.Boolean(related="product_id."
-                                             "product_tmpl_id.is_student_group"
-                                     )
+    internship_line = fields.Boolean(
+        related="product_id.product_tmpl_id.is_student_group",
+        string="Is Internship Line")
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      related="product_id.product_tmpl_id."
-                                     "school_year_id")
+                                             "school_year_id")
+
+    _sql_constraints = [
+        ('accountable_required_fields',
+         "CHECK(display_type IS NOT NULL OR internship_line IS NOT NULL ("
+         "product_id IS NOT NULL AND product_uom IS NOT NULL))",
+         "Missing required fields on accountable sale order line.")]
 
     def set_internship_type(self):
         if self.instructor_id:
