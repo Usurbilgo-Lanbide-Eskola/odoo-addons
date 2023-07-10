@@ -3,7 +3,7 @@
 
 {
     "name": "Company internships",
-    "version": "14.0.1.1.10",
+    "version": "14.0.1.1.11",
     "category": "Customer Relationship Management",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",

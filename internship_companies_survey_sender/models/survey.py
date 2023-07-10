@@ -13,16 +13,7 @@ class SurveySurvey(models.Model):
             return school_year.id
 
     school_year_id = fields.Many2one(comodel_name="school.year",
-                                     default=_get_active_year)
-    current_school_year = fields.Boolean("In Current School Year")
-
-    @api.depends("school_year_id")
-    def _compute_in_active_school_year(self):
-        for survey in self:
-            active_year = survey.env['school.year'].get_current_school_year()
-            if active_year == survey.school_year:
-                survey.current_school_year = True
-            survey.current_school_year = False
+                                     default=_get_active_year, copy=False)
 
     @api.onchange("school_year_id", "survey_template")
     def onchange_school_year_id(self):
@@ -45,8 +36,6 @@ class SurveyUserInput(models.Model):
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      related="survey_id.school_year_id",
                                      store=True)
-    current_school_year = fields.Boolean(
-        related="survey_id.current_school_year", store=True)
     is_student = fields.Boolean(related="partner_id.is_student")
     is_tutor = fields.Boolean(related="partner_id.is_tutor")
     speciality_id = fields.Many2one(
@@ -67,8 +56,6 @@ class SurveyUserInputLine(models.Model):
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      related="survey_id.school_year_id",
                                      store=True)
-    current_school_year = fields.Boolean(
-        related="survey_id.current_school_year", store=True)
     is_student = fields.Boolean(related="user_input_id.is_student")
     is_tutor = fields.Boolean(related="user_input_id.is_tutor")
     speciality_id = fields.Many2one(

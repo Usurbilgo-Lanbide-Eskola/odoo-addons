@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <filter name="completed" position="before">
                 <filter name="current_school_year" string="Current School Year"
-                        domain="[('current_school_year', '=', True)]"/>
+                        domain="[('school_year_id.current_active_year', '=', True)]"/>
                 <filter name="is_tutor" string="Tutor Participation"
                         domain="[('is_tutor', '=', True)]"/>
                 <filter name="is_student" string="Student Participation"

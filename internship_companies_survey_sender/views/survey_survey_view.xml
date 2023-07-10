@@ -13,7 +13,7 @@
                 <filter name="group_by_school_year" string="School Year" domain="[]"
                         context="{'group_by':'school_year_id'}"/>
                 <filter name="current_school_year" string="Current School Year"
-                        domain="[('current_school_year', '=', True)]"/>
+                        domain="[('school_year_id.current_active_year', '=', True)]"/>
             </xpath>
         </field>
     </record>

@@ -28,6 +28,7 @@ class SchoolYearHistorical(models.Model):
     resignation_line_ids = fields.One2many(
         comodel_name="resigned.internship.line", inverse_name="record_id",
         string="Resignation Lines")
+    record_sale_line_id = fields.Many2one(comodel_name="sale.order.line")
 
     @api.constrains("student_company_id", "student_instructor_id")
     def instructor_is_companies_child(self):

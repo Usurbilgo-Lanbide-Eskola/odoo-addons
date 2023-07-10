@@ -79,7 +79,8 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     internship_record_id = fields.Many2one(
-        comodel_name="school.year.historical", copy=False)
+        comodel_name="school.year.historical",
+        compute="compute_record", inverse="record_inverse", copy=False)
     instructor_id = fields.Many2one(
         comodel_name='res.partner',
         related="internship_record_id.student_instructor_id",
@@ -102,12 +103,28 @@ class SaleOrderLine(models.Model):
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      related="product_id.product_tmpl_id."
                                              "school_year_id")
+    record_ids = fields.One2many(comodel_name="school.year.historical",
+                                 inverse_name="record_sale_line_id")
 
     _sql_constraints = [
         ('accountable_required_fields',
          "CHECK(display_type IS NOT NULL OR internship_line IS NOT NULL ("
          "product_id IS NOT NULL AND product_uom IS NOT NULL))",
          "Missing required fields on accountable sale order line.")]
+        
+    def record_inverse(self):
+        for line in self:
+            if len(line.record_ids) > 0:
+                sale = self.env['sale.order'].browse(
+                    line.record_ids[0].id)
+                sale.opportunity_id = False
+            line.record_ids.sale_line_id = line
+
+    @api.depends("record_ids")
+    def compute_record(self):
+        for line in self:
+            if len(line.record_ids) > 0:
+                line.internship_record_id = line.record_ids[0]
 
     def set_internship_type(self):
         if self.instructor_id:
