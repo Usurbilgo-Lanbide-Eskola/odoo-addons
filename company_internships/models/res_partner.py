@@ -144,15 +144,18 @@ class ResPartner(models.Model):
     @api.depends('active_student_record_ids', 'student_record_ids')
     def compute_count_tutor_students(self):
         for tutor in self:
-            school_year = self.env['school.year'].get_school_year()
-            domain = [('school_year_id', '=', school_year.id),
-                      ('student_tutor_id', '=', tutor.id)]
-            tutor.tutor_students_qty = self.env[
-                'school.year.historical'].search_count(domain)
+            student_qty = 0
+            if tutor.is_tutor:
+                school_year = self.env['school.year'].get_school_year()
+                domain = [('school_year_id', '=', school_year.id),
+                          ('student_tutor_id', '=', tutor.id)]
+                student_qty = self.env[
+                    'school.year.historical'].search_count(domain)
+            tutor.tutor_students_qty = student_qty
 
     @api.depends('active_student_record_ids', 'student_record_ids')
     def compute_tutor_students(self):
-        for tutor in self:
+        for tutor in self.filtered(lambda x: x.is_tutor):
             school_year = self.env['school.year'].get_school_year()
             domain = [('school_year_id', '=', school_year.id),
                       ('student_id', '=', tutor.id)]
@@ -176,15 +179,14 @@ class ResPartner(models.Model):
                 student_id.internship_count_dummy = 0
                 student_id.internship_of_group_year = False
                 continue
-            internships = self.env['sale.order.line'].search(
-                [("internship_record_id.student_id.id", "=", student_id.id),
-                 ("state", "in", ["sale", "done"])])
             student_group_year = student_id.student_group_id.school_year_id
+            internships = self.env['sale.order.line'].search(
+                 [("internship_record_id.student_id.id", "=", student_id.id)])
             internship_of_group_year = internships.filtered(
                 lambda x: x.school_year_id.id == student_group_year.id)
             if len(internship_of_group_year) > 1:
                 raise UserError(_(f"Student: {student_id.name} "
-                                  f"has more than one interships assigned"))
+                                  f"has more than one internships assigned"))
             student_id.internship_of_group_year = internship_of_group_year.id
             internship_count = len(internships)
             student_id.internship_count = internship_count
@@ -218,7 +220,8 @@ class ResPartner(models.Model):
         if self.is_student:
             action = self.env['ir.actions.act_window']._for_xml_id(
                 'sale_order_line_menu.action_orders_lines')
-            action['domain'] = [('internship_record_id.student_id.id', '=', self.id)]
+            action['domain'] = [('internship_record_id.student_id.id', '=',
+                                 self.id)]
             return action
         return None
 

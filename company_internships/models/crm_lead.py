@@ -27,9 +27,15 @@ class CrmLead(models.Model):
                                          store=True)
     internship_sale_id = fields.Many2one(comodel_name="sale.order",
                                          compute="compute_sale",
-                                         inverse="sale_inverse")
+                                         inverse="sale_inverse",
+                                         search="_search_sale")
     internship_sale_ids = fields.One2many(comodel_name="sale.order",
                                           inverse_name='opportunity_id')
+
+    def _search_sale(self, operator, value):
+        sale = self.env["sale.order"].search(
+            [('id', operator, value)])
+        return [('id', 'in', sale.mapped("opportunity_id").ids)]
 
     def sale_inverse(self):
         for lead in self:

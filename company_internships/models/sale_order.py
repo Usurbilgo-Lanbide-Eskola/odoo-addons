@@ -46,7 +46,7 @@ class SaleOrder(models.Model):
     def unique_sale_per_school_year(self):
         for sale in self.filtered(
                 lambda x: x.school_year_id and x.has_internship_line and
-                x.partner_id):
+                          x.partner_id):
             other_lead = self.env['crm.lead'].search([
                 ("opportunity_type", "=", "internship"),
                 ("partner_id", "=", sale.partner_id.id),
@@ -80,7 +80,8 @@ class SaleOrderLine(models.Model):
 
     internship_record_id = fields.Many2one(
         comodel_name="school.year.historical",
-        compute="compute_record", inverse="record_inverse", copy=False)
+        compute="compute_record", inverse="record_inverse",
+        copy=False, search="_search_internship")
     instructor_id = fields.Many2one(
         comodel_name='res.partner',
         related="internship_record_id.student_instructor_id",
@@ -111,20 +112,27 @@ class SaleOrderLine(models.Model):
          "CHECK(display_type IS NOT NULL OR internship_line IS NOT NULL ("
          "product_id IS NOT NULL AND product_uom IS NOT NULL))",
          "Missing required fields on accountable sale order line.")]
-        
+
+    def _search_internship(self, operator, value):
+        records = self.env['school.year.historical'].search([
+            ('id', operator, value)])
+        return [('id', 'in', records.mapped('record_sale_line_id').ids)]
+
     def record_inverse(self):
         for line in self:
             if len(line.record_ids) > 0:
                 sale = self.env['sale.order'].browse(
                     line.record_ids[0].id)
-                sale.opportunity_id = False
-            line.record_ids.sale_line_id = line
+                sale.record_sale_line_id = False
+            line.internship_record_id.record_sale_line_id = line
 
     @api.depends("record_ids")
     def compute_record(self):
         for line in self:
             if len(line.record_ids) > 0:
                 line.internship_record_id = line.record_ids[0]
+            else:
+                line.internship_record_id = False
 
     def set_internship_type(self):
         if self.instructor_id:
