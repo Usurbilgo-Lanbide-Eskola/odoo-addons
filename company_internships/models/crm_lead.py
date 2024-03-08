@@ -67,7 +67,10 @@ class CrmLead(models.Model):
                     sale_line.update({'product_uom_qty': 1, 'price_unit': 0})
                     sale_lines.append((0, 0, sale_line))
             action['context'].update(default_order_line=sale_lines,
-                                     default_state='internship')
+                                     # TODO fails with the new state
+                                     #default_state='internship',
+                                     default_partner_invoice_id=action[
+                                         'context'].get('default_partner_id'))
         return action
 
     def open_quotation(self):
@@ -89,10 +92,13 @@ class CrmLead(models.Model):
             other_lead = self.env['crm.lead'].search([
                 ("opportunity_type", "=", "internship"),
                 ("partner_id", "=", lead.partner_id.id),
-                ("school_year_id", "=", lead.school_year_id.id)])
+                ("school_year_id", "=", lead.school_year_id.id),
+                ("id", "!=", lead.id)])
             if other_lead:
-                raise ValidationError(_("Internship opportunity must be "
-                                        "unique per school year and customer"))
+                raise ValidationError(
+                    _(f"Internship opportunity must be unique per school "
+                      f"year and customer. opportunity id: "
+                      f"{other_lead[0].id}"))
 
 
 class InternshipLines(models.Model):

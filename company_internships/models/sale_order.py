@@ -18,17 +18,18 @@ class SaleOrder(models.Model):
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      default=get_current_school_year)
 
-    @api.onchange("has_internship_line")
-    def change_status(self):
-        if self.has_internship_line:
-            self.state = 'internship'
+    # @api.onchange("has_internship_line")
+    # def change_status(self):
+    #     if self.has_internship_line:
+    #         self.state = 'internship'
 
     @api.constrains("opportunity_id")
     def check_lead_has_other_sale(self):
-        opportunity = self.opportunity_id
-        if opportunity.opportunity_type == 'internship' and len(
-                opportunity.internship_sale_ids) > 0:
-            raise ValidationError(_("Opportunity has already a sale"))
+        for sale in self:
+            opportunity = sale.opportunity_id
+            if opportunity.opportunity_type == 'internship' and (sale.id not in
+                    opportunity.internship_sale_ids._ids):
+                raise ValidationError(_("Opportunity has already a sale"))
 
     @api.depends("order_line.internship_line")
     def _compute_has_internship_line(self):
