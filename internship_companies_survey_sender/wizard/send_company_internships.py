@@ -37,6 +37,16 @@ class SendCompanyInternships(models.TransientModel):
         ]"""
     )
 
+    def _create_internship_survey_title(self, student_id, school_year):
+        internship_line = self.env["school.year.historical"].search(
+            [("student_id", "=", student_id),
+             ("school_year_id", "=", school_year.id)])
+        if len(internship_line) != 1:
+            raise UserError(_(f"Multiple internship lines for student: "
+                              f"{internship_line[0].student_id.name}"))
+        return (f"{internship_line.student_id.name} - "
+                f"{internship_line.student_company_id.display_name}")
+
     def _add_tutor_surveys(self):
         survey_type = self.env['survey.type'].search([('model_id', '=',
                                                        'res.partner')])
@@ -45,11 +55,17 @@ class SendCompanyInternships(models.TransientModel):
                               "'res.partner' model. Create one"))
         for line in self.tutor_survey_line_ids:
             tutor = line.tutor_id
-            students_companies = tutor._search_tutor_tutored_students(
+            students = tutor._search_tutor_tutored_students(
                 self.school_year)
             new_surveys = self.env['survey.survey'].create_child_surveys(
-                students_companies, self.survey_id, survey_type)
+                students, self.survey_id, survey_type)
             new_surveys.write({'school_year_id': self.school_year.id})
+            for survey in new_surveys:
+                survey.title = self._create_internship_survey_title(
+                    survey.instance_id, self.school_year)
+                survey.company_id = self.env["school.year.historical"
+                ].get_student_company(
+                    survey.instance_id, self.school_year)
             surveys = self._get_tutor_survey_lines(
                 tutor, self.survey_id, self.school_year)._ids
             line.survey_ids = surveys
@@ -57,10 +73,10 @@ class SendCompanyInternships(models.TransientModel):
     def _get_tutor_survey_lines(self, tutor, survey, school_year=False):
         if isinstance(tutor, int):
             tutor = self.env['res.partner'].browse(tutor)
-        students_companies = tutor._search_tutor_tutored_students(school_year)
+        students = tutor._search_tutor_tutored_students(school_year)
         return self.env["survey.survey"].search([
             ('parent_template_id', '=', survey.id),
-            ('instance_id', 'in', students_companies.ids)])
+            ('instance_id', 'in', students.ids)])
 
     @api.onchange('survey_id')
     def _onchange_survey_id(self):
@@ -164,9 +180,10 @@ class SendCompanyInternships(models.TransientModel):
         answers = self._prepare_answers()
         answer_bundle = self.env['tutor.answer.bundle']
         for tutor, answer_ids in answers.items():
-            bundle = answer_bundle.create({'tutor_id': tutor.id,
-                                           'answer_ids': [
-                                               (6, 0, answer_ids.ids)]})
+            bundle = answer_bundle.create({
+                'tutor_id': tutor.id,
+                'answer_ids': [(6, 0, answer_ids.ids)],
+                'school_year_id': answer_ids[0].school_year_id.id})
             self._send_mail(bundle)
         return {'type': 'ir.actions.act_window_close'}
 
@@ -187,3 +204,5 @@ class TutorAnswerBundle(models.TransientModel):
     tutor_id = fields.Many2one(comodel_name="res.partner", domain=[(
         'is_tutor', '=', True)])
     answer_ids = fields.Many2many(comodel_name="survey.user_input")
+    school_year_id = fields.Many2one(comodel_name="school.year")
+

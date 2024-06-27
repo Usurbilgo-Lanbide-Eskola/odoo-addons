@@ -7,6 +7,7 @@
         <field name="inherit_id" ref="survey.survey_survey_view_search"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='title']" position="after">
+                <field name="company_id" />
                 <field name="school_year_id" />
             </xpath>
             <xpath expr="//filter[@name='groupby_state']" position="after">

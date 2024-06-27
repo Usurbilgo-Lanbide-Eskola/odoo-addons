@@ -98,6 +98,15 @@ class SchoolYearHistorical(models.Model):
                 ('student_id', '=', student_id),
                 ('school_year_id', '=', active_year.id)])
 
+    def get_student_company(self, student_id, school_year):
+        internship_line = self.env["school.year.historical"].search(
+            [("student_id", "=", student_id),
+             ("school_year_id", "=", school_year.id)])
+        if len(internship_line) != 1:
+            raise ValidationError(_(f"Multiple internship lines for student: "
+                                    f"{internship_line[0].student_id.name}"))
+        return internship_line.student_company_id
+
     def name_get(self):
         return [(record.id,
                  f"{record.student_id.display_name} "

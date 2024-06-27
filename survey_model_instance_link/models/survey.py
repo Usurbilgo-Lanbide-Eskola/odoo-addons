@@ -95,7 +95,8 @@ class SurveySurvey(models.Model):
         new_surveys = self.env['survey.survey']
         for instance in instances:
             if not duplicate:
-                if self.search_child_survey(instance, template_survey, survey_type):
+                if self.search_child_survey(instance, template_survey,
+                                            survey_type):
                     continue
             survey_dict = {
                 'survey_template': False,

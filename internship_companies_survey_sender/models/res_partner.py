@@ -46,7 +46,7 @@ class ResPartner(models.Model):
             ('student_tutor_id', '=', self.id)]
         tutor_students = self.env["school.year.historical"].search(
             search_domain)
-        return tutor_students.mapped("student_instructor_id.parent_id")
+        return tutor_students.mapped("student_id")
 
     def _get_partner_surveys(self):
         self.ensure_one()
@@ -56,7 +56,7 @@ class ResPartner(models.Model):
             [('model_id', '=', partner_model_id.id)], limit=1)
         return self.env['survey.survey'].search(
             [('survey_type', '=', survey_type.id),
-             ('instance_id', '=', self.id)])
+             ('company_id', '=', self.id)])
 
     def compute_partner_reputation(self):
         for partner in self:

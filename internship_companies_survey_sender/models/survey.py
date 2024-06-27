@@ -14,6 +14,7 @@ class SurveySurvey(models.Model):
 
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      default=_get_active_year, copy=False)
+    company_id = fields.Many2one(comodel_name="res.partner")
 
     @api.onchange("school_year_id", "survey_template")
     def onchange_school_year_id(self):
