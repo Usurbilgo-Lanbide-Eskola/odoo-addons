@@ -48,7 +48,7 @@ class SurveyUserInput(models.Model):
             partner = answer.partner_id
             speciality = partner.tutor_speciality_id if partner.is_tutor \
                 else partner.speciality_id
-            partner.speciality_id = speciality
+            answer.speciality_id = speciality
 
 
 class SurveyUserInputLine(models.Model):
