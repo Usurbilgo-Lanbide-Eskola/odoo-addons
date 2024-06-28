@@ -39,16 +39,6 @@ class SurveyUserInput(models.Model):
                                      store=True)
     is_student = fields.Boolean(related="partner_id.is_student")
     is_tutor = fields.Boolean(related="partner_id.is_tutor")
-    speciality_id = fields.Many2one(
-        comodel_name="hezkuntza.speciality",
-        compute="_compute_partner_speciality", store=True)
-
-    def _compute_partner_speciality(self):
-        for answer in self:
-            partner = answer.partner_id
-            speciality = partner.tutor_speciality_id if partner.is_tutor \
-                else partner.speciality_id
-            answer.speciality_id = speciality
 
 
 class SurveyUserInputLine(models.Model):
@@ -59,6 +49,3 @@ class SurveyUserInputLine(models.Model):
                                      store=True)
     is_student = fields.Boolean(related="user_input_id.is_student")
     is_tutor = fields.Boolean(related="user_input_id.is_tutor")
-    speciality_id = fields.Many2one(
-        comodel_name="hezkuntza.speciality",
-        related="user_input_id.speciality_id", store=True)
