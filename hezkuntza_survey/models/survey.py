@@ -11,7 +11,8 @@ class SurveyUserInput(models.Model):
                                     compute="_compute_speciality",
                                     store=True)
 
-    @api.depends("partner_id")
+    @api.depends("partner_id.tutor_speciality_id",
+                 "partner_id.hezkuntza_group_id.speciality_id")
     def _compute_speciality(self):
         for answer in self:
             partner = answer.partner_id
