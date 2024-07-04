@@ -24,12 +24,18 @@
                 <attribute name="attrs">{'invisible': True}</attribute>
             </xpath>
             <xpath expr="//field[@name='partner_ids']" position="after">
-                <field name="tutor_survey_line_ids" attrs="{'readonly': [('survey_id', '=', False)]}">
+                <field name="select_survey_to_send" attrs="{'readonly': [('survey_id', '=', False)]}"/>
+                <div attrs="{'invisible': ['|', ('survey_id', '=', False), ('select_survey_to_send', '=', False)]}">
+                <button name="get_not_completed_surveys" string="Not Completed Surveys" type="object" colspan="2"/>
+                <field name="tutor_survey_line_ids" attrs="{'readonly': [('survey_id', '=', False)],
+                                                            'invisible': [('select_survey_to_send', '=', False)]}" colspan="4">
                     <tree editable="top">
                         <field name="tutor_id"/>
-                        <field name="survey_ids" widget="many2many_tags"/>
+                        <field name="tutor_sent_surveys"/>
+                        <field name="survey_ids" widget="many2many_tags" domain="[('id', '=', tutor_sent_surveys)]"/>
                     </tree>
                 </field>
+                </div>
             </xpath>
         </field>
     </record>

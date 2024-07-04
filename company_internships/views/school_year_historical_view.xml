@@ -64,6 +64,7 @@
                 <field name="student_id"/>
                 <field name="group_id"/>
                 <field name="student_tutor_id"/>
+                <field name="student_company_id"/>
                 <field name="student_instructor_id"/>
                 <field name="internship_type"/>
                 <separator/>

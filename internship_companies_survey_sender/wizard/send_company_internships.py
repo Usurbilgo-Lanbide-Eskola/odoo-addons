@@ -20,6 +20,7 @@ class SendCompanyInternships(models.TransientModel):
     tutor_survey_line_ids = fields.One2many(
         comodel_name="send.company.internships.line",
         inverse_name="send_wizard_id")
+
     school_year = fields.Many2one(comodel_name="school.year",
                                   default=_get_active_year)
     attachment_ids = fields.Many2many(
@@ -36,6 +37,7 @@ class SendCompanyInternships(models.TransientModel):
                  ('user_ids', '!=', False),
         ]"""
     )
+    select_survey_to_send = fields.Boolean("Custom Sending")
 
     def _create_internship_survey_title(self, student_id, school_year):
         internship_line = self.env["school.year.historical"].search(
@@ -47,7 +49,7 @@ class SendCompanyInternships(models.TransientModel):
         return (f"{internship_line.student_id.name} - "
                 f"{internship_line.student_company_id.display_name}")
 
-    def _add_tutor_surveys(self):
+    def _add_tutor_surveys(self, generate_new=False):
         survey_type = self.env['survey.type'].search([('model_id', '=',
                                                        'res.partner')])
         if not survey_type:
@@ -55,17 +57,18 @@ class SendCompanyInternships(models.TransientModel):
                               "'res.partner' model. Create one"))
         for line in self.tutor_survey_line_ids:
             tutor = line.tutor_id
-            students = tutor._search_tutor_tutored_students(
-                self.school_year)
-            new_surveys = self.env['survey.survey'].create_child_surveys(
-                students, self.survey_id, survey_type)
-            new_surveys.write({'school_year_id': self.school_year.id})
-            for survey in new_surveys:
-                survey.title = self._create_internship_survey_title(
-                    survey.instance_id, self.school_year)
-                survey.company_id = self.env["school.year.historical"
-                ].get_student_company(
-                    survey.instance_id, self.school_year)
+            if generate_new:
+                students = tutor._search_tutor_tutored_students(
+                    self.school_year)
+                new_surveys = self.env['survey.survey'].create_child_surveys(
+                    students, self.survey_id, survey_type)
+                new_surveys.write({'school_year_id': self.school_year.id})
+                for survey in new_surveys:
+                    survey.title = self._create_internship_survey_title(
+                        survey.instance_id, self.school_year)
+                    survey.company_id = self.env["school.year.historical"
+                    ].get_student_company(
+                        survey.instance_id, self.school_year)
             surveys = self._get_tutor_survey_lines(
                 tutor, self.survey_id, self.school_year)._ids
             line.survey_ids = surveys
@@ -78,6 +81,21 @@ class SendCompanyInternships(models.TransientModel):
             ('parent_template_id', '=', survey.id),
             ('instance_id', 'in', students.ids)])
 
+    def get_not_completed_surveys(self):
+        self._add_tutor_surveys(generate_new=True)
+        answer_obj = self.env['survey.user_input']
+        for line in self.tutor_survey_line_ids:
+            tutor = line.tutor_id
+            surveys = self._get_tutor_survey_lines(
+                tutor, self.survey_id, self.school_year)
+            line.survey_ids = surveys.filtered(lambda x: answer_obj.search(
+                [('survey_id', '=', x.id),
+                 ('partner_id', '=', tutor.id)],
+                order='create_date desc', limit=1).state != 'done')
+        return {'view_mode': 'form', 'res_model': "send.company.internships",
+            'res_id': self.id, 'target': 'new', 'type':
+                    'ir.actions.act_window', }
+
     @api.onchange('survey_id')
     def _onchange_survey_id(self):
         if self.env.context.get('active_model') == 'res.partner':
@@ -87,11 +105,7 @@ class SendCompanyInternships(models.TransientModel):
             if self.survey_id:
                 tutors = self._context.get("active_ids")
                 for tutor in tutors:
-                    surveys = self._get_tutor_survey_lines(
-                        tutor, self.survey_id, self.school_year)._ids
                     line = {'tutor_id': tutor}
-                    if surveys:
-                        line.update(survey_ids=[(6, 0, surveys)])
                     lines.append((0, 0, line))
             self.update({
                 'tutor_survey_line_ids': lines
@@ -176,7 +190,8 @@ class SendCompanyInternships(models.TransientModel):
         return self.env['mail.mail'].sudo().create(mail_values)
 
     def action_invite(self):
-        self._add_tutor_surveys()
+        if not self.select_survey_to_send:
+            self._add_tutor_surveys(generate_new=True)
         answers = self._prepare_answers()
         answer_bundle = self.env['tutor.answer.bundle']
         for tutor, answer_ids in answers.items():
@@ -196,6 +211,22 @@ class SendCompanyInternshipsLine(models.TransientModel):
     survey_ids = fields.Many2many(comodel_name="survey.survey")
     send_wizard_id = fields.Many2one(
         comodel_name="send.company.internships")
+    tutor_sent_surveys = fields.Many2many(
+        comodel_name="survey.survey",
+        relation="sent_surveys_rel",
+        compute="_compute_sent_surveys",
+        compute_sudo=True,
+        store=True,
+    )
+
+    @api.depends("send_wizard_id.survey_id", "send_wizard_id.school_year",
+                 "tutor_id")
+    def _compute_sent_surveys(self):
+        for line in self:
+            wiz = line.send_wizard_id
+            surveys = wiz._get_tutor_survey_lines(
+                line.tutor_id, wiz.survey_id, wiz.school_year)
+            line.tutor_sent_surveys = surveys
 
 
 class TutorAnswerBundle(models.TransientModel):
