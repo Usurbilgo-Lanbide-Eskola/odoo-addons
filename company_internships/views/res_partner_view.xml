@@ -15,6 +15,7 @@
                 <separator/>
                 <filter string="Current School Year" name="is_current_student"
                         domain="[('in_active_school_year', '=', True)]"/>
+                <filter string="My students" name="my_students" domain="[('tutor_user_ids', '=', uid)]"/>
                 <separator/>
                 <filter string="In internship" name="has_internship" domain="[('internship_count', '>', 0)]"/>
                 <separator/>
@@ -22,6 +23,7 @@
                 <separator/>
                 <group expand="0" name="group_by" string="Group By">
                     <filter name="group_city" string="City" context="{'group_by': 'city'}"/>
+                    <filter name="group_student_group" string="Group" context="{'group_by': 'student_group_id'}"/>
                 </group>
             </search>
         </field>
@@ -245,6 +247,8 @@
                             <field name="student_instructor_id"/>
                         </tree>
                     </field>
+                    <field name="tutor_ids" widget="many2many_tags"/>
+                    <field name="tutor_user_ids" widget="many2many_tags"/>
                 </page>
             </xpath>
             <xpath expr="//page[@name='contact_addresses']" position="attributes">
@@ -320,7 +324,7 @@
         <field name="res_model">res.partner</field>
         <field name="view_mode">kanban,tree,form,activity</field>
         <field name="search_view_id" ref="view_res_partner_student_search"/>
-        <field name="domain">[('is_student','=',True)]</field>
+        <field name="domain">[('is_student','=',True), ('tutor_user_ids' ,'=', uid)]</field>
         <field name="context">{
             'search_default_is_current_student': True,
             'default_is_student': True}

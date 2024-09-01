@@ -10,3 +10,19 @@ class HezkuntzaStudentImportLine(models.Model):
         res = super()._get_partner_dict()
         res.update({'is_student': True})
         return res
+
+    def enroll_in_school_year(self, student):
+        super().enroll_in_school_year(student)
+        historical_obj = self.env['school.year.historical']
+        if not historical_obj.get_active_historical_lines(student):
+            student_group = student.student_group_id
+            if student_group:
+                if isinstance(student_group, int):
+                    student_group = self.env['product.template'].browse(
+                        student_group)
+                school_year = student_group.school_year_id
+            else:
+                school_year = self.env['school.year'].get_school_year()
+            student.write({'student_record_ids': [(0, 0, {
+                'school_year_id': school_year.id,
+                'group_id': student_group.id})]})

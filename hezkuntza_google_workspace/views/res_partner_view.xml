@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_google_workspace_link_form" model="ir.ui.view">
+        <field name="name">google.workspace.link.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[last()]" position="after">
+                <page name="google_workspace_page"
+                      string="Google Workspace"><!--attrs="{'invisible': [('is_tutor', '=', False), ('is_student', '=', False)]}"-->
+                    <group>
+                        <field name="workspace_id"/>
+                        <button name="sync_partner_workspace" type="object" string="Sync"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_sync_google_users" model="ir.actions.server">
+        <field name="name">Sync Google Workspace Users</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="binding_model_id" ref="model_res_partner"/>
+        <field name="code">
+            for record in records.filtered(lambda x: x.is_student or x.is_tutor):
+                record.sync_partner_workspace()
+        </field>
+    </record>
+    <record id="action_create_google_users" model="ir.actions.server">
+        <field name="name">Create Google Workspace Users</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="binding_model_id" ref="model_res_partner"/>
+        <field name="code">
+            for record in records.filtered(lambda x: x.is_student or x.is_tutor):
+                record.google_create_user()
+        </field>
+    </record>
+        <record id="action_delete_google_users" model="ir.actions.server">
+        <field name="name">Delete Google Workspace Users</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="binding_model_id" ref="model_res_partner"/>
+        <field name="code">
+            for record in records.filtered(lambda x: x.is_student or x.is_tutor):
+                record.delete_workspace_user()
+        </field>
+    </record>
+
+</odoo>

@@ -65,6 +65,13 @@
                     </div>
                 </button>
             </div>
+            <xpath expr="//page[@name='general_information']" position="after">
+                <page name="teachers" string="Teachers" attrs="{'invisible': [('is_student_group', '=', False)]}">
+                    <group>
+                        <field name="tutor_ids"/>
+                    </group>
+                </page>
+            </xpath>
         </field>
     </record>
 

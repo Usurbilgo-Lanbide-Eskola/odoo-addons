@@ -11,28 +11,26 @@ class ResPartner(models.Model):
     is_student = fields.Boolean("Is Student")
     is_tutor = fields.Boolean("Is Teacher")
     student_group_id = fields.Many2one(comodel_name="product.template",
-                                       string="Student Group",
-                                       domain=[
-                                           ('is_student_group', '=', True)])
+                                       string="Student Group", domain=[
+            ('is_student_group', '=', True)])
     school_year = fields.Many2one(comodel_name="school.year",
                                   related="student_group_id.school_year_id",
                                   string="School Year")
     internship_count = fields.Integer(compute="_compute_internships",
                                       store=True)
-    internship_of_group_year = fields.Many2one(
-        comodel_name="sale.order.line", compute="_compute_internships")
-    # Field to trigger the compute function
-    internship_count_dummy = fields.Integer(
+    internship_of_group_year = fields.Many2one(comodel_name="sale.order.line",
         compute="_compute_internships")
+    # Field to trigger the compute function
+    internship_count_dummy = fields.Integer(compute="_compute_internships")
     in_active_school_year = fields.Boolean(
         compute="_compute_in_active_school_year", store=True)
-    #student_tutor = fields.Many2one(comodel_name="res.partner")
-    #student_instructor = fields.Many2one(comodel_name="res.partner")
-    student_active_tutor_ids = fields.Many2many(
-        "res.partner", 'student_active_tutors', 'student_id', 'tutor_id',
+    # student_tutor = fields.Many2one(comodel_name="res.partner")
+    # student_instructor = fields.Many2one(comodel_name="res.partner")
+    student_active_tutor_ids = fields.Many2many("res.partner",
+        'student_active_tutors', 'student_id', 'tutor_id',
         compute="compute_tutor_students", store=True)
-    student_record_ids = fields.One2many(
-        comodel_name="school.year.historical", inverse_name="student_id")
+    student_record_ids = fields.One2many(comodel_name="school.year.historical",
+        inverse_name="student_id")
     active_student_record_ids = fields.One2many(
         comodel_name="school.year.historical", inverse_name="student_id",
         domain=[('is_active', '=', True)])
@@ -51,6 +49,20 @@ class ResPartner(models.Model):
         search="_search_historical_records_types")
     driving_license = fields.Boolean(string="Driving License")
     car_owned = fields.Boolean(string="Car in Property")
+    tutor_ids = fields.Many2many(comodel_name="res.partner",
+                                 relation="student_tutors",
+                                 column1="student_id", column2="tutor_id",
+                                 compute="_compute_group_teachers", store=True)
+    tutor_user_ids = fields.Many2many(comodel_name="res.users",
+                                      compute="_compute_group_teachers",
+                                      store=True)
+
+    @api.depends("student_group_id.tutor_ids",
+                 "student_group_id.tutor_user_ids")
+    def _compute_group_teachers(self):
+        for student in self.filtered(lambda x: x.is_student):
+            student.tutor_ids = student.student_group_id.tutor_ids.ids
+            student.tutor_user_ids = student.student_group_id.tutor_user_ids.ids
 
     def _search_historical_records_groups(self, operator, value):
 
@@ -67,47 +79,12 @@ class ResPartner(models.Model):
         res = self._cr.fetchall()
         if not res:
             return [(0, '=', 1)]
-        return [('company_internship_record_groups.id', 'in',
-                 [r[0] for r in res])]
+        return [
+            ('company_internship_record_groups.id', 'in', [r[0] for r in res])]
 
+        # # Assumes operator is '=' or '!=' and value is True or False  # self._assert_phone_field()  # if operator != '=':  #     if operator == '!=' and isinstance(value, bool):  #         value = not value  #     else:  #         raise NotImplementedError()  #  # if value:  #     query = """  #         SELECT m.id  #             FROM phone_blacklist bl  #             JOIN %s m  #             ON m.phone_sanitized = bl.number AND bl.active  #     """  # else:  #     query = """  #         SELECT m.id  #             FROM %s m  #             LEFT JOIN phone_blacklist bl  #             ON m.phone_sanitized = bl.number AND bl.active  #             WHERE bl.id IS NULL  #     """
 
-        # # Assumes operator is '=' or '!=' and value is True or False
-        # self._assert_phone_field()
-        # if operator != '=':
-        #     if operator == '!=' and isinstance(value, bool):
-        #         value = not value
-        #     else:
-        #         raise NotImplementedError()
-        #
-        # if value:
-        #     query = """
-        #         SELECT m.id
-        #             FROM phone_blacklist bl
-        #             JOIN %s m
-        #             ON m.phone_sanitized = bl.number AND bl.active
-        #     """
-        # else:
-        #     query = """
-        #         SELECT m.id
-        #             FROM %s m
-        #             LEFT JOIN phone_blacklist bl
-        #             ON m.phone_sanitized = bl.number AND bl.active
-        #             WHERE bl.id IS NULL
-        #     """
-
-
-
-
-
-
-
-        # if operator == 'in':
-        #     return [('id', 'in', value)]
-        # if operator not in [
-        #         '=', '!=', 'like', 'ilike', 'not like', 'not ilike']:
-        #     raise UserError(_('Operation not supported'))
-        # return [('company_internship_record_groups.group_id.display_name',
-        #          operator, value)]
+        # if operator == 'in':  #     return [('id', 'in', value)]  # if operator not in [  #         '=', '!=', 'like', 'ilike', 'not like', 'not ilike']:  #     raise UserError(_('Operation not supported'))  # return [('company_internship_record_groups.group_id.display_name',  #          operator, value)]
 
     def _search_historical_records_types(self, operator, value):
         # if operator not in ['=', '!='] or not isinstance(value, bool):
@@ -118,16 +95,18 @@ class ResPartner(models.Model):
         #     SELECT id FROM account_account account
         #     WHERE EXISTS (SELECT * FROM account_move_line aml WHERE aml.account_id = account.id LIMIT 1)
         # """)
-        if operator not in [
-                '=', '!=', 'like', 'ilike', 'not like', 'not ilike']:
+        if operator not in ['=', '!=', 'like', 'ilike', 'not like',
+            'not ilike']:
             raise UserError(_('Operation not supported'))
-        return [('company_internship_record_groups.internship_type.display_name',
-                 operator, value)]
+        return [(
+                'company_internship_record_groups.internship_type.display_name',
+                operator, value)]
 
     def compute_company_records(self):
         historical_obj = self.env['school.year.historical']
         for company in self.filtered(lambda x: x.is_company):
-            records = historical_obj.search([('student_company_id', '=', company.id)]).ids
+            records = historical_obj.search(
+                [('student_company_id', '=', company.id)]).ids
             company.company_internship_record_groups = [(6, 0, records)]
             company.company_internship_record_types = [(6, 0, records)]
 
@@ -149,8 +128,8 @@ class ResPartner(models.Model):
                 school_year = self.env['school.year'].get_school_year()
                 domain = [('school_year_id', '=', school_year.id),
                           ('student_tutor_id', '=', tutor.id)]
-                student_qty = self.env[
-                    'school.year.historical'].search_count(domain)
+                student_qty = self.env['school.year.historical'].search_count(
+                    domain)
             tutor.tutor_students_qty = student_qty
 
     @api.depends('active_student_record_ids', 'student_record_ids')
@@ -158,7 +137,7 @@ class ResPartner(models.Model):
         for tutor in self.filtered(lambda x: x.is_tutor):
             school_year = self.env['school.year'].get_school_year()
             domain = [('school_year_id', '=', school_year.id),
-                      ('student_id', '=', tutor.id)]
+                      ('student_tutor_id', '=', tutor.id)]
             records = self.env['school.year.historical'].search(domain)
             tutor.student_active_tutor_ids = records.mapped("student_tutor_id")
 
@@ -181,7 +160,7 @@ class ResPartner(models.Model):
                 continue
             student_group_year = student_id.student_group_id.school_year_id
             internships = self.env['sale.order.line'].search(
-                 [("internship_record_id.student_id.id", "=", student_id.id)])
+                [("internship_record_id.student_id.id", "=", student_id.id)])
             internship_of_group_year = internships.filtered(
                 lambda x: x.school_year_id.id == student_group_year.id)
             if len(internship_of_group_year) > 1:
@@ -211,7 +190,6 @@ class ResPartner(models.Model):
         action['domain'] = domain
         return action
 
-
     def action_view_sale_lines(self):
         '''
         This function returns an action that displays the sale lines from
@@ -220,16 +198,14 @@ class ResPartner(models.Model):
         if self.is_student:
             action = self.env['ir.actions.act_window']._for_xml_id(
                 'sale_order_line_menu.action_orders_lines')
-            action['domain'] = [('internship_record_id.student_id.id', '=',
-                                 self.id)]
+            action['domain'] = [
+                ('internship_record_id.student_id.id', '=', self.id)]
             return action
         return None
 
     def deactivate_student_group(self):
         for student in self:
-            student.write({
-                'student_group_id': False,
-                # 'student_tutor': False,
+            student.write({'student_group_id': False, # 'student_tutor': False,
                 # 'student_instructor': False,
             })
 
@@ -242,12 +218,12 @@ class ResPartner(models.Model):
             record = student.student_record_ids.filtered(
                 lambda x: x.school_year_id == school_year)
             if not record:
-                student.student_record_ids = [(0, 0, {
-                    'group_id': student_group.id,
-                    'school_year_id': school_year.id,
-                    #'student_tutor_id': student.student_tutor.id,
-                    #'student_instructor_id': student.student_instructor.id,
-                })]
+                student.student_record_ids = [(0, 0,
+                                               {'group_id': student_group.id,
+                                                   'school_year_id': school_year.id,
+                                                   # 'student_tutor_id': student.student_tutor.id,
+                                                   # 'student_instructor_id': student.student_instructor.id,
+                                               })]
             student.deactivate_student_group()
 
     def _search_partners(self, domain):
@@ -283,19 +259,19 @@ class ResPartner(models.Model):
             return []
         if leaf[0] in ['&', '|']:
             condition = leaf[0]
-        else:# is list
-            if 'company_internship_record_groups' in leaf[0][0] or \
-                    'company_internship_record_types' in leaf[0][0]:
+        else:  # is list
+            if 'company_internship_record_groups' in leaf[0][
+                0] or 'company_internship_record_types' in leaf[0][0]:
                 if condition == '&':
                     domain.append(leaf[0])
                     res = self._transform(leaf[1:], condition=condition,
-                                     domain=domain)
+                                          domain=domain)
                     res.extend(domain)
                     return res
                 else:  # condition is or
                     condition = 'x' if condition == '|' else '&'
                     res = self._transform(leaf[1:], condition=condition,
-                                    domain=domain)
+                                          domain=domain)
                     or_leaf = domain + list(leaf[0])
                     new_leaf = or_leaf
                     res.extend(new_leaf)
@@ -330,19 +306,17 @@ class ResPartner(models.Model):
                     school_year = student_group.school_year_id
                 else:
                     school_year = self.env['school.year'].get_school_year()
-                values.update({
-                    'student_record_ids': [(0, 0,
-                                            {'school_year_id': school_year.id,
-                                             'group_id': student_group.id})]
-                })
+                values.update({'student_record_ids': [(0, 0, {
+                    'school_year_id': school_year.id,
+                    'group_id': student_group.id})]})
         return super().create(values)
 
     def write(self, values):
         if values.get('is_student'):
             historical_obj = self.env['school.year.historical']
             if not historical_obj.get_active_historical_lines(self):
-                student_group = values.get('student_group_id') or \
-                                self.student_group_id
+                student_group = values.get(
+                    'student_group_id') or self.student_group_id
                 if student_group:
                     if isinstance(student_group, int):
                         student_group = self.env['product.template'].browse(
@@ -350,9 +324,7 @@ class ResPartner(models.Model):
                     school_year = student_group.school_year_id
                 else:
                     school_year = self.env['school.year'].get_school_year()
-                values.update({
-                    'student_record_ids': [(0, 0,
-                                            {'school_year_id': school_year.id,
-                                             'group_id': student_group.id})]
-                })
+                values.update({'student_record_ids': [(0, 0, {
+                    'school_year_id': school_year.id,
+                    'group_id': student_group.id})]})
         return super().write(values)

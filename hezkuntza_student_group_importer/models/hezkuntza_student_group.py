@@ -3,7 +3,7 @@
 from odoo import api, fields, models
 
 
-class HezkuntzaStudentgroup(models.Model):
+class HezkuntzaStudentGroup(models.Model):
     _name = "hezkuntza.student.group"
     _rec_name = "code"
 
@@ -65,3 +65,9 @@ class HezkuntzaStudentgroup(models.Model):
                     "hezkuntza.student.group") or "Group"
             vals.update({'code': code})
         return super().create(vals)
+
+    def get_group_students(self):
+        self.ensure_one()
+        return self.env['res.partner'].search([('is_student', '=', True),
+                                               ('hezkuntza_group_id', '=',
+                                                self.id)])

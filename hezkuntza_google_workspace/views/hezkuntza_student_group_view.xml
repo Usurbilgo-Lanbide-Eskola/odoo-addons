@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_google_workspace_hezkuntza_group_form" model="ir.ui.view">
+        <field name="name"></field>
+        <field name="model">hezkuntza.student.group</field>
+        <field name="inherit_id" ref="hezkuntza_student_group_importer.view_hezkuntza_student_group_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <notebook>
+                    <page name="google_workspace" string="Google Workspace">
+                        <group>
+                            <field name="group_gmail_id"/>
+                            <field name="group_gmail"/>
+                            <field name="workspace_organisation_path"/>
+                            <field name="deleted_member_organisation_path"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_sync_workspace_group_members" model="ir.actions.server">
+        <field name="name">Sync Workspace Group Members</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_hezkuntza_student_group"/>
+        <field name="binding_model_id" ref="model_hezkuntza_student_group"/>
+        <field name="code">
+            for record in records:
+            record.google_sync_group_members()
+        </field>
+    </record>
+    <record id="action_delete_workspace_group_members" model="ir.actions.server">
+        <field name="name">Delete Workspace Group Members</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_hezkuntza_student_group"/>
+        <field name="binding_model_id" ref="model_hezkuntza_student_group"/>
+        <field name="code">
+            for record in records:
+            record.delete_all_members()
+        </field>
+    </record>
+</odoo>

@@ -88,6 +88,8 @@ class SchoolYear(models.Model):
 
     @api.model
     def create_school_year(self):
+        for year in self.search([]):
+            year._compute_active_school_year()
         school_year = self.get_current_school_year()
         if not school_year:
             today = fields.Date.today()

@@ -17,6 +17,10 @@ class ProductTemplate(models.Model):
     internship_ids = fields.One2many(comodel_name="school.year.historical",
                                      inverse_name="group_id",
                                      string="Internships", readonly=True)
+    tutor_ids = fields.Many2many(comodel_name="res.partner", domain=[(
+        "is_tutor", "=", True)])
+    tutor_user_ids = fields.Many2many(comodel_name="res.users",
+                                      compute="_compute_tutor_users")
     lead_line_ids = fields.One2many(comodel_name="internship.line",
                                     inverse_name="student_group_id",
                                     readonly=True)
@@ -33,6 +37,13 @@ class ProductTemplate(models.Model):
         compute="_compute_internship_count")
     pending_qty = fields.Integer(compute="_compute_student_group_leads",
                                  store=True)
+
+    @api.depends("tutor_ids")
+    def _compute_tutor_users(self):
+        users_obj = self.env["res.users"]
+        for group in self.filtered(lambda x: x.is_student_group):
+            group.tutor_user_ids = users_obj.search(
+                [("partner_id", "in", group.tutor_ids.ids)])
 
     def get_enabled_internship_lines(self):
         self.ensure_one()
