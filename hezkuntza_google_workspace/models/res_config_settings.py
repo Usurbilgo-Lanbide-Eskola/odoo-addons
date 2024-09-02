@@ -25,8 +25,7 @@ class ResConfigSettings(models.TransientModel):
             with open(path, "bw") as f:
                 f.write(base64.b64decode(res["credentials_file"]))
         credentials = service_account.Credentials.from_service_account_file(
-            'google_credentials.json',
-            scopes=res["scope"].split(","))
+            path, scopes=res["scope"].split(","))
 
         # # Delegated credentials for admin actions
         delegated_credentials = credentials.with_subject(
