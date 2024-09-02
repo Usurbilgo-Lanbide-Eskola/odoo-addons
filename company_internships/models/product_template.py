@@ -20,7 +20,8 @@ class ProductTemplate(models.Model):
     tutor_ids = fields.Many2many(comodel_name="res.partner", domain=[(
         "is_tutor", "=", True)])
     tutor_user_ids = fields.Many2many(comodel_name="res.users",
-                                      compute="_compute_tutor_users")
+                                      compute="_compute_tutor_users",
+                                      store=True)
     lead_line_ids = fields.One2many(comodel_name="internship.line",
                                     inverse_name="student_group_id",
                                     readonly=True)
