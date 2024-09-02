@@ -327,6 +327,7 @@
         <field name="domain">[('is_student','=',True), ('tutor_user_ids' ,'=', uid)]</field>
         <field name="context">{
             'search_default_is_current_student': True,
+            'search_default_group_student_group': True,
             'default_is_student': True}
         </field>
         <field name="help" type="html">

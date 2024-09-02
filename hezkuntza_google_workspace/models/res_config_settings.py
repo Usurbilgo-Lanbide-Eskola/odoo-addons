@@ -7,7 +7,7 @@ import csv
 import xmlrpc.client
 import pathlib
 import base64
-
+import sys
 
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
@@ -20,8 +20,9 @@ class ResConfigSettings(models.TransientModel):
 
     def get_google_service(self):
         res = self.get_values()
-        if not pathlib.Path("google_credentials.json").exists():
-            with open("google_credentials.json", "bw") as f:
+        path = f"{pathlib.Path(sys.argv[0]).parent}/google_credentials.json"
+        if not pathlib.Path(path).exists():
+            with open(path, "bw") as f:
                 f.write(base64.b64decode(res["credentials_file"]))
         credentials = service_account.Credentials.from_service_account_file(
             'google_credentials.json',
