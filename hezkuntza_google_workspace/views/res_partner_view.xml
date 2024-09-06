@@ -56,7 +56,10 @@
         <field name="state">code</field>
         <field name="model_id" ref="model_res_partner"/>
         <field name="binding_model_id" ref="model_res_partner"/>
+<<<<<<< HEAD
         <field name="domain">[('is_student', '=', True)]</field>
+=======
+>>>>>>> 6f4fe96 ([IMP] hezkuntza_google_workspace: add method to insert in workspace group)
         <field name="code">
             for record in records.filtered(lambda x: x.is_student):
                 record.add_to_workspace_group()
