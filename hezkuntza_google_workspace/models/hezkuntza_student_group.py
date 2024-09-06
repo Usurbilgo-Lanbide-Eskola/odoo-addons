@@ -37,8 +37,9 @@ class HezkuntzaStudentGroup(models.Model):
                         _(f'Failed to delete member: {member_email}. Error: '
                           f'{e}'))
 
-    def insert_member(self, service, group_email, email, role="MEMBER"):
+    def insert_member(self, service, email, group_email=None, role="MEMBER"):
         member = {'email': email, 'role': role}
+        group_email = group_email or self.group_gmail
         try:
             request = service.members().insert(groupKey=group_email,
                                                body=member)
@@ -61,13 +62,12 @@ class HezkuntzaStudentGroup(models.Model):
 
         for student in students:
             student_name = student.name
-            success = self.insert_member(service, group_email, student.email)
+            success = self.insert_member(service, student.email)
             if not success:
                 try:
                     student.get_google_user(hna=student.id_hezkuntza)
                 except:
                     raise ValidationError(get_error_string(student_name))
-                success = self.insert_member(service, group_email,
-                                             student.email)
+                success = self.insert_member(service, student.email)
                 if not success:
                     raise ValidationError(get_error_string(student_name))

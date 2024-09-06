@@ -50,5 +50,17 @@
                 record.delete_workspace_user()
         </field>
     </record>
+    <record id="action_add_2_workspace_group_" model="ir.actions.server">
+        <field name="name">Add to Google Workspace Group</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="binding_model_id" ref="model_res_partner"/>
+        <field name="domain">[('is_student', '=', True)]</field>
+        <field name="code">
+            for record in records.filtered(lambda x: x.is_student):
+                record.add_to_workspace_group()
+        </field>
+    </record>
 
 </odoo>

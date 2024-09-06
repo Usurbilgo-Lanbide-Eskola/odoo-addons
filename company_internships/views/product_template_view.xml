@@ -123,7 +123,7 @@
             <search>
                 <field name="is_student_group"/>
                 <filter string="Current School Year" name="is_current_student"
-                        domain="[('is_student_group', '=', True)]"/>
+                        domain="[('is_student_group', '=', True),('tutor_user_ids', '=', uid)]"/>
             </search>
         </field>
     </record>

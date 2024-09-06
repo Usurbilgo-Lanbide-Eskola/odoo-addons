@@ -175,6 +175,11 @@ class ResPartner(models.Model):
             else:
                 return False
 
+    def add_to_workspace_group(self):
+        service = self.env["res.config.settings"].get_google_service()
+        for student in self:
+            student.hezkuntza_group_id.insert_member(service, student.email)
+
     def delete_workspace_user(self):
         service = self.env["res.config.settings"].get_google_service()
         try:
