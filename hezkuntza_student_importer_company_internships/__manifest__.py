@@ -13,7 +13,9 @@
     ],
     "external_dependencies": {"python": ["xlrd"]},
     "excludes": [],
-    "data": [],
+    "data": [
+        "views/hezkuntza_student_import_view.xml",
+    ],
     "installable": True,
     "auto_install": True,
 }

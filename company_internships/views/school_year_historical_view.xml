@@ -15,6 +15,7 @@
                 <field name="student_company_id" domain='[("is_company", "=", True)]'/>
                 <field name="internship_type"/>
                 <field name="student_without_internship"/>
+                <field name="unsubscribed"/>
                 <button name="action_open_form" icon="fa-file" type="object" context="{'xxx': active_id}"/>
             </tree>
         </field>
@@ -78,6 +79,8 @@
                         domain="[('student_without_internship', '=', True)]"/>
                 <filter name="students_with_internship" string="Students With Internship"
                         domain="[('student_without_internship', '=', False)]"/>
+                <filter name="subscribed_internship" string="Subscribed internships" help="Internships of students who have not been discharged from their studies."
+                        domain="[('unsubscribed', '=', False)]"/>
                 <separator/>
                 <group expand="0" string="Group By">
                     <filter name="school_year_group" string="School Year" domain=""
@@ -99,7 +102,7 @@
     <record model="ir.actions.act_window" id="action_school_year_historical">
         <field name="name">Action School Year Historical</field>
         <field name="res_model">school.year.historical</field>
-        <field name="context">{'default_search_user_internships': 1}</field>
+        <field name="context">{'default_search_user_internships': 1, 'default_search_subscribed_internship': 1}</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_school_year_historical_tree"/>
     </record>

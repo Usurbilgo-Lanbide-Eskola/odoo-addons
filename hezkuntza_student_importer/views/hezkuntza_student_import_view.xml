@@ -42,8 +42,8 @@
                 <field name="overwrite"
                        help="Overwrite fields if has a discrepancy. Note: Empty fields will not be overwritten."/>
                 <group>
-                    <field name="mapped_lines" nolabel="1" attrs="{'invisible':[('error_lines','=', True)]}">
-                        <tree string="Student Importer Lines" editable="top">
+                    <field name="mapped_lines" nolabel="1" attrs="{'invisible':[('error_lines','=', True)]}" delete="0">
+                        <tree string="Student Importer Lines" editable="top" decoration-danger="reject">
                             <field name="id_hezkuntza"/>
                             <field name="school_year"/>
                             <field name="personal_id"/>
@@ -65,6 +65,7 @@
                             <field name="image"/>
                             <field name="imported_partner_id"/>
                             <field name="errors"/>
+                            <field name="reject" readonly="1"/>
                         </tree>
                     </field>
                 </group>

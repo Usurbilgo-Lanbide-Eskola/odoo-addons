@@ -1,5 +1,6 @@
 # Copyright 2021 Mikel Arregi Etxaniz - CIFP Usurbil LHII
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from ocb.odoo.exceptions import ValidationError
 from odoo import api, fields, models, _
 from odoo.osv import expression
 from odoo.exceptions import UserError
@@ -19,7 +20,7 @@ class ResPartner(models.Model):
     internship_count = fields.Integer(compute="_compute_internships",
                                       store=True)
     internship_of_group_year = fields.Many2one(comodel_name="sale.order.line",
-        compute="_compute_internships")
+                                               compute="_compute_internships")
     # Field to trigger the compute function
     internship_count_dummy = fields.Integer(compute="_compute_internships")
     in_active_school_year = fields.Boolean(
@@ -27,10 +28,12 @@ class ResPartner(models.Model):
     # student_tutor = fields.Many2one(comodel_name="res.partner")
     # student_instructor = fields.Many2one(comodel_name="res.partner")
     student_active_tutor_ids = fields.Many2many("res.partner",
-        'student_active_tutors', 'student_id', 'tutor_id',
-        compute="compute_tutor_students", store=True)
+                                                'student_active_tutors',
+                                                'student_id', 'tutor_id',
+                                                compute="compute_tutor_students",
+                                                store=True)
     student_record_ids = fields.One2many(comodel_name="school.year.historical",
-        inverse_name="student_id")
+                                         inverse_name="student_id")
     active_student_record_ids = fields.One2many(
         comodel_name="school.year.historical", inverse_name="student_id",
         domain=[('is_active', '=', True)])
@@ -96,11 +99,11 @@ class ResPartner(models.Model):
         #     WHERE EXISTS (SELECT * FROM account_move_line aml WHERE aml.account_id = account.id LIMIT 1)
         # """)
         if operator not in ['=', '!=', 'like', 'ilike', 'not like',
-            'not ilike']:
+                            'not ilike']:
             raise UserError(_('Operation not supported'))
         return [(
-                'company_internship_record_groups.internship_type.display_name',
-                operator, value)]
+            'company_internship_record_groups.internship_type.display_name',
+            operator, value)]
 
     def compute_company_records(self):
         historical_obj = self.env['school.year.historical']
@@ -205,11 +208,12 @@ class ResPartner(models.Model):
 
     def deactivate_student_group(self):
         for student in self:
-            student.write({'student_group_id': False, # 'student_tutor': False,
-                # 'student_instructor': False,
-            })
+            student.write(
+                {'student_group_id': False,  # 'student_tutor': False,
+                 # 'student_instructor': False,
+                 })
 
-    def archive_year_data(self):
+    def archive_year_data(self, unsubscribe=False):
         for student in self.filtered(lambda x: x.is_student):
             student_group = student.student_group_id
             school_year = student_group.school_year_id
@@ -220,11 +224,26 @@ class ResPartner(models.Model):
             if not record:
                 student.student_record_ids = [(0, 0,
                                                {'group_id': student_group.id,
-                                                   'school_year_id': school_year.id,
-                                                   # 'student_tutor_id': student.student_tutor.id,
-                                                   # 'student_instructor_id': student.student_instructor.id,
-                                               })]
+                                                'school_year_id': school_year.id,
+                                                'unsubscribed': unsubscribe})]
             student.deactivate_student_group()
+
+    def student_unsubscribe(self):
+        for student in self:
+            student.archive_year_data(unsubscribe=True)
+            student.active = False
+
+    def student_safe_delete(self):
+        for student in self:
+            if student.student_record_ids:
+                Warning(_(f"Student: {student.name} with id:"
+                          f"{student.id_hezkuntza} "
+                          f"can't be deleted because it has "
+                          f"historical records"))
+                return False
+            else:
+                student.unlink()
+                return True
 
     def _search_partners(self, domain):
         query = """

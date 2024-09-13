@@ -149,6 +149,12 @@ class HezkuntzaStudentImport(models.Model):
                     res_lines.append(student_dict)
             return res_lines
 
+    def mapped_students_non_in_file(self, students_dict):
+        student_hezkuntza_ids = [x[2]["id_hezkuntza"] for x in students_dict]
+        return self.mapped_lines.search(
+            [('id_hezkuntza', 'not in', student_hezkuntza_ids)]).mapped(
+            "id_hezkuntza")
+
     def import_lines(self):
         if not self.file:
             raise UserError(_("Add a enrollment file"))
@@ -173,13 +179,17 @@ class HezkuntzaStudentImport(models.Model):
                 lambda x: x.id_hezkuntza == line_name)
             if already_mapped:
                 res_lines.append((1, already_mapped[0].id, line))
+                already_mapped.reject = False
             else:
                 res_lines.append((0, 0, line))
         self.write({'mapped_lines': res_lines})
         self.test_lines()
+        no_students = self.mapped_students_non_in_file(res_lines)
+        self.mapped_lines.filtered(
+            lambda x: x.id_hezkuntza in no_students).write({"reject": True})
 
     def test_lines(self):
-        for line in self.mapped_lines:
+        for line in self.mapped_lines.filtered(lambda x: not x.reject):
             errors = line.test_line()
             if errors:
                 line.errors = errors
@@ -194,7 +204,7 @@ class HezkuntzaStudentImport(models.Model):
         created_partners = self.env['res.partner']
         lines = self.error_mapped_lines if self.error_lines else \
             self.mapped_lines
-        for line in lines:
+        for line in lines.filtered(lambda x: not x.reject):
             if self.overwrite:
                 created_partners |= line.overwrite_partner()
             created_partners |= line.create_partner()
@@ -231,6 +241,7 @@ class HezkuntzaStudentImportLine(models.Model):
     imported_partner_id = fields.Many2one(comodel_name='res.partner',
                                           string='Imported Partner')
     errors = fields.Text("Errors")
+    reject = fields.Boolean("Reject")
 
     def test_line(self):
         # check country and state
@@ -323,3 +334,5 @@ class HezkuntzaStudentImportLine(models.Model):
             self.imported_partner_id = partner_id.id
             return partner_id
         return self.env['res.partner']
+
+
