@@ -1,6 +1,5 @@
 # Copyright 2021 Mikel Arregi Etxaniz - CIFP Usurbil LHII
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from ocb.odoo.exceptions import ValidationError
 from odoo import api, fields, models, _
 from odoo.osv import expression
 from odoo.exceptions import UserError
