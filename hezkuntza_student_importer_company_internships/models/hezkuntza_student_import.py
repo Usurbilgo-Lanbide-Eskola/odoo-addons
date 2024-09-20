@@ -6,6 +6,22 @@ from odoo import models
 class HezkuntzaStudentImportLine(models.Model):
     _inherit = "hezkuntza.student.import"
 
+    def delete_rejected_students(self):
+        self.mapped_lines.filtered(lambda x: x.reject).delete_related_student()
+
+
+class HezkuntzaStudentImportLine(models.Model):
+    _inherit = "hezkuntza.student.import.line"
+
+    def delete_related_student(self):
+        for line in self.filtered(lambda x: x.imported_partner_id):
+            student = line.imported_partner_id
+            student_records = student.student_record_ids
+            student.write({"student_record_ids": [(2, student_records.filtered(
+                lambda x: x.school_year_id.id == line.school_year.id).id)]})
+            student.deactivate_student_group()
+            student.student_safe_delete()
+
     def _get_partner_dict(self):
         res = super()._get_partner_dict()
         res.update({'is_student': True})
@@ -26,18 +42,3 @@ class HezkuntzaStudentImportLine(models.Model):
             student.write({'student_record_ids': [(0, 0, {
                 'school_year_id': school_year.id,
                 'group_id': student_group.id})]})
-
-    def delete_rejected_students(self):
-        self.mapped_lines.filtered(lambda x: x.reject).delete_related_student()
-
-
-class HezkuntzaStudentImportLine(models.Model):
-    _inherit = "hezkuntza.student.import.line"
-
-    def delete_related_student(self):
-        for line in self.filtered(lambda x: x.imported_partner_id):
-            student = line.imported_partner_id
-            student_records = student.student_record_ids
-            student.write({"student_record_ids": [(2, student_records.filtered(
-                lambda x: x.school_year_id.id == line.school_year.id).id)]})
-            student.student_safe_delete()
