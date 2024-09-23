@@ -20,7 +20,9 @@ class HezkuntzaStudentImportLine(models.Model):
             student.write({"student_record_ids": [(2, student_records.filtered(
                 lambda x: x.school_year_id.id == line.school_year.id).id)]})
             student.deactivate_student_group()
-            student.student_safe_delete()
+            deleted = student.student_safe_delete()
+            if not deleted:
+                student.active = False
 
     def _get_partner_dict(self):
         res = super()._get_partner_dict()
