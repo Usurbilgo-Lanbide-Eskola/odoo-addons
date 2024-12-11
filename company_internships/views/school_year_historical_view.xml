@@ -38,7 +38,8 @@
                     <field name="allowed_instructors" invisible="1"/>
                     <field name="student_instructor_id"/>
                     <field name="student_company_id" domain='[("is_company", "=", True)]'/>
-                    <field name="student_delivery_id"/>
+                    <field name="allowed_deliveries"/>
+                    <field name="student_delivery_id" invisible="1"/>
                     <field name="internship_type"/>
                     <field name="turn"/>
                     <field name="student_without_internship"/>
@@ -73,6 +74,7 @@
                 <field name="student_instructor_id"/>
                 <field name="internship_type"/>
                 <field name="turn"/>
+                <field name="allowed_deliveries" invisible="1"/>
                 <field name="student_delivery_id"/>
                 <separator/>
                 <filter name="filter_active_year" string="Active Internships" domain="[('is_active', '=', True)]"/>
