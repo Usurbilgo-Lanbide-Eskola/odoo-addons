@@ -31,7 +31,7 @@ class SchoolYearHistorical(models.Model):
     record_sale_line_id = fields.Many2one(comodel_name="sale.order.line")
     unsubscribed = fields.Boolean("Unsubscribed")
     turn = fields.Selection(selection=[("1", "First Turn"),
-                                       ("2", "Second ", "Turn")])
+                                       ("2", "Second Turn")])
     student_delivery_id = fields.Many2one(
         comodel_name="res.partner", domain="[('id', 'in', "
                                            "allowed_deliveries)]")
