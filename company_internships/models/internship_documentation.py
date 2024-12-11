@@ -61,3 +61,8 @@ class ResPartnerDocumentation(models.Model):
     documents_ids = fields.Many2many(comodel_name="internship.documentation")
 
 
+#TODO
+"document_type_manager","document_type_manager","model_documentation_type","sales_team.group_sale_salesman",1,1,1,1
+"document_type_user","document_type_user","model_documentation_type","base.group_user",1,0,0,0
+"document_state_manager","document_state_manager","model_document_state","sales_team.group_sale_salesman",1,1,1,1
+"document_state_user","document_state_user","model_document_state","base.group_user",1,0,0,0
