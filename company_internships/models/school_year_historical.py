@@ -64,7 +64,7 @@ class SchoolYearHistorical(models.Model):
             if record.student_company_id:
                 domain.append(('parent_id', '=', record.student_company_id.id))
             allowed = partner_obj.search(domain)
-            record.allowed_instructors = [(6, 0, allowed.ids)]
+            record.allowed_deliveries = [(6, 0, allowed.ids)]
 
     @api.onchange('group_id')
     def onchange_student_group(self):
