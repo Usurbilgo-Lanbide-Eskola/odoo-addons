@@ -61,10 +61,11 @@ class ResPartner(models.Model):
     def compute_partner_reputation(self):
         for partner in self:
             partner_surveys = partner._get_partner_surveys()
-            answers = self.env['survey.user_input'].search(
+            all_answers = self.env['survey.user_input'].search(
                 [('survey_id', 'in', partner_surveys.ids),
-                 ('scoring_percentage', '!=', 0),
-                 ('partner_id.is_student', '=', False)])
+                 ('scoring_percentage', '!=', 0)])
+            answers = all_answers.filtered(lambda x: not
+                x.partner_id.is_student)
             avg_percentage = 0
             answers_qty = len(answers)
             partner.review_qty = answers_qty
@@ -79,10 +80,10 @@ class ResPartner(models.Model):
     def compute_student_partner_reputation(self):
         for partner in self:
             student_partner_surveys = partner._get_partner_surveys()
-            answers = self.env['survey.user_input'].search(
+            all_answers = self.env['survey.user_input'].search(
                 [('survey_id', 'in', student_partner_surveys.ids),
-                 ('scoring_percentage', '!=', 0),
-                 ('partner_id.is_student', '=', True)])
+                 ('scoring_percentage', '!=', 0)])
+            answers = all_answers.filtered(lambda x: x.partner_id.is_student)
             avg_percentage = 0
             answers_qty = len(answers)
             partner.student_review_qty = answers_qty
