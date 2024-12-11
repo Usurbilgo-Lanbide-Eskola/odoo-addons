@@ -14,6 +14,8 @@
                 <field name="student_instructor_id"/>
                 <field name="student_company_id" domain='[("is_company", "=", True)]'/>
                 <field name="internship_type"/>
+                <field name="turn"/>
+                <field name="student_delivery_id"/>
                 <field name="student_without_internship"/>
                 <field name="unsubscribed"/>
                 <button name="action_open_form" icon="fa-file" type="object" context="{'xxx': active_id}"/>
@@ -36,7 +38,9 @@
                     <field name="allowed_instructors" invisible="1"/>
                     <field name="student_instructor_id"/>
                     <field name="student_company_id" domain='[("is_company", "=", True)]'/>
+                    <field name="student_delivery_id"/>
                     <field name="internship_type"/>
+                    <field name="turn"/>
                     <field name="student_without_internship"/>
                 </group>
                 <group>
@@ -68,6 +72,8 @@
                 <field name="student_company_id"/>
                 <field name="student_instructor_id"/>
                 <field name="internship_type"/>
+                <field name="turn"/>
+                <field name="student_delivery_id"/>
                 <separator/>
                 <filter name="filter_active_year" string="Active Internships" domain="[('is_active', '=', True)]"/>
                 <filter name="user_internships" string="User Internships" domain="[('user_id', '=', uid)]"/>
@@ -94,6 +100,9 @@
                             context="{'group_by': 'student_company_id'}"/>
                     <filter name="internship_type" string="Internship Type" domain=""
                             context="{'group_by': 'internship_type'}"/>
+                    <filter name="turn" string="Internship Type" domain=""
+                            context="{'group_by': 'turn'}"/>
+
                 </group>
             </search>
         </field>

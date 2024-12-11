@@ -30,6 +30,14 @@ class SchoolYearHistorical(models.Model):
         string="Resignation Lines")
     record_sale_line_id = fields.Many2one(comodel_name="sale.order.line")
     unsubscribed = fields.Boolean("Unsubscribed")
+    turn = fields.Selection(selection=[("1", "First Turn"),
+                                       ("2", "Second ", "Turn")])
+    student_delivery_id = fields.Many2one(
+        comodel_name="res.partner", domain="[('id', 'in', "
+                                           "allowed_deliveries)]")
+    allowed_deliveries = fields.Many2many(
+        comodel_name="res.partner", compute="_compute_allowed_deliveries")
+
 
     @api.constrains("student_company_id", "student_instructor_id")
     def instructor_is_companies_child(self):
@@ -40,6 +48,16 @@ class SchoolYearHistorical(models.Model):
 
     @api.depends("student_company_id")
     def _compute_allowed_instructors(self):
+        partner_obj = self.env['res.partner']
+        for record in self:
+            domain = [('type', '=', 'delivery')]
+            if record.student_company_id:
+                domain.append(('parent_id', '=', record.student_company_id.id))
+            allowed = partner_obj.search(domain)
+            record.allowed_instructors = [(6, 0, allowed.ids)]
+
+    @api.depends("student_company_id")
+    def _compute_allowed_deliveries(self):
         partner_obj = self.env['res.partner']
         for record in self:
             domain = [('company_instructor', '=', True)]
@@ -134,3 +152,4 @@ class ResignedInternshipLine(models.Model):
     resignation_date = fields.Date("Resignation Date",
                                    default=fields.Date.context_today)
     description = fields.Text("Internal None")
+
