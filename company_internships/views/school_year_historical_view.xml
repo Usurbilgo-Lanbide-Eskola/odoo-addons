@@ -38,8 +38,8 @@
                     <field name="allowed_instructors" invisible="1"/>
                     <field name="student_instructor_id"/>
                     <field name="student_company_id" domain='[("is_company", "=", True)]'/>
-                    <field name="allowed_deliveries"/>
-                    <field name="student_delivery_id" invisible="1"/>
+                    <field name="allowed_deliveries" invisible="1"/>
+                    <field name="student_delivery_id" />
                     <field name="internship_type"/>
                     <field name="turn"/>
                     <field name="student_without_internship"/>
@@ -102,7 +102,7 @@
                             context="{'group_by': 'student_company_id'}"/>
                     <filter name="internship_type" string="Internship Type" domain=""
                             context="{'group_by': 'internship_type'}"/>
-                    <filter name="turn" string="Internship Type" domain=""
+                    <filter name="turn" string="Turn" domain=""
                             context="{'group_by': 'turn'}"/>
 
                 </group>

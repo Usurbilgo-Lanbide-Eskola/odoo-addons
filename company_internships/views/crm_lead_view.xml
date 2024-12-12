@@ -39,18 +39,23 @@
             <xpath expr="//field[@name='partner_id']" position="attributes">
                 <attribute name="domain">[("is_student", "=", False), ("is_tutor", "=", False)]</attribute>
             </xpath>
-            <xpath expr="//field[@name='team_id']" position="after">
-                <field name="internship_sale_id"/>
-                <field name="internship_sale_ids"/>
+            <xpath expr="//group[@name='opportunity_info']" position="after">
+              <group colspan="4" col="6">
+              <group colspan="2">
+                <field name="internship_sale_id" invisible="1"/>
+                <field name="internship_sale_ids" invisible="1"/>
                 <field name="opportunity_type"/>
-                <field name="school_year_id" invisible="0"/>
-                <field name="internship_line_ids" attrs="{'invisible': [('opportunity_type', '!=', 'internship')]}"
-                       nolabel="1">
+                <field name="school_year_id" />
+                </group>
+                <group colspan="4">
+                <field name="internship_line_ids" attrs="{'invisible': [('opportunity_type', '!=', 'internship')]}" nolabel="1">
                     <tree editable="top">
                         <field name="student_group_id" domain="[('school_year_id', '=', parent.school_year_id)]"/>
                         <field name="student_qty"/>
                     </tree>
                 </field>
+                </group>
+                </group>
             </xpath>
         </field>
     </record>
