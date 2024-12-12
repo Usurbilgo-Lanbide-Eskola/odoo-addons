@@ -51,7 +51,7 @@ class SchoolYearHistorical(models.Model):
     def _compute_allowed_instructors(self):
         partner_obj = self.env['res.partner']
         for record in self:
-            domain = [('type', '=', 'delivery')]
+            domain = [('company_instructor', '=', True)]
             if record.student_company_id:
                 domain.append(('parent_id', '=', record.student_company_id.id))
             allowed = partner_obj.search(domain)
@@ -61,7 +61,7 @@ class SchoolYearHistorical(models.Model):
     def _compute_allowed_deliveries(self):
         partner_obj = self.env['res.partner']
         for record in self:
-            domain = [('company_instructor', '=', True)]
+            domain = [('type', '=', 'delivery')]
             if record.student_company_id:
                 domain.append(('parent_id', '=', record.student_company_id.id))
             allowed = partner_obj.search(domain)
