@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 
 class SchoolYearHistorical(models.Model):
     _name = "school.year.historical"
+    _inherit = 'mail.thread'
     _rec_name = "student_id"
 
     student_id = fields.Many2one(comodel_name="res.partner",

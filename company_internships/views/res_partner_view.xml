@@ -91,32 +91,32 @@
 
     <!--TODO DOCUMENTATION VIEW UNCOMMENT-->
 
-<!--        <record id="view_res_partner_documentation_form" model="ir.ui.view">-->
-<!--            <field name="name">view.res.partner.documentation.form</field>-->
-<!--            <field name="model">res.partner</field>-->
-<!--            <field name="inherit_id" ref="base.view_partner_form"/>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <xpath expr="//page[@name='contact_addresses']" position="after">-->
-<!--                    <page name="documentation" string="Documentation">-->
-<!--                        <group name="documentation">-->
-<!--                            <field name="documents_ids" widget='one2many' colspan="4" nolabel="1">-->
-<!--                                <tree editable="1">-->
-<!--                                    <field name="documentation_type"/>-->
-<!--                                    <field name="no_signed"/>-->
-<!--                                    <field name="school_signed"/>-->
-<!--                                    <field name="second_party_signed"/>-->
-<!--                                    <field name="signed"/>-->
-<!--                                </tree>-->
-<!--                            </field>-->
-<!--                        </group>-->
+    <!--        <record id="view_res_partner_documentation_form" model="ir.ui.view">-->
+    <!--            <field name="name">view.res.partner.documentation.form</field>-->
+    <!--            <field name="model">res.partner</field>-->
+    <!--            <field name="inherit_id" ref="base.view_partner_form"/>-->
+    <!--            <field name="arch" type="xml">-->
+    <!--                <xpath expr="//page[@name='contact_addresses']" position="after">-->
+    <!--                    <page name="documentation" string="Documentation">-->
+    <!--                        <group name="documentation">-->
+    <!--                            <field name="documents_ids" widget='one2many' colspan="4" nolabel="1">-->
+    <!--                                <tree editable="1">-->
+    <!--                                    <field name="documentation_type"/>-->
+    <!--                                    <field name="no_signed"/>-->
+    <!--                                    <field name="school_signed"/>-->
+    <!--                                    <field name="second_party_signed"/>-->
+    <!--                                    <field name="signed"/>-->
+    <!--                                </tree>-->
+    <!--                            </field>-->
+    <!--                        </group>-->
 
-<!--                    </page>-->
-<!--                </xpath>-->
-<!--            </field>-->
-<!--        </record>-->
+    <!--                    </page>-->
+    <!--                </xpath>-->
+    <!--            </field>-->
+    <!--        </record>-->
 
     <record id="view_res_partner_instructor_form" model="ir.ui.view">
-            <field name="name">view.res.partner.instructor.form</field>
+        <field name="name">view.res.partner.instructor.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
