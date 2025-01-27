@@ -89,31 +89,58 @@
     <!--        </field>-->
     <!--    </record>-->
 
-    <!--TODO DOCUMENTATION VIEW UNCOMMENT-->
 
-    <!--        <record id="view_res_partner_documentation_form" model="ir.ui.view">-->
-    <!--            <field name="name">view.res.partner.documentation.form</field>-->
-    <!--            <field name="model">res.partner</field>-->
-    <!--            <field name="inherit_id" ref="base.view_partner_form"/>-->
-    <!--            <field name="arch" type="xml">-->
-    <!--                <xpath expr="//page[@name='contact_addresses']" position="after">-->
-    <!--                    <page name="documentation" string="Documentation">-->
-    <!--                        <group name="documentation">-->
-    <!--                            <field name="documents_ids" widget='one2many' colspan="4" nolabel="1">-->
-    <!--                                <tree editable="1">-->
-    <!--                                    <field name="documentation_type"/>-->
-    <!--                                    <field name="no_signed"/>-->
-    <!--                                    <field name="school_signed"/>-->
-    <!--                                    <field name="second_party_signed"/>-->
-    <!--                                    <field name="signed"/>-->
-    <!--                                </tree>-->
-    <!--                            </field>-->
-    <!--                        </group>-->
 
-    <!--                    </page>-->
-    <!--                </xpath>-->
-    <!--            </field>-->
-    <!--        </record>-->
+            <record id="view_res_partner_company_form" model="ir.ui.view">
+                <field name="name">view.res.partner.documentation.form</field>
+                <field name="model">res.partner</field>
+                <field name="inherit_id" ref="base.view_partner_form"/>
+                <field name="arch" type="xml">
+                        <!--TODO DOCUMENTATION VIEW UNCOMMENT-->
+<!--                    <xpath expr="//page[@name='contact_addresses']" position="after">
+                        <page name="documentation" string="Documentation">
+                            <group name="documentation">
+                                <field name="documents_ids" widget='one2many' colspan="4" nolabel="1">
+                                    <tree editable="1">
+                                        <field name="documentation_type"/>
+                                        <field name="no_signed"/>
+                                        <field name="school_signed"/>
+                                        <field name="second_party_signed"/>
+                                        <field name="signed"/>
+                                    </tree>
+                                </field>
+                            </group>
+
+                        </page>
+                    </xpath>-->
+                    <xpath expr="//button[@name='schedule_meeting']" position="after">
+                        <button class="oe_stat_button o_res_partner_tip_opp" type="object"
+                            name="action_view_company_internships"
+                            icon="fa-pencil" groups="sales_team.group_sale_salesman"
+                            context="{'default_partner_id': active_id}"
+                            attrs="{'invisible': [('is_company', '=', False)]}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="company_internship_record_students_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                                </span>
+                                <span class="o_stat_text">Students</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button o_res_partner_tip_opp" type="object"
+                            name="action_view_instructor_internships"
+                            icon="fa-pencil" groups="sales_team.group_sale_salesman"
+                            context="{'default_partner_id': active_id}"
+                            attrs="{'invisible': [('company_instructor', '=', False)]}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="instructor_internship_record_students_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                                </span>
+                                <span class="o_stat_text">Students</span>
+                            </div>
+                        </button>
+                    </xpath>
+                </field>
+            </record>
 
     <record id="view_res_partner_instructor_form" model="ir.ui.view">
         <field name="name">view.res.partner.instructor.form</field>
@@ -157,7 +184,7 @@
         <field name="priority">999</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <div name="button_box" position="replace">
+            <div class="oe_button_box" name="button_box">
                 <div class="oe_button_box" name="button_box">
                     <button class="oe_stat_button" type="object" name="schedule_meeting" icon="fa-calendar"
                             groups="sales_team.group_sale_salesman"

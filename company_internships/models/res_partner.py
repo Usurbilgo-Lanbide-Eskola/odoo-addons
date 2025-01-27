@@ -49,6 +49,10 @@ class ResPartner(models.Model):
         comodel_name="school.year.historical",
         compute="compute_company_records",
         search="_search_historical_records_types")
+    company_internship_record_students_qty = fields.Integer(
+        compute="compute_company_students_qty")
+    instructor_internship_record_students_qty = fields.Integer(
+        compute="compute_instructor_students_qty")
     driving_license = fields.Boolean(string="Driving License")
     car_owned = fields.Boolean(string="Car in Property")
     tutor_ids = fields.Many2many(comodel_name="res.partner",
@@ -58,6 +62,7 @@ class ResPartner(models.Model):
     tutor_user_ids = fields.Many2many(comodel_name="res.users",
                                       compute="_compute_group_teachers",
                                       store=True)
+
 
     @api.depends("student_group_id.tutor_ids",
                  "student_group_id.tutor_user_ids")
@@ -104,14 +109,35 @@ class ResPartner(models.Model):
             'company_internship_record_groups.internship_type.display_name',
             operator, value)]
 
-    def compute_company_records(self):
+    def get_company_historical_records(self):
         historical_obj = self.env['school.year.historical']
-        for company in self.filtered(lambda x: x.is_company):
-            records = historical_obj.search(
-                [('student_company_id', '=', company.id)]).ids
-            company.company_internship_record_groups = [(6, 0, records)]
-            company.company_internship_record_types = [(6, 0, records)]
+        if self.ensure_one() and self.is_company:
+            return historical_obj.search(
+                [('student_company_id', '=', self.id)])
+        return historical_obj
 
+    def get_instructor_historical_records(self):
+        historical_obj = self.env['school.year.historical']
+        if self.ensure_one() and self.company_instructor:
+            return historical_obj.search(
+                [('student_instructor_id', '=', self.id)])
+        return historical_obj
+
+    def compute_company_records(self):
+        for company in self.filtered(lambda x: x.is_company):
+            records = company.get_company_historical_records()
+            company.company_internship_record_groups = [(6, 0, records.ids)]
+            company.company_internship_record_types = [(6, 0, records.ids)]
+
+    def compute_company_students_qty(self):
+        for company in self:
+            company.company_internship_record_students_qty = (
+                len(company.get_company_historical_records()))
+
+    def compute_instructor_students_qty(self):
+        for instructor in self:
+            instructor.instructor_internship_record_students_qty = (
+                len(instructor.get_instructor_historical_records()))
     # @api.depends('company_internship_records')
     # def compute_company_internship_data(self):
     #     for company in self.filtered(lambda x: x.is_company):
@@ -172,6 +198,23 @@ class ResPartner(models.Model):
             internship_count = len(internships)
             student_id.internship_count = internship_count
             student_id.internship_count_dummy = internship_count
+
+    def action_view_company_internships(self):
+        if self.is_company:
+            action = self.env['ir.actions.act_window']._for_xml_id(
+                'company_internships.action_school_year_historical')
+            action['context'] = {"search_default_student_company_id": self.id}
+            return action
+        return None
+
+    def action_view_instructor_internships(self):
+        if self.company_instructor:
+            action = self.env['ir.actions.act_window']._for_xml_id(
+                'company_internships.action_school_year_historical')
+            action['context'] = {"search_default_student_instructor_id":
+                                     self.id}
+            return action
+        return None
 
     def action_view_tutor_internships(self):
         if self.is_tutor:

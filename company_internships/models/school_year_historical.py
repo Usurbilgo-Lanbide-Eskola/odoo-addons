@@ -13,19 +13,24 @@ class SchoolYearHistorical(models.Model):
                                  ondelete='cascade')
     school_year_id = fields.Many2one(comodel_name="school.year")
     group_id = fields.Many2one(comodel_name="product.template")
-    student_tutor_id = fields.Many2one(comodel_name="res.partner")
+    student_tutor_id = fields.Many2one(comodel_name="res.partner",
+                                       tracking=True)
     student_instructor_id = fields.Many2one(
         comodel_name="res.partner", domain="[('id', 'in', "
-                                           "allowed_instructors)]")
+                                           "allowed_instructors)]",
+        tracking=True)
     allowed_instructors = fields.Many2many(
         comodel_name="res.partner", compute="_compute_allowed_instructors")
     internship_type = fields.Many2one(comodel_name="internship.type",
-                                      string="Internship Type")
-    student_company_id = fields.Many2one(comodel_name="res.partner")
+                                      string="Internship Type",
+                                      tracking=True)
+    student_company_id = fields.Many2one(comodel_name="res.partner",
+                                         tracking=True)
     is_active = fields.Boolean(related="school_year_id.is_active", store=True)
     user_id = fields.Many2one(comodel_name="res.users",
                               compute="_compute_user_id", store=True)
-    student_without_internship = fields.Boolean("Student Without Internship")
+    student_without_internship = fields.Boolean("Student Without "
+                                                "Internship", tracking=True)
     resignation_line_ids = fields.One2many(
         comodel_name="resigned.internship.line", inverse_name="record_id",
         string="Resignation Lines")
@@ -33,10 +38,12 @@ class SchoolYearHistorical(models.Model):
     unsubscribed = fields.Boolean("Unsubscribed")
     turn = fields.Selection(selection=[("0", "No Turn"),
                                        ("1", "First Turn"),
-                                       ("2", "Second Turn")], default="0")
+                                       ("2", "Second Turn")], default="0",
+                            tracking=True)
     student_delivery_id = fields.Many2one(
         comodel_name="res.partner", domain="[('id', 'in', "
-                                           "allowed_deliveries)]")
+                                           "allowed_deliveries)]",
+        tracking=True)
     allowed_deliveries = fields.Many2many(
         comodel_name="res.partner", compute="_compute_allowed_deliveries")
 
