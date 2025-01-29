@@ -60,6 +60,17 @@
         </field>
     </record>
 
+    <record id="view_lead_tree_internship" model="ir.ui.view">
+            <field name="name">view.lead.tree.internship</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="internship_lines_students_qty" sum="Total Students"/>
+                </xpath>
+            </field>
+        </record>
+
     <record id="view_lead_with_order_search" model="ir.ui.view">
         <field name="name">lead.with.orders</field>
         <field name="model">crm.lead</field>

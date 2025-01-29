@@ -22,6 +22,8 @@ class CrmLead(models.Model):
     internship_line_ids = fields.One2many(comodel_name="internship.line",
                                           inverse_name="lead_id",
                                           string="Internship Lines")
+    internship_lines_students_qty = fields.Integer(
+        compute="compute_lines_students", store=True)
     allowed_group_ids = fields.Many2many(comodel_name="product.product",
                                          compute="_get_related_products",
                                          store=True)
@@ -31,6 +33,11 @@ class CrmLead(models.Model):
                                          search="_search_sale")
     internship_sale_ids = fields.One2many(comodel_name="sale.order",
                                           inverse_name='opportunity_id')
+
+    def compute_lines_students(self):
+        for record in self:
+            record.internship_lines_students_qty = (
+                sum(record.internship_line_ids.mapped("student_qty")))
 
     def _search_sale(self, operator, value):
         sale = self.env["sale.order"].search(
