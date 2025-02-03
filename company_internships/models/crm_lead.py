@@ -34,6 +34,7 @@ class CrmLead(models.Model):
     internship_sale_ids = fields.One2many(comodel_name="sale.order",
                                           inverse_name='opportunity_id')
 
+    @api.depends("internship_line_ids")
     def compute_lines_students(self):
         for record in self:
             record.internship_lines_students_qty = (
