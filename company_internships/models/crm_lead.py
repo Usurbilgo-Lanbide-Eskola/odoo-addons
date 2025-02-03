@@ -92,21 +92,21 @@ class CrmLead(models.Model):
             "type": "ir.actions.act_window",
         }
 
-    @api.constrains("school_year_id", "opportunity_type", "partner_id")
-    def unique_lead_per_school_year(self):
-        for lead in self.filtered(
-                lambda x: x.school_year_id and
-                          x.opportunity_type == 'internship' and x.partner_id):
-            other_lead = self.env['crm.lead'].search([
-                ("opportunity_type", "=", "internship"),
-                ("partner_id", "=", lead.partner_id.id),
-                ("school_year_id", "=", lead.school_year_id.id),
-                ("id", "!=", lead.id)])
-            if other_lead:
-                raise ValidationError(
-                    _(f"Internship opportunity must be unique per school "
-                      f"year and customer. opportunity id: "
-                      f"{other_lead[0].id}"))
+    # @api.constrains("school_year_id", "opportunity_type", "partner_id")
+    # def unique_lead_per_school_year(self):
+    #     for lead in self.filtered(
+    #             lambda x: x.school_year_id and
+    #                       x.opportunity_type == 'internship' and x.partner_id):
+    #         other_lead = self.env['crm.lead'].search([
+    #             ("opportunity_type", "=", "internship"),
+    #             ("partner_id", "=", lead.partner_id.id),
+    #             ("school_year_id", "=", lead.school_year_id.id),
+    #             ("id", "!=", lead.id)])
+    #         if other_lead:
+    #             raise ValidationError(
+    #                 _(f"Internship opportunity must be unique per school "
+    #                   f"year and customer. opportunity id: "
+    #                   f"{other_lead[0].id}"))
 
 
 class InternshipLines(models.Model):
