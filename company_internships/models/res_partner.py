@@ -123,17 +123,20 @@ class ResPartner(models.Model):
                 [('student_instructor_id', '=', self.id)])
         return historical_obj
 
+    @api.depends('active_student_record_ids', 'student_record_ids')
     def compute_company_records(self):
         for company in self.filtered(lambda x: x.is_company):
             records = company.get_company_historical_records()
             company.company_internship_record_groups = [(6, 0, records.ids)]
             company.company_internship_record_types = [(6, 0, records.ids)]
 
+    @api.depends('active_student_record_ids', 'student_record_ids')
     def compute_company_students_qty(self):
         for company in self:
             company.company_internship_record_students_qty = (
                 len(company.get_company_historical_records()))
 
+    @api.depends('active_student_record_ids', 'student_record_ids')
     def compute_instructor_students_qty(self):
         for instructor in self:
             instructor.instructor_internship_record_students_qty = (
