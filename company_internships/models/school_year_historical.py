@@ -48,6 +48,7 @@ class SchoolYearHistorical(models.Model):
         comodel_name="res.partner", compute="_compute_allowed_deliveries")
 
 
+
     @api.constrains("student_company_id", "student_instructor_id")
     def instructor_is_companies_child(self):
         if self.student_company_id and self.student_instructor_id and \

@@ -76,7 +76,7 @@ class ResPartner(models.Model):
         if operator == 'in':
             return [('id', 'in', value)]
         query = f"""
-            SELECT h.id
+            SELECT h.student_company_id
                 FROM school_year_historical h
                 LEFT JOIN hezkuntza_speciality hs
                 ON h.speciality_id = hs.id
