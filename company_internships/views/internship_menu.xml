@@ -62,7 +62,7 @@
                 action="action_school_year_historical"
                 parent="assignment_menu"
                 sequence="10" />
-        <menuitem id="student_record_lines"
+        <menuitem id="student_record_line_attachments"
                 name="Student Record Attachments"
                 action="action_school_year_historical_attachments"
                 parent="assignment_menu"
