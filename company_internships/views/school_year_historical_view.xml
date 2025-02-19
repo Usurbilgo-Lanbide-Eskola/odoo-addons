@@ -147,6 +147,14 @@
         <field name="view_id" ref="view_school_year_historical_tree"/>
     </record>
 
+    <record id="action_school_year_historical_attachments" model="ir.actions.act_window">
+        <field name="name">Student Record Attachments</field>
+        <field name="res_model">ir.attachment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('res_model', '=', 'school.year.historical')]</field>
+        <field name="context">{}</field>
+    </record>
+
     <menuitem id="menu_school_year_historical"
               name="Students Records"
               action="action_school_year_historical"
