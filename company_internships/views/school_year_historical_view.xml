@@ -4,7 +4,7 @@
         <field name="name">school.year.historical.tree</field>
         <field name="model">school.year.historical</field>
         <field name="arch" type="xml">
-            <tree string="School Year Records">
+            <tree default_order='school_year_id, student_id' string="School Year Records">
                 <field name="school_year_id" readonly="1"/>
                 <field name="student_id" readonly="1"/>
                 <field name="group_id" readonly="1"/>
@@ -142,7 +142,8 @@
     <record model="ir.actions.act_window" id="action_school_year_historical">
         <field name="name">Action School Year Historical</field>
         <field name="res_model">school.year.historical</field>
-        <field name="context">{'default_search_user_internships': 1, 'default_search_subscribed_internship': 1}</field>
+        <field name="search_view_id" ref="view_school_year_historical_search"/>
+        <field name="context">{'search_default_filter_active_year': True}</field>
         <field name="view_mode">tree,form,activity</field>
         <field name="view_id" ref="view_school_year_historical_tree"/>
     </record>
