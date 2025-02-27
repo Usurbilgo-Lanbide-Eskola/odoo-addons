@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="model_name_view_form" model="ir.ui.view">
+        <field name="name">model_name.view.form</field>
+        <field name="model">upload.new.file</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="document" />
+                    </group>
+                    <group>
+                        <footer>
+                            <button string="Upload" type="object" class="btn-primary" name="button_upload_file" />
+                            <button string="Cancel" class="btn-secondary" special="cancel" />
+                        </footer>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

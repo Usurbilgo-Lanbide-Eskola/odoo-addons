@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+<record id="create_internship_document_view_form" model="ir.ui.view">
+    <field name="name">create_internship_document.view.form</field>
+    <field name="model">create.internship.document</field>
+    <field name="arch" type="xml">
+        <form string="Create Document">
+            <sheet>
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                    <field name="document_type_id"/>
+                </group>
+                <footer>
+                    <button string="Create" type="object" class="btn-primary" name="button_create_document"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="action_create_internship_document" model="ir.actions.act_window">
+    <field name="name">Create Internship Document</field>
+    <field name="binding_model_id" ref="base.model_res_partner"/>
+    <field name="res_model">create.internship.document</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="create_internship_document_view_form"/>
+    <field name="binding_view_types">list,form</field>
+    <field name="target">new</field>
+    <field name="context"></field>
+</record>
+
+</odoo>

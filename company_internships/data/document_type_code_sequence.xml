@@ -1,0 +1,9 @@
+<odoo>
+    <data noupdate="1">
+        <record id="seq_internship_document_type" model="ir.sequence">
+            <field name="name">Internship Document Type</field>
+            <field name="code">internship.document.type</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>
