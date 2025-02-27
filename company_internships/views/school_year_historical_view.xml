@@ -5,20 +5,23 @@
         <field name="model">school.year.historical</field>
         <field name="arch" type="xml">
             <tree default_order='school_year_id, student_id' string="School Year Records">
-                <field name="school_year_id" readonly="1"/>
-                <field name="student_id" readonly="1"/>
-                <field name="group_id" readonly="1"/>
+                <field name="school_year_id" readonly="1" />
+                <field name="student_id" readonly="1" />
+                <field name="group_id" readonly="1" />
                 <field name="student_tutor_id"
-                       context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
-                <field name="allowed_instructors" invisible="1"/>
-                <field name="student_instructor_id"/>
-                <field name="student_company_id" domain='[("is_company", "=", True)]'/>
-                <field name="internship_type"/>
-                <field name="turn"/>
-                <field name="student_delivery_id"/>
-                <field name="student_without_internship"/>
-                <field name="unsubscribed"/>
-                <button name="action_open_form" icon="fa-file" type="object" context="{'xxx': active_id}"/>
+                    context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}" />
+                <field name="allowed_instructors" invisible="1" />
+                <field name="student_instructor_id" />
+                <field name="student_company_id" domain='[("is_company", "=", True)]' />
+                <field name="internship_type" />
+                <field name="turn" />
+                <field name="student_delivery_id" />
+                <field name="student_without_internship"
+                    attrs="{'readonly': ['|', '|', '|', '|', ('state', '!=', 'draft'), ('student_company_id', '!=', False), ('student_instructor_id', '!=', False), ('internship_type', '!=', False), ('student_delivery_id', '!=', False)]}" />
+                <field name="unsubscribed" />
+                <field name="state" />
+                <button name="action_open_form" icon="fa-file" type="object"
+                    context="{'xxx': active_id}" />
             </tree>
         </field>
     </record>
@@ -30,28 +33,57 @@
             <form string="School Year Records">
                 <sheet>
                     <group>
-                        <field name="school_year_id" readonly="1"/>
-                        <field name="student_id" readonly="1"/>
-                        <field name="group_id" readonly="1"/>
-                        <field name="allowed_instructors" invisible="1"/>
-                        <field name="student_tutor_id" domain="[('is_tutor', '=', True)]"
-                               context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}"/>
-                        <field name="allowed_instructors" invisible="1"/>
-                        <field name="student_instructor_id"/>
-                        <field name="student_company_id" domain='[("is_company", "=", True)]'/>
-                        <field name="allowed_deliveries" invisible="1"/>
-                        <field name="student_delivery_id"/>
-                        <field name="internship_type"/>
-                        <field name="turn"/>
-                        <field name="student_without_internship"/>
+                        <field name="state"  widget="statusbar" /><!-- widget="statusbar" statusbar_visible="draft,sent,sale"-->
+                        <button name="action_internship_confirmed" type="object" string="Confirm"
+                            states="draft" class="oe_highlight" />
+                        <button name="action_documentation_finished" type="object"
+                            string="Documentation Complete" states="documentation"
+                            class="oe_highlight" />
+                        <button name="action_pause_internship" type="object" string="Pause"
+                            states="not_started" class="oe_highlight" />
+                        <button name="action_resume_internship" type="object"
+                            string="Resume Internship" states="pause" class="oe_highlight" />
+                        <button name="action_resignation" type="object" string="Resign Internships"
+                            states="pause,not_started" class="oe_highlight" />
+                        <button name="action_done" type="object" string="Done"
+                            states="not_started" class="oe_highlight" />                            
+                    </group>
+                    <group col="6">
+                        <group colspan="4">
+                            <field name="school_year_id" readonly="1" />
+                            <field name="student_id" readonly="1" />
+                            <field name="group_id" readonly="1" />
+                            <field name="allowed_instructors" invisible="1" />
+                            <field name="student_tutor_id" domain="[('is_tutor', '=', True)]"
+                                context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}" />
+                            <field name="allowed_instructors" invisible="1" />
+                            <field name="student_instructor_id" />
+                            <field name="student_company_id" domain='[("is_company", "=", True)]' />
+                            <field name="allowed_deliveries" invisible="1" />
+                            <field name="student_delivery_id" />
+                            <field name="internship_type" />
+                            <field name="turn" />
+                        </group>
+                        <group colspan="2">
+                                <field name="student_without_internship"
+                                    attrs="{'readonly': ['|', '|', '|', '|', ('state', '!=', 'draft'), ('student_company_id', '!=', False), ('student_instructor_id', '!=', False), ('internship_type', '!=', False), ('student_delivery_id', '!=', False)]}" />
+                                <field name="student_without_internship_reason"
+                                    attrs="{'readonly':[('student_without_internship', '=', False)], 'required':[('student_without_internship', '=', True)]}" />
+                                <field name="special_internship" />
+                                <field name="special_internship_reason_id"
+                                    attrs="{'invisible':[('special_internship', '=', False)]}" />
+                                <field name="notes"
+                                    attrs="{'invisible':[('special_internship', '=', False), ('student_without_internship', '=', False)]}" />
+                        </group>
                     </group>
                     <group>
                         <notebook>
                             <page string="Resignations">
                                 <field name="resignation_line_ids">
-                                    <tree edit="1" editable="top">
-                                        <field name="resignation_date"/>
-                                        <field name="description"/>
+                                    <tree editable="bottom">
+                                        <field name="resignation_date" />
+                                        <field name="student_company_id" readonly="1" />
+                                        <field name="description" />
                                     </tree>
                                 </field>
                             </page>
@@ -59,9 +91,9 @@
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" widget="mail_thread" />
                 </div>
             </form>
 
@@ -73,46 +105,55 @@
         <field name="model">school.year.historical</field>
         <field name="arch" type="xml">
             <search string="School Year Records">
-                <field name="is_active" invisible="1"/>
-                <field name="school_year_id"/>
-                <field name="student_id"/>
-                <field name="group_id"/>
-                <field name="student_tutor_id"/>
-                <field name="student_company_id"/>
-                <field name="student_instructor_id"/>
-                <field name="internship_type"/>
-                <field name="turn"/>
-                <field name="allowed_deliveries" invisible="1"/>
-                <field name="student_delivery_id"/>
-                <separator/>
-                <filter name="filter_active_year" string="Active Internships" domain="[('is_active', '=', True)]"/>
-                <filter name="user_internships" string="User Internships" domain="[('user_id', '=', uid)]"/>
+                <field name="is_active" invisible="1" />
+                <field name="school_year_id" />
+                <field name="student_id" />
+                <field name="group_id" />
+                <field name="student_tutor_id" />
+                <field name="student_company_id" />
+                <field name="student_instructor_id" />
+                <field name="internship_type" />
+                <field name="turn" />
+                <field name="allowed_deliveries" invisible="1" />
+                <field name="student_delivery_id" />
+                <separator />
+                <filter name="filter_active_year" string="Active Internships"
+                    domain="[('is_active', '=', True)]" />
+                <filter name="user_internships" string="User Internships"
+                    domain="[('user_id', '=', uid)]" />
                 <filter name="students_no_assigned_internship" string="Internship No Assigned"
-                        domain="[('student_without_internship', '=', False), ('student_company_id', '=', False)]"/>
+                    domain="[('student_without_internship', '=', False), ('student_company_id', '=', False)]" />
                 <filter name="students_assigned_internship" string="Internship Assigned"
-                        domain="[('student_without_internship', '=', False), ('student_company_id', '!=', False)]"/>
+                    domain="[('student_without_internship', '=', False), ('student_company_id', '!=', False)]" />
                 <filter name="students_without_internship" string="Students Without Internship"
-                        domain="[('student_without_internship', '=', True)]"/>
+                    domain="[('student_without_internship', '=', True)]" />
                 <filter name="students_with_internship" string="Students With Internship"
-                        domain="[('student_without_internship', '=', False)]"/>
+                    domain="[('student_without_internship', '=', False)]" />
                 <filter name="subscribed_internship" string="Subscribed internships"
-                        help="Internships of students who have not been discharged from their studies."
-                        domain="[('unsubscribed', '=', False)]"/>
-                <separator/>
+                    help="Internships of students who have not been discharged from their studies."
+                    domain="[('unsubscribed', '=', False)]" />
+                <separator />
                 <group expand="0" string="Group By">
                     <filter name="school_year_group" string="School Year" domain=""
-                            context="{'group_by': 'school_year_id'}"/>
-                    <filter name="group_id_group" string="Student Group" domain="" context="{'group_by': 'group_id'}"/>
+                        context="{'group_by': 'school_year_id'}" />
+                    <filter name="group_id_group" string="Student Group" domain=""
+                        context="{'group_by': 'group_id'}" />
                     <filter name="student_tutor_id_group" string="Tutor" domain=""
-                            context="{'group_by': 'student_tutor_id'}"/>
+                        context="{'group_by': 'student_tutor_id'}" />
                     <filter name="student_instructor_id_group" string="Instructor" domain=""
-                            context="{'group_by': 'student_instructor_id'}"/>
+                        context="{'group_by': 'student_instructor_id'}" />
                     <filter name="group_student_company_id" string="Company" domain=""
-                            context="{'group_by': 'student_company_id'}"/>
+                        context="{'group_by': 'student_company_id'}" />
                     <filter name="internship_type" string="Internship Type" domain=""
-                            context="{'group_by': 'internship_type'}"/>
+                        context="{'group_by': 'internship_type'}" />
                     <filter name="turn" string="Turn" domain=""
-                            context="{'group_by': 'turn'}"/>
+                        context="{'group_by': 'turn'}" />
+                    <filter name="turn" string="State" domain=""
+                        context="{'group_by': 'state'}" />
+                    <filter name="turn" string="Without Internship" domain=""
+                        context="{'group_by': 'student_without_internship_reason'}" />
+                    <filter name="turn" string="Special Internship" domain=""
+                        context="{'group_by': 'special_internship_reason_id'}" />                                                                        
 
                 </group>
             </search>
@@ -124,14 +165,17 @@
         <field name="model">school.year.historical</field>
         <field name="arch" type="xml">
             <activity string="Students Records">
-                <field name="user_id"/>
+                <field name="user_id" />
                 <!-- <field name="company_currency"/> -->
                 <templates>
                     <div t-name="activity-box">
-                        <img t-att-src="activity_image('res.users', 'image_128', record.user_id.raw_value)" t-att-title="record.user_id.value" t-att-alt="record.user_id.value"/>
+                        <img
+                            t-att-src="activity_image('res.users', 'image_128', record.user_id.raw_value)"
+                            t-att-title="record.user_id.value" t-att-alt="record.user_id.value" />
                         <div>
-                            <field name="student_id"/>
-                            <!--<field name="expected_revenue" widget="monetary" display="full" muted="1"/>-->
+                            <field name="student_id" />
+                            <!--<field
+                            name="expected_revenue" widget="monetary" display="full" muted="1"/>-->
                         </div>
                     </div>
                 </templates>
@@ -139,26 +183,45 @@
         </field>
     </record>
 
+    <record id="view_special_internship_reason_tree" model="ir.ui.view">
+        <field name="name">special.internship.reason.tree</field>
+        <field name="model">special.internship.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Special Internship Reasons" editable="top">
+                <field name="name" required="1" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_special_internship_reason">
+        <field name="name">Special Internship Reasons</field>
+        <field name="res_model">special.internship.reason</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_special_internship_reason_tree" />
+    </record>
+
     <record model="ir.actions.act_window" id="action_school_year_historical">
         <field name="name">Action School Year Historical</field>
         <field name="res_model">school.year.historical</field>
-        <field name="search_view_id" ref="view_school_year_historical_search"/>
+        <field name="search_view_id" ref="view_school_year_historical_search" />
         <field name="context">{'search_default_filter_active_year': True}</field>
         <field name="view_mode">tree,form,activity</field>
-        <field name="view_id" ref="view_school_year_historical_tree"/>
+        <field name="view_id" ref="view_school_year_historical_tree" />
     </record>
 
     <record id="action_school_year_historical_attachments" model="ir.actions.act_window">
         <field name="name">Student Record Attachments</field>
         <field name="res_model">ir.attachment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree</field>
         <field name="domain">[('res_model', '=', 'school.year.historical')]</field>
         <field name="context">{}</field>
     </record>
 
     <menuitem id="menu_school_year_historical"
-              name="Students Records"
-              action="action_school_year_historical"
-              parent="contacts.menu_contacts"
-              sequence="3"/>
+        name="Students Records"
+        action="action_school_year_historical"
+        parent="contacts.menu_contacts"
+        sequence="3" />
+
 </odoo>

@@ -31,6 +31,18 @@ class SchoolYearHistorical(models.Model):
                               compute="_compute_user_id", store=True)
     student_without_internship = fields.Boolean("Student Without "
                                                 "Internship", tracking=True)
+    student_without_internship_reason = fields.Selection(selection=
+        [('exempt', 'Exempt'),
+         ('sick_leave', 'Sick Leave'),
+         ('absenteeism', 'Absenteeism'),
+         ('other', 'Other')])
+    special_internship = fields.Boolean("Special Internship", 
+        help="This option is selected when the company is for a student who "
+             "requires an alternative training experience "
+             "instead of a company")
+    special_internship_reason_id = fields.Many2one("special.internship.reason",
+                                                   "Reason")
+    notes = fields.Text("Notes")
     resignation_line_ids = fields.One2many(
         comodel_name="resigned.internship.line", inverse_name="record_id",
         string="Resignation Lines")
@@ -46,6 +58,15 @@ class SchoolYearHistorical(models.Model):
         tracking=True)
     allowed_deliveries = fields.Many2many(
         comodel_name="res.partner", compute="_compute_allowed_deliveries")
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('documentation', 'Waitting Documentation'),
+        ('not_started', 'Accepted'),
+        #('in_internship', 'In Internship'),
+        ('pause', 'Paused'),
+        ('done', 'Done')], 
+        'State', default='draft', store=True, tracking=True)
+
 
 
 
@@ -89,6 +110,7 @@ class SchoolYearHistorical(models.Model):
             if company:
                 if instructor.parent_id != company:
                     record.student_instructor_id = False
+                record.special_internship = company.special_internship
             else:
                 record.student_instructor_id = False
 
@@ -151,6 +173,47 @@ class SchoolYearHistorical(models.Model):
             'type': 'ir.actions.act_window',
             'res_id': self.id,
         }
+    
+    @api.onchange("student_without_internship")
+    def onchange_student_without_internship(self):
+        for record in self:
+            if not record.student_without_internship:
+                record.student_without_internship_reason = False
+
+    def action_internship_confirmed(self):
+        for record in self:
+            if (record.state == 'draft' and record.student_tutor_id and 
+                record.student_company_id and record.student_instructor_id and 
+                record.internship_type):
+                record.state = 'documentation'
+            else:
+                raise ValidationError(_('Ensure all fields are filled out'))
+
+    def action_documentation_finished(self):
+        for record in self:
+            if record.state == 'documentation':
+                record.state = 'not_started'
+
+    def action_pause_internship(self):
+        for record in self:
+            if record.state == 'not_started':
+                record.state == 'pause'
+
+    def action_resume_internship(self):
+        for record in self:
+            if record.state == 'pause':
+                record.state = 'not_started'
+
+    def action_done(self):
+        for record in self:
+            if record.state not in ['draft', 'documentation']:
+                record.state = 'done'
+
+    def action_resignation(self):
+        for record in self:
+            if record.state not in ['pause']:
+                #TODO wizard to add a resignation line
+                record.state = 'draft'
 
 
 class ResignedInternshipLine(models.Model):
@@ -162,4 +225,11 @@ class ResignedInternshipLine(models.Model):
     resignation_date = fields.Date("Resignation Date",
                                    default=fields.Date.context_today)
     description = fields.Text("Internal None")
+
+
+class SpecialInternshipReason(models.Model):
+    _name = "special.internship.reason"
+
+    name = fields.Char()
+    description = fields.Char()
 

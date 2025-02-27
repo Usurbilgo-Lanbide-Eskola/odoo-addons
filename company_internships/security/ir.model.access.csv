@@ -9,4 +9,22 @@
 "resigned_internship_user","resigned_internship_user","model_resigned_internship_line","base.group_user",1,0,0,0
 "lead_internship_line_user","lead_internship_line_user","model_internship_line","base.group_user",1,0,0,0
 
+"internship_document_signer_manager","internship_document_signer_manager","model_internship_document_signer","sales_team.group_sale_salesman",1,1,1,1
+"internship_document_signer_user","internship_document_signer_user","model_internship_document_signer","base.group_user",1,0,0,0
+"internship_document_manager","internship_document_manager","model_internship_document","sales_team.group_sale_salesman",1,1,1,1
+"internship_document_user","internship_document_user","model_internship_document","base.group_user",1,0,0,0
+"internship_document_stage_line_manager","internship_document_stage_line_manager","model_internship_document_stage_line","sales_team.group_sale_salesman",1,1,1,1
+"internship_document_stage_line_user","internship_document_stage_line_user","model_internship_document_stage_line","base.group_user",1,0,0,0
+"document_stage_manager","document_stage_manager","model_document_stage","sales_team.group_sale_salesman",1,1,1,1
+"document_stage_user","document_stage_user","model_document_stage","base.group_user",1,0,0,0
+"internship_document_type_manager","internship_document_type_manager","model_internship_document_type","sales_team.group_sale_salesman",1,1,1,1
+"internship_document_type_user","internship_document_type_user","model_internship_document_type","base.group_user",1,0,0,0
+
+"create_internship_document_manager","create_internship_document_manager","model_create_internship_document","sales_team.group_sale_salesman",1,1,1,1
+"create_internship_document_user","create_internship_document_user","model_create_internship_document","base.group_user",1,0,0,0
+
+"upload_new_file_manager","upload_new_file_manager","model_upload_new_file","sales_team.group_sale_salesman",1,1,1,1
+"upload_new_file_user","upload_new_file_user","model_upload_new_file","base.group_user",1,0,0,0
+
+
 

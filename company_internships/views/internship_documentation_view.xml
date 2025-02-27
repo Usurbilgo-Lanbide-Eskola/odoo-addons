@@ -1,29 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_internship_documentation_form" model="ir.ui.view">
-            <field name="name">internship.documentation.form</field>
-            <field name="model">internship.documentation</field>
-            <field name="arch" type="xml">
-                <form string="Internship Documentation">
-                    <field name="no_signed"/>
-                    <field name="school_signed"/>
-                    <field name="second_party_signed"/>
-                    <field name="documentation_type"/>
+        <field name="name">internship.documentation.form</field>
+        <field name="model">internship.document</field>
+        <field name="arch" type="xml">
+            <form string="Internship Documentation">
+                <group>
+                    <field name="original_document" />
+                    <field name="last_document" />
+                    <button string="Upload" name="upload_file" type="object" class="oe_highlight"/>
+                    <field name="document_type_id" required="1"/>
+                    <field name="res_model" required="1" />
+                    <field name="res_id" required="1"/>
+                    <field name="stage_line_ids" />
+                    <!-- <field name="active_line_id" />
+                    <field name="stage_signer_ids" />
+                    <field name="signed_by_ids" /> -->
+                    <!-- <field name="to_sign_by" /> -->
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_internship_documentation_tree" model="ir.ui.view">
+        <field name="name">internship.documentation.tree</field>
+        <field name="model">internship.document</field>
+        <field name="arch" type="xml">
+            <tree string="Internship Documentation">
+                <field name="original_document" />
+                <field name="last_document" />
+                <field name="document_type_id" />
+                <field name="res_model" />
+                <field name="res_id" />
+                <field name="stage_line_ids" />
+                <!-- <field name="active_line_id" />
+                <field name="stage_signer_ids" />
+                <field name="signed_by_ids" />
+                <field name="to_sign_by" /> -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_internship_document_signer_form" model="ir.ui.view">
+        <field name="name">internship.document.signer.form</field>
+        <field name="model">internship.document.signer</field>
+        <field name="arch" type="xml">
+            <form string="Internship Document Signer">
+                <group>
+                    <field name="name" />
+                    <field name="is_internal_user" />
+                    <field name="res_user" attrs="{'invisible': [('is_internal_user', '=', False)]}" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_internship_document_signer_tree" model="ir.ui.view">
+        <field name="name">internship.document.signer.tree</field>
+        <field name="model">internship.document.signer</field>
+        <field name="arch" type="xml">
+            <tree string="Internship Document Signer">
+                <field name="name" />
+                <field name="is_internal_user" />
+                <field name="res_user" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_internship_document_stage_line_form" model="ir.ui.view">
+        <field name="name">internship.document.stage.line.form</field>
+        <field name="model">internship.document.stage.line</field>
+        <field name="arch" type="xml">
+            <form string="Internship Document Stage Line">
+                <group>
+                    <field name="signed_by_ids" />
+                    <field name="to_sign_by" />
+                    <field name="internship_document_id" />
+                    <!-- <field name="state"/> -->
+                    <field name="is_active"/>
                     <field name="signed"/>
-                </form>
-            </field>
-        </record>
-        <record id="view_internship_documentation_tree" model="ir.ui.view">
-            <field name="name">internship.documentation.tree</field>
-            <field name="model">internship.documentation</field>
-            <field name="arch" type="xml">
-                <form string="Internship Documentation">
-                    <field name="no_signed"/>
-                    <field name="school_signed"/>
-                    <field name="second_party_signed"/>
-                    <field name="documentation_type"/>
-                    <field name="signed"/>
-                </form>
-            </field>
-        </record>
+                </group>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="view_internship_document_stage_line_tree" model="ir.ui.view">
+        <field name="name">internship.document.stage.line.tree</field>
+        <field name="model">internship.document.stage.line</field>
+        <field name="arch" type="xml">
+            <tree string="Internship Document Stage Line">
+                <field name="sequence" widget="handle" />
+                <field name="signed_by_ids" />
+                <field name="to_sign_by" />
+                <field name="internship_document_id" />
+                <!-- <field name="state"/> -->
+                <field name="is_active"/>
+                <field name="signed"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_document_stage_form" model="ir.ui.view">
+        <field name="name">document.stage.form</field>
+        <field name="model">document.stage</field>
+        <field name="arch" type="xml">
+            <form string="Document Stage">
+                <group>
+                    <field name="name" />
+                    <field name="description" />
+                    <field name="custom_partners_notification" />
+                    <field name="everyone_sign"
+                        attrs="{'invisible':[('custom_partners_notification','=',False)]}" />
+                    <field name="stage_signer_ids"
+                        attrs="{'invisible':[('custom_partners_notification','=',False)]}"
+                        widget="many2many_tags" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_document_stage_tree" model="ir.ui.view">
+        <field name="name">document.stage.tree</field>
+        <field name="model">document.stage</field>
+        <field name="arch" type="xml">
+            <tree string="Document Stage">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="description" />
+                <field name="custom_partners_notification" />
+                <field name="document_type_id" />
+                <field name="stage_signer_ids" widget="many2many_tags" />
+                <field name="everyone_sign" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_internship_document_type_form" model="ir.ui.view">
+        <field name="name">internship.document.type.form</field>
+        <field name="model">internship.document.type</field>
+        <field name="arch" type="xml">
+            <form string="Internship Document Type">
+                <group>
+                    <field name="name" />
+                    <field name="res_model" />
+                </group>
+                <group>
+                    <field name="stage_ids" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_internship_document_type_tree" model="ir.ui.view">
+        <field name="name">internship.document.type.tree</field>
+        <field name="model">internship.document.type</field>
+        <field name="arch" type="xml">
+            <tree string="Internship Document Type">
+                <field name="name" />
+                <field name="res_model" />
+                <field name="stage_ids" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_internship_documentation" model="ir.actions.act_window">
+        <field name="name">Internship Documentation</field>
+        <field name="res_model">internship.document</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_internship_documentation_stage" model="ir.actions.act_window">
+        <field name="name">Document Stages</field>
+        <field name="res_model">document.stage</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_internship_documentation_type" model="ir.actions.act_window">
+        <field name="name">Document Types</field>
+        <field name="res_model">internship.document.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_internship_document_signer" model="ir.actions.act_window">
+        <field name="name">Document Signers</field>
+        <field name="res_model">internship.document.signer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_internship_documentation_root_menu"
+        name="Internship Documentation"
+        parent="company_internships.menu_internships_root"
+        sequence="3" />
+
+    <menuitem id="menu_internship_documentation"
+        name="Documentation"
+        parent="menu_internship_documentation_root_menu"
+        action="action_internship_documentation"
+        sequence="3" />
+
+    <menuitem id="menu_internship_documentation_stage"
+        name="Document Stages"
+        parent="menu_internship_documentation_root_menu"
+        action="action_internship_documentation_stage"
+        sequence="5" />
+
+    <menuitem id="menu_internship_documentation_type"
+        name="Document Types"
+        parent="menu_internship_documentation_root_menu"
+        action="action_internship_documentation_type"
+        sequence="7" />
+
+    <menuitem id="menu_internship_document_signer"
+        name="Document Signers"
+        parent="menu_internship_documentation_root_menu"
+        action="action_internship_document_signer"
+        sequence="9" />
 </odoo>

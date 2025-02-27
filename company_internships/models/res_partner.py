@@ -62,6 +62,7 @@ class ResPartner(models.Model):
     tutor_user_ids = fields.Many2many(comodel_name="res.users",
                                       compute="_compute_group_teachers",
                                       store=True)
+    special_internship = fields.Boolean("Special Internships Company")
 
 
     @api.depends("student_group_id.tutor_ids",

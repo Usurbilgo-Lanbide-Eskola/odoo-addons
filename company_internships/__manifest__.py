@@ -23,7 +23,10 @@
         "views/crm_lead_view.xml",
         "views/school_year_historical_view.xml",
         "views/internship_menu.xml",
-        #"views/internship_documentation_view.xml",
+        "views/internship_documentation_view.xml",
+        "wizard/create_internship_document_view.xml",
+        "wizard/upload_new_file_view.xml",
+        "data/document_type_code_sequence.xml"
     ],
     "installable": True,
 }
