@@ -18,12 +18,12 @@ msgstr ""
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_smb_photos.field_hezkuntza_student_import__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_smb_photos.field_hezkuntza_student_import__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_smb_photos.field_hezkuntza_student_import__image_path
@@ -39,7 +39,7 @@ msgstr "La ruta de las imagenes no es correcta"
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_smb_photos.field_hezkuntza_student_import____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación el"
 
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_smb_photos.field_hezkuntza_student_import__smb_host
@@ -67,6 +67,8 @@ msgid ""
 "To specify smb path first set shared folder name and then the path joined by"
 " a slash. Ex.: sharedfolder/path/to/dest"
 msgstr ""
+"Para especificar la ruta smb primero establezca el nombre de la carpeta "
+"compartida y luego la ruta unida por una barra. Ej.: carpeta_compartida/ruta/al/destino"
 
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_smb_photos.field_hezkuntza_student_import__use_zip_file
@@ -82,7 +84,7 @@ msgstr "el primer caracter de la ruta no puede ser una barra"
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model,name:hezkuntza_student_importer_smb_photos.model_hezkuntza_student_import
 msgid "hezkuntza.student.import"
-msgstr ""
+msgstr "hezkuntza.student.import"
 
 #. module: hezkuntza_student_importer_smb_photos
 #: code:addons/hezkuntza_student_importer_smb_photos/models/hezkuntza_student_import.py:0

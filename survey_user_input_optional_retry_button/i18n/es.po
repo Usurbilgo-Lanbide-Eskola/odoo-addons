@@ -23,7 +23,7 @@ msgstr "Nombre mostrado"
 #. module: survey_user_input_optional_retry_button
 #: model:ir.model.fields,field_description:survey_user_input_optional_retry_button.field_survey_survey__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: survey_user_input_optional_retry_button
 #: model:ir.model.fields,field_description:survey_user_input_optional_retry_button.field_survey_survey____last_update
@@ -33,12 +33,12 @@ msgstr "Última modificación el"
 #. module: survey_user_input_optional_retry_button
 #: model:ir.model.fields,field_description:survey_user_input_optional_retry_button.field_survey_survey__repeat_survey
 msgid "Repeat Survey"
-msgstr ""
+msgstr "Repetir encuesta"
 
 #. module: survey_user_input_optional_retry_button
 #: model_terms:ir.ui.view,arch_db:survey_user_input_optional_retry_button.survey_button_retake_no_retry
 msgid "Retry"
-msgstr ""
+msgstr "Reintentar"
 
 #. module: survey_user_input_optional_retry_button
 #: model:ir.model,name:survey_user_input_optional_retry_button.model_survey_survey

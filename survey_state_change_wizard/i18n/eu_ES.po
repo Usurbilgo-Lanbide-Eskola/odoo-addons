@@ -18,7 +18,7 @@ msgstr ""
 #. module: survey_state_change_wizard
 #: model_terms:ir.ui.view,arch_db:survey_state_change_wizard.view_survey_state_changer_form
 msgid "Cancel"
-msgstr ""
+msgstr "Utzi"
 
 #. module: survey_state_change_wizard
 #: model:ir.actions.act_window,name:survey_state_change_wizard.state_change_state_wizard_action
@@ -33,57 +33,57 @@ msgstr "Aldatu egoerara"
 #. module: survey_state_change_wizard
 #: model:ir.model.fields.selection,name:survey_state_change_wizard.selection__survey_state_changer__dest_state__closed
 msgid "Closed"
-msgstr ""
+msgstr "Itxita"
 
 #. module: survey_state_change_wizard
 #: model_terms:ir.ui.view,arch_db:survey_state_change_wizard.view_survey_state_changer_form
 msgid "Create"
-msgstr ""
+msgstr "Sortu"
 
 #. module: survey_state_change_wizard
 #: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Sortzailea"
 
 #. module: survey_state_change_wizard
 #: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Sortze data"
 
 #. module: survey_state_change_wizard
 #: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Erakutsi izena"
 
 #. module: survey_state_change_wizard
 #: model:ir.model.fields.selection,name:survey_state_change_wizard.selection__survey_state_changer__dest_state__draft
 msgid "Draft"
-msgstr ""
+msgstr "Zirriborroa"
 
 #. module: survey_state_change_wizard
 #: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__id
 msgid "ID"
-msgstr ""
+msgstr "IDa"
 
 #. module: survey_state_change_wizard
 #: model:ir.model.fields.selection,name:survey_state_change_wizard.selection__survey_state_changer__dest_state__open
 msgid "In progress"
-msgstr ""
+msgstr "Prozesuan"
 
 #. module: survey_state_change_wizard
 #: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Azken aldaketa data"
 
 #. module: survey_state_change_wizard
 #: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Azken eguneratzailea"
 
 #. module: survey_state_change_wizard
 #: model:ir.model.fields,field_description:survey_state_change_wizard.field_survey_state_changer__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Azken eguneratze data"
 
 #. module: survey_state_change_wizard
 #: model_terms:ir.ui.view,arch_db:survey_state_change_wizard.view_survey_state_changer_form
@@ -93,4 +93,4 @@ msgstr "Galdetegiaren egoera aldatu"
 #. module: survey_state_change_wizard
 #: model:ir.model,name:survey_state_change_wizard.model_survey_state_changer
 msgid "survey.state.changer"
-msgstr ""
+msgstr "galdetegiaren egoera aldatzailea"

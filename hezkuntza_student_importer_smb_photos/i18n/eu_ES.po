@@ -18,12 +18,12 @@ msgstr ""
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_smb_photos.field_hezkuntza_student_import__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Erakutsi izena"
 
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_smb_photos.field_hezkuntza_student_import__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_smb_photos.field_hezkuntza_student_import__image_path
@@ -39,7 +39,7 @@ msgstr "Irudien kokapena ez da zuzena"
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_smb_photos.field_hezkuntza_student_import____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Azken aldaketa"
 
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_smb_photos.field_hezkuntza_student_import__smb_host
@@ -85,7 +85,7 @@ msgstr "Zeharkako barrak ezindu izan irudien kokapenaren lehen karakterea"
 #. module: hezkuntza_student_importer_smb_photos
 #: model:ir.model,name:hezkuntza_student_importer_smb_photos.model_hezkuntza_student_import
 msgid "hezkuntza.student.import"
-msgstr ""
+msgstr "hezkuntza.student.import"
 
 #. module: hezkuntza_student_importer_smb_photos
 #: code:addons/hezkuntza_student_importer_smb_photos/models/hezkuntza_student_import.py:0

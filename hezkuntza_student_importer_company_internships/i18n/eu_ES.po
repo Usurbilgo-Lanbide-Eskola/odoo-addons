@@ -18,7 +18,7 @@ msgstr ""
 #. module: hezkuntza_student_importer_company_internships
 #: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer_company_internships.view_hezkuntza_student_import_delete_rejected_form
 msgid "Delete Rejected"
-msgstr ""
+msgstr "Baztertuak ezabatu"
 
 #. module: hezkuntza_student_importer_company_internships
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_company_internships.field_hezkuntza_student_import__display_name
@@ -30,7 +30,7 @@ msgstr "Izena erakutsi"
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_company_internships.field_hezkuntza_student_import__id
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_company_internships.field_hezkuntza_student_import_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hezkuntza_student_importer_company_internships
 #: model:ir.model.fields,field_description:hezkuntza_student_importer_company_internships.field_hezkuntza_student_import____last_update
@@ -43,14 +43,14 @@ msgstr "Azken aldaketa"
 msgid ""
 "The students who have been rejected and do not have any historical record "
 "will be eliminated"
-msgstr ""
+msgstr "Ikasleak baztertuak izan direnak eta ez duten erregistro historikorik ezabatuko dira"
 
 #. module: hezkuntza_student_importer_company_internships
 #: model:ir.model,name:hezkuntza_student_importer_company_internships.model_hezkuntza_student_import
 msgid "hezkuntza.student.import"
-msgstr ""
+msgstr "hezkuntza.student.import"
 
 #. module: hezkuntza_student_importer_company_internships
 #: model:ir.model,name:hezkuntza_student_importer_company_internships.model_hezkuntza_student_import_line
 msgid "hezkuntza.student.import.line"
-msgstr ""
+msgstr "hezkuntza.student.import.line"

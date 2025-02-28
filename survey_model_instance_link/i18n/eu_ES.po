@@ -45,13 +45,13 @@ msgstr "Sortu ekintza"
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__create_uid
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Sortua"
 
 #. module: survey_model_instance_link
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__create_date
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Sortua"
 
 #. module: survey_model_instance_link
 #: model_terms:ir.ui.view,arch_db:survey_model_instance_link.view_survey_type_form
@@ -70,7 +70,7 @@ msgstr "Izena erakutsi"
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_survey__id
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: survey_model_instance_link
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_survey__instance_id
@@ -88,13 +88,13 @@ msgstr "Azken aldaketa"
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__write_uid
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Azken eguneratzea"
 
 #. module: survey_model_instance_link
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_create_surveys_from_template__write_date
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Azken eguneratzea"
 
 #. module: survey_model_instance_link
 #: model:ir.model.fields,field_description:survey_model_instance_link.field_survey_type__model_id
@@ -165,7 +165,7 @@ msgstr "sortu inkestak"
 #. module: survey_model_instance_link
 #: model:ir.model,name:survey_model_instance_link.model_create_surveys_from_template
 msgid "create.surveys.from.template"
-msgstr ""
+msgstr "sortu.inkestak.plantillatik"
 
 #. module: survey_model_instance_link
 #: model_terms:ir.ui.view,arch_db:survey_model_instance_link.view_survey_model_link_form
@@ -175,4 +175,4 @@ msgstr "Plantila bat da?"
 #. module: survey_model_instance_link
 #: model:ir.model,name:survey_model_instance_link.model_survey_type
 msgid "survey.type"
-msgstr ""
+msgstr "inkesta.mota"

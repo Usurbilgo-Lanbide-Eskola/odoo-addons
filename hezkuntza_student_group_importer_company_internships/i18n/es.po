@@ -18,7 +18,7 @@ msgstr ""
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_crm_lead__allowed_speciality_ids
 msgid "Allowed Speciality"
-msgstr ""
+msgstr "Especialidad permitida"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model,name:hezkuntza_student_group_importer_company_internships.model_res_partner
@@ -29,19 +29,19 @@ msgstr "Contacto"
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_product_product__course_id
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_product_template__course_id
 msgid "Course"
-msgstr ""
+msgstr "Curso"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_product_product__degree_id
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_product_template__degree_id
 msgid "Degree"
-msgstr ""
+msgstr "Título"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_product_product__degree_mode_id
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_product_template__degree_mode_id
 msgid "Degree Mode"
-msgstr ""
+msgstr "Modalidad de título"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_crm_lead__display_name
@@ -58,7 +58,7 @@ msgstr "Nombre mostrado"
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_product_product__educational_level_id
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_product_template__educational_level_id
 msgid "Educational Level"
-msgstr ""
+msgstr "Nivel educativo"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_hezkuntza_student_import_line__group_id
@@ -68,7 +68,7 @@ msgstr "Grupo"
 #. module: hezkuntza_student_group_importer_company_internships
 #: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer_company_internships.view_hezkuntza_group_search
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar por"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer_company_internships.view_hezkuntza_student_group_product_form
@@ -90,12 +90,12 @@ msgstr "Grupo de estudiantes Hezkuntza"
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_res_partner__id
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_school_year_historical__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_internship_line__internship_type_id
 msgid "Internship Type"
-msgstr ""
+msgstr "Tipo de pasantía"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_crm_lead____last_update
@@ -117,12 +117,12 @@ msgstr "Lead/Oportunidad"
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_product_product__linguistic_model_id
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_product_template__linguistic_model_id
 msgid "Linguistic Model"
-msgstr ""
+msgstr "Modelo lingüístico"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_hezkuntza_student_group__product_ids
 msgid "Product"
-msgstr ""
+msgstr "Producto"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model,name:hezkuntza_student_group_importer_company_internships.model_product_template
@@ -151,37 +151,37 @@ msgstr "Grupo de estudiante"
 #. module: hezkuntza_student_group_importer_company_internships
 #: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer_company_internships.view_opportunity_speciality_filter
 msgid "Student Speciality"
-msgstr ""
+msgstr "Especialidad del estudiante"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_res_partner__tutor_speciality_id
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer_company_internships.field_res_users__tutor_speciality_id
 msgid "Tutor Speciality"
-msgstr ""
+msgstr "Especialidad del tutor"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: code:addons/hezkuntza_student_group_importer_company_internships/models/hezkuntza_student_import.py:0
 #: code:addons/lhusurbil/odoo-addons/hezkuntza_student_group_importer_company_internships/models/hezkuntza_student_import.py:0
 #, python-format
 msgid "has no group"
-msgstr ""
+msgstr "no tiene grupo"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model,name:hezkuntza_student_group_importer_company_internships.model_hezkuntza_student_group
 msgid "hezkuntza.student.group"
-msgstr ""
+msgstr "grupo de estudiantes hezkuntza"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model,name:hezkuntza_student_group_importer_company_internships.model_hezkuntza_student_import_line
 msgid "hezkuntza.student.import.line"
-msgstr ""
+msgstr "línea de importación de estudiantes hezkuntza"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model,name:hezkuntza_student_group_importer_company_internships.model_internship_line
 msgid "internship.line"
-msgstr ""
+msgstr "línea de pasantía"
 
 #. module: hezkuntza_student_group_importer_company_internships
 #: model:ir.model,name:hezkuntza_student_group_importer_company_internships.model_school_year_historical
 msgid "school.year.historical"
-msgstr ""
+msgstr "año escolar histórico"

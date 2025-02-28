@@ -30,7 +30,7 @@ msgstr "Especialidad de Hezkuntza"
 #: model:ir.model.fields,field_description:hezkuntza_survey.field_survey_user_input__id
 #: model:ir.model.fields,field_description:hezkuntza_survey.field_survey_user_input_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hezkuntza_survey
 #: model:ir.model.fields,field_description:hezkuntza_survey.field_survey_user_input____last_update

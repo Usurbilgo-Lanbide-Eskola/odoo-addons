@@ -50,7 +50,7 @@ msgstr "Idioma en Hezkuntza"
 #. module: hezkuntza_res_partner_student_fields
 #: model:ir.model.fields,field_description:hezkuntza_res_partner_student_fields.field_res_partner__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hezkuntza_res_partner_student_fields
 #: model:ir.model.fields,field_description:hezkuntza_res_partner_student_fields.field_res_partner____last_update

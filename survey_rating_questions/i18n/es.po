@@ -31,7 +31,7 @@ msgstr "Nombre mostrado"
 #: model:ir.model.fields,field_description:survey_rating_questions.field_survey_question__id
 #: model:ir.model.fields,field_description:survey_rating_questions.field_survey_user_input__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: survey_rating_questions
 #: model:ir.model.fields,field_description:survey_rating_questions.field_survey_question____last_update

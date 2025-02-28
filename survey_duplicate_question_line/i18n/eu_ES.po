@@ -28,7 +28,7 @@ msgstr "Bikoiztu"
 #. module: survey_duplicate_question_line
 #: model:ir.model.fields,field_description:survey_duplicate_question_line.field_survey_question__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: survey_duplicate_question_line
 #: model:ir.model.fields,field_description:survey_duplicate_question_line.field_survey_question____last_update
