@@ -180,6 +180,14 @@ class SchoolYearHistorical(models.Model):
             if not record.student_without_internship:
                 record.student_without_internship_reason = False
 
+    @api.constrains("student_without_internship", "special_internship")
+    def _check_internship_flags(self):
+        for record in self:
+            if record.student_without_internship and record.special_internship:
+                raise ValidationError(
+                    _("A student cannot be marked as both without "
+                      "internship and having a special internship"))
+
     def action_internship_confirmed(self):
         for record in self:
             if (record.state == 'draft' and record.student_tutor_id and 
