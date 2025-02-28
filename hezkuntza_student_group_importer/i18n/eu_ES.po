@@ -40,7 +40,7 @@ msgstr "Kurtsoa"
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__create_uid
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Sortua"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__create_date
@@ -50,7 +50,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__create_date
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Sortze data"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__degree_id
@@ -105,7 +105,7 @@ msgstr "Taldea"
 #: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer.view_hezkuntza_course_tree
 #: model_terms:ir.ui.view,arch_db:hezkuntza_student_group_importer.view_hezkuntza_degree_tree
 msgid "Hezkuntza"
-msgstr ""
+msgstr "Hezkuntza"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__hezkuntza_code
@@ -172,7 +172,7 @@ msgstr "Hezkuntza ikasle taldeak"
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_import_line__id
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_res_partner__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course____last_update
@@ -195,7 +195,7 @@ msgstr "Azken aldaketa"
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__write_uid
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Azken eguneratzailea"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_course__write_date
@@ -205,7 +205,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_linguistic_model__write_date
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Azken eguneratze data"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_group_importer.field_hezkuntza_student_group__linguistic_model_id
@@ -237,39 +237,39 @@ msgstr "Ikasle taldea"
 #. module: hezkuntza_student_group_importer
 #: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_course
 msgid "hezkuntza.course"
-msgstr ""
+msgstr "hezkuntza.kurtsoa"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_degree
 msgid "hezkuntza.degree"
-msgstr ""
+msgstr "hezkuntza.gradua"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_degree_mode
 msgid "hezkuntza.degree.mode"
-msgstr ""
+msgstr "hezkuntza.gradu.mota"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_educational_level
 msgid "hezkuntza.educational.level"
-msgstr ""
+msgstr "hezkuntza.hezkuntza.maila"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_linguistic_model
 msgid "hezkuntza.linguistic.model"
-msgstr ""
+msgstr "hezkuntza.hizkuntza.eredua"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_student_group
 msgid "hezkuntza.student.group"
-msgstr ""
+msgstr "hezkuntza.ikasle.taldea"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_student_import
 msgid "hezkuntza.student.import"
-msgstr ""
+msgstr "hezkuntza.ikasle.inportazioa"
 
 #. module: hezkuntza_student_group_importer
 #: model:ir.model,name:hezkuntza_student_group_importer.model_hezkuntza_student_import_line
 msgid "hezkuntza.student.import.line"
-msgstr ""
+msgstr "hezkuntza.ikasle.inportazio.lerroa"

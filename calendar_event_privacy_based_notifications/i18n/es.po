@@ -28,7 +28,7 @@ msgstr "Nombre mostrado"
 #. module: calendar_event_only_internal_notification
 #: model:ir.model.fields,field_description:calendar_event_only_internal_notification.field_calendar_attendee__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: calendar_event_only_internal_notification
 #: model:ir.model.fields,field_description:calendar_event_only_internal_notification.field_calendar_attendee____last_update

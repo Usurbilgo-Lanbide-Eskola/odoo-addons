@@ -45,6 +45,32 @@ msgid ""
 "            </div>\n"
 "        "
 msgstr ""
+"<div style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                    Kaixo ${object.student_id.name or 'parte-hartzailea'}\n"
+"                    <br/>\n"
+"                    <br/>\n"
+"                    Inkesta bat egiten ari gara eta zure erantzuna jaso nahi genuke.\n"
+"                    % for answer in object.answer_ids:\n"
+"                    <div style=\"margin: 16px 0px 16px 0px;\">\n"
+"                        <a href=\"${(answer.get_start_url()) | safe}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
+"                            % if answer.survey_id.certification:\n"
+"                            Hasi ${answer.survey_id.get_related_instance().display_name} Ziurtagiria\n"
+"                            % else:\n"
+"                            Hasi ${answer.survey_id.get_related_instance().display_name} Inkesta\n"
+"                            % endif\n"
+"                        </a>\n"
+"                    </div>\n"
+"                    % if answer.deadline:\n"
+"                    Mesedez, erantzun inkesta ${format_date(answer.deadline)} baino lehen.\n"
+"                    <br/>\n"
+"                    <br/>\n"
+"                    % endif\n"
+"                    %endfor\n"
+"                    Eskerrik asko zure parte-hartzeagatik.\n"
+"                </p>\n"
+"            </div>\n"
+"        "
 
 #. module: internship_companies_survey_sender
 #: model:mail.template,body_html:internship_companies_survey_sender.mail_template_tutor_invite
@@ -107,13 +133,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__survey_access_mode
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__survey_access_mode
 msgid "Access Mode"
-msgstr ""
+msgstr "Sarbide modua"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__emails
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__emails
 msgid "Additional emails"
-msgstr ""
+msgstr "Posta elektroniko gehigarriak"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__answer_ids
@@ -131,19 +157,19 @@ msgstr "Erantzun epea"
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__attachment_ids
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__attachment_ids
 msgid "Attachments"
-msgstr ""
+msgstr "Eranskinak"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__author_id
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__author_id
 msgid "Author"
-msgstr ""
+msgstr "Egilea"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,help:internship_companies_survey_sender.field_send_company_internships__author_id
 #: model:ir.model.fields,help:internship_companies_survey_sender.field_send_student_company_internships__author_id
 msgid "Author of the message."
-msgstr ""
+msgstr "Mezuaren egilea."
 
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_res_partner
@@ -154,7 +180,7 @@ msgstr "Kontaktua"
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__body
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__body
 msgid "Contents"
-msgstr ""
+msgstr "Edukia"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__create_uid
@@ -163,7 +189,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__create_uid
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Sortua"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__create_date
@@ -172,7 +198,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__create_date
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Sortua"
 
 #. module: internship_companies_survey_sender
 #: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_school_year_search
@@ -216,13 +242,13 @@ msgstr "Existitzen diren emailak"
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__email_from
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__email_from
 msgid "From"
-msgstr ""
+msgstr "Nondik"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__existing_mode
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__existing_mode
 msgid "Handle existing"
-msgstr ""
+msgstr "Existitzen dena kudeatu"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__reputation__4
@@ -242,14 +268,14 @@ msgstr "Ona"
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input_line__id
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,help:internship_companies_survey_sender.field_send_company_internships__survey_users_login_required
 #: model:ir.model.fields,help:internship_companies_survey_sender.field_send_student_company_internships__survey_users_login_required
 msgid ""
 "If checked, users have to login before answering even with a valid token."
-msgstr ""
+msgstr "Markatuz gero, erabiltzaileek saioa hasi behar dute baliozko token batekin ere erantzun aurretik."
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_survey__current_school_year
@@ -291,7 +317,7 @@ msgstr "Azken aldaketa"
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__write_uid
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Azken eguneratzailea"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__write_date
@@ -300,13 +326,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__write_date
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Azken eguneratzea"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__survey_users_login_required
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__survey_users_login_required
 msgid "Login Required"
-msgstr ""
+msgstr "Saioa hasi behar da"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields.selection,name:internship_companies_survey_sender.selection__res_partner__reputation__2
@@ -346,7 +372,7 @@ msgstr "Zenbakizko ospea"
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__mail_server_id
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__mail_server_id
 msgid "Outgoing mail server"
-msgstr ""
+msgstr "Irteerako posta zerbitzaria"
 
 #. module: internship_companies_survey_sender
 #: model:mail.template,subject:internship_companies_survey_sender.mail_template_student_invite
@@ -362,7 +388,7 @@ msgstr "Hartu parte zure ikasleen praktikaldiko galdetegietan"
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__partner_ids
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__partner_ids
 msgid "Recipients"
-msgstr ""
+msgstr "Hartzaileak"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_res_partner__reputation
@@ -378,7 +404,7 @@ msgstr "Ospea"
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__existing_text
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__existing_text
 msgid "Resend Comment"
-msgstr ""
+msgstr "Berriro bidali iruzkina"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__school_year
@@ -389,12 +415,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_school_year_search
 #: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_survey_school_year_search
 msgid "School Year"
-msgstr ""
+msgstr "Eskola urtea"
 
 #. module: internship_companies_survey_sender
 #: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_send_student_company_internship_form
 msgid "Send"
-msgstr ""
+msgstr "Bidali"
 
 #. module: internship_companies_survey_sender
 #: model:ir.actions.act_window,name:internship_companies_survey_sender.action_send_student_company_internship
@@ -409,18 +435,18 @@ msgstr "Bidali mezua tutoreei"
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships_line__send_wizard_id
 msgid "Send Wizard"
-msgstr ""
+msgstr "Bidalketa morroia"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input__speciality_id
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_survey_user_input_line__speciality_id
 msgid "Speciality"
-msgstr ""
+msgstr "Espezialitatea"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_student_answer_bundle__student_id
 msgid "Student"
-msgstr ""
+msgstr "Ikaslea"
 
 #. module: internship_companies_survey_sender
 #: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_school_year_search
@@ -441,7 +467,7 @@ msgstr "Ikasleen galdetegia"
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__subject
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__subject
 msgid "Subject"
-msgstr ""
+msgstr "Gaia"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_survey_survey
@@ -455,7 +481,7 @@ msgstr "Galdetegia"
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__survey_start_url
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__survey_start_url
 msgid "Survey URL"
-msgstr ""
+msgstr "Galdetegiaren URLa"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_survey_user_input
@@ -465,20 +491,20 @@ msgstr "Erabiltzailearen inkesta sarrera"
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_survey_user_input_line
 msgid "Survey User Input Line"
-msgstr ""
+msgstr "Inkesta erabiltzailearen sarrera lerroa"
 
 #. module: internship_companies_survey_sender
 #: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_send_company_internship_form
 #: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_send_student_company_internship_form
 msgid "Template Survey"
-msgstr ""
+msgstr "Txantiloi galdetegia"
 
 #. module: internship_companies_survey_sender
 #: code:addons/internship_companies_survey_sender/wizard/send_company_internships.py:0
 #: code:addons/internship_companies_survey_sender/wizard/send_student_company_internships.py:0
 #, python-format
 msgid "There is not an survey type of a 'res.partner' model. Create one"
-msgstr ""
+msgstr "Ez dago 'res.partner' modeloko galdetegi motarik. Sortu bat"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,help:internship_companies_survey_sender.field_send_company_internships__emails
@@ -486,13 +512,13 @@ msgstr ""
 msgid ""
 "This list of emails of recipients will not be converted in contacts.        "
 "Emails must be separated by commas, semicolons or newline."
-msgstr ""
+msgstr "Hartzaileen posta elektronikoen zerrenda hau ez da kontaktu bihurtuko. Posta elektronikoak koma, puntu eta koma edo lerro berri batekin bereizi behar dira."
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships_line__tutor_id
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_tutor_answer_bundle__tutor_id
 msgid "Tutor"
-msgstr ""
+msgstr "Tutorea"
 
 #. module: internship_companies_survey_sender
 #: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_school_year_search
@@ -508,13 +534,13 @@ msgstr "Tutoreen galdetegiko hilera"
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__template_id
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__template_id
 msgid "Use template"
-msgstr ""
+msgstr "Erabili txantiloia"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_company_internships__survey_users_can_signup
 #: model:ir.model.fields,field_description:internship_companies_survey_sender.field_send_student_company_internships__survey_users_can_signup
 msgid "Users can signup"
-msgstr ""
+msgstr "Erabiltzaileek izena eman dezakete"
 
 #. module: internship_companies_survey_sender
 #: model_terms:ir.ui.view,arch_db:internship_companies_survey_sender.view_res_partner_reputation_search
@@ -536,29 +562,29 @@ msgstr "Oso txarra"
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_school_year_historical
 msgid "school.year.historical"
-msgstr ""
+msgstr "eskola.urtea.historikoa"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_send_company_internships
 msgid "send.company.internships"
-msgstr ""
+msgstr "bidali.enpresa.praktikak"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_send_company_internships_line
 msgid "send.company.internships.line"
-msgstr ""
+msgstr "bidali.enpresa.praktikak.lerroa"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_send_student_company_internships
 msgid "send.student.company.internships"
-msgstr ""
+msgstr "bidali.ikasle.enpresa.praktikak"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_student_answer_bundle
 msgid "student.answer.bundle"
-msgstr ""
+msgstr "ikasle.erantzun.multzoa"
 
 #. module: internship_companies_survey_sender
 #: model:ir.model,name:internship_companies_survey_sender.model_tutor_answer_bundle
 msgid "tutor.answer.bundle"
-msgstr ""
+msgstr "tutore.erantzun.multzoa"

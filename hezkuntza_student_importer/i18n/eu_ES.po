@@ -70,7 +70,7 @@ msgstr "Sortu ikasleak"
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__create_uid
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Sortua"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__create_date
@@ -80,7 +80,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__create_date
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Sortua"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__display_name
@@ -90,7 +90,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__display_name
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Erakutsi izena"
 
 #. module: hezkuntza_student_importer
 #: code:addons/hezkuntza_student_importer/models/hezkuntza_student_import.py:0
@@ -148,7 +148,7 @@ msgstr "Generoa"
 #. module: hezkuntza_student_importer
 #: model:ir.ui.menu,name:hezkuntza_student_importer.hezkuntza_importer
 msgid "Hezkuntza"
-msgstr ""
+msgstr "Hezkuntza"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__hezkuntza_code
@@ -178,7 +178,7 @@ msgstr "Hezkuntza genero mapatzea"
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__id_hezkuntza
 msgid "Hezkuntza ID"
-msgstr ""
+msgstr "Hezkuntza ID"
 
 #. module: hezkuntza_student_importer
 #: model:ir.actions.act_window,name:hezkuntza_student_importer.hezkuntza_student_importer_action
@@ -219,7 +219,7 @@ msgstr "Hezkuntza hizkuntza mapatzea"
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__id
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__image_path
@@ -274,7 +274,7 @@ msgstr "Hizkuntza"
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import____last_update
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Azken aldaketa"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__write_uid
@@ -284,7 +284,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__write_uid
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Azken eguneratzea"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_country_code__write_date
@@ -294,7 +294,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import__write_date
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Azken eguneratzea"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model.fields,field_description:hezkuntza_student_importer.field_hezkuntza_student_import_line__lastname
@@ -468,32 +468,32 @@ msgstr "Posta kodea"
 #. module: hezkuntza_student_importer
 #: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_country_code
 msgid "hezkuntza.country.code"
-msgstr ""
+msgstr "hezkuntza.herrialde.kodea"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_gender
 msgid "hezkuntza.gender"
-msgstr ""
+msgstr "hezkuntza.generoa"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_language
 msgid "hezkuntza.language"
-msgstr ""
+msgstr "hezkuntza.hizkuntza"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_state_code
 msgid "hezkuntza.state.code"
-msgstr ""
+msgstr "hezkuntza.probintzia.kodea"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_student_import
 msgid "hezkuntza.student.import"
-msgstr ""
+msgstr "hezkuntza.ikasle.inportazioa"
 
 #. module: hezkuntza_student_importer
 #: model:ir.model,name:hezkuntza_student_importer.model_hezkuntza_student_import_line
 msgid "hezkuntza.student.import.line"
-msgstr ""
+msgstr "hezkuntza.ikasle.inportazio.lerroa"
 
 #. module: hezkuntza_student_importer
 #: model_terms:ir.ui.view,arch_db:hezkuntza_student_importer.view_hezkuntza_student_import_form

@@ -18,7 +18,7 @@ msgstr ""
 #. module: school_year
 #: model_terms:ir.ui.view,arch_db:school_year.res_config_settings_school_year_view
 msgid "<strong>School Year Automatic Generation Settings</strong>"
-msgstr "<strong>Aurtengo ikasturtearen konfigurazio automatikoa</strong>"
+msgstr "<strong>Ikasturtearen sorkuntza automatikoaren ezarpenak</strong>"
 
 #. module: school_year
 #: model:ir.model,name:school_year.model_res_config_settings
@@ -35,12 +35,12 @@ msgstr "Sortu ikasturtea"
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Sortua"
 
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Sortua"
 
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__current_active_year
@@ -74,7 +74,7 @@ msgstr "Amaiera data"
 #: model:ir.model.fields,field_description:school_year.field_res_config_settings__id
 #: model:ir.model.fields,field_description:school_year.field_school_year__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__is_active
@@ -90,12 +90,12 @@ msgstr "Azken aldaketa"
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Azken eguneratzea"
 
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Azken eguneratzea"
 
 #. module: school_year
 #: code:addons/school_year/models/res_config_settings.py:0
@@ -166,4 +166,4 @@ msgstr "hilak"
 #. module: school_year
 #: model:ir.model,name:school_year.model_school_year
 msgid "school.year"
-msgstr ""
+msgstr "ikasturtea"

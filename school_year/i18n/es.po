@@ -36,12 +36,12 @@ msgstr "Crear el año escolar"
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__current_active_year
@@ -75,7 +75,7 @@ msgstr "Fecha fin"
 #: model:ir.model.fields,field_description:school_year.field_res_config_settings__id
 #: model:ir.model.fields,field_description:school_year.field_school_year__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__is_active
@@ -91,12 +91,12 @@ msgstr "Última modificación el"
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: school_year
 #: model:ir.model.fields,field_description:school_year.field_school_year__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: school_year
 #: code:addons/school_year/models/res_config_settings.py:0
@@ -167,4 +167,4 @@ msgstr "meses"
 #. module: school_year
 #: model:ir.model,name:school_year.model_school_year
 msgid "school.year"
-msgstr ""
+msgstr "año.escolar"

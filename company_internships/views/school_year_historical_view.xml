@@ -31,23 +31,23 @@
         <field name="model">school.year.historical</field>
         <field name="arch" type="xml">
             <form string="School Year Records">
+                <header>
+                    <field name="state"  widget="statusbar" /><!-- widget="statusbar" statusbar_visible="draft,sent,sale"-->
+                    <button name="action_internship_confirmed" type="object" string="Confirm"
+                        states="draft" class="oe_highlight" />
+                    <button name="action_documentation_finished" type="object"
+                        string="Documentation Complete" states="documentation"
+                        class="oe_highlight" />
+                    <button name="action_pause_internship" type="object" string="Pause"
+                        states="not_started" class="oe_highlight" />
+                    <button name="action_resume_internship" type="object"
+                        string="Resume Internship" states="pause" class="oe_highlight" />
+                    <button name="action_resignation" type="object" string="Resign Internships"
+                        states="pause,not_started" class="oe_highlight" />
+                    <button name="action_done" type="object" string="Done"
+                        states="not_started" class="oe_highlight" />                            
+                </header>
                 <sheet>
-                    <group>
-                        <field name="state"  widget="statusbar" /><!-- widget="statusbar" statusbar_visible="draft,sent,sale"-->
-                        <button name="action_internship_confirmed" type="object" string="Confirm"
-                            states="draft" class="oe_highlight" />
-                        <button name="action_documentation_finished" type="object"
-                            string="Documentation Complete" states="documentation"
-                            class="oe_highlight" />
-                        <button name="action_pause_internship" type="object" string="Pause"
-                            states="not_started" class="oe_highlight" />
-                        <button name="action_resume_internship" type="object"
-                            string="Resume Internship" states="pause" class="oe_highlight" />
-                        <button name="action_resignation" type="object" string="Resign Internships"
-                            states="pause,not_started" class="oe_highlight" />
-                        <button name="action_done" type="object" string="Done"
-                            states="not_started" class="oe_highlight" />                            
-                    </group>
                     <group col="6">
                         <group colspan="4">
                             <field name="school_year_id" readonly="1" />

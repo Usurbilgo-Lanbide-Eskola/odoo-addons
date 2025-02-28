@@ -28,7 +28,7 @@ msgstr "Izena erakutsi"
 #. module: calendar_event_notify_past_events
 #: model:ir.model.fields,field_description:calendar_event_notify_past_events.field_calendar_event__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: calendar_event_notify_past_events
 #: model:ir.model.fields,field_description:calendar_event_notify_past_events.field_calendar_event____last_update
