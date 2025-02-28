@@ -27,4 +27,5 @@
 "upload_new_file_user","upload_new_file_user","model_upload_new_file","base.group_user",1,0,0,0
 
 
-
+"special_internship_reason_manager","special_internship_reason_manager","model_special_internship_reason","sales_team.group_sale_salesman",1,1,1,1
+"special_internship_reason_user","special_internship_reason_user","model_special_internship_reason","base.group_user",1,0,0,0
