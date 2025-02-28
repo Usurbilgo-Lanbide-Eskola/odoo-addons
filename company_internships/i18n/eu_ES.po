@@ -1050,7 +1050,7 @@ msgstr "Jatorrizko Dokumentua"
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__school_year_historical__student_without_internship_reason__other
 msgid "Other"
-msgstr "Beste"
+msgstr "Beste bat"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_create_internship_document__partner_id

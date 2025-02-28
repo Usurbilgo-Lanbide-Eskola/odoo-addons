@@ -71,7 +71,7 @@
                                     attrs="{'readonly':[('student_without_internship', '=', False)], 'required':[('student_without_internship', '=', True)]}" />
                                 <field name="special_internship" />
                                 <field name="special_internship_reason_id"
-                                    attrs="{'invisible':[('special_internship', '=', False)]}"
+                                    attrs="{'invisible':[('special_internship', '=', False)], 'required': [('special_internship', '=', True)]}"
                                     options="{'no_create': True, 'no_create_edit': True}" />
                                 <field name="notes"
                                     attrs="{'invisible':[('special_internship', '=', False), ('student_without_internship', '=', False)]}" />
