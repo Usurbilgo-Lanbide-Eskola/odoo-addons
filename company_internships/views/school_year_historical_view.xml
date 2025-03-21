@@ -12,7 +12,7 @@
                     context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}" />
                 <field name="allowed_instructors" invisible="1" />
                 <field name="student_instructor_id" />
-                <field name="student_company_id" domain='[("is_company", "=", True)]' />
+                <field name="student_company_id" domain='[("is_company", "=", True)]'/>
                 <field name="internship_type" />
                 <field name="turn" />
                 <field name="student_delivery_id" />
@@ -202,12 +202,34 @@
         <field name="view_id" ref="view_special_internship_reason_tree" />
     </record>
 
+    <record id="view_school_year_historical_pivot" model="ir.ui.view">
+        <field name="name">school.year.historical.pivot</field>
+        <field name="model">school.year.historical</field>
+        <field name="arch" type="xml">
+            <pivot string="School Year Records">
+                <field name="student_company_id" type="row" />
+                <field name="school_year_id" type="col" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_school_year_historical_graph" model="ir.ui.view">
+        <field name="name">school.year.historical.graph</field>
+        <field name="model">school.year.historical</field>
+        <field name="arch" type="xml">
+            <graph string="School Year Records" stacked="False" type="line">
+                <field name="school_year_id" type="row" />
+                <field name="student_company_id" type="measure" />
+            </graph>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_school_year_historical">
         <field name="name">Action School Year Historical</field>
         <field name="res_model">school.year.historical</field>
         <field name="search_view_id" ref="view_school_year_historical_search" />
         <field name="context">{'search_default_filter_active_year': True}</field>
-        <field name="view_mode">tree,form,activity</field>
+        <field name="view_mode">tree,form,activity,pivot,graph</field>
         <field name="view_id" ref="view_school_year_historical_tree" />
     </record>
 

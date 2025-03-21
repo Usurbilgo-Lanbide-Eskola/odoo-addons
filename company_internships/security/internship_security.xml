@@ -1,0 +1,23 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Security Category -->
+        <record id="module_category_internship" model="ir.module.category">
+            <field name="name">Internship</field>
+            <field name="description">User Access Levels for Internships Module</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <!-- Internship Administrators Group -->
+        <record id="group_internship_user" model="res.groups">
+            <field name="name">Internship User</field>
+            <field name="category_id" ref="module_category_internship" />
+        </record>        
+
+        <!-- Internship Administrators Group -->
+        <record id="group_internship_administrator" model="res.groups">
+            <field name="name">Internship Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('group_internship_user'))]"/>
+            <field name="category_id" ref="module_category_internship" />
+        </record>
+    </data>
+</odoo>

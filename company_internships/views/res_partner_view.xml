@@ -126,6 +126,7 @@
                                 <span class="o_stat_text">Students</span>
                             </div>
                         </button>
+                        <field name='company_instructor' invisible="1"/>
                         <button class="oe_stat_button o_res_partner_tip_opp" type="object"
                             name="action_view_instructor_internships"
                             icon="fa-pencil" groups="sales_team.group_sale_salesman"

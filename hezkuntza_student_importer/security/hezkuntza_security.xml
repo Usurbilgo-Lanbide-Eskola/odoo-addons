@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <!-- Define Hezkuntza category -->
+        <record id="category_hezkuntza" model="ir.module.category">
+            <field name="name">Hezkuntza</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <!-- Define Administrator group -->
+        <record id="group_hezkuntza_admin" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="category_hezkuntza"/>
+        </record>
+
+        <!-- Define User group -->
+        <record id="group_hezkuntza_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="category_hezkuntza"/>
+        </record>
+    </data>
+</odoo>

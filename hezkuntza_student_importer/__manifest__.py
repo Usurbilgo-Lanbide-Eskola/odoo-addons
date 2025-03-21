@@ -15,6 +15,7 @@
     "excludes": [],
     "data": [
         "security/ir.model.access.csv",
+        "security/hezkuntza_security.xml",
         "data/hezkuntza_country_data.xml",
         "data/hezkuntza_country_state_data.xml",
         "data/hezkuntza_gender_data.xml",

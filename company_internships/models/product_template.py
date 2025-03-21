@@ -53,9 +53,12 @@ class ProductTemplate(models.Model):
 
     @api.depends("lead_line_ids")
     def _compute_student_group_leads(self):
+        stage_ids = self.env['res.config.settings'].get_crm_stage_ids()
         for group in self:
             pending_qty = 0
-            for lead_line in group.lead_line_ids:
+            
+            for lead_line in group.lead_line_ids.filtered(
+                    lambda x: x.lead_id.stage_id not in stage_ids):
                 if not lead_line.lead_id.order_ids:
                     pending_qty += lead_line.student_qty
             group.pending_qty = pending_qty
@@ -127,7 +130,6 @@ class ProductTemplate(models.Model):
         action['context'] = {
             'search_default_current_school_year': 1,
             'search_default_allowed_group_ids': self.name,
-            'search_default_no_order_leads': 1,
         }
         return action
 

@@ -36,4 +36,16 @@
             </field>
         </field>
     </record>
+
+    <record id="view_school_year_historical_graph_inherit" model="ir.ui.view">
+        <field name="name">school.year.historical.graph.inherit</field>
+        <field name="model">school.year.historical</field>
+        <field name="inherit_id" ref="company_internships.view_school_year_historical_graph" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='school_year_id']" position="after">
+                <field name="speciality_id" type="row" />
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
