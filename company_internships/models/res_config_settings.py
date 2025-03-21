@@ -31,6 +31,7 @@ class ResConfigSettings(models.TransientModel):
 
     def get_m2m_ids(self, m2m_str):
         res = re.findall(r"\((.*?)\)", m2m_str)
+        res_ids = []
         if res:
             res_ids = [int(i) for i in res[0].split(",")]
         return res_ids or []
