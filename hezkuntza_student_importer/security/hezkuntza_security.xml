@@ -1,21 +1,23 @@
 <odoo>
-    <data>
+    <data noupdate="1">
         <!-- Define Hezkuntza category -->
         <record id="category_hezkuntza" model="ir.module.category">
             <field name="name">Hezkuntza</field>
             <field name="sequence">10</field>
         </record>
 
-        <!-- Define Administrator group -->
-        <record id="group_hezkuntza_admin" model="res.groups">
-            <field name="name">Administrator</field>
-            <field name="category_id" ref="category_hezkuntza"/>
-        </record>
-
         <!-- Define User group -->
         <record id="group_hezkuntza_user" model="res.groups">
             <field name="name">User</field>
             <field name="category_id" ref="category_hezkuntza"/>
+        </record>        
+
+        <!-- Define Administrator group -->
+        <record id="group_hezkuntza_admin" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="category_hezkuntza"/>
+            <field name="implied_ids" eval="[(4, ref('group_hezkuntza_user'))]"/>
         </record>
+
     </data>
 </odoo>

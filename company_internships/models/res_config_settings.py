@@ -15,7 +15,7 @@ class ResConfigSettings(models.TransientModel):
         res = super(ResConfigSettings, self).get_values()
         res.update(crm_stage_ids=[(6,0,self.get_m2m_ids(self.env[
             'ir.config_parameter'].sudo().get_param(
-            'company_internships.crm_stage_ids', default=False)))])
+            'company_internships.crm_stage_ids', default="")))])
         return res
     
     def set_values(self):
@@ -26,7 +26,7 @@ class ResConfigSettings(models.TransientModel):
         
     def get_crm_stage_ids(self):
         stages = self.env['ir.config_parameter'].sudo().get_param(
-            'company_internships.crm_stage_ids', default=False)
+            'company_internships.crm_stage_ids', default="")
         return self.get_m2m_ids(stages)
 
     def get_m2m_ids(self, m2m_str):
