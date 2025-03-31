@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pdf_signature_user,pdf.signature.user,model_pdf_signature,base.group_user,1,1,1,1
+access_pdf_signature_admin,pdf.signature.admin,model_pdf_signature,base.group_system,1,1,1,1
