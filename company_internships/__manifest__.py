@@ -6,7 +6,7 @@
     "version": "14.0.1.1.14",
     "category": "Customer Relationship Management",
     "license": "AGPL-3",
-    "author": "CIFP USURBIL LHII, Aitor Mindeguia (LHII USURBIL)",
+    "author": "CIFP USURBIL LHII, Mikel Arregi (LHII USURBIL)",
     "website": "http://www.lhusurbil.eus",
     "depends": [
         "sale_crm", "sale_order_line_menu", "school_year",
