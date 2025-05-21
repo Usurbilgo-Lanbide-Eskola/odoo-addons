@@ -33,6 +33,9 @@ class CrmLead(models.Model):
                                          search="_search_sale")
     internship_sale_ids = fields.One2many(comodel_name="sale.order",
                                           inverse_name='opportunity_id')
+    
+    speciality_id = fields.Many2one(
+        comodel_name="hezkuntza.speciality", string="Speciality")
 
     @api.depends("internship_line_ids")
     def compute_lines_students(self):
@@ -119,6 +122,9 @@ class InternshipLines(models.Model):
     student_group_id = fields.Many2one(comodel_name="product.product",
                                        string="Student Group")
     student_qty = fields.Integer()
+
+    speciality_id = fields.Many2one(
+        comodel_name="hezkuntza.speciality", string="Speciality")
 
     def _get_sale_line_info(self):
         self.ensure_one()
