@@ -123,9 +123,6 @@ class InternshipLines(models.Model):
                                        string="Student Group")
     student_qty = fields.Integer()
 
-    speciality_id = fields.Many2one(
-        comodel_name="hezkuntza.speciality", string="Speciality")
-
     def _get_sale_line_info(self):
         self.ensure_one()
         return {

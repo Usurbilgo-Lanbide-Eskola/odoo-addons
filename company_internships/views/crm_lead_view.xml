@@ -17,7 +17,6 @@
                 <field name="internship_line_ids" attrs="{'invisible': [('opportunity_type', '!=', 'internship')]}"
                        nolabel="1">
                     <tree editable="top">
-                        <field name="speciality_id"/>
                         <field name="student_group_id"/>
                         <field name="student_qty"/>
                     </tree>
@@ -52,7 +51,6 @@
                 <group colspan="4">
                 <field name="internship_line_ids" attrs="{'invisible': [('opportunity_type', '!=', 'internship')]}" nolabel="1">
                     <tree editable="top">
-                        <field name="speciality_id"/>
                         <field name="student_group_id" domain="[('school_year_id', '=', parent.school_year_id)]"/>
                         <field name="student_qty"/>
                     </tree>
@@ -92,5 +90,4 @@
 
         </field>
     </record>
-
 </odoo>
