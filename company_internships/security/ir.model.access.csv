@@ -5,6 +5,7 @@
 "school_year_historical_user","school_year_historical_user","model_school_year_historical","company_internships.group_internship_user",1,1,0,0
 "internship_type_manager","internship_type_manager","model_internship_type","company_internships.group_internship_administrator",1,1,1,1
 "internship_type_user","internship_type_user","model_internship_type","company_internships.group_internship_user",1,0,0,0
+"internship_subtype","internship_subtype","model_internship_subtype","company_internships.group_internship_administrator",1,1,1,1
 "resigned_internship_manager","resigned_internship_manager","model_resigned_internship_line","company_internships.group_internship_administrator",1,1,1,1
 "resigned_internship_user","resigned_internship_user","model_resigned_internship_line","company_internships.group_internship_user",1,1,1,1
 

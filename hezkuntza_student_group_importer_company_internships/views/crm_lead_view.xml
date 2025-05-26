@@ -5,9 +5,11 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="company_internships.crm_lead_quick_form_internship"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='student_group_id']" position="after">
-                <field name="internship_type_id"/>
+            <xpath expr="//field[@name='student_group_id']" position="before">
                 <field name="speciality_id"/>
+            </xpath>
+            <xpath expr="//field[@name='student_group_id']" position="after">
+               <field name="internship_type_id"/>
             </xpath>
         </field>
     </record>
@@ -20,9 +22,11 @@
             <xpath expr="//field[@name='student_group_id']" position="attributes">
                 <attribute name="domain">[('speciality_id', '=', speciality_id)]</attribute>
             </xpath>
-            <xpath expr="//field[@name='student_group_id']" position="after">
-                <field name="internship_type_id"/>
+            <xpath expr="//field[@name='student_group_id']" position="before">
                 <field name="speciality_id" options="{'no_quick_create':True,'no_create_edit':True}"/>
+            </xpath>
+            <xpath expr="//field[@name='student_group_id']" position="after">
+               <field name="internship_type_id"/>
             </xpath>
         </field>
     </record>
