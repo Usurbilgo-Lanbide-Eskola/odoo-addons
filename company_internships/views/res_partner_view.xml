@@ -162,13 +162,13 @@
                     'default_user_id': user_id, 'default_type': 'contact'}</attribute>
             </xpath>
             <xpath expr="//field[@name='name']" position="attributes">
-                    <attribute name="attrs">
-                        {
-                        'readonly': [('is_company', '=', False)],
-                        'required': [('is_company', '=', True)]
-                        }
-                    </attribute>
-                </xpath>
+                <attribute name="attrs">
+                    {
+                    'readonly': [('is_company', '=', False)],
+                    'required': [('is_company', '=', True)]
+                    }
+                </attribute>
+            </xpath>
             <xpath expr="//h1//field[@name='name']/.." position="after">
                 <group attrs="{'invisible': [('is_company', '=', True)]}">
                     <field

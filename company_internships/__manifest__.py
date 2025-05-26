@@ -18,6 +18,7 @@
         "security/internship_security.xml",
         "security/ir.model.access.csv",
         "views/internship_type_view.xml",
+        "views/internship_subtype_view.xml",
         "views/product_template_view.xml",
         "views/res_partner_view.xml",
         "views/sale_order_line_view.xml",
@@ -28,7 +29,7 @@
         "views/res_config_settings_view.xml",
         "wizard/create_internship_document_view.xml",
         "wizard/upload_new_file_view.xml",
-        "data/document_type_code_sequence.xml"
+        "data/document_type_code_sequence.xml",
     ],
     "installable": True,
 }

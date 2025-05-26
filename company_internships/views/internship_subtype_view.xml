@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_internship_subtype" model="ir.actions.act_window">
+        <field name="name">Internship Subtype</field>
+        <field name="res_model">internship.subtype</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_internship_subtype_tree" model="ir.ui.view">
+        <field name="name">internship.subtype.tree</field>
+        <field name="model">internship.subtype</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_internship_subtype_form" model="ir.ui.view">
+        <field name="name">internship.subtype.form</field>
+        <field name="model">internship.subtype</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" string="Name" />
+                    <field name="description" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_internship_subtype_search" model="ir.ui.view">
+        <field name="name">internship.subtype.search</field>
+        <field name="model">internship.subtype</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="type" context="{'group_by': 'type_id'}" />
+            </search>
+        </field>
+    </record>
+
+</odoo>

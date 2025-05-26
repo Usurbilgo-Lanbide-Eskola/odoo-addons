@@ -120,5 +120,5 @@
               parent="hezkuntza_importer"
               action="hezkuntza_student_importer_action"
               sequence="10"/>
-
+              
 </odoo>
