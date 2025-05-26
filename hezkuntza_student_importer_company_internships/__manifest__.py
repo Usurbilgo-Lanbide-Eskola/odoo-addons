@@ -15,6 +15,7 @@
     "excludes": [],
     "data": [
         "views/hezkuntza_student_import_view.xml",
+        "views/res_partner_view.xml"
     ],
     "installable": True,
     "auto_install": True,

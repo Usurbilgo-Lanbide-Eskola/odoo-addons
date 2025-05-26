@@ -24,6 +24,13 @@ class SchoolYearHistorical(models.Model):
     internship_type = fields.Many2one(comodel_name="internship.type",
                                       string="Internship Type",
                                       tracking=True)
+    
+    internship_subtype = fields.Many2one(comodel_name="internship.subtype",
+                                      string="Internship Subtype",
+                                      tracking=True)
+    
+    internship_subtype_ids = fields.One2many(related="internship_type.subtype_ids")
+    
     student_company_id = fields.Many2one(comodel_name="res.partner",
                                          tracking=True)
     is_active = fields.Boolean(related="school_year_id.is_active", store=True)

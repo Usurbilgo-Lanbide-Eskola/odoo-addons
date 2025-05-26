@@ -12,7 +12,7 @@
                     context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}" />
                 <field name="allowed_instructors" invisible="1" />
                 <field name="student_instructor_id" />
-                <field name="student_company_id" domain='[("is_company", "=", True)]'/>
+                <field name="student_company_id" domain='[("is_company", "=", True)]' />
                 <field name="internship_type" />
                 <field name="turn" />
                 <field name="student_delivery_id" />
@@ -32,7 +32,8 @@
         <field name="arch" type="xml">
             <form string="School Year Records">
                 <header>
-                    <field name="state"  widget="statusbar" /><!-- widget="statusbar" statusbar_visible="draft,sent,sale"-->
+                    <field name="state" widget="statusbar" /><!-- widget="statusbar"
+                    statusbar_visible="draft,sent,sale"-->
                     <button name="action_internship_confirmed" type="object" string="Confirm"
                         states="draft" class="oe_highlight" />
                     <button name="action_documentation_finished" type="object"
@@ -45,7 +46,7 @@
                     <button name="action_resignation" type="object" string="Resign Internships"
                         states="pause,not_started" class="oe_highlight" />
                     <button name="action_done" type="object" string="Done"
-                        states="not_started" class="oe_highlight" />                            
+                        states="not_started" class="oe_highlight" />
                 </header>
                 <sheet>
                     <group col="6">
@@ -62,19 +63,23 @@
                             <field name="allowed_deliveries" invisible="1" />
                             <field name="student_delivery_id" />
                             <field name="internship_type" />
+                            <field name="internship_subtype"
+                                domain="[('id','in',internship_subtype_ids)]"
+                                attrs="{'invisible':[('internship_subtype_ids', '=', [])]}" />
+                            <field name="internship_subtype_ids" invisible="1"/>
                             <field name="turn" />
                         </group>
                         <group colspan="2">
-                                <field name="student_without_internship"
-                                    attrs="{'readonly': ['|', '|', '|', '|', ('state', '!=', 'draft'), ('student_company_id', '!=', False), ('student_instructor_id', '!=', False), ('internship_type', '!=', False), ('student_delivery_id', '!=', False)]}" />
-                                <field name="student_without_internship_reason"
-                                    attrs="{'readonly':[('student_without_internship', '=', False)], 'required':[('student_without_internship', '=', True)]}" />
-                                <field name="special_internship" />
-                                <field name="special_internship_reason_id"
-                                    attrs="{'invisible':[('special_internship', '=', False)], 'required': [('special_internship', '=', True)]}"
-                                    options="{'no_create': True, 'no_create_edit': True}" />
-                                <field name="notes"
-                                    attrs="{'invisible':[('special_internship', '=', False), ('student_without_internship', '=', False)]}" />
+                            <field name="student_without_internship"
+                                attrs="{'readonly': ['|', '|', '|', '|', ('state', '!=', 'draft'), ('student_company_id', '!=', False), ('student_instructor_id', '!=', False), ('internship_type', '!=', False), ('student_delivery_id', '!=', False)]}" />
+                            <field name="student_without_internship_reason"
+                                attrs="{'readonly':[('student_without_internship', '=', False)], 'required':[('student_without_internship', '=', True)]}" />
+                            <field name="special_internship" />
+                            <field name="special_internship_reason_id"
+                                attrs="{'invisible':[('special_internship', '=', False)], 'required': [('special_internship', '=', True)]}"
+                                options="{'no_create': True, 'no_create_edit': True}" />
+                            <field name="notes"
+                                attrs="{'invisible':[('special_internship', '=', False), ('student_without_internship', '=', False)]}" />
                         </group>
                     </group>
                     <group>
@@ -114,6 +119,8 @@
                 <field name="student_company_id" />
                 <field name="student_instructor_id" />
                 <field name="internship_type" />
+                <field name="internship_subtype" />
+
                 <field name="turn" />
                 <field name="allowed_deliveries" invisible="1" />
                 <field name="student_delivery_id" />
@@ -154,7 +161,7 @@
                     <filter name="turn" string="Without Internship" domain=""
                         context="{'group_by': 'student_without_internship_reason'}" />
                     <filter name="turn" string="Special Internship" domain=""
-                        context="{'group_by': 'special_internship_reason_id'}" />                                                                        
+                        context="{'group_by': 'special_internship_reason_id'}" />
 
                 </group>
             </search>

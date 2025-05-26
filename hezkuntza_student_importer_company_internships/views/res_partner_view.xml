@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="student_importer_res_partner_view" model="ir.ui.view">
+        <field name="name">student.importer.res.partner.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id"
+            ref="hezkuntza_res_partner_student_fields.view_hezkuntza_res_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='personal_id']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_student', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='id_hezkuntza']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_student', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='hezkuntza_language']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_student', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
