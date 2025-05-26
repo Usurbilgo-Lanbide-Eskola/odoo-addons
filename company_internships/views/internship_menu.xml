@@ -71,5 +71,5 @@
                 name="Special Internship Reasons"
                 action="action_special_internship_reason"
                 parent="assignment_menu"
-                sequence="14"/>                   
+                sequence="14"/>               
 </odoo>

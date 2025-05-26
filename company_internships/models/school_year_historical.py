@@ -67,7 +67,13 @@ class SchoolYearHistorical(models.Model):
         ('done', 'Done')], 
         'State', default='draft', store=True, tracking=True)
 
+    subtype_id = fields.Many2one(
+        comodel_name="internship.subtype"
+    )
 
+    internship_type_ids = fields.One2many(
+        related = "internship_type.type_ids"
+    )
 
 
     @api.constrains("student_company_id", "student_instructor_id")
