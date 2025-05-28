@@ -62,6 +62,9 @@
                             <field name="allowed_deliveries" invisible="1" />
                             <field name="student_delivery_id" />
                             <field name="internship_type" />
+                            <field name="agreement_type_ids" invisible="1"/>
+                            <field name="agreement_type_id"
+                                attrs="{'invisible': [('agreement_type_ids', '=', [])]}" />
                             <field name="turn" />
                         </group>
                         <group colspan="2">

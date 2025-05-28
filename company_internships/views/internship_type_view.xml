@@ -7,6 +7,7 @@
             <tree string="Internship Type" editable="top">
                 <field name="name" required="1"/>
                 <field name="description"/>
+                <field name="agreement_type_ids" widget="many2many_tags"/>
             </tree>
         </field>
     </record>
@@ -22,4 +23,41 @@
               action="action_internship_type"
               name="Internship Types"
               sequence="1" parent="contacts.res_partner_menu_config"/>
+
+    <record id="view_agreement_type_tree" model="ir.ui.view">
+        <field name="name">agreement.type.tree</field>
+        <field name="model">agreement.type</field>
+        <field name="arch" type="xml">
+            <tree string="Agreement Types" editable="top">
+                <field name="name" required="1"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_agreement_type_form" model="ir.ui.view">
+        <field name="name">agreement.type.form</field>
+        <field name="model">agreement.type</field>
+        <field name="arch" type="xml">
+            <form string="Agreement Type">
+                <group>
+                    <field name="name"/>
+                    <field name="description"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_agreement_type">
+        <field name="name">Agreement Types</field>
+        <field name="res_model">agreement.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_agreement_type_tree"/>
+    </record>
+
+    <menuitem id="menu_agreement_types"
+              action="action_agreement_type"
+              name="Agreement Types"
+              parent="contacts.res_partner_menu_config"
+              sequence="2"/>
 </odoo>

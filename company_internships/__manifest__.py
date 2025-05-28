@@ -6,7 +6,7 @@
     "version": "14.0.1.1.14",
     "category": "Customer Relationship Management",
     "license": "AGPL-3",
-    "author": "CIFP USURBIL LHII, Aitor Mindeguia (LHII USURBIL)",
+    "author": "CIFP USURBIL LHII",
     "website": "http://www.lhusurbil.eus",
     "depends": [
         "sale_crm", "sale_order_line_menu", "school_year",
@@ -28,6 +28,7 @@
         "views/res_config_settings_view.xml",
         "wizard/create_internship_document_view.xml",
         "wizard/upload_new_file_view.xml",
+        "wizard/promote_student_view.xml",
         "data/document_type_code_sequence.xml"
     ],
     "installable": True,

@@ -14,8 +14,8 @@
     "external_dependencies": {"python": ["xlrd"]},
     "excludes": [],
     "data": [
-        "security/ir.model.access.csv",
         "security/hezkuntza_security.xml",
+        "security/ir.model.access.csv",
         "data/hezkuntza_country_data.xml",
         "data/hezkuntza_country_state_data.xml",
         "data/hezkuntza_gender_data.xml",

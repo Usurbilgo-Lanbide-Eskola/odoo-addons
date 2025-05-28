@@ -29,3 +29,4 @@ class SchoolYear(models.Model):
         student_groups = self.env['product.template'].search(domain)
         student_groups.write({'active': True})
         return super().school_year_activate_process()
+    

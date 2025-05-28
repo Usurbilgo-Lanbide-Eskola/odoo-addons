@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_promote_student_form" model="ir.ui.view">
+        <field name="name">promote.student.form</field>
+        <field name="model">promote.student</field>
+        <field name="arch" type="xml">
+            <form string="Promote Student">
+                <group>
+                    <field name="school_year_id"/>
+                    <field name="student_group_id"/>
+                </group>
+                <footer>
+                    <button string="Promote" type="object" name="promote_student" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_promote_student_view" model="ir.actions.act_window">
+        <field name="name">Promote Student</field>
+        <field name="res_model">promote.student</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_promote_student_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

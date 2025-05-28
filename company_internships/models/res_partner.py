@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models, _
 from odoo.osv import expression
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class ResPartner(models.Model):
@@ -10,6 +10,8 @@ class ResPartner(models.Model):
 
     is_student = fields.Boolean("Is Student")
     is_tutor = fields.Boolean("Is Teacher")
+    personal_id = fields.Char("National ID",
+                              help="National Identification Number")
     student_group_id = fields.Many2one(comodel_name="product.template",
                                        string="Student Group", domain=[
             ('is_student_group', '=', True)])
@@ -393,3 +395,28 @@ class ResPartner(models.Model):
                     'school_year_id': school_year.id,
                     'group_id': student_group.id})]})
         return super().write(values)
+    
+    def next_group(self):
+        next_year = self.env['school.year'].get_next_school_year(
+            self.student_group_id.school_year_id)
+        if not next_year:
+            raise ValueError(_("generate next school year first"))
+        return self.env["product.template"].search(
+            [('school_year_id', '=', next_year.id)])
+
+    def promote_student(self):
+        next_group = self.next_group()
+        if not next_group:
+            raise ValidationError(_("No group for student"))
+        school_year_id = next_group.mapped("school_year_id")
+        if len(school_year_id) != 1:
+            raise ValidationError(_("Multiple school year in "
+                                    "filtered groups"))
+        action = self.env.ref(
+            'company_internships.action_promote_student_view'
+        ).read()[0]
+        action['context'] = {
+            'default_school_year_id': school_year_id.id,
+            'default_student_group_id': next_group and next_group[0].id or False
+        }
+        return action

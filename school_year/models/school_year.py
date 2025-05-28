@@ -78,10 +78,13 @@ class SchoolYear(models.Model):
     def get_current_school_year(self):
         return self.search([("current_active_year", "=", True)])
 
-    def get_next_school_year(self):
-        today = fields.Date.to_string(fields.Date.today())
+    def get_next_school_year(self, school_year=None):
+        if school_year and isinstance(school_year, type(self)):
+            today = fields.Date.to_string(school_year.start_date)
+        else:
+            today = fields.Date.to_string(fields.Date.today())
         return self.search([('start_date', '>', today)],
-                           order="start_date asc", limit=1)
+                        order="start_date asc", limit=1)
 
     def get_last_school_year(self):
         return self.search([], order="end_date desc", limit=1)

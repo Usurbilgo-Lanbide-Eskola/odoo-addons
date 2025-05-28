@@ -1,0 +1,2 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_generate_new_group","access_generate_new_group","model_generate_new_group","company_internships.group_internship_administrator",1,1,1,1

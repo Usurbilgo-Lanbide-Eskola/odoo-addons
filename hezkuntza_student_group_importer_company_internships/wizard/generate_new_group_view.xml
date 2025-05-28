@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="generate_new_group_view_form" model="ir.ui.view">
+        <field name="name">generate.new.group.view.form</field>
+        <field name="model">generate.new.group</field>
+        <field name="arch" type="xml">
+            <form string="Generate new Group">
+                <sheet>
+                    <group>
+                        <field name="school_year_id"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Generate New Group" type="object" name="generate_new_school_year_group" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_generate_new_group" model="ir.actions.act_window">
+        <field name="name">Generate New Group</field>
+        <field name="binding_model_id" ref="hezkuntza_student_group_importer.model_hezkuntza_student_group"/>
+        <field name="binding_view_types">list</field>
+        <field name="view_id" ref="generate_new_group_view_form"/>
+        <field name="res_model">generate.new.group</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+    </record>
+
+</odoo>

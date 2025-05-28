@@ -18,7 +18,8 @@ class CrmLead(models.Model):
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      default=get_current_school_year)
     opportunity_type = fields.Selection(string="Service Type",
-                                        selection=OPPORTUNITY_TYPE)
+                                        selection=OPPORTUNITY_TYPE,
+                                        default="internship")
     internship_line_ids = fields.One2many(comodel_name="internship.line",
                                           inverse_name="lead_id",
                                           string="Internship Lines")
@@ -119,6 +120,7 @@ class InternshipLines(models.Model):
     student_group_id = fields.Many2one(comodel_name="product.product",
                                        string="Student Group")
     student_qty = fields.Integer()
+    agreement_type = fields.Many2one("agreement.type")
 
     def _get_sale_line_info(self):
         self.ensure_one()

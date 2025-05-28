@@ -20,10 +20,13 @@
             <xpath expr="//field[@name='student_group_id']" position="attributes">
                 <attribute name="domain">[('speciality_id', '=', speciality_id)]</attribute>
             </xpath>
-            <xpath expr="//field[@name='student_group_id']" position="after">
-                <field name="internship_type_id"/>
+            <xpath expr="//field[@name='student_group_id']" position="before">
                 <field name="speciality_id" options="{'no_quick_create':True,'no_create_edit':True}"/>
             </xpath>
+            <xpath expr="//field[@name='student_group_id']" position="after">
+                <field name="internship_type_id"/>
+                <field name="agreement_type"/>
+            </xpath>            
         </field>
     </record>
 

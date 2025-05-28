@@ -9,16 +9,18 @@
     "author": "CIFP USURBIL LHII",
     "website": "http://www.lhusurbil.eus",
     "depends": [
-        "hezkuntza_student_group_importer", "company_internships"
+        "hezkuntza_student_importer","hezkuntza_student_group_importer", "company_internships"
     ],
     "external_dependencies": {"python": ["xlrd"]},
     "excludes": [],
     "data": [
+        "security/ir.model.access.csv",
         "views/hezkuntza_student_group_view.xml",
         "views/product_template_view.xml",
         "views/res_partner_view.xml",
         "views/crm_lead_view.xml",
         "views/school_year_historical_view.xml",
+        "wizard/generate_new_group_view.xml",
     ],
     "installable": True,
     "auto_install": True,
