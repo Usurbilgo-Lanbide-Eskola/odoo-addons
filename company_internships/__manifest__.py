@@ -8,6 +8,12 @@
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",
     "website": "http://www.lhusurbil.eus",
+    "contributors": [
+        "Aitor Mindeguia (CIFP USURBIL LHII)",
+        "Gloria Moya (ZUBIGUNE FUNDAZIOA)",
+        "Malen Aierbe (CIFP USURBIL LHII)",
+        "Mikel Arregi (CIFP USURBIL LHII)"
+    ],    
     "depends": [
         "sale_crm", "sale_order_line_menu", "school_year",
         "partner_second_lastname", "product", "partner_contact_gender",
