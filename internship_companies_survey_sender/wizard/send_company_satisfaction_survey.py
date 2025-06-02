@@ -16,7 +16,8 @@ class SendCompanySatisfactionSurvey(models.TransientModel):
         school_year = self.env['school.year'].get_school_year()
         if school_year:
             return school_year.id
-
+        
+    survey_id = fields.Many2one('survey.survey', required=False)
     school_year = fields.Many2one(comodel_name="school.year",
                                   default=_get_active_year)
     attachment_ids = fields.Many2many(
@@ -83,7 +84,7 @@ class SendCompanySatisfactionSurvey(models.TransientModel):
                     internship_type, survey_instance, survey_type)
         
 
-        answers = self._prepare_instructor_answers(surveys)
+        return self._prepare_instructor_answers(surveys)
         # TODO link to a internship_type?
 
     def _prepare_instructor_answers(self, surveys):
@@ -150,7 +151,7 @@ class SendCompanySatisfactionSurvey(models.TransientModel):
                 template_ctx = {
                     'message': self.env['mail.message'].sudo().new(
                         dict(body=mail_values['body_html'],
-                             record_name=self.survey_id.title)),
+                             record_name=bundle.answers_id.survey_id.title)),
                     'model_description': self.env['ir.model']._get(
                         'survey.survey').display_name,
                     'company': self.env.company,
@@ -177,7 +178,7 @@ class SendCompanySatisfactionSurvey(models.TransientModel):
         return {'type': 'ir.actions.act_window_close'}
 
 
-class SendCompanySatisfactionSurveyLine(models.TransientModel):
+class SendCompanySatisfactionSurveyLine(models.TransientModel)  :
     _name = "send.company.satisfaction.survey.line"
 
 
