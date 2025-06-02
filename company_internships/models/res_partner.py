@@ -412,7 +412,7 @@ class ResPartner(models.Model):
         if len(school_year_id) != 1:
             raise ValidationError(_("Multiple school year in "
                                     "filtered groups"))
-        action = self.env.ref(
+        action = self.sudo().env.ref(
             'company_internships.action_promote_student_view'
         ).read()[0]
         action['context'] = {

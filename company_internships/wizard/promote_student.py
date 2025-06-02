@@ -15,6 +15,7 @@ class PromoteStudent(models.TransientModel):
             ('school_year_id', '=', school_year_id)
         ]
     )
+    change_degree = fields.Boolean()
 
     def promote_student(self):
         student = self.env["res.partner"].browse(self.env.context.get("active_id"))

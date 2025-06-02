@@ -107,5 +107,8 @@ class SurveySurvey(models.Model):
             }
             new_survey = template_survey.sudo().copy(survey_dict)
             new_survey.title = f"{template_survey.title} {instance.name}"
+            self.env['ir.translation'].search([
+                ('name', '=', 'survey.survey,title'),
+                ('res_id', '=', new_survey.id)]).unlink()
             new_surveys |= new_survey
         return new_surveys

@@ -22,6 +22,7 @@
         "views/school_year_historical_view.xml",
         "wizard/send_company_internships_view.xml",
         "wizard/send_student_company_internships_view.xml",
+        "wizard/send_company_satisfaction_survey_view.xml",
     ],
     "installable": True,
 }
