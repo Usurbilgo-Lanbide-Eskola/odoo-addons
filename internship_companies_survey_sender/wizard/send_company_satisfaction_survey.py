@@ -69,7 +69,7 @@ class SendCompanySatisfactionSurvey(models.TransientModel):
                 lambda x: x.internship_type_id == internship_type.id).survey_id
             if not survey_instance:
                 raise ValidationError(_(
-                    f"No survery for: {record.student_id}"))
+                    f"No survery for: {record.student_instructor_id}"))
             new_surveys = survey_obj.with_context(
                     {'school_year_id': self.school_year}).create_child_surveys(
                 internship_type, survey_instance, survey_type)
