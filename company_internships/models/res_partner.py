@@ -406,17 +406,17 @@ class ResPartner(models.Model):
 
     def promote_student(self):
         next_group = self.next_group()
-        if not next_group:
-            raise ValidationError(_("No group for student"))
+        # if not next_group:
+        #     raise ValidationError(_("No group for student"))
         school_year_id = next_group.mapped("school_year_id")
-        if len(school_year_id) != 1:
-            raise ValidationError(_("Multiple school year in "
-                                    "filtered groups"))
+        # if len(school_year_id) != 1:
+        #     raise ValidationError(_("Multiple school year in "
+        #                             "filtered groups"))
         action = self.sudo().env.ref(
             'company_internships.action_promote_student_view'
         ).read()[0]
         action['context'] = {
-            'default_school_year_id': school_year_id.id,
+            'default_school_year_id': school_year_id and school_year_id.id or False,
             'default_student_group_id': next_group and next_group[0].id or False
         }
         return action

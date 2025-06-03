@@ -6,4 +6,4 @@
 "student_answers_bundle_manager","student_answers_bundle_manager","model_student_answer_bundle","company_internships.group_internship_administrator",1,1,1,1
 "send_company_satisfaction_survey_manager","send_company_satisfaction_survey_manager","model_send_company_satisfaction_survey","company_internships.group_internship_administrator",1,1,1,1
 "send_company_satisfaction_survey_line_manager","send_company_satisfaction_survey_line_manager","model_send_company_satisfaction_survey_line","company_internships.group_internship_administrator",1,1,1,1
-"instructor_answer_bundle_manager","instructor_answer_bundle_manager","model_intructor_answer_bundle","company_internships.group_internship_administrator",1,1,1,1
+"instructor_answer_bundle_manager","instructor_answer_bundle_manager","model_instructor_answer_bundle","company_internships.group_internship_administrator",1,1,1,1

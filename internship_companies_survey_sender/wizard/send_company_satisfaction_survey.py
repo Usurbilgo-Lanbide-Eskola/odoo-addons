@@ -66,7 +66,7 @@ class SendCompanySatisfactionSurvey(models.TransientModel):
             instructor_id = record.student_instructor_id
             internship_type = record.internship_type
             survey_instance = self.satisfaction_line_ids.filtered(
-                lambda x: x.internship_type_id == internship_type.id).survey_id
+                lambda x: x.internship_type_id.id == internship_type.id).survey_id
             if not survey_instance:
                 raise ValidationError(_(
                     f"No survery for: {record.student_instructor_id}"))
@@ -148,10 +148,11 @@ class SendCompanySatisfactionSurvey(models.TransientModel):
                     'Sending without layouting.' % (
                         notif_layout))
             else:
+                title = " - ".join(bundle.answer_ids.mapped("survey_id.title"))
                 template_ctx = {
                     'message': self.env['mail.message'].sudo().new(
                         dict(body=mail_values['body_html'],
-                             record_name=bundle.answers_id.survey_id.title)),
+                             record_name=title)),
                     'model_description': self.env['ir.model']._get(
                         'survey.survey').display_name,
                     'company': self.env.company,
@@ -189,7 +190,8 @@ class SendCompanySatisfactionSurveyLine(models.TransientModel)  :
 
 
 class InstructorAnswerBundle(models.TransientModel):
-    _name = "intructor.answer.bundle"
+    _name = "instructor.answer.bundle"
 
     instructor_id = fields.Many2one(comodel_name="res.partner")
     answer_ids = fields.Many2many(comodel_name="survey.user_input")
+    school_year_id = fields.Many2one(comodel_name="school.year")
