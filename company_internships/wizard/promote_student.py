@@ -11,8 +11,7 @@ class PromoteStudent(models.TransientModel):
         comodel_name="product.template",
         string="Student Group",
         domain=[
-            ('is_student_group', '=', True),
-            ('school_year_id', '=', school_year_id)
+            ('is_student_group', '=', True)
         ]
     )
     change_degree = fields.Boolean()

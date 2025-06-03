@@ -7,7 +7,7 @@
             <form string="Promote Student">
                 <group>
                     <field name="school_year_id"/>
-                    <field name="student_group_id"/>
+                    <field name="student_group_id" domain="[('school_year_id', '=', school_year_id.id)]"/>
                 </group>
                 <footer>
                     <button string="Promote" type="object" name="promote_student" class="btn-primary"/>
