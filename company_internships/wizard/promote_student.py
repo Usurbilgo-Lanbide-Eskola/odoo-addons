@@ -10,9 +10,6 @@ class PromoteStudent(models.TransientModel):
     student_group_id = fields.Many2one(
         comodel_name="product.template",
         string="Student Group",
-        domain=[
-            ('is_student_group', '=', True)
-        ]
     )
     change_degree = fields.Boolean()
 
