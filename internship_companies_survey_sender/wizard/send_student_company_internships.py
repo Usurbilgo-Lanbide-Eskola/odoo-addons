@@ -48,7 +48,8 @@ class SendStudentCompanyInternships(models.TransientModel):
             new_surveys = survey_obj.with_context(
                     {'school_year_id': self.school_year}).create_child_surveys(
                 company_id, self.survey_id, survey_type)
-            new_surveys.write({'school_year_id': self.school_year})
+            new_surveys.write({'school_year_id': self.school_year,
+                               'company_id': company_id.id})
             if surveys.get(student_id):
                 surveys[student_id] |= survey_obj.with_context(
                     {'school_year_id': self.school_year}).search_child_survey(

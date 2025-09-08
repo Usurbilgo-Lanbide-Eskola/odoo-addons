@@ -187,6 +187,7 @@ class HezkuntzaStudentImport(models.Model):
         no_students = self.mapped_students_non_in_file(res_lines)
         self.mapped_lines.filtered(
             lambda x: x.id_hezkuntza in no_students).write({"reject": True})
+        
 
     def test_lines(self):
         for line in self.mapped_lines.filtered(lambda x: not x.reject):

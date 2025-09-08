@@ -30,5 +30,5 @@
 "special_internship_reason_manager","special_internship_reason_manager","model_special_internship_reason","company_internships.group_internship_administrator",1,1,1,1
 "special_internship_reason_user","special_internship_reason_user","model_special_internship_reason","company_internships.group_internship_user",1,0,0,0
 "agreement_type_manager","agreement_type_manager","model_agreement_type","company_internships.group_internship_administrator",1,1,1,1
-"agreement_type_user","agreement_type_user","model_agreement_type","company_internships.group_internship_user",1,0,0,0
+"agreement_type_user","agreement_type_user","model_agreement_type","company_internships.group_internship_user",1,1,1,1
 "promote_student_manager","promote_student_manager","model_promote_student","company_internships.group_internship_administrator",1,1,1,1

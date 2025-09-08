@@ -15,6 +15,6 @@ class PromoteStudent(models.TransientModel):
 
     def promote_student(self):
         student = self.env["res.partner"].browse(self.env.context.get("active_id"))
-        student.write({'student_record_ids': [(0, 0, {
+        student.sudo().write({'student_record_ids': [(0, 0, {
                     'school_year_id': self.school_year_id.id,
                     'group_id': self.student_group_id.id})]})

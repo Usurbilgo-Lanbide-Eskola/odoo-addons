@@ -16,23 +16,23 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     reputation = fields.Selection(selection=AVAILABLE_SCORES,
-                                  string="Reputation",
+                                  string="Tutor Reputation",
                                   compute="compute_partner_reputation",
                                   store=True)
-    raw_reputation = fields.Float(string="Numerical Reputation",
+    raw_reputation = fields.Float(string="Tutor Numerical Reputation",
                                   compute="compute_partner_reputation",
                                   store=True)
-    review_qty = fields.Integer(string="Number of Reviews",
+    review_qty = fields.Integer(string="Tutor Number of Reviews",
                                 compute="compute_partner_reputation",
                                 compute_sudo=True)
     student_reputation = fields.Selection(
-        selection=AVAILABLE_SCORES, string="Reputation",
+        selection=AVAILABLE_SCORES, string="Student Reputation",
         compute="compute_student_partner_reputation", store=True)
     student_raw_reputation = fields.Float(
-        string="Numerical Reputation",
+        string="Student Numerical Reputation",
         compute="compute_student_partner_reputation", store=True)
     student_review_qty = fields.Integer(
-        string="Number of Reviews",
+        string="Student Number of Reviews",
         compute="compute_student_partner_reputation", compute_sudo=True)
 
     def _search_tutor_tutored_students(self, school_year=False):

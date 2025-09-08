@@ -40,8 +40,7 @@ class SchoolYear(models.Model):
         query = """
             SELECT other.id FROM school_year this
             JOIN school_year other
-              ON this.id = other.id
-             AND other.id != this.id
+              ON this.id != other.id
              AND (
                 other.start_date <= this.start_date AND this.start_date <= other.end_date
                 OR

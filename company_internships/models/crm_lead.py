@@ -16,7 +16,8 @@ class CrmLead(models.Model):
         return self.env['school.year'].get_current_school_year()
 
     school_year_id = fields.Many2one(comodel_name="school.year",
-                                     default=get_current_school_year)
+                                     default=get_current_school_year,
+                                     copy=False)
     opportunity_type = fields.Selection(string="Service Type",
                                         selection=OPPORTUNITY_TYPE,
                                         default="internship")

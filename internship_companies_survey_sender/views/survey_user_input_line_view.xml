@@ -24,9 +24,10 @@
         <field name="model">survey.user_input.line</field>
         <field name="inherit_id" ref="survey.survey_user_input_line_view_form"/>
         <field name="arch" type="xml">
-            <field name="create_date" position="before">
+            <xpath expr="//field[@name='create_date']" position="before">
                 <field name="school_year_id" readonly="1"/>
-            </field>
+                <field name="user_input_id"/>
+            </xpath>
         </field>
     </record>
     <record id="view_school_year_tree" model="ir.ui.view">

@@ -148,7 +148,7 @@ class SendCompanySatisfactionSurvey(models.TransientModel):
                     'Sending without layouting.' % (
                         notif_layout))
             else:
-                title = " - ".join(bundle.answer_ids.mapped("survey_id.title"))
+                title = ""
                 template_ctx = {
                     'message': self.env['mail.message'].sudo().new(
                         dict(body=mail_values['body_html'],
