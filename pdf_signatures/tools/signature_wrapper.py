@@ -153,7 +153,7 @@ def get_pdf_signatures(filename):
         reader = PdfReader(BytesIO(filename))
     else:
         reader = PdfReader(filename)
-    fields = reader.get_fields().values()
+    fields = reader.get_fields() and reader.get_fields().values() or []
     signature_field_values = [
         f.value for f in fields if f.field_type == '/Sig']
     for v in signature_field_values:

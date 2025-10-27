@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_assign_course_tutor_line_form" model="ir.ui.view">
+        <field name="name">assign.course.tutor.line.form</field>
+        <field name="model">assign.course.tutor.line</field>
+        <field name="arch" type="xml">
+            <form string="Assign Courses">
+                <group>
+                    <field name="tutor_id" readonly="1"/>
+                    <field name="course_ids" widget="many2many_tags"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_assign_course_tutor_form" model="ir.ui.view">
+        <field name="name">assign.course.tutor.form</field>
+        <field name="model">assign.course.tutor</field>
+        <field name="arch" type="xml">
+            <form string="Assign Course Tutor">
+                <group>
+                    <field name="school_year_id" readonly="1" />
+                </group>
+                <field name="course_tutor_line">
+                    <tree create="false" delete="false" editable="bottom">
+                        <field name="tutor_id" readonly="1"/>
+                        <field name="course_ids" widget="many2many_tags"/>
+                        <field name="assign_all" widget="boolean_toggle"/>
+                        <field name="unassign_all" widget="boolean_toggle"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button string="Assign Courses" type="object" name="assign_courses"
+                        class="btn-primary" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_assign_course_tutor_binding" model="ir.actions.act_window">
+        <field name="name">Assign Course Tutors</field>
+        <field name="res_model">assign.course.tutor</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_assign_course_tutor_form" />
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_assing_tutor_groups"
+        name="Assign Course Tutors"
+        action="action_assign_course_tutor_binding"
+        parent="company_internships.student_tutor_menu"
+        sequence="6"
+    />
+
+</odoo>
