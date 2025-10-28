@@ -23,7 +23,7 @@
                 </group>
                 <field name="course_tutor_line">
                     <tree create="false" delete="false" editable="bottom">
-                        <field name="tutor_id" readonly="1"/>
+                        <field name="tutor_id" readonly="1" force_save="1"/>
                         <field name="course_ids" widget="many2many_tags"/>
                         <field name="assign_all" widget="boolean_toggle"/>
                         <field name="unassign_all" widget="boolean_toggle"/>

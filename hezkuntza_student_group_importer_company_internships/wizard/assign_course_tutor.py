@@ -10,11 +10,12 @@ class AssignCourseTutor(models.TransientModel):
     course_tutor_line = fields.One2many("assign.course.tutor.line", "assign_id")
     school_year_id = fields.Many2one("school.year", readonly=True)
 
-    def default_get(self, fields):
-        res = super().default_get(fields)
+    @api.model
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
         school_year = self.env["school.year"].get_school_year()
-        self.school_year_id = school_year.id if school_year else False
-
+        if not school_year:
+            return res
         tutors = self.env["res.partner"].search([("is_tutor", "=", True)])
         line_ids = []
         for tutor in tutors:
@@ -30,29 +31,29 @@ class AssignCourseTutor(models.TransientModel):
                     ("speciality_id", "=", tutor.tutor_speciality_id.id),
                     ("school_year_id", "=", school_year.id),
                 ])
-            line_vals = {
-                "tutor_id": tutor.id,
-            }
+            line_vals = {"tutor_id": tutor.id}
             if course_ids:
                 line_vals["course_ids"] = [(6, 0, course_ids.ids)]
             line_ids.append((0, 0, line_vals))
         res["school_year_id"] = school_year.id
         res["course_tutor_line"] = line_ids
-
         return res
 
     def assign_courses(self):
-        for wiz in self:
-            course_tutor = {}
-            for line in wiz.course_tutor_line:
-                tutor_id = line.tutor_id.id
-                for course in line.course_ids:
-                    if not course_tutor.get(course):
-                        course_tutor[course] = [tutor_id]
-                    else:
+        self.ensure_one()
+        course_tutor = {}
+        for line in self.course_tutor_line:
+            tutor_id = line.tutor_id.id
+            if not tutor_id:
+                continue  # skip empty tutor lines
+            for course in line.course_ids:
+                if not course_tutor.get(course):
+                    course_tutor[course] = [tutor_id]
+                else:
+                    if tutor_id not in course_tutor[course]:
                         course_tutor[course].append(tutor_id)
-            for course, tutor_ids in course_tutor.items():
-                course.tutor_ids = [(6, 0, tutor_ids)]
+        for course, tutor_ids in course_tutor.items():
+            course.tutor_ids = [(6, 0, tutor_ids)]
         return {'type': 'ir.actions.act_window_close'}
 
 
@@ -62,29 +63,20 @@ class AssignCourseTutorLine(models.TransientModel):
 
     assign_id = fields.Many2one(
         comodel_name="assign.course.tutor", ondelete="cascade")
-    tutor_id = fields.Many2one(comodel_name="res.partner")
+    tutor_id = fields.Many2one(comodel_name="res.partner", required=True)
     course_ids = fields.Many2many(comodel_name="product.template")
     assign_all = fields.Boolean("Assign All")
     unassign_all = fields.Boolean("Unassign All")
 
     @api.onchange("assign_all")
-    def assign_all_courses(self):
+    def onchange_assign_all_courses(self):
         self.ensure_one()
         school_year = self.assign_id.school_year_id
         all_courses = self.env["product.template"].search(
             [("school_year_id", "=", school_year.id)])
         self.course_ids = [(6, 0, all_courses.ids)]
-        self.assign_all = False
-
-        # self.ensure_one()
-        # school_year = self.assign_id.school_year_id
-        # all_courses = self.env["product.template"].search(
-        #     [("school_year_id", "=", school_year.id)])
-        # self.write({'course_ids': [(6, 0, all_courses.ids)]})
-        # return True
 
     @api.onchange("unassign_all")
-    def unassign_all_courses(self):
+    def onchange_unassign_all_courses(self):
         self.ensure_one()
         self.course_ids = [(5, 0, 0)]
-        self.unassign_all = False
