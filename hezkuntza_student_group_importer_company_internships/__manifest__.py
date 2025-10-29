@@ -21,7 +21,8 @@
         "views/crm_lead_view.xml",
         "views/school_year_historical_view.xml",
         "wizard/generate_new_group_view.xml",
-        "wizard/assign_course_tutor_view.xml"
+        "wizard/assign_course_tutor_view.xml",
+        "wizard/crm_internship_partial_won_view.xml",
     ],
     "installable": True,
     "auto_install": True,

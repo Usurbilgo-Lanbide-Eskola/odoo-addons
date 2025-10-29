@@ -23,6 +23,7 @@
     "data": [
         "security/internship_security.xml",
         "security/ir.model.access.csv",
+        "wizard/crm_internship_partial_won_view.xml",
         "views/internship_type_view.xml",
         "views/product_template_view.xml",
         "views/res_partner_view.xml",

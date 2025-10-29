@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard view -->
+    <record id="view_crm_internship_partial_won" model="ir.ui.view">
+        <field name="name">crm.internship.partial.won.form</field>
+        <field name="model">crm.internship.partial.won</field>
+        <field name="arch" type="xml">
+            <form string="Partial Won" create="false" edit="false">
+                <group>
+                    <field name="lead_id" readonly="1"/>
+                </group>
+                <group>
+                    <field name="line_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="internship_line_id" force_save="1" invisible="1"/>
+                            <field name="student_group_id" force_save="1" readonly="1"/>
+                            <field name="agreement_type" force_save="1" readonly="1"/>
+                            <field name="original_qty" force_save="1" readonly="1"/>
+                            <field name="won_qty" force_save="1"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="action_confirm" type="object" string="Confirm" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open the wizard -->
+    <record id="action_crm_internship_partial_won" model="ir.actions.act_window">
+        <field name="name">Partial Won</field>
+        <field name="res_model">crm.internship.partial.won</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_crm_internship_partial_won"/>
+        <field name="target">new</field>
+        <field name="context">{'default_lead_id': active_id}</field>
+    </record>
+</odoo>
