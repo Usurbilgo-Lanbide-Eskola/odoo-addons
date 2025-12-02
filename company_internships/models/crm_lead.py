@@ -35,6 +35,7 @@ class CrmLead(models.Model):
                                          search="_search_sale")
     internship_sale_ids = fields.One2many(comodel_name="sale.order",
                                           inverse_name='opportunity_id')
+    tag_ids = fields.Many2many(traking=True)
 
     @api.depends("internship_line_ids")
     def compute_lines_students(self):
@@ -115,6 +116,13 @@ class InternshipLines(models.Model):
     _name = "internship.line"
 
     lead_id = fields.Many2one(comodel_name="crm.lead")
+    stage_id = fields.Many2one(
+        comodel_name="crm.stage",
+        related="lead_id.stage_id",
+        store=True,
+        readonly=True,
+        string="Stage"
+    )
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      related="student_group_id.school_year_id",
                                      store=True)
@@ -122,6 +130,8 @@ class InternshipLines(models.Model):
                                        string="Student Group")
     student_qty = fields.Integer()
     agreement_type = fields.Many2one("agreement.type")
+    internship_type_id = fields.Many2one(comodel_name="internship.type",
+                                         string="Internship Type")
 
     def _get_sale_line_info(self):
         self.ensure_one()

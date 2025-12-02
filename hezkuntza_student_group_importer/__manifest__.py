@@ -21,6 +21,7 @@
         "views/hezkuntza_student_group_view.xml",
         "views/hezkuntza_student_import_view.xml",
         "views/res_partner_view.xml",
+        "wizard/faculty_importer_views.xml",
     ],
     "installable": True,
 }

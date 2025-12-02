@@ -13,3 +13,4 @@
 "hezkuntza_student_group_user","hezkuntza_student_group_user","model_hezkuntza_student_group","base.group_user",1,0,0,0
 "hezkuntza_speciality_manager","hezkuntza_speciality_manager","model_hezkuntza_speciality","hezkuntza_student_importer.group_hezkuntza_admin",1,1,1,1
 "hezkuntza_speciality_user","hezkuntza_speciality_user","model_hezkuntza_speciality","base.group_user",1,0,0,0
+"faculty_importer_manager","faculty_importer_manager","model_faculty_importer","company_internships.group_internship_administrator",1,1,1,1

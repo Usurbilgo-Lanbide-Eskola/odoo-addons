@@ -51,16 +51,15 @@ class ProductTemplate(models.Model):
         return self.internship_ids.filtered(
                 lambda x: x.student_without_internship == False)
 
-    @api.depends("lead_line_ids")
+    @api.depends("lead_line_ids.student_qty", "lead_line_ids.lead_id.stage_id")
     def _compute_student_group_leads(self):
         stage_ids = self.env['res.config.settings'].get_crm_stage_ids()
         for group in self:
             pending_qty = 0
             
             for lead_line in group.lead_line_ids.filtered(
-                    lambda x: x.lead_id.stage_id not in stage_ids):
-                if not lead_line.lead_id.order_ids:
-                    pending_qty += lead_line.student_qty
+                    lambda x: x.lead_id.stage_id.id not in stage_ids):
+                pending_qty += lead_line.student_qty
             group.pending_qty = pending_qty
 
     @api.depends('internship_ids')

@@ -3,7 +3,7 @@
 
 {
     "name": "Company internships",
-    "version": "14.0.1.1.14",
+    "version": "14.0.1.1.15",
     "category": "Customer Relationship Management",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",
@@ -19,12 +19,14 @@
         "partner_second_lastname", "product", "partner_contact_gender",
         "partner_contact_birthdate", "partner_phone_secondary"
     ],
+    "external_dependencies": {"python": ["openpyxl"]},
     "excludes": [],
     "data": [
         "security/internship_security.xml",
         "security/ir.model.access.csv",
-        "wizard/crm_internship_partial_won_view.xml",
+        "wizard/crm_internship_partial_move_view.xml",
         "views/internship_type_view.xml",
+        "views/internship_line_view.xml",
         "views/product_template_view.xml",
         "views/res_partner_view.xml",
         "views/sale_order_line_view.xml",

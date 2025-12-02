@@ -37,7 +37,7 @@
             </xpath>
             <xpath expr="//button[@name='action_set_won_rainbowman']" position="before">
                 <button string="Partial Won" type="action"
-                    name="%(company_internships.action_crm_internship_partial_won)d"
+                    name="%(company_internships.action_crm_internship_partial_move)d"
                     class="oe_highlight"
                     attrs="{'invisible': ['|', ('opportunity_type', '!=', 'internship'), ('probability', '=', 100)]}"/>
                 <button string="Open Quotation" name="open_quotation" type="object"

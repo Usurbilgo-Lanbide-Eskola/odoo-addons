@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard view -->
+    <record id="view_crm_internship_partial_move_ext" model="ir.ui.view">
+        <field name="name">crm.internship.partial.move.ext.form</field>
+        <field name="model">crm.internship.partial.move</field>
+        <field name="inherit_id" ref="company_internships.view_crm_internship_partial_move"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='agreement_type']" position="after">
+                <field name="speciality_id" force_save="1" readonly="1"/>
+                <field name="internship_type_id" force_save="1" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

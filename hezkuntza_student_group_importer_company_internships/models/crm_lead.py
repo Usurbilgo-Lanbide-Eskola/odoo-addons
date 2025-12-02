@@ -21,9 +21,6 @@ class CrmLead(models.Model):
 class InternshipLines(models.Model):
     _inherit = "internship.line"
 
-    internship_type_id = fields.Many2one(comodel_name="internship.type",
-                                         string="Internship Type")
-    agreement_type = fields.Many2one("agreement.type")
     speciality_id = fields.Many2one(
         comodel_name="hezkuntza.speciality", string="Speciality")
 

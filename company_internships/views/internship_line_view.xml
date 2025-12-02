@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree view for internship.line -->
+    <record id="view_internship_line_tree" model="ir.ui.view">
+        <field name="name">internship.line.tree</field>
+        <field name="model">internship.line</field>
+        <field name="arch" type="xml">
+            <tree editable="top" create="true" delete="true">
+                <field name="lead_id"/>
+                <field name="stage_id"/>
+                <field name="school_year_id"/>
+                <field name="student_group_id"/>
+                <field name="internship_type_id"/>
+                <field name="agreement_type"/>
+                <field name="student_qty"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for internship.line -->
+    <record id="view_internship_line_form" model="ir.ui.view">
+        <field name="name">internship.line.form</field>
+        <field name="model">internship.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="lead_id"/>
+                            <field name="stage_id"/>
+                            <field name="student_group_id"/>
+                            <field name="school_year_id"/>
+                        </group>
+                        <group>
+                            <field name="internship_type_id"/>
+                            <field name="agreement_type"/>
+                            <field name="student_qty"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view for internship.line -->
+    <record id="view_internship_line_search" model="ir.ui.view">
+        <field name="name">internship.line.search</field>
+        <field name="model">internship.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="lead_id"/>
+                <field name="stage_id"/>
+                <field name="student_group_id"/>
+                <field name="school_year_id"/>
+                <field name="internship_type_id"/>
+                <field name="agreement_type"/>
+                <filter name="current_school_year" string="Current School Year"
+                    domain="[('school_year_id.current_active_year', '=', True)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_lead" string="Lead" context="{'group_by': 'lead_id'}"/>
+                    <filter name="group_by_stage" string="Stage" context="{'group_by': 'stage_id'}"/>
+                    <filter name="group_by_school_year" string="School Year" context="{'group_by': 'school_year_id'}"/>
+                    <filter name="group_by_student_group" string="Student Group" context="{'group_by': 'student_group_id'}"/>
+                    <filter name="group_by_internship_type" string="Internship Type" context="{'group_by': 'internship_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action for internship.line -->
+    <record id="action_internship_line" model="ir.actions.act_window">
+        <field name="name">Internship Lines</field>
+        <field name="res_model">internship.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_internship_line_tree"/>
+        <field name="search_view_id" ref="view_internship_line_search"/>
+        <field name="context">{'search_default_current_school_year': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new internship line
+            </p>
+            <p>
+                Internship lines represent the agreement details between companies and student groups.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem id="menu_internship_line"
+        name="Internship Lines"
+        action="action_internship_line"
+        parent="assignment_menu"
+        sequence="16"/>
+</odoo>
