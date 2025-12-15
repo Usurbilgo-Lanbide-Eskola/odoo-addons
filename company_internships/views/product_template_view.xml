@@ -41,10 +41,6 @@
                     help="Internships agreed with companies">
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_value">
-                            <!-- Permissions Problem-->
-                            <!--<field
-                            name="accepted_internships" widget="statinfo" nolabel="1"
-                            class="mr4"/>-->
                         </span>
                         <span class="o_stat_text">To be assigned</span>
                     </div>
