@@ -20,6 +20,15 @@
                         <field name="student_group_id" />
                         <field name="student_qty" />
                     </tree>
+                    <form>
+                        <field name="student_group_id" />
+                        <field name="student_qty" />
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers" />
+                            <field name="activity_ids" />
+                            <field name="message_ids" widget="mail_thread" />
+                        </div>
+                    </form>
                 </field>
             </xpath>
         </field>
@@ -39,7 +48,7 @@
                 <button string="Partial Won" type="action"
                     name="%(company_internships.action_crm_internship_partial_move)d"
                     class="oe_highlight"
-                    attrs="{'invisible': ['|', ('opportunity_type', '!=', 'internship'), ('probability', '=', 100)]}"/>
+                    attrs="{'invisible': ['|', ('opportunity_type', '!=', 'internship'), ('probability', '=', 100)]}" />
                 <button string="Open Quotation" name="open_quotation" type="object"
                     class="oe_highlight"
                     attrs="{'invisible': ['|', ('opportunity_type', '!=', 'internship'), ('internship_sale_ids', '=', [])]}" />

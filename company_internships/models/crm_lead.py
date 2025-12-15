@@ -118,8 +118,9 @@ class CrmLead(models.Model):
 
 class InternshipLines(models.Model):
     _name = "internship.line"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    lead_id = fields.Many2one(comodel_name="crm.lead")
+    lead_id = fields.Many2one(comodel_name="crm.lead", tracking=True)
     stage_id = fields.Many2one(
         comodel_name="crm.stage",
         related="lead_id.stage_id",
@@ -129,11 +130,11 @@ class InternshipLines(models.Model):
     )
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      related="student_group_id.school_year_id",
-                                     store=True)
+                                     store=True, traking=True)
     student_group_id = fields.Many2one(comodel_name="product.product",
                                        string="Student Group")
-    student_qty = fields.Integer()
-    agreement_type = fields.Many2one("agreement.type")
+    student_qty = fields.Integer(traking=True)
+    agreement_type = fields.Many2one("agreement.type", traking=True)
     internship_type_id = fields.Many2one(comodel_name="internship.type",
                                          string="Internship Type")
 
