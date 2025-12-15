@@ -35,7 +35,8 @@
                     </div>
                 </button>
 
-                <button class="oe_stat_button" name="action_student_group_sale_lines"
+                <!-- Old behaviour
+                 <button class="oe_stat_button" name="action_student_group_sale_lines"
                     type="object" icon="fa-thumbs-up" groups="sales_team.group_sale_salesman"
                     help="Internships agreed with companies">
                     <div class="o_field_widget o_stat_info">
@@ -47,7 +48,7 @@
                         </span>
                         <span class="o_stat_text">To be assigned</span>
                     </div>
-                </button>
+                </button> -->
 
                 <button class="oe_stat_button" name="action_group_students"
                     type="object" icon="fa-users" groups="sales_team.group_sale_salesman"
