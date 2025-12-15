@@ -31,7 +31,7 @@
                             -
                             <field name="lost_qty" widget="integer" nolabel="1" class="mr4"/>
                         </span>
-                        <span class="o_stat_text">To be accepted</span>
+                        <span class="o_stat_text">Win - Lost</span>
                     </div>
                 </button>
 
