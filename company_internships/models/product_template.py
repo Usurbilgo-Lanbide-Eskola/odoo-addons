@@ -160,6 +160,8 @@ class ProductTemplate(models.Model):
             'search_default_won': 1,
             'search_default_lost': 1,
         }
+        return action
+
     def action_student_group_sale_lines(self):
         action = self.env['ir.actions.act_window']._for_xml_id(
             "company_internships.action_editable_sale_line")
