@@ -332,6 +332,9 @@
                                 context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}" />
                             <field name="allowed_instructors" invisible="1" />
                             <field name="student_instructor_id" />
+                            <field name="student_without_internship_reason"/>
+                            <field name="notes"/>
+
                         </tree>
                     </field>
                     <field name="tutor_ids" widget="many2many_tags" />

@@ -20,7 +20,8 @@ class SchoolYearHistorical(models.Model):
                                            "allowed_instructors)]",
         tracking=True)
     allowed_instructors = fields.Many2many(
-        comodel_name="res.partner", compute="_compute_allowed_instructors")
+        comodel_name="res.partner",
+        compute="_compute_group_possible_companies")
     internship_type = fields.Many2one(comodel_name="internship.type",
                                       string="Internship Type",
                                       tracking=True)
@@ -31,21 +32,25 @@ class SchoolYearHistorical(models.Model):
         domain="[('id', 'in', agreement_type_ids)]"
     )
     student_company_id = fields.Many2one(comodel_name="res.partner",
-                                         tracking=True)
+                                         tracking=True, domain="[('id', 'in', "
+                                         "group_possible_company_ids)]")
+    group_possible_company_ids = fields.Many2many(comodel_name="res.partner",
+                                                  compute="_compute_group_possible_companies")
     is_active = fields.Boolean(related="school_year_id.is_active", store=True)
     user_id = fields.Many2one(comodel_name="res.users",
                               compute="_compute_user_id", store=True)
     student_without_internship = fields.Boolean("Student Without "
                                                 "Internship", tracking=True)
-    student_without_internship_reason = fields.Selection(selection=
-        [('exempt', 'Exempt'),
-         ('sick_leave', 'Sick Leave'),
-         ('absenteeism', 'Absenteeism'),
-         ('other', 'Other')])
-    special_internship = fields.Boolean("Special Internship", 
-        help="This option is selected when the company is for a student who "
-             "requires an alternative training experience "
-             "instead of a company")
+    student_without_internship_reason = fields.Selection(selection=[('exempt', 'Exempt'),
+                                                                    ('sick_leave',
+                                                                     'Sick Leave'),
+                                                                    ('absenteeism',
+                                                                     'Absenteeism'),
+                                                                    ('other', 'Other')])
+    special_internship = fields.Boolean("Special Internship",
+                                        help="This option is selected when the company is for a student who "
+                                        "requires an alternative training experience "
+                                        "instead of a company")
     special_internship_reason_id = fields.Many2one("special.internship.reason",
                                                    "Reason")
     notes = fields.Text("Notes")
@@ -68,13 +73,26 @@ class SchoolYearHistorical(models.Model):
         ('draft', 'Draft'),
         ('documentation', 'Waitting Documentation'),
         ('not_started', 'Accepted'),
-        #('in_internship', 'In Internship'),
+        # ('in_internship', 'In Internship'),
         ('pause', 'Paused'),
-        ('done', 'Done')], 
+        ('done', 'Done')],
         'State', default='draft', store=True, tracking=True)
 
-
-
+    @api.depends("group_id")
+    def _compute_group_possible_companies(self):
+        for internship in self:
+            won_stage = self.env["crm.stage"].search(
+                [("is_won", "=", True)], limit=1)
+            won_leads = self.env["crm.lead"].search(
+                [("stage_id", "=", won_stage.id)])
+            company_ids = won_leads.mapped('partner_id').ids
+            internship.group_possible_company_ids = [(6, 0, company_ids)]
+            instructor_domain = [("company_instructor", "=", True)]
+            if company_ids:
+                instructor_domain.append(("parent_id", "in", company_ids))
+            instructor_ids = self.env["res.partner"].search(
+                instructor_domain).ids
+            internship.allowed_instructors = [(6, 0, instructor_ids)]
 
     @api.constrains("student_company_id", "student_instructor_id")
     def instructor_is_companies_child(self):
@@ -133,8 +151,8 @@ class SchoolYearHistorical(models.Model):
         for record in self:
             record.student_id.write({
                 'student_group_id': record.group_id.id,
-                #'student_tutor': record.student_tutor_id.id,
-                #'student_instructor': record.student_instructor_id.id,
+                # 'student_tutor': record.student_tutor_id.id,
+                # 'student_instructor': record.student_instructor_id.id,
             })
             students |= record.student_id
         return students
@@ -179,7 +197,7 @@ class SchoolYearHistorical(models.Model):
             'type': 'ir.actions.act_window',
             'res_id': self.id,
         }
-    
+
     @api.onchange("student_without_internship")
     def onchange_student_without_internship(self):
         for record in self:
@@ -196,9 +214,9 @@ class SchoolYearHistorical(models.Model):
 
     def action_internship_confirmed(self):
         for record in self:
-            if (record.state == 'draft' and record.student_tutor_id and 
-                record.student_company_id and record.student_instructor_id and 
-                record.internship_type):
+            if (record.state == 'draft' and record.student_tutor_id and
+                record.student_company_id and record.student_instructor_id and
+                    record.internship_type):
                 record.state = 'documentation'
             else:
                 raise ValidationError(_('Ensure all fields are filled out'))
@@ -226,7 +244,7 @@ class SchoolYearHistorical(models.Model):
     def action_resignation(self):
         for record in self:
             if record.state not in ['pause']:
-                #TODO wizard to add a resignation line
+                # TODO wizard to add a resignation line
                 record.state = 'draft'
 
 
@@ -246,4 +264,3 @@ class SpecialInternshipReason(models.Model):
 
     name = fields.Char()
     description = fields.Char()
-

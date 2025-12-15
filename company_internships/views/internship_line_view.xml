@@ -6,13 +6,13 @@
         <field name="model">internship.line</field>
         <field name="arch" type="xml">
             <tree editable="top" create="true" delete="true">
-                <field name="lead_id"/>
+                <field name="lead_id" domain="[('opportunity_type', '=', 'internship'), ('school_year_id.current_active_year', '=', True)]" context="{'form_view_ref': 'company_internships.crm_lead_form_internship'}" readonly="True"/>
                 <field name="stage_id"/>
                 <field name="school_year_id"/>
                 <field name="student_group_id"/>
                 <field name="internship_type_id"/>
                 <field name="agreement_type"/>
-                <field name="student_qty"/>
+                <field name="student_qty" sum="Total Students"/>
             </tree>
         </field>
     </record>
@@ -26,7 +26,7 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="lead_id"/>
+                            <field name="lead_id" domain="[('opportunity_type', '=', 'internship'), ('school_year_id.current_active_year', '=', True)]" />
                             <field name="stage_id"/>
                             <field name="student_group_id"/>
                             <field name="school_year_id"/>
@@ -91,4 +91,9 @@
         action="action_internship_line"
         parent="assignment_menu"
         sequence="16"/>
+    <menuitem id="menu_crm_internship_line"
+        name="Internship Lines"
+        action="action_internship_line"
+        parent="crm.crm_menu_root"
+        sequence="16"/>        
 </odoo>

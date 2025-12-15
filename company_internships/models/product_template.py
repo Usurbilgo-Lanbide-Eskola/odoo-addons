@@ -38,6 +38,10 @@ class ProductTemplate(models.Model):
         compute="_compute_internship_count")
     pending_qty = fields.Integer(compute="_compute_student_group_leads",
                                  store=True)
+    win_qty = fields.Integer(compute="_compute_student_group_leads",
+                                 store=True)
+    lost_qty = fields.Integer(compute="_compute_student_group_leads",
+                                 store=True)
 
     @api.depends("tutor_ids")
     def _compute_tutor_users(self):
@@ -51,15 +55,23 @@ class ProductTemplate(models.Model):
         return self.internship_ids.filtered(
                 lambda x: x.student_without_internship == False)
 
-    @api.depends("lead_line_ids.student_qty", "lead_line_ids.lead_id.stage_id")
+    @api.depends("lead_line_ids.student_qty", "lead_line_ids.lead_id.stage_id", "lead_line_ids.lead_id.probability")
     def _compute_student_group_leads(self):
-        stage_ids = self.env['res.config.settings'].get_crm_stage_ids()
         for group in self:
             pending_qty = 0
+            win_qty = 0
+            lost_qty = 0
             
             for lead_line in group.lead_line_ids.filtered(
-                    lambda x: x.lead_id.stage_id.id not in stage_ids):
-                pending_qty += lead_line.student_qty
+                    lambda x: x.lead_id.active):
+                if lead_line.lead_id.probability == 0:
+                    lost_qty += lead_line.student_qty
+                elif lead_line.lead_id.stage_id.is_won:
+                    win_qty += lead_line.student_qty
+                else:
+                    pending_qty += lead_line.student_qty
+            group.win_qty = win_qty
+            group.lost_qty = lost_qty
             group.pending_qty = pending_qty
 
     @api.depends('internship_ids')
@@ -129,9 +141,25 @@ class ProductTemplate(models.Model):
         action['context'] = {
             'search_default_current_school_year': 1,
             'search_default_allowed_group_ids': self.name,
+            'search_default_working': 1,
         }
         return action
-
+    
+    def action_get_win_lost(self):
+        action = self.env['ir.actions.act_window']._for_xml_id(
+            "crm.crm_lead_action_pipeline")
+        products = self.env['product.product'].search([('product_tmpl_id',
+                                                        '=', self.id)])
+        lead_ids = self.env['internship.line'].search(
+            [('student_group_id', 'in', products.ids)]).mapped("lead_id")
+        domain = [('id', 'in', lead_ids.ids)]
+        action['domain'] = domain
+        action['context'] = {
+            'search_default_current_school_year': 1,
+            'search_default_allowed_group_ids': self.name,
+            'search_default_won': 1,
+            'search_default_lost': 1,
+        }
     def action_student_group_sale_lines(self):
         action = self.env['ir.actions.act_window']._for_xml_id(
             "company_internships.action_editable_sale_line")

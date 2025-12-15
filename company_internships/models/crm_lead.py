@@ -37,6 +37,10 @@ class CrmLead(models.Model):
                                           inverse_name='opportunity_id')
     tag_ids = fields.Many2many(traking=True)
 
+    def action_set_lost(self, **additional_values):
+        additional_values['probability'] = 0
+        return super().action_set_lost(**additional_values)
+
     @api.depends("internship_line_ids")
     def compute_lines_students(self):
         for record in self:
