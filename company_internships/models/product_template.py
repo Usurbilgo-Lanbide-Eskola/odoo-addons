@@ -131,12 +131,12 @@ class ProductTemplate(models.Model):
 
     def action_get_opportunities(self):
         action = self.env['ir.actions.act_window']._for_xml_id(
-            "crm.crm_lead_action_pipeline")
+            "crm.action_internship_line")
         products = self.env['product.product'].search([('product_tmpl_id',
                                                         '=', self.id)])
-        lead_ids = self.env['internship.line'].search(
-            [('student_group_id', 'in', products.ids)]).mapped("lead_id")
-        domain = [('id', 'in', lead_ids.ids)]
+        line_ids = self.env['internship.line'].search(
+            [('student_group_id', 'in', products.ids)])
+        domain = [('id', 'in', line_ids.ids)]
         action['domain'] = domain
         action['context'] = {
             'search_default_current_school_year': 1,
@@ -147,12 +147,12 @@ class ProductTemplate(models.Model):
     
     def action_get_win_lost(self):
         action = self.env['ir.actions.act_window']._for_xml_id(
-            "crm.crm_lead_action_pipeline")
+            "crm.action_internship_line")
         products = self.env['product.product'].search([('product_tmpl_id',
                                                         '=', self.id)])
-        lead_ids = self.env['internship.line'].search(
-            [('student_group_id', 'in', products.ids)]).mapped("lead_id")
-        domain = [('id', 'in', lead_ids.ids)]
+        line_ids = self.env['internship.line'].search(
+            [('student_group_id', 'in', products.ids)])
+        domain = [('id', 'in', line_ids.ids)]
         action['domain'] = domain
         action['context'] = {
             'search_default_current_school_year': 1,

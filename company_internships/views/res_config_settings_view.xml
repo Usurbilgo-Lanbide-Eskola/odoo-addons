@@ -12,7 +12,7 @@
                     <div class="o_setting_right_pane">
                         <b>Compute Students Opportunities</b>
                             <div class="text-muted">
-                                CRM Stages to ignore when computing Students Opportunities
+                                CRM Stages to Compute Students Opportunities
                             </div>                        
                         <field name="crm_stage_ids" widget="many2many_tags"/>
                     </div>

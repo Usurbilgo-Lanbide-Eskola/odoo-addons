@@ -16,9 +16,7 @@ class SchoolYearHistorical(models.Model):
     student_tutor_id = fields.Many2one(comodel_name="res.partner",
                                        tracking=True)
     student_instructor_id = fields.Many2one(
-        comodel_name="res.partner", domain="[('id', 'in', "
-                                           "allowed_instructors)]",
-        tracking=True)
+        comodel_name="res.partner", tracking=True)
     allowed_instructors = fields.Many2many(
         comodel_name="res.partner",
         compute="_compute_group_possible_companies")
@@ -32,10 +30,11 @@ class SchoolYearHistorical(models.Model):
         domain="[('id', 'in', agreement_type_ids)]"
     )
     student_company_id = fields.Many2one(comodel_name="res.partner",
-                                         tracking=True, domain="[('id', 'in', "
-                                         "group_possible_company_ids)]")
-    group_possible_company_ids = fields.Many2many(comodel_name="res.partner",
-                                                  compute="_compute_group_possible_companies")
+                                         tracking=True)
+    group_possible_company_ids = fields.Many2many(
+        comodel_name="res.partner",
+        relation="school_year_historical_company_rel",
+        compute="_compute_group_possible_companies")
     is_active = fields.Boolean(related="school_year_id.is_active", store=True)
     user_id = fields.Many2one(comodel_name="res.users",
                               compute="_compute_user_id", store=True)
@@ -48,6 +47,7 @@ class SchoolYearHistorical(models.Model):
                                                                      'Absenteeism'),
                                                                     ('other', 'Other')])
     special_internship = fields.Boolean("Special Internship",
+                                        tracking=True,
                                         help="This option is selected when the company is for a student who "
                                         "requires an alternative training experience "
                                         "instead of a company")
@@ -83,13 +83,22 @@ class SchoolYearHistorical(models.Model):
         for internship in self:
             won_stage = self.env["crm.stage"].search(
                 [("is_won", "=", True)], limit=1)
-            won_leads = self.env["crm.lead"].search(
-                [("stage_id", "=", won_stage.id)])
-            company_ids = won_leads.mapped('partner_id').ids
+            internship_lines = self.env["internship.line"].search([
+                ('stage_id', '=', won_stage.id), 
+                ('school_year_id', '=', internship.school_year_id.id),
+                ('student_group_id', '=', internship.group_id.id)])
+            partners = internship_lines.mapped('lead_id.partner_id')
+            
+            # Get companies: direct companies or parent company if it's a person
+            company_ids = []
+            for partner in partners:
+                if partner.is_company:
+                    company_ids.append(partner.id)
+                elif partner.parent_id:
+                    company_ids.append(partner.parent_id.id)
             internship.group_possible_company_ids = [(6, 0, company_ids)]
-            instructor_domain = [("company_instructor", "=", True)]
-            if company_ids:
-                instructor_domain.append(("parent_id", "in", company_ids))
+            instructor_domain = [("company_instructor", "=", True),
+                                 ("parent_id", "in", company_ids)]
             instructor_ids = self.env["res.partner"].search(
                 instructor_domain).ids
             internship.allowed_instructors = [(6, 0, instructor_ids)]

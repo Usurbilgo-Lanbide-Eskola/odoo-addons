@@ -7,30 +7,31 @@ import re
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
-    crm_stage_ids = fields.Many2many(comodel_name="crm.stage", )
+    crm_stage_ids = fields.Many2many(comodel_name="crm.stage")
 
 
     @api.model
     def get_values(self):
         res = super(ResConfigSettings, self).get_values()
-        param = self.env['ir.config_parameter'].sudo()
-        stage_ids_str = param.get_param('company_internships.crm_stage_ids', default='[]')
-        try:
-            stage_ids = eval(stage_ids_str) if stage_ids_str else []
-        except:
-            stage_ids = []
-        res.update(crm_stage_ids=[(6, 0, stage_ids)])
+        res.update(crm_stage_ids=[(6,0,self.get_m2m_ids(self.env[
+            'ir.config_parameter'].sudo().get_param(
+            'company_internships.crm_stage_ids', default="")))])
         return res
     
     def set_values(self):
         super(ResConfigSettings, self).set_values()
         param = self.env['ir.config_parameter'].sudo()
-        param.set_param('company_internships.crm_stage_ids', str(self.crm_stage_ids.ids))
+        param.set_param('company_internships.crm_stage_ids',
+                        self.crm_stage_ids.ids)
         
     def get_crm_stage_ids(self):
-        param = self.env['ir.config_parameter'].sudo()
-        stage_ids_str = param.get_param('company_internships.crm_stage_ids', default='[]')
-        try:
-            return eval(stage_ids_str) if stage_ids_str else []
-        except:
-            return []
+        stages = self.env['ir.config_parameter'].sudo().get_param(
+            'company_internships.crm_stage_ids', default="")
+        return self.get_m2m_ids(stages)
+
+    def get_m2m_ids(self, m2m_str):
+        res = re.findall(r"\((.*?)\)", m2m_str)
+        res_ids = []
+        if res:
+            res_ids = [int(i) for i in res[0].split(",")]
+        return res_ids or []

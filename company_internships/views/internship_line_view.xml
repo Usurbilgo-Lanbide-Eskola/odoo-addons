@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree editable="top" create="true" delete="true">
                 <field name="lead_id" domain="[('opportunity_type', '=', 'internship'), ('school_year_id.current_active_year', '=', True)]" context="{'form_view_ref': 'company_internships.crm_lead_form_internship'}" readonly="True"/>
+                <field name="partner_id" readonly="1"/>
                 <field name="stage_id"/>
                 <field name="school_year_id"/>
                 <field name="student_group_id"/>
@@ -27,6 +28,7 @@
                     <group>
                         <group>
                             <field name="lead_id" domain="[('opportunity_type', '=', 'internship'), ('school_year_id.current_active_year', '=', True)]" />
+                            <field name="partner_id" readonly="1"/>
                             <field name="stage_id"/>
                             <field name="student_group_id"/>
                             <field name="school_year_id"/>
@@ -49,6 +51,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="lead_id"/>
+                <field name="partner_id"/>
                 <field name="stage_id"/>
                 <field name="student_group_id"/>
                 <field name="school_year_id"/>

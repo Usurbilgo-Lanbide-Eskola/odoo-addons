@@ -121,6 +121,9 @@ class InternshipLines(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     lead_id = fields.Many2one(comodel_name="crm.lead", tracking=True)
+    partner_id = fields.Many2one(comodel_name="res.partner",
+                                 related="lead_id.partner_id", store=True,
+                                 readonly=True)
     stage_id = fields.Many2one(
         comodel_name="crm.stage",
         related="lead_id.stage_id",

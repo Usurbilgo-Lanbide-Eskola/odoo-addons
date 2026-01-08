@@ -337,8 +337,8 @@
 
                         </tree>
                     </field>
-                    <field name="tutor_ids" widget="many2many_tags" />
-                    <field name="tutor_user_ids" widget="many2many_tags" />
+                    <field invisible="1" name="tutor_ids" widget="many2many_tags" />
+                    <field invisible="1" name="tutor_user_ids" widget="many2many_tags" />
                 </page>
             </xpath>
             <xpath expr="//page[@name='contact_addresses']" position="attributes">
