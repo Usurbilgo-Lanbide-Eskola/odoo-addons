@@ -252,7 +252,7 @@ class ResPartner(models.Model):
         '''
         if self.is_student:
             action = self.env['ir.actions.act_window']._for_xml_id(
-                'company_internships.view_school_year_historical_tree')
+                'company_internships.action_school_year_historical')
             action['domain'] = [
                 ('student_id.id', '=', self.id)]
             return action
