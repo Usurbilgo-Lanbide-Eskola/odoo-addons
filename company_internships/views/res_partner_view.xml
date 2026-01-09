@@ -208,7 +208,7 @@
         <field name="priority">999</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-            <div class="oe_button_box" name="button_box">
+            <div class="oe_button_box" name="button_box" position="replace">
                 <div class="oe_button_box" name="button_box">
                     <button class="oe_stat_button" type="object" name="schedule_meeting"
                         icon="fa-calendar"
