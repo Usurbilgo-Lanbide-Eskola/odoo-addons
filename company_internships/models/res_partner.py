@@ -20,10 +20,12 @@ class ResPartner(models.Model):
                                   string="School Year")
     internship_count = fields.Integer(compute="_compute_internships",
                                       store=True)
-    internship_of_group_year = fields.Many2one(comodel_name="sale.order.line",
-                                               compute="_compute_internships")
+    # old behaviour
+    # internship_of_group_year = fields.Many2one(comodel_name="sale.order.line",
+    #                                            compute="_compute_internships")
     # Field to trigger the compute function
-    internship_count_dummy = fields.Integer(compute="_compute_internships")
+    # old behaviour
+    # internship_count_dummy = fields.Integer(compute="_compute_internships")
     in_active_school_year = fields.Boolean(
         compute="_compute_in_active_school_year", store=True)
     # student_tutor = fields.Many2one(comodel_name="res.partner")
@@ -185,25 +187,27 @@ class ResPartner(models.Model):
                     continue
             partner.in_active_school_year = False
 
-    @api.depends("school_year", "student_group_id")
+    @api.depends("student_record_ids")
     def _compute_internships(self):
         for student_id in self:
-            if not student_id.is_student:
-                student_id.internship_count_dummy = 0
-                student_id.internship_of_group_year = False
-                continue
-            student_group_year = student_id.student_group_id.school_year_id
-            internships = self.env['sale.order.line'].search(
-                [("internship_record_id.student_id.id", "=", student_id.id)])
-            internship_of_group_year = internships.filtered(
-                lambda x: x.school_year_id.id == student_group_year.id)
-            if len(internship_of_group_year) > 1:
-                raise UserError(_(f"Student: {student_id.name} "
-                                  f"has more than one internships assigned"))
-            student_id.internship_of_group_year = internship_of_group_year.id
-            internship_count = len(internships)
-            student_id.internship_count = internship_count
-            student_id.internship_count_dummy = internship_count
+            student_id.internship_count = len(student_id.student_record_ids)
+            # old behaviour
+            # if not student_id.is_student:
+            #     student_id.internship_count_dummy = 0
+            #     student_id.internship_of_group_year = False
+            #     continue
+            # student_group_year = student_id.student_group_id.school_year_id
+            # internships = self.env['sale.order.line'].search(
+            #     [("internship_record_id.student_id.id", "=", student_id.id)])
+            # internship_of_group_year = internships.filtered(
+            #     lambda x: x.school_year_id.id == student_group_year.id)
+            # if len(internship_of_group_year) > 1:
+            #     raise UserError(_(f"Student: {student_id.name} "
+            #                       f"has more than one internships assigned"))
+            # student_id.internship_of_group_year = internship_of_group_year.id
+            # internship_count = len(internships)
+            # student_id.internship_count = internship_count
+            # student_id.internship_count_dummy = internship_count
 
     def action_view_company_internships(self):
         if self.is_company:
@@ -241,16 +245,16 @@ class ResPartner(models.Model):
         action['domain'] = domain
         return action
 
-    def action_view_sale_lines(self):
+    def action_view_record_lines(self):
         '''
-        This function returns an action that displays the sale lines from
+        This function returns an action that displays the record lines from
         partner.
         '''
         if self.is_student:
             action = self.env['ir.actions.act_window']._for_xml_id(
-                'sale_order_line_menu.action_orders_lines')
+                'company_internships.view_school_year_historical_tree')
             action['domain'] = [
-                ('internship_record_id.student_id.id', '=', self.id)]
+                ('student_id.id', '=', self.id)]
             return action
         return None
 

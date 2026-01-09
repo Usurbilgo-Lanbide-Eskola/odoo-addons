@@ -3,13 +3,14 @@
     <record id="view_res_partner_reputation_search" model="ir.ui.view">
         <field name="name">res.partner.reputation.search</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
         <field name="arch" type="xml">
             <filter name="type_company" position="after">
-                <filter name="valued_partners" string="Valued Companies" domain="[('is_company', '=', True), ('raw_reputation', '&gt;', 0)]"/>
+                <filter name="valued_partners" string="Valued Companies"
+                    domain="[('is_company', '=', True), ('raw_reputation', '&gt;', 0)]" />
             </filter>
             <filter name="group_country" position="after">
-                <filter name="reputation" string="Reputation" context="{'group_by': 'reputation'}"/>
+                <filter name="reputation" string="Reputation" context="{'group_by': 'reputation'}" />
             </filter>
         </field>
     </record>
@@ -17,23 +18,25 @@
     <record id="view_companies_reputation_form" model="ir.ui.view">
         <field name="name">view.companies.reputation.form</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <field name="category_id" position="after">
                 <label for="reputation" string="Reputation" class="oe_inline"
-                       attrs="{'invisible': [('is_company', '=', False)]}"/>
-                <div class="o_row no-gutters d-flex" attrs="{'invisible': [('is_company', '=', False)]}">
-                    <field name="reputation" widget="priority" class="oe_inline text-left"/>
-                    <label for="review_qty" string="" class="oe_inline"/>
-                    (<field name="review_qty" nolabel="1" class="oe_inline"/>)
-                </div>
+                    attrs="{'invisible': [('is_company', '=', False)]}" />
+                <div class="o_row no-gutters d-flex"
+                    attrs="{'invisible': [('is_company', '=', False)]}">
+                    <field name="reputation" widget="priority" class="oe_inline text-left" />
+                    <label
+                        for="review_qty" string="" class="oe_inline" /> (<field name="review_qty"
+                        nolabel="1" class="oe_inline" />) </div>
                 <label for="reputation" string="Student Reputation" class="oe_inline"
-                       attrs="{'invisible': [('is_company', '=', False)]}"/>
-                <div class="o_row no-gutters d-flex" attrs="{'invisible': [('is_company', '=', False)]}">
-                    <field name="student_reputation" widget="priority" class="oe_inline text-left"/>
-                    <label for="student_review_qty" string="" class="oe_inline"/>
-                    (<field name="student_review_qty" nolabel="1" class="oe_inline"/>)
-                </div>
+                    attrs="{'invisible': [('is_company', '=', False)]}" />
+                <div class="o_row no-gutters d-flex"
+                    attrs="{'invisible': [('is_company', '=', False)]}">
+                    <field name="student_reputation" widget="priority" class="oe_inline text-left" />
+                    <label
+                        for="student_review_qty" string="" class="oe_inline" /> (<field
+                        name="student_review_qty" nolabel="1" class="oe_inline" />) </div>
             </field>
         </field>
     </record>
@@ -41,13 +44,26 @@
     <record id="view_companies_reputation_kanban" model="ir.ui.view">
         <field name="name">view.companies.reputation.kanban</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="inherit_id" ref="base.res_partner_kanban_view" />
         <field name="arch" type="xml">
             <xpath expr="//kanban/templates//field[@name='display_name']" position="after">
                 <div attrs="{'invisible': [('is_company', '=', False)]}">
-                    <field name="reputation" widget="priority"/>
-                    (<field name="review_qty"/>)
-                </div>
+                    <field name="reputation" widget="priority" /> (<field name="review_qty" />) </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_survey_button" model="ir.ui.view">
+        <field name="name">res.partner.form.survey.button</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="company_internships.view_res_partner_student_tutor_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <button name="action_open_survey_user_inputs" type="object" class="oe_stat_button"
+                    string="Survey Responses">
+                    <field name="survey_user_input_count" widget="statinfo" />
+                </button>
+
             </xpath>
         </field>
     </record>

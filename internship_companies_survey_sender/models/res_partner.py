@@ -35,6 +35,9 @@ class ResPartner(models.Model):
         string="Student Number of Reviews",
         compute="compute_student_partner_reputation", compute_sudo=True)
 
+    survey_user_input_count = fields.Integer(
+        string='Survey Responses', compute='_compute_survey_user_input_count')
+
     def _search_tutor_tutored_students(self, school_year=False):
         self.ensure_one()
         if not self.is_tutor:
@@ -94,3 +97,22 @@ class ResPartner(models.Model):
             raw_reputation = avg_percentage * max_score / 100
             partner.student_raw_reputation = raw_reputation
             partner.student_reputation = str(round(raw_reputation))
+
+    def _compute_survey_user_input_count(self):
+        SurveyInput = self.env['survey.user_input']
+        for partner in self:
+            partner.survey_user_input_count = SurveyInput.search_count([
+                ('partner_id', '=', partner.id)
+            ])
+
+    def action_open_survey_user_inputs(self):
+        self.ensure_one()
+        domain = [('partner_id', 'in', self.ids)]
+        return {
+            'name': _('Survey Responses'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'survey.user_input',
+            'view_mode': 'tree,form',
+            'domain': domain,
+            'context': {'default_partner_id': self.id},
+        }
