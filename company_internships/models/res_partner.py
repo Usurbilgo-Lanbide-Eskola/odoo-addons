@@ -187,7 +187,7 @@ class ResPartner(models.Model):
                     continue
             partner.in_active_school_year = False
 
-    @api.depends("student_record_ids")
+    @api.depends("student_record_ids", "student_record_ids.student_tutor_id")
     def _compute_internships(self):
         for student_id in self:
             student_id.internship_count = len(student_id.student_record_ids)
@@ -252,7 +252,7 @@ class ResPartner(models.Model):
         '''
         if self.is_student:
             action = self.env['ir.actions.act_window']._for_xml_id(
-                'company_internships.view_school_year_historical_tree')
+                'company_internships.action_school_year_historical')
             action['domain'] = [
                 ('student_id.id', '=', self.id)]
             return action
