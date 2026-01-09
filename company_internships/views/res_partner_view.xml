@@ -254,8 +254,8 @@
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="student_group_id"
                     attrs="{'invisible': [('is_student', '=', False)], 'required': [('is_student', '=', True)]}" />
-                <field name="internship_of_group_year"
-                    attrs="{'invisible': [('is_student', '=', False)]}" />
+                <!-- <field name="internship_of_group_year"
+                    attrs="{'invisible': [('is_student', '=', False)]}" /> -->
             </xpath>
             <xpath expr="//field[@name='company_type']" position="attributes">
                 <attribute name="invisible">1</attribute>
