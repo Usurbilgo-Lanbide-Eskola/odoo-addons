@@ -35,7 +35,7 @@ class CrmLead(models.Model):
                                          search="_search_sale")
     internship_sale_ids = fields.One2many(comodel_name="sale.order",
                                           inverse_name='opportunity_id')
-    tag_ids = fields.Many2many(traking=True)
+    tag_ids = fields.Many2many(tracking=True)
 
     def action_set_lost(self, **additional_values):
         additional_values['probability'] = 0
@@ -133,11 +133,11 @@ class InternshipLines(models.Model):
     )
     school_year_id = fields.Many2one(comodel_name="school.year",
                                      related="student_group_id.school_year_id",
-                                     store=True, traking=True)
+                                     store=True, tracking=True)
     student_group_id = fields.Many2one(comodel_name="product.product",
                                        string="Student Group")
-    student_qty = fields.Integer(traking=True)
-    agreement_type = fields.Many2one("agreement.type", traking=True)
+    student_qty = fields.Integer(tracking=True)
+    agreement_type = fields.Many2one("agreement.type", tracking=True)
     internship_type_id = fields.Many2one(comodel_name="internship.type",
                                          string="Internship Type")
 

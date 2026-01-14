@@ -59,8 +59,7 @@
         <field name="inherit_id" ref="company_internships.view_res_partner_student_tutor_form" />
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_view_tutor_students']" position="after">
-                <button name="action_open_survey_user_inputs" type="object" class="oe_stat_button"
-                    string="Survey Responses">
+                <button name="action_open_survey_user_inputs" type="object" class="oe_stat_button" icon="fa-pencil">
                     <field name="survey_user_input_count" widget="statinfo" />
                 </button>
 

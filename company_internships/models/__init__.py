@@ -6,3 +6,4 @@ from . import school_year
 from . import internship_type
 from . import school_year_historical
 from . import internship_documentation
+from . import resignation_wizard

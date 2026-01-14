@@ -256,6 +256,17 @@ class SchoolYearHistorical(models.Model):
                 # TODO wizard to add a resignation line
                 record.state = 'draft'
 
+    def action_open_resignation_wizard(self):
+        return {
+            'name': _('Resignation Reason'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'resignation.wizard',
+            'view_mode': 'form',
+            'view_id': self.env.ref('company_internships.view_resignation_wizard_form').id,
+            'target': 'new',
+            'context': {'active_id': self.id},
+        }
+
 
 class ResignedInternshipLine(models.Model):
     _name = "resigned.internship.line"
@@ -266,6 +277,34 @@ class ResignedInternshipLine(models.Model):
     resignation_date = fields.Date("Resignation Date",
                                    default=fields.Date.context_today)
     description = fields.Text("Internal None")
+
+
+    student_id = fields.Many2one(comodel_name="res.partner", related='record_id.student_id')
+    school_year_id = fields.Many2one(comodel_name="school.year", related='record_id.school_year_id')
+    group_id = fields.Many2one(comodel_name="product.template", related='record_id.group_id')
+    student_tutor_id = fields.Many2one(comodel_name="res.partner",)
+    student_instructor_id = fields.Many2one(
+        comodel_name="res.partner")
+    internship_type = fields.Many2one(comodel_name="internship.type",
+                                      string="Internship Type",
+                                      )
+    agreement_type_id = fields.Many2one(comodel_name="agreement.type")
+    student_company_id = fields.Many2one(comodel_name="res.partner",
+                                         )
+    is_active = fields.Boolean(related="school_year_id.is_active")
+    special_internship = fields.Boolean("Special Internship",
+                                        help="This option is selected when the company is for a student who "
+                                        "requires an alternative training experience "
+                                        "instead of a company")
+    special_internship_reason_id = fields.Many2one("special.internship.reason",
+                                                   "Reason")
+    notes = fields.Text("Notes")
+    unsubscribed = fields.Boolean("Unsubscribed")
+    turn = fields.Selection(selection=[("0", "No Turn"),
+                                       ("1", "First Turn"),
+                                       ("2", "Second Turn")], default="0",)
+    student_delivery_id = fields.Many2one(comodel_name="res.partner")
+    state = fields.Selection(related='record_id.state')    
 
 
 class SpecialInternshipReason(models.Model):

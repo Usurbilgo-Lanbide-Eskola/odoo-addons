@@ -43,7 +43,7 @@
                         states="not_started" class="oe_highlight" />
                     <button name="action_resume_internship" type="object"
                         string="Resume Internship" states="pause" class="oe_highlight" />
-                    <button name="action_resignation" type="object" string="Resign Internships"
+                    <button name="action_open_resignation_wizard" type="object" string="Resign Internships"
                         states="pause,not_started" class="oe_highlight" />
                     <button name="action_done" type="object" string="Done"
                         states="not_started" class="oe_highlight" />
@@ -139,6 +139,9 @@
                 <filter name="subscribed_internship" string="Subscribed internships"
                     help="Internships of students who have not been discharged from their studies."
                     domain="[('unsubscribed', '=', False)]" />
+                <filter name="subscribed_internship" string="Multicompany"
+                    help="Internships of students who have more than one internship in a academic year"
+                    domain="[('resignation_line_ids', '=', True)]" />                    
                 <separator />
                 <group expand="0" string="Group By">
                     <filter name="school_year_group" string="School Year" domain=""
