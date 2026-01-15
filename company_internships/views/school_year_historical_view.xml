@@ -11,11 +11,11 @@
                 <field name="group_id" readonly="1" />
                 <field name="student_tutor_id"
                     context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}" />
-                <field name="student_instructor_id" />
-                <field name="student_company_id" domain='[("is_company", "=", True)]' />
+                <field name="student_instructor_id" options="{'no_create': True}"/>
+                <field name="student_company_id" domain='[("is_company", "=", True)]' options="{'no_create': True}" />
                 <field name="internship_type" />
                 <field name="turn" />
-                <field name="student_delivery_id" />
+                <field name="student_delivery_id" options="{'no_create': True}" />
                 <field name="student_without_internship"
                     attrs="{'readonly': ['|', '|', '|', '|', ('state', '!=', 'draft'), ('student_company_id', '!=', False), ('student_instructor_id', '!=', False), ('internship_type', '!=', False), ('student_delivery_id', '!=', False)]}" />
                 <field name="unsubscribed" />

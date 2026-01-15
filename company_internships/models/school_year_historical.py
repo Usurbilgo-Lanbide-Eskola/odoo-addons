@@ -124,11 +124,12 @@ class SchoolYearHistorical(models.Model):
     def _compute_allowed_deliveries(self):
         partner_obj = self.env['res.partner']
         for record in self:
-            domain = [('type', '=', 'delivery')]
+            allowed = []
             if record.student_company_id:
+                domain = [('type', '=', 'delivery')]
                 domain.append(('parent_id', '=', record.student_company_id.id))
-            allowed = partner_obj.search(domain)
-            record.allowed_deliveries = [(6, 0, allowed.ids)]
+                allowed = partner_obj.search(domain).ids
+            record.allowed_deliveries = [(6, 0, allowed)]
 
     @api.onchange('group_id')
     def onchange_student_group(self):
