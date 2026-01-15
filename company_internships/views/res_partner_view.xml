@@ -67,6 +67,10 @@
                 <filter string="Contacts" name="type_contact"
                     domain="[('is_tutor', '=', False), ('is_student','=',False)]" />
                 <separator />
+                <filter string="Companies with Internship" name="company_internships" domain="[('is_tutor', '=', False), ('is_student','=',False), ('company_record_ids', '!=', [])]" />
+                <filter string="Companies without Internship" name="company_internships" domain="[('is_tutor', '=', False), ('is_student','=',False), ('company_record_ids', '=', [])]" />
+                <!--<filter string="Students with Internship" name="student_internships" domain="[('is_student', '=', True), ('student_record_ids', '!=', [])]" />
+                <filter string="Students without Internship" name="student_internships" domain="[('is_student', '=', True), ('student_record_ids', '=', [])]" />-->
             </xpath>
         </field>
     </record>

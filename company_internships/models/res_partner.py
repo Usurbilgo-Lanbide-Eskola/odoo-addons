@@ -40,6 +40,8 @@ class ResPartner(models.Model):
     active_student_record_ids = fields.One2many(
         comodel_name="school.year.historical", inverse_name="student_id",
         domain=[('is_active', '=', True)])
+    company_record_ids = fields.One2many(comodel_name="school.year.historical",
+                                         inverse_name="student_company_id")    
     company_instructor = fields.Boolean("Instructor")
     company_legal_agent = fields.Boolean("Legal Agent")
     company_contact_person = fields.Boolean("Contanct Person")

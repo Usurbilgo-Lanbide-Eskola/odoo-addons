@@ -120,7 +120,8 @@ class InternshipLines(models.Model):
     _name = "internship.line"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    lead_id = fields.Many2one(comodel_name="crm.lead", tracking=True)
+    lead_id = fields.Many2one(comodel_name="crm.lead", ondelete="cascade",
+                              tracking=True)
     partner_id = fields.Many2one(comodel_name="res.partner",
                                  related="lead_id.partner_id", store=True,
                                  readonly=True)
