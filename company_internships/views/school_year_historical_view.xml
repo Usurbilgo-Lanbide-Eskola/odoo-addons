@@ -58,12 +58,12 @@
                                 context="{'default_is_tutor': True, 'form_view_ref': 'company_internships.view_res_partner_student_tutor_form'}" />
                             <field name="allowed_instructors" invisible="1" />
                             <field name="student_instructor_id"
-                                domain="[('id', 'in', allowed_instructors)]" />
+                                domain="[('id', 'in', allowed_instructors)]" options="{'no_create': True}"/>
                             <field name="group_possible_company_ids" invisible="1" />
                             <field name="student_company_id"
-                                domain="[('id', 'in', group_possible_company_ids)]" />
+                                domain="[('id', 'in', group_possible_company_ids)]" options="{'no_create': True}"/>
                             <field name="allowed_deliveries" invisible="1" />
-                            <field name="student_delivery_id" />
+                            <field name="student_delivery_id" options="{'no_create': True}"/>
                             <field name="internship_type" />
                             <field name="agreement_type_ids" invisible="1" />
                             <field name="agreement_type_id"
