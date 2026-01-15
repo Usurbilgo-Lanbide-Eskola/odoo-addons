@@ -8,6 +8,7 @@ class ResignationWizard(models.TransientModel):
     _description = "Resignation Wizard"
 
     reason = fields.Char(string="Reason", required=True)
+    clear_old_data = fields.Boolean(string="Clear Old Data", default=True)
 
     def action_submit(self):
         active_id = self.env.context.get('active_id')
@@ -30,4 +31,17 @@ class ResignationWizard(models.TransientModel):
                 'student_delivery_id': historical.student_delivery_id.id,
             }
             self.env['resigned.internship.line'].create(vals)
+            if self.clear_old_data:
+                historical.write({
+                    'student_company_id': False,
+                    'student_instructor_id': False,
+                    'internship_type': False,
+                    'agreement_type_id': False,
+                    'special_internship': False,
+                    'special_internship_reason_id': False,
+                    'notes': False,
+                    'unsubscribed': False,
+                    'turn': False,
+                    'student_delivery_id': False,
+                })
         return {'type': 'ir.actions.act_window_close'}

@@ -7,6 +7,7 @@
             <form string="Resignation Reason">
                 <group>
                     <field name="reason" />
+                    <field name="clear_old_data" />
                 </group>
                 <footer>
                     <button name="action_submit" string="Submit" type="object" class="btn-primary" />
