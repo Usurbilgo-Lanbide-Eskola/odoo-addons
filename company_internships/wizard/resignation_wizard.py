@@ -43,5 +43,6 @@ class ResignationWizard(models.TransientModel):
                     'unsubscribed': False,
                     'turn': False,
                     'student_delivery_id': False,
+                    'state': 'draft',
                 })
         return {'type': 'ir.actions.act_window_close'}

@@ -5,15 +5,15 @@
         <field name="name">internship.line.tree</field>
         <field name="model">internship.line</field>
         <field name="arch" type="xml">
-            <tree editable="top" create="true" delete="true">
-                <field name="lead_id" domain="[('opportunity_type', '=', 'internship'), ('school_year_id.current_active_year', '=', True)]" context="{'form_view_ref': 'company_internships.crm_lead_form_internship'}" readonly="True"/>
+            <tree editable="top" create="false" delete="false">
+                <field name="lead_id" context="{'form_view_ref': 'company_internships.crm_lead_form_internship'}" readonly="True"/>
                 <field name="partner_id" readonly="1"/>
+                <field name="student_qty" sum="Total Students"/>
                 <field name="stage_id"/>
                 <field name="school_year_id"/>
                 <field name="student_group_id"/>
                 <field name="internship_type_id"/>
                 <field name="agreement_type"/>
-                <field name="student_qty" sum="Total Students"/>
             </tree>
         </field>
     </record>
