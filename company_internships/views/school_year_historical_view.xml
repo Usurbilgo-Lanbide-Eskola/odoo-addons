@@ -87,20 +87,20 @@
                         <notebook>
                             <page string="Resignations">
                                 <field name="resignation_line_ids">
-                                    <tree editable="bottom">
+                                    <tree editable="bottom" delete="false">
                                         <field name="resignation_date" />
                                         <field name="student_company_id" readonly="1" />
                                         <field name="description" />
-                                        <field name="student_tutor_id" />
-                                        <field name="student_instructor_id" />
-                                        <field name="internship_type" />
-                                        <field name="notes" optional="hide"/>
-                                        <field name="agreement_type_id" optional="hide" />
-                                        <field name="special_internship" optional="hide" />
-                                        <field name="special_internship_reason_id" optional="hide" />
-                                        <field name="unsubscribed" optional="hide" />
-                                        <field name="turn" optional="hide"/>
-                                        <field name="student_delivery_id" optional="hide" />
+                                        <field name="student_tutor_id" readonly="1"/>
+                                        <field name="student_instructor_id" readonly="1"/>
+                                        <field name="internship_type" readonly="1"/>
+                                        <field name="notes" optional="hide" readonly="1"/>
+                                        <field name="agreement_type_id" optional="hide" readonly="1"/>
+                                        <field name="special_internship" optional="hide" readonly="1"/>
+                                        <field name="special_internship_reason_id" optional="hide" readonly="1"/>
+                                        <field name="unsubscribed" optional="hide" readonly="1"/>
+                                        <field name="turn" optional="hide" readonly="1"/>
+                                        <field name="student_delivery_id" optional="hide" readonly="1"/>
                                     </tree>
                                 </field>
                             </page>
@@ -149,9 +149,9 @@
                 <filter name="subscribed_internship" string="Subscribed internships"
                     help="Internships of students who have not been discharged from their studies."
                     domain="[('unsubscribed', '=', False)]" />
-                <filter name="subscribed_internship" string="Multicompany"
+                <filter name="multicompany" string="Multicompany"
                     help="Internships of students who have more than one internship in a academic year"
-                    domain="[('resignation_line_ids', '=', True)]" />                    
+                    domain="[('resignation_line_ids', '!=', [])]" />
                 <separator />
                 <group expand="0" string="Group By">
                     <filter name="school_year_group" string="School Year" domain=""
