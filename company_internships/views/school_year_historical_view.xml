@@ -95,7 +95,6 @@
                                         <field name="student_instructor_id" />
                                         <field name="internship_type" />
                                         <field name="notes" />
-                                        <field name="internship_type" />
                                         <field name="agreement_type_id" optional="hide" />
                                         <field name="special_internship" optional="hide" />
                                         <field name="special_internship_reason_id" optional="hide" />
