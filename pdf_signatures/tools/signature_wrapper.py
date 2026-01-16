@@ -6,6 +6,7 @@ from dateutil.parser import parse
 from pypdf import PdfReader
 from io import BytesIO
 
+
 class AttrClass:
     """Abstract helper class"""
 
@@ -95,6 +96,7 @@ class Certificate(AttrClass):
         issuer_unique_id (object, None): issuer unique id
         subject_uniqiue_id (object, None): subject unique id
     """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.subject = Subject(self._data['subject'])
@@ -169,8 +171,26 @@ def get_pdf_signatures(filename):
                 signing_time = None
             # - used standard for signature encoding, in my case:
             # - get PKCS7/CMS/CADES signature package encoded in ASN.1 / DER format
-            raw_signature_data = v['/Contents']
             # if is_timestamp:
+            raw_signature_data = v['/Contents']
+            if hasattr(raw_signature_data, 'get_original_bytes'):
+                raw_signature_data = raw_signature_data.get_original_bytes()
+            if isinstance(raw_signature_data, str):
+                raw_signature_data = raw_signature_data.encode('latin1')
+            if isinstance(raw_signature_data, bytes):
+                if raw_signature_data.startswith(b'<') and raw_signature_data.endswith(b'>'):
+                    raw_signature_data = raw_signature_data[1:-1]
+                try:
+                    # if data is hex string, convert to bytes
+                    if all(c in b'0123456789abcdefABCDEF' for c in raw_signature_data):
+                        try:
+                            raw_signature_data = bytes.fromhex(
+                                raw_signature_data.decode('ascii'))
+                        except Exception:
+                            pass
+                except Exception:
+                    pass
+
             for attrdict in parse_pkcs7_signatures(raw_signature_data):
                 if attrdict:
                     attrdict.update(dict(
@@ -178,8 +198,10 @@ def get_pdf_signatures(filename):
                         signer_name=v.get('/Name'),
                         signer_contact_info=v.get('/ContactInfo'),
                         signer_location=v.get('/Location'),
-                        signing_time=signing_time or attrdict.get('signing_time'),
-                        signature_type=v['/SubFilter'][1:],  # ETSI.CAdES.detached, ...
+                        signing_time=signing_time or attrdict.get(
+                            'signing_time'),
+                        # ETSI.CAdES.detached, ...
+                        signature_type=v['/SubFilter'][1:],
                         signature_handler=v['/Filter'][1:],
                         raw=raw_signature_data,
                     ))

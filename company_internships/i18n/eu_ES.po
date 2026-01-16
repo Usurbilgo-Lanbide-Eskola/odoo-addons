@@ -583,8 +583,8 @@ msgstr "Instruktorea enpresakoa izan behar da"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__description
-msgid "Internal None"
-msgstr "Barneko Bat ere ez"
+msgid "Internal Note"
+msgstr "Barneko Oharra"
 
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__crm_lead__opportunity_type__internship

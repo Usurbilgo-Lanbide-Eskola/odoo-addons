@@ -277,7 +277,7 @@ class ResignedInternshipLine(models.Model):
     student_company_id = fields.Many2one(comodel_name="res.partner")
     resignation_date = fields.Date("Resignation Date",
                                    default=fields.Date.context_today)
-    description = fields.Text("Internal None")
+    description = fields.Text("Internal Note")
 
 
     student_id = fields.Many2one(comodel_name="res.partner", related='record_id.student_id')
