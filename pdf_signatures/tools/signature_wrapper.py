@@ -178,18 +178,23 @@ def get_pdf_signatures(filename):
             if isinstance(raw_signature_data, str):
                 raw_signature_data = raw_signature_data.encode('latin1')
             if isinstance(raw_signature_data, bytes):
+                # Strip angle brackets if present (PDF hex string literal format)
                 if raw_signature_data.startswith(b'<') and raw_signature_data.endswith(b'>'):
                     raw_signature_data = raw_signature_data[1:-1]
-                try:
-                    # if data is hex string, convert to bytes
-                    if all(c in b'0123456789abcdefABCDEF' for c in raw_signature_data):
-                        try:
-                            raw_signature_data = bytes.fromhex(
-                                raw_signature_data.decode('ascii'))
-                        except Exception:
-                            pass
-                except Exception:
-                    pass
+
+                # Try to convert from hex if it looks like hex-encoded data
+                # DER/ASN.1 signatures should start with 0x30 (SEQUENCE tag)
+                # If hex-encoded, this would be the ASCII string "30..."
+                if len(raw_signature_data) > 2 and raw_signature_data[:2] in (b'30', b'31'):
+                    try:
+                        decoded = bytes.fromhex(
+                            raw_signature_data.decode('ascii'))
+                        # Verify it looks like valid DER (starts with 0x30 SEQUENCE tag)
+                        if decoded[0] == 0x30:
+                            raw_signature_data = decoded
+                    except (ValueError, UnicodeDecodeError, AttributeError):
+                        # Not hex-encoded, use as-is
+                        pass
 
             for attrdict in parse_pkcs7_signatures(raw_signature_data):
                 if attrdict:
