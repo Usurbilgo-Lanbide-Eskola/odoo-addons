@@ -56,7 +56,7 @@ class SchoolYearHistorical(models.Model):
     notes = fields.Text("Notes")
     resignation_line_ids = fields.One2many(
         comodel_name="resigned.internship.line", inverse_name="record_id",
-        string="Resignation Lines")
+        string="Resignation Lines", tracking=True)
     record_sale_line_id = fields.Many2one(comodel_name="sale.order.line")
     unsubscribed = fields.Boolean("Unsubscribed")
     turn = fields.Selection(selection=[("0", "No Turn"),
