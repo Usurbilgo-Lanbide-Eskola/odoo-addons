@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_internship_prediction_line_tree" model="ir.ui.view">
+        <field name="name">internship.prediction.line.tree</field>
+        <field name="model">internship.prediction.line</field>
+        <field name="arch" type="xml">
+            <tree string="Internship Prediction Lines" editable="bottom">
+                <field name="school_year_historical_id" />
+                <field name="student_id" />
+                <field name="group_id" />
+                <field name="student_company_id"
+                    domain="[('id', 'in', group_possible_company_ids)]" />
+                <field name="group_possible_company_ids" invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_internship_prediction_line" model="ir.actions.act_window">
+        <field name="name">Prediction Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">internship.prediction.line</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Internship Prediction Line
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_internship_prediction_line"
+        name="Prediction Lines"
+        action="action_internship_prediction_line"
+        parent="menu_internships_root"
+        sequence="20" />
+
+</odoo>

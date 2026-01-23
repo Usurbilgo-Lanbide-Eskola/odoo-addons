@@ -39,9 +39,9 @@ class ProductTemplate(models.Model):
     pending_qty = fields.Integer(compute="_compute_student_group_leads",
                                  store=True)
     win_qty = fields.Integer(compute="_compute_student_group_leads",
-                                 store=True)
+                             store=True)
     lost_qty = fields.Integer(compute="_compute_student_group_leads",
-                                 store=True)
+                              store=True)
 
     @api.depends("tutor_ids")
     def _compute_tutor_users(self):
@@ -53,7 +53,7 @@ class ProductTemplate(models.Model):
     def get_enabled_internship_lines(self):
         self.ensure_one()
         return self.internship_ids.filtered(
-                lambda x: x.student_without_internship == False)
+            lambda x: x.student_without_internship == False)
 
     @api.depends("lead_line_ids.student_qty", "lead_line_ids.lead_id.stage_id", "lead_line_ids.lead_id.probability")
     def _compute_student_group_leads(self):
@@ -61,7 +61,7 @@ class ProductTemplate(models.Model):
             pending_qty = 0
             win_qty = 0
             lost_qty = 0
-            
+
             for lead_line in group.lead_line_ids.filtered(
                     lambda x: x.lead_id.active):
                 if lead_line.lead_id.probability == 0:
@@ -144,7 +144,7 @@ class ProductTemplate(models.Model):
             'search_default_working': 1,
         }
         return action
-    
+
     def action_get_win_lost(self):
         action = self.env['ir.actions.act_window']._for_xml_id(
             "company_internships.action_internship_line")
@@ -183,3 +183,26 @@ class ProductTemplate(models.Model):
         domain = [('is_student', '=', True),
                   ('student_group_id', '=', self.id)]
         return self._get_student_action(domain)
+
+    def create_prediction_lines(self):
+        for group in self:
+            records = self.env["school_year_historical"].search([
+                ("group_id", "=", group.id)])
+            for record in records:
+                search = self.env["internship.prediction.line"].search([
+                    ("school_year_historical_id", "=", record.id)
+                ])
+                if search:
+                    continue
+                self.env["internship.prediction.line"].create({
+                    "school_year_historical_id": record.id,
+                })
+
+    def action_prediction_lines(self):
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "internship.prediction.line",
+            "name": "Prediction lines",
+            "view_mode": "tree,form",
+            "domain": [("group_id", "in", self.id)],
+        }

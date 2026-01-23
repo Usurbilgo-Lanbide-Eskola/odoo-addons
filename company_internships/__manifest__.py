@@ -3,7 +3,7 @@
 
 {
     "name": "Company internships",
-    "version": "14.0.1.1.19",
+    "version": "14.0.1.1.20",
     "category": "Customer Relationship Management",
     "license": "AGPL-3",
     "author": "CIFP USURBIL LHII",
@@ -13,7 +13,7 @@
         "Gloria Moya (ZUBIGUNE FUNDAZIOA)",
         "Malen Aierbe (CIFP USURBIL LHII)",
         "Mikel Arregi (CIFP USURBIL LHII)"
-    ],    
+    ],
     "depends": [
         "sale_crm", "sale_order_line_menu", "school_year",
         "partner_second_lastname", "product", "partner_contact_gender",
@@ -38,6 +38,8 @@
         "wizard/create_internship_document_view.xml",
         "wizard/upload_new_file_view.xml",
         "wizard/promote_student_view.xml",
+        "wizard/copy_prediction_company_wizard.xml",
+        "views/internship_prediction_line_view.xml",
         "data/document_type_code_sequence.xml"
     ],
     "installable": True,

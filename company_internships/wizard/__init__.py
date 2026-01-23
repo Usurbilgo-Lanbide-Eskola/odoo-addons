@@ -3,4 +3,4 @@ from . import upload_new_file
 from . import promote_student
 from . import crm_internship_partial_move
 from . import resignation_wizard
-
+from . import copy_prediction_company_wizard
