@@ -14,8 +14,9 @@
                 </group>
                 <group>
                     <field name="line_ids" readonly="1">
-                        <tree decoration-success="student_company_id == record_company_id"
-                            decoration-danger="student_company_id != record_company_id">
+                        <tree
+                            decoration-success="student_company_id == record_company_id or not record_company_id"
+                            decoration-danger="student_company_id != record_company_id and record_company_id">
                             <field name="student_small_image" widget="image" class="oe_avatar"
                                 options='{"size": [0, 40]}' />
                             <field name="student_id" />
