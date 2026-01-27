@@ -6,12 +6,14 @@
         <field name="model">internship.prediction.line</field>
         <field name="arch" type="xml">
             <tree string="Internship Prediction Lines" editable="bottom">
-                <field name="school_year_historical_id" />
+                <field name="student_small_image" widget="image" class="oe_avatar"
+                    options='{"size": [0, 40]}' />
+                <field name="school_year_historical_id" invisible="1" />
                 <field name="student_id" />
-                <field name="group_id" />
                 <field name="student_company_id"
                     domain="[('id', 'in', group_possible_company_ids)]" />
                 <field name="group_possible_company_ids" invisible="1" />
+                <field name="group_id" />
             </tree>
         </field>
     </record>

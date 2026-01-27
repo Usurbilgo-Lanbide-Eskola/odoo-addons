@@ -16,7 +16,8 @@
                     <field name="line_ids" readonly="1">
                         <tree decoration-success="student_company_id == record_company_id"
                             decoration-danger="student_company_id != record_company_id">
-                            <field name="student_small_image" />
+                            <field name="student_small_image" widget="image" class="oe_avatar"
+                                options='{"size": [0, 40]}' />
                             <field name="student_id" />
                             <field name="student_company_id" />
                             <field name="record_company_id" />

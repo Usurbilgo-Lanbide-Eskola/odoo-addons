@@ -12,7 +12,8 @@
             </xpath>
             <div name="button_box" position="inside">
                 <button class="oe_stat_button" name="action_prediction_lines"
-                    type="object" icon="fa-line-chart" groups="internship.group_internship_user">
+                    type="object" icon="fa-line-chart"
+                    groups="company_internships.group_internship_user">
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_text">Prediction lines</span>
                     </div>
@@ -158,6 +159,18 @@
         <field name="context">{
             'search_default_is_current_student': True,
             'default_is_current_student': True}
+        </field>
+    </record>
+
+    <record id="action_create_prediction_lines" model="ir.actions.server">
+        <field name="name">Create Prediction Lines</field>
+        <field name="model_id" ref="model_product_template" />
+        <field name="binding_model_id" ref="model_product_template" />
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+            records.create_prediction_lines()
         </field>
     </record>
 

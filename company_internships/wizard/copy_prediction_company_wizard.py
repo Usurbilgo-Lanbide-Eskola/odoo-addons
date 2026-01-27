@@ -8,13 +8,20 @@ class InternshipPredictionCopyWizard(models.TransientModel):
     _description = "Wizard to copy prediction companies to school year historical"
 
     line_ids = fields.Many2many(comodel_name="internship.prediction.line",
+                                relation="internship_prediction_copy_wizard_line_rel",
+                                column1="wizard_id",
+                                column2="line_id",
                                 string="Lines to Process")
 
     @api.model
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
-        if self.env.context.get('active_ids'):
-            res['line_ids'] = [(6, 0, self.env.context.get('active_ids'))]
+        prediction_lines = self.env["internship.prediction.line"].search([
+            ('id', 'in', self.env.context.get('active_ids')),
+            ('student_company_id', '!=', False)])
+
+        if prediction_lines:
+            res['line_ids'] = [(6, 0, prediction_lines.ids)]
         return res
 
     def action_copy_companies(self):

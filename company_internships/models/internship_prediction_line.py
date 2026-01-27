@@ -14,7 +14,7 @@ class InternshipPredictionLine(models.Model):
                                  related="school_year_historical_id.student_id",
                                  store=True)
     student_small_image = fields.Image(
-        related="student_id.image_128")
+        related="student_id.image_128", string="Student Image")
     group_id = fields.Many2one(comodel_name="product.template",
                                related='school_year_historical_id.group_id', store=True)
     school_year_id = fields.Many2one(
@@ -31,10 +31,10 @@ class InternshipPredictionLine(models.Model):
     @api.depends("group_id")
     def _compute_group_possible_companies(self):
         for internship in self:
-            lost_stage = self.env["crm.stage"].search(
-                [("probability", "=", 0)], limit=1)
+            lost_lead = self.env["crm.lead"].search(
+                [("probability", ">", 0)])
             internship_lines = self.env["internship.line"].search([
-                ('stage_id', '=', lost_stage.id),
+                ('lead_id', 'in', lost_lead.ids),
                 ('school_year_id', '=', internship.school_year_id.id),
                 ('student_group_id', '=', internship.group_id.id)])
             partners = internship_lines.mapped('lead_id.partner_id')

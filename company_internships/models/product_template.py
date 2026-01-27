@@ -204,5 +204,5 @@ class ProductTemplate(models.Model):
             "res_model": "internship.prediction.line",
             "name": "Prediction lines",
             "view_mode": "tree,form",
-            "domain": [("group_id", "in", self.id)],
+            "domain": [("group_id", "in", [self.id])],
         }
