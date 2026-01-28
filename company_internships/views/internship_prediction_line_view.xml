@@ -11,7 +11,7 @@
                 <field name="school_year_historical_id" invisible="1" />
                 <field name="student_id" />
                 <field name="age" />
-                <field name="driving_licence" />
+                <field name="driving_license" />
                 <field name="car_owned" />
                 <field name="city" />
                 <field name="student_company_id"
