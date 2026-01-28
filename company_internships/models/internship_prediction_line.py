@@ -21,11 +21,11 @@ class InternshipPredictionLine(models.Model):
         string="Car Owned", related="student_id.car_owned")
     city = fields.Char(string="City", related="student_id.city")
     company_city = fields.Char(string="Company City",
-                               relared="student_company_id.city")
+                               related="student_company_id.city")
     delivery_address_id = fields.Many2one(
         comodel_name="res.partner", string="Delivery Address")
     delivery_city = fields.Char(
-        string="Delivery City", relared="delivery_address_id.city")
+        string="Delivery City", related="delivery_address_id.city")
     student_small_image = fields.Image(
         related="student_id.image_128", string="Student Image")
     group_id = fields.Many2one(comodel_name="product.template",
