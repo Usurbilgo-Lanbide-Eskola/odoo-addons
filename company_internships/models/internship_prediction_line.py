@@ -15,8 +15,8 @@ class InternshipPredictionLine(models.Model):
                                  related="school_year_historical_id.student_id",
                                  store=True)
     age = fields.Integer(string="Age", related="student_id.age")
-    driving_licence = fields.Boolean(
-        string="Driving Licence", related="student_id.driving_licence")
+    driving_license = fields.Boolean(
+        string="Driving License", related="student_id.driving_license")
     car_owned = fields.Boolean(
         string="Car Owned", related="student_id.car_owned")
     city = fields.Char(string="City", related="student_id.city")
