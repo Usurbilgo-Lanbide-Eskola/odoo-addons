@@ -12,7 +12,7 @@
             </xpath>
             <div name="button_box" position="inside">
                 <button class="oe_stat_button" name="action_prediction_lines"
-                    type="object" icon="fa-line-chart"
+                    type="object" icon="fa-th-list"
                     groups="company_internships.group_internship_user">
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_text">Prediction lines</span>
