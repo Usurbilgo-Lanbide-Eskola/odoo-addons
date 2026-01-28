@@ -7,7 +7,7 @@
             <form string="Copy Companies">
                 <group>
                     <div class="alert alert-warning" role="alert" style="margin-bottom:0px;">
-                        The selected students' records will be updated with the companies assigned
+                        The selected students records will be updated with the companies assigned
                         in the prediction lines.
                         This action cannot be undone immediately.
                     </div>

@@ -196,7 +196,7 @@ class ProductTemplate(models.Model):
                     continue
                 self.env["internship.prediction.line"].create({
                     "school_year_historical_id": record.id,
-                    "student_company_id": record.student_company_id
+                    "student_company_id": record.student_company_id.id
                 })
 
     def action_prediction_lines(self):

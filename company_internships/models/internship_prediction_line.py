@@ -10,9 +10,22 @@ class InternshipPredictionLine(models.Model):
 
     school_year_historical_id = fields.Many2one(
         comodel_name="school.year.historical", required=True)
+    notes = fields.Text(string="Notes")
     student_id = fields.Many2one("res.partner", string="Student",
                                  related="school_year_historical_id.student_id",
                                  store=True)
+    age = fields.Integer(string="Age", relared="student_id.age")
+    driving_licence = fields.Boolean(
+        string="Driving Licence", relared="student_id.driving_licence")
+    car_owned = fields.Boolean(
+        string="Car Owned", relared="student_id.car_owned")
+    city = fields.Char(string="City", relared="student_id.city")
+    company_city = fields.Char(string="Company City",
+                               relared="student_company_id.city")
+    delivery_address_id = fields.Many2one(
+        comodel_name="res.partner", string="Delivery Address")
+    delivery_city = fields.Char(
+        string="Delivery City", relared="delivery_address_id.city")
     student_small_image = fields.Image(
         related="student_id.image_128", string="Student Image")
     group_id = fields.Many2one(comodel_name="product.template",

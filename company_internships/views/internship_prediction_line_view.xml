@@ -10,8 +10,18 @@
                     options='{"size": [0, 40]}' />
                 <field name="school_year_historical_id" invisible="1" />
                 <field name="student_id" />
+                <field name="age" />
+                <field name="driving_licence" />
+                <field name="car_owned" />
+                <field name="city" />
                 <field name="student_company_id"
                     domain="[('id', 'in', group_possible_company_ids)]" />
+                <field name="delivery_address_id"
+                    domain="[('id', 'child_of', student_company_id)]" />
+                <field name="company_city"
+                    attrs="{'invisible': [('delivery_address_id', '!=', False)]}" />
+                <field name="delivery_city"
+                    attrs="{'invisible': [('delivery_address_id', '=', False)]}" />
                 <field name="group_possible_company_ids" invisible="1" />
                 <field name="group_id" />
             </tree>
