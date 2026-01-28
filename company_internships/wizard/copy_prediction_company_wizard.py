@@ -29,3 +29,5 @@ class InternshipPredictionCopyWizard(models.TransientModel):
             if line.student_company_id:
                 line.school_year_historical_id.student_company_id = \
                     line.student_company_id
+                line.school_year_historical_id.student_delivery_id = \
+                    line.delivery_address_id
