@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-27 10:22+0000\n"
-"PO-Revision-Date: 2025-02-27 10:22+0000\n"
+"POT-Creation-Date: 2026-01-28 08:09+0000\n"
+"PO-Revision-Date: 2026-01-28 08:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,23 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_move.py:0
+#, python-format
+msgid "%s (Moved to %s)"
+msgstr "%s (%s-ra mugitua)"
+
+#. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_won.py:0
+#, python-format
+msgid "%s (Partially Won)"
+msgstr "%s (Partzialki Irabazia)"
+
+#. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_instructor_form
 msgid "<i class=\"fa fa-gavel\" aria-label=\"Instructor\" role=\"img\" title=\"Instructor\"/>"
-msgstr "<i class=\"fa fa-gavel\" aria-label=\"Instruktorea\" role=\"img\" title=\"Instruktorea\"/>"
+msgstr ""
+"<i class=\"fa fa-gavel\" aria-label=\"Instruktorea\" role=\"img\" "
+"title=\"Instruktorea\"/>"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_instructor_form
@@ -32,12 +46,19 @@ msgstr ""
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_instructor_form
 msgid "<i class=\"fa fa-phone\" aria-label=\"Instructor\" role=\"img\" title=\"Instructor\"/>"
-msgstr "<i class=\"fa fa-phone\" aria-label=\"Instruktorea\" role=\"img\" title=\"Instruktorea\"/>"
+msgstr ""
+"<i class=\"fa fa-phone\" aria-label=\"Instruktorea\" role=\"img\" "
+"title=\"Instruktorea\"/>"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_form
 msgid "<span class=\"o_stat_text\">In Internship</span>"
 msgstr "<span class=\"o_stat_text\">Praktiketan</span>"
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_form
+msgid "<span class=\"o_stat_text\">Prediction lines</span>"
+msgstr "<span class=\"o_stat_text\">Kiniela</span>"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_form
@@ -52,13 +73,13 @@ msgstr "<span class=\"o_stat_text\">Onartzeko</span>"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_form
-msgid "<span class=\"o_stat_text\">To be assigned</span>"
-msgstr "<span class=\"o_stat_text\">Esleitzeko</span>"
+msgid "<span class=\"o_stat_text\">Win - Lost</span>"
+msgstr "<span class=\"o_stat_text\">Irabazi - Galdu</span>"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_form
 msgid "<span class=\"o_stat_text\">Without Internship</span>"
-msgstr "<span class=\"o_stat_text\">Praktikarik gabe</span>"
+msgstr "<span class=\"o_stat_text\">Praktikarik gage</span>"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_tutor_form
@@ -87,6 +108,7 @@ msgid "Accepted Internships"
 msgstr "Onartutako Praktikak"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_needaction
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_needaction
 msgid "Action Needed"
 msgstr "Ekintza beharrezkoa"
@@ -99,7 +121,7 @@ msgstr "Ekintza Eskola Urteko Historikoa"
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
 msgid "Active Internships"
-msgstr "Praktika aktiboak"
+msgstr "Praktika aktiboa"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__active_student_record_ids
@@ -108,31 +130,59 @@ msgid "Active Student Record"
 msgstr "Ikaslearen erregistro aktiboa"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__activity_ids
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__activity_ids
 msgid "Activities"
 msgstr "Jarduerak"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__activity_exception_decoration
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr "Jarduera Salbuespen Dekorazioa"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__activity_state
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__activity_state
 msgid "Activity State"
 msgstr "Jarduera Egoera"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__activity_type_icon
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__activity_type_icon
 msgid "Activity Type Icon"
 msgstr "Jarduera Mota Ikonoa"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__age
+msgid "Age"
+msgstr "Adina"
+
+#. module: company_internships
+#: model:ir.model,name:company_internships.model_agreement_type
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__agreement_type
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__agreement_type
+#: model:ir.model.fields,field_description:company_internships.field_internship_type__agreement_type_ids
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__agreement_type_id
+#: model:ir.model.fields,field_description:company_internships.field_school_year_historical__agreement_type_id
+#: model:ir.model.fields,field_description:company_internships.field_school_year_historical__agreement_type_ids
+#: model_terms:ir.ui.view,arch_db:company_internships.view_agreement_type_form
+msgid "Agreement Type"
+msgstr "Hitzarmen mota"
+
+#. module: company_internships
+#: model:ir.actions.act_window,name:company_internships.action_agreement_type
+#: model:ir.ui.menu,name:company_internships.menu_agreement_types
+#: model_terms:ir.ui.view,arch_db:company_internships.view_agreement_type_tree
+msgid "Agreement Types"
+msgstr "Hitzarmen motak"
+
+#. module: company_internships
 #: code:addons/company_internships/models/sale_order.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/sale_order.py:0
 #, python-format
 msgid "All internship lines must have the same school year of the sale order"
-msgstr "Praktika lerro guztiek salmenta eskaeraren eskola urte bera izan behar dute"
+msgstr ""
+"Praktika lerro guztiek salmenta eskaeraren eskola urte bera izan behar dute"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__allowed_deliveries
@@ -166,25 +216,33 @@ msgid "Assigned:"
 msgstr "Esleitua:"
 
 #. module: company_internships
-#: model:ir.ui.menu,name:company_internships.assignments_assignment_line
-msgid "Assignment Lines"
-msgstr "Esleipen Lerroak"
-
-#. module: company_internships
 #: model:ir.ui.menu,name:company_internships.assignment_menu
 msgid "Assignments"
 msgstr "Esleipenak"
 
 #. module: company_internships
 #: code:addons/company_internships/models/sale_order.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/sale_order.py:0
 #, python-format
 msgid ""
 "At least in one line there are students with a product that is not a "
 "internship"
-msgstr "Gutxienez lerro batean praktika ez den produktu bat duten ikasleak daude"
+msgstr ""
+"Gutxienez hilara bat dago praktika motako produktua ez den hilara batekin"
 
 #. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_move.py:0
+#, python-format
+msgid "At least one line must have a move quantity greater than zero."
+msgstr "Lerro batek gutxienez mugimendu kantitatea zero baino handiagoa izan behar du."
+
+#. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_won.py:0
+#, python-format
+msgid "At least one line must have a won quantity greater than zero."
+msgstr "Lerro batek gutxienez irabazitako kantitatea zero baino handiagoa izan behar du."
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_attachment_count
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_attachment_count
 msgid "Attachment Count"
 msgstr "Eranskin Kopurua"
@@ -192,9 +250,17 @@ msgstr "Eranskin Kopurua"
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.create_internship_document_view_form
 #: model_terms:ir.ui.view,arch_db:company_internships.model_name_view_form
-#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_form
+#: model_terms:ir.ui.view,arch_db:company_internships.view_crm_internship_partial_move
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_prediction_copy_wizard_form
+#: model_terms:ir.ui.view,arch_db:company_internships.view_promote_student_form
+#: model_terms:ir.ui.view,arch_db:company_internships.view_resignation_wizard_form
 msgid "Cancel"
 msgstr "Utzi"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__car_owned
+msgid "Car Owned"
+msgstr "Ibilgailua jabetzan"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__car_owned
@@ -203,10 +269,29 @@ msgid "Car in Property"
 msgstr "Ibilgailua jabetzan"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_promote_student__change_degree
+msgid "Change Degree"
+msgstr "Aldatu gradua"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__city
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_tutor_search
 msgid "City"
 msgstr "Herria"
+
+#. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_crm_lead__tag_ids
+msgid ""
+"Classify and analyze your lead/opportunity categories like: Training, "
+"Service"
+msgstr ""
+"Sailkatu eta aztertu zure ekimen/aukera kategoriak: Prestakuntza, Zerbitzua"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_resignation_wizard__clear_old_data
+msgid "Clear Old Data"
+msgstr "Garbitu datu zaharrak"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_type__code
@@ -214,15 +299,30 @@ msgid "Code"
 msgstr "Kodea"
 
 #. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_tutor_filter_search
+msgid "Companies with Internship"
+msgstr "Praktikadun enpresak"
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_tutor_filter_search
+msgid "Companies without Internship"
+msgstr "Praktika gabeko enpresak"
+
+#. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
 msgid "Company"
 msgstr "Enpresa"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__company_city
+msgid "Company City"
+msgstr "Enpresaren herria"
+
+#. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__company_internship_record_groups
 #: model:ir.model.fields,field_description:company_internships.field_res_users__company_internship_record_groups
 msgid "Company Internship Record Groups"
-msgstr "Enpresa Praktiketako Erregistro Taldeak"
+msgstr "Erregistroaren Enpresa praktiketako taldeak"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__company_internship_record_students_qty
@@ -234,9 +334,17 @@ msgstr "Enpresa Praktiketako Erregistro Ikasle Kopurua"
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__company_internship_record_types
 #: model:ir.model.fields,field_description:company_internships.field_res_users__company_internship_record_types
 msgid "Company Internship Record Types"
-msgstr "Enpresa Praktiketako Erregistro Motak"
+msgstr "Enpresa praktiketako erregistro motak"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_res_partner__company_record_ids
+#: model:ir.model.fields,field_description:company_internships.field_res_users__company_record_ids
+msgid "Company Record"
+msgstr "Enpresa erregistroa"
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_crm_internship_partial_move
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_prediction_copy_wizard_form
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_form
 msgid "Confirm"
 msgstr "Berretsi"
@@ -254,8 +362,18 @@ msgstr "Kontaktuak"
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__company_contact_person
 #: model:ir.model.fields,field_description:company_internships.field_res_users__company_contact_person
-msgid "Contact Person"
-msgstr "Kontaktua Pertsona"
+msgid "Contanct Person"
+msgstr "Harremanetarako pertsona"
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_prediction_copy_wizard_form
+msgid "Copy Companies"
+msgstr "Kopiatu enpresak"
+
+#. module: company_internships
+#: model:ir.actions.act_window,name:company_internships.action_internship_prediction_copy_wizard
+msgid "Copy Companies to Student Records"
+msgstr "Kopiatu enpresak ikaslearen erregistroetara"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.create_internship_document_view_form
@@ -273,11 +391,25 @@ msgid "Create Internship Document"
 msgstr "Sortu Praktika Dokumentua"
 
 #. module: company_internships
+#: model:ir.actions.server,name:company_internships.action_create_prediction_lines
+msgid "Create Prediction Lines"
+msgstr "Sortu aurreikuspen lerroak"
+
+#. module: company_internships
+#: model_terms:ir.actions.act_window,help:company_internships.action_internship_prediction_line
+msgid "Create a new Internship Prediction Line"
+msgstr "Sortu praktika aurreikuspen lerro berria"
+
+#. module: company_internships
+#: model_terms:ir.actions.act_window,help:company_internships.action_internship_line
+msgid "Create a new internship line"
+msgstr "Sortu praktika lerro berria"
+
+#. module: company_internships
 #: model_terms:ir.actions.act_window,help:company_internships.action_internships_students
 msgid "Create a student in your address book"
 msgstr "Sortu ikaslea zure helbide-liburuan"
 
-#. module: company_internships
 #. module: company_internships
 #: model_terms:ir.actions.act_window,help:company_internships.action_internships_tutors
 msgid "Create a tutor in your address book"
@@ -289,7 +421,10 @@ msgid "Create new product"
 msgstr "Sortu produktu berria"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_agreement_type__create_uid
 #: model:ir.model.fields,field_description:company_internships.field_create_internship_document__create_uid
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move__create_uid
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__create_uid
 #: model:ir.model.fields,field_description:company_internships.field_document_stage__create_uid
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__create_uid
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_signed_by__create_uid
@@ -297,7 +432,11 @@ msgstr "Sortu produktu berria"
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__create_uid
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_type__create_uid
 #: model:ir.model.fields,field_description:company_internships.field_internship_line__create_uid
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_copy_wizard__create_uid
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__create_uid
 #: model:ir.model.fields,field_description:company_internships.field_internship_type__create_uid
+#: model:ir.model.fields,field_description:company_internships.field_promote_student__create_uid
+#: model:ir.model.fields,field_description:company_internships.field_resignation_wizard__create_uid
 #: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__create_uid
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__create_uid
 #: model:ir.model.fields,field_description:company_internships.field_special_internship_reason__create_uid
@@ -306,7 +445,10 @@ msgid "Created by"
 msgstr "Sortua"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_agreement_type__create_date
 #: model:ir.model.fields,field_description:company_internships.field_create_internship_document__create_date
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move__create_date
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__create_date
 #: model:ir.model.fields,field_description:company_internships.field_document_stage__create_date
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__create_date
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_signed_by__create_date
@@ -314,7 +456,11 @@ msgstr "Sortua"
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__create_date
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_type__create_date
 #: model:ir.model.fields,field_description:company_internships.field_internship_line__create_date
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_copy_wizard__create_date
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__create_date
 #: model:ir.model.fields,field_description:company_internships.field_internship_type__create_date
+#: model:ir.model.fields,field_description:company_internships.field_promote_student__create_date
+#: model:ir.model.fields,field_description:company_internships.field_resignation_wizard__create_date
 #: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__create_date
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__create_date
 #: model:ir.model.fields,field_description:company_internships.field_special_internship_reason__create_date
@@ -323,6 +469,7 @@ msgid "Created on"
 msgstr "Sortua"
 
 #. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_line_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_lead_with_order_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_search
@@ -330,6 +477,27 @@ msgid "Current School Year"
 msgstr "Egungo eskola urtea"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__current_stage
+msgid "Current Stage"
+msgstr "Uneko etapa"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__partner_id
+msgid "Customer"
+msgstr "Bezeroa"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__delivery_address_id
+msgid "Delivery Address"
+msgstr "Bidalketa helbidea"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__delivery_city
+msgid "Delivery City"
+msgstr "Bidalketa herria"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_agreement_type__description
 #: model:ir.model.fields,field_description:company_internships.field_document_stage__description
 #: model:ir.model.fields,field_description:company_internships.field_internship_type__description
 #: model:ir.model.fields,field_description:company_internships.field_special_internship_reason__description
@@ -337,7 +505,10 @@ msgid "Description"
 msgstr "Deskribapena"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_agreement_type__display_name
 #: model:ir.model.fields,field_description:company_internships.field_create_internship_document__display_name
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move__display_name
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__display_name
 #: model:ir.model.fields,field_description:company_internships.field_crm_lead__display_name
 #: model:ir.model.fields,field_description:company_internships.field_document_stage__display_name
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__display_name
@@ -346,9 +517,13 @@ msgstr "Deskribapena"
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__display_name
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_type__display_name
 #: model:ir.model.fields,field_description:company_internships.field_internship_line__display_name
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_copy_wizard__display_name
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__display_name
 #: model:ir.model.fields,field_description:company_internships.field_internship_type__display_name
 #: model:ir.model.fields,field_description:company_internships.field_product_template__display_name
+#: model:ir.model.fields,field_description:company_internships.field_promote_student__display_name
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__display_name
+#: model:ir.model.fields,field_description:company_internships.field_resignation_wizard__display_name
 #: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__display_name
 #: model:ir.model.fields,field_description:company_internships.field_sale_order__display_name
 #: model:ir.model.fields,field_description:company_internships.field_sale_order_line__display_name
@@ -363,19 +538,19 @@ msgstr "Izena erakutsi"
 #: model:ir.actions.act_window,name:company_internships.action_internship_document_signer
 #: model:ir.ui.menu,name:company_internships.menu_internship_document_signer
 msgid "Document Signers"
-msgstr "Dokumentu Sinatzaileak"
+msgstr "Dokumentu sinatzaileak"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_document_stage_form
 #: model_terms:ir.ui.view,arch_db:company_internships.view_document_stage_tree
 msgid "Document Stage"
-msgstr "Dokumentu Etapa"
+msgstr "Dokumentuaren Etapa"
 
 #. module: company_internships
 #: model:ir.actions.act_window,name:company_internships.action_internship_documentation_stage
 #: model:ir.ui.menu,name:company_internships.menu_internship_documentation_stage
 msgid "Document Stages"
-msgstr "Dokumentu Etapak"
+msgstr "Dokumentuaren Etapak"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_create_internship_document__document_type_id
@@ -414,6 +589,7 @@ msgstr "Ez bikoiztu"
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__internship_document__state__done
 #: model:ir.model.fields.selection,name:company_internships.selection__school_year_historical__state__done
+#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_form
 msgid "Done"
 msgstr "Eginda"
 
@@ -423,6 +599,7 @@ msgid "Draft"
 msgstr "Zirriborroa"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__driving_license
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__driving_license
 #: model:ir.model.fields,field_description:company_internships.field_res_users__driving_license
 msgid "Driving License"
@@ -431,20 +608,13 @@ msgstr "Gidatze baimena"
 #. module: company_internships
 #: model:ir.actions.act_window,name:company_internships.action_editable_sale_line
 msgid "Editable Sale Lines"
-msgstr "Editatzeko Salmenta Lerroak"
-
-#. module: company_internships
-#: code:addons/company_internships/models/school_year_historical.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/school_year_historical.py:0
-#, python-format
-msgid "Ensure all fields are filled out"
-msgstr "Ziurtatu eremu guztiak beteta daudela"
+msgstr "Salmenta lerro editagarriak"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_document_stage__everyone_sign
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__everyone_sign
 msgid "Everyone Must Sign"
-msgstr "Denek Sinatu behar dute"
+msgstr "Denek sinatu behar dute"
 
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__school_year_historical__student_without_internship_reason__exempt
@@ -454,34 +624,41 @@ msgstr "Salbuetsia"
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__last_document
 msgid "Final Document"
-msgstr "Azken Dokumentua"
+msgstr "Azken dokumentua"
 
 #. module: company_internships
+#: model:ir.model.fields.selection,name:company_internships.selection__resigned_internship_line__turn__1
 #: model:ir.model.fields.selection,name:company_internships.selection__school_year_historical__turn__1
 msgid "First Turn"
 msgstr "Lehen Txanda"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_follower_ids
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_follower_ids
 msgid "Followers"
 msgstr "Jarraitzaileak"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_channel_ids
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Jarraitzaileak (Kanalak)"
+msgstr "Jarraitzaileak (Kanakak)"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_partner_ids
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Jarraitzaileak (Bazkideak)"
+msgstr "Jarraitzaileak (Kideak)"
 
 #. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_internship_line__activity_type_icon
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Font awesome ikonoa adib. fa-tasks"
+msgstr "Font awesome ikonoa, adib. fa-tasks"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__group_id
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__group_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__group_id
 #: model_terms:ir.ui.view,arch_db:company_internships.view_companies_internship_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_search
@@ -489,6 +666,7 @@ msgid "Group"
 msgstr "Taldea"
 
 #. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_line_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_tutor_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
@@ -496,12 +674,21 @@ msgid "Group By"
 msgstr "Taldekatu"
 
 #. module: company_internships
-#: model:ir.model.fields,field_description:company_internships.field_sale_order__has_internship_line
-msgid "Has Internship Line"
-msgstr "Praktika Lerroa du"
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__group_possible_company_ids
+#: model:ir.model.fields,field_description:company_internships.field_school_year_historical__group_possible_company_ids
+msgid "Group Possible Company"
+msgstr "Taldekatu balizko enpresa"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_sale_order__has_internship_line
+msgid "Has Internship Line"
+msgstr "Praktika lerro bat du"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_agreement_type__id
 #: model:ir.model.fields,field_description:company_internships.field_create_internship_document__id
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move__id
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__id
 #: model:ir.model.fields,field_description:company_internships.field_crm_lead__id
 #: model:ir.model.fields,field_description:company_internships.field_document_stage__id
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__id
@@ -510,9 +697,13 @@ msgstr "Praktika Lerroa du"
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__id
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_type__id
 #: model:ir.model.fields,field_description:company_internships.field_internship_line__id
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_copy_wizard__id
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__id
 #: model:ir.model.fields,field_description:company_internships.field_internship_type__id
 #: model:ir.model.fields,field_description:company_internships.field_product_template__id
+#: model:ir.model.fields,field_description:company_internships.field_promote_student__id
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__id
+#: model:ir.model.fields,field_description:company_internships.field_resignation_wizard__id
 #: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__id
 #: model:ir.model.fields,field_description:company_internships.field_sale_order__id
 #: model:ir.model.fields,field_description:company_internships.field_sale_order_line__id
@@ -524,11 +715,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__activity_exception_icon
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__activity_exception_icon
 msgid "Icon"
 msgstr "Ikonoa"
 
 #. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_internship_line__activity_exception_icon
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__activity_exception_icon
 msgid "Icon to indicate an exception activity."
 msgstr "Salbuespen jarduera adierazteko ikonoa."
@@ -539,22 +732,26 @@ msgid "If a document of the same type exists,it will not be created."
 msgstr "Mota bereko dokumentu bat badago, ez da sortuko."
 
 #. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_internship_line__message_needaction
+#: model:ir.model.fields,help:company_internships.field_internship_line__message_unread
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__message_needaction
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__message_unread
 msgid "If checked, new messages require your attention."
-msgstr "Markatuta badago, mezu berriek zure arreta behar dute."
+msgstr "Hautatzen baduzu, mezu berriek zure arreta beharko dute."
 
 #. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_internship_line__message_has_error
+#: model:ir.model.fields,help:company_internships.field_internship_line__message_has_sms_error
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__message_has_error
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Markatuta badago, mezu batzuek bidalketa errorea dute."
+msgstr "Hautatzen baduzu, mezu batzuek bidalketa errorea dute."
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__in_active_school_year
 #: model:ir.model.fields,field_description:company_internships.field_res_users__in_active_school_year
 msgid "In Active School Year"
-msgstr "Egungo Eskola Urtean"
+msgstr "Egungo eskola urtean"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_search
@@ -572,25 +769,30 @@ msgstr "Instruktorea"
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__instructor_internship_record_students_qty
 #: model:ir.model.fields,field_description:company_internships.field_res_users__instructor_internship_record_students_qty
 msgid "Instructor Internship Record Students Qty"
-msgstr "Instruktore Praktika Erregistro Ikasle Kopurua"
+msgstr "Instruktorearen praktika erregistro ikasle kopurua"
 
 #. module: company_internships
 #: code:addons/company_internships/models/school_year_historical.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/school_year_historical.py:0
 #, python-format
 msgid "Instructor must belong to the company"
-msgstr "Instruktorea enpresakoa izan behar da"
+msgstr "Instruktoreak enpresarena izan behar du"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__description
 msgid "Internal Note"
-msgstr "Barneko Oharra"
+msgstr "Barne oharra"
 
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__crm_lead__opportunity_type__internship
 #: model:ir.model.fields.selection,name:company_internships.selection__sale_order__state__internship
+#: model:ir.module.category,name:company_internships.module_category_internship
 msgid "Internship"
 msgstr "Praktika"
+
+#. module: company_internships
+#: model:res.groups,name:company_internships.group_internship_administrator
+msgid "Internship Administrator"
+msgstr "Praktika administratzailea"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
@@ -604,12 +806,6 @@ msgid "Internship Count"
 msgstr "Praktika kopurua"
 
 #. module: company_internships
-#: model:ir.model.fields,field_description:company_internships.field_res_partner__internship_count_dummy
-#: model:ir.model.fields,field_description:company_internships.field_res_users__internship_count_dummy
-msgid "Internship Count Dummy"
-msgstr "Praktika Kopuru Bakarra"
-
-#. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_tutor_form
 msgid "Internship Data"
 msgstr "Praktiken datuak"
@@ -617,25 +813,25 @@ msgstr "Praktiken datuak"
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__internship_document_id
 msgid "Internship Document"
-msgstr "Praktika Dokumentua"
+msgstr "Praktika dokumentua"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_internship_document_signer_form
 #: model_terms:ir.ui.view,arch_db:company_internships.view_internship_document_signer_tree
 msgid "Internship Document Signer"
-msgstr "Praktika Dokumentu Sinatzailea"
+msgstr "Praktika dokumentu sinatzailea"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_internship_document_stage_line_form
 #: model_terms:ir.ui.view,arch_db:company_internships.view_internship_document_stage_line_tree
 msgid "Internship Document Stage Line"
-msgstr "Praktika Dokumentu Etapa Lerroa"
+msgstr "Praktika dokumentu etapa lerroa"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_internship_document_type_form
 #: model_terms:ir.ui.view,arch_db:company_internships.view_internship_document_type_tree
 msgid "Internship Document Type"
-msgstr "Praktika Dokumentu Mota"
+msgstr "Praktika dokumentu mota"
 
 #. module: company_internships
 #: model:ir.actions.act_window,name:company_internships.action_internship_documentation
@@ -643,23 +839,26 @@ msgstr "Praktika Dokumentu Mota"
 #: model_terms:ir.ui.view,arch_db:company_internships.view_internship_documentation_form
 #: model_terms:ir.ui.view,arch_db:company_internships.view_internship_documentation_tree
 msgid "Internship Documentation"
-msgstr "Praktika Dokumentazioa"
+msgstr "Praktika dokumentazioa"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_product_product__internship_excluded_count
 #: model:ir.model.fields,field_description:company_internships.field_product_template__internship_excluded_count
 msgid "Internship Excluded Count"
-msgstr "Praktika Baztertutako Kopurua"
+msgstr "Baztertutako praktika kopurua"
 
 #. module: company_internships
+#: model:ir.actions.act_window,name:company_internships.action_internship_line
 #: model:ir.model.fields,field_description:company_internships.field_crm_lead__internship_line_ids
+#: model:ir.ui.menu,name:company_internships.menu_crm_internship_line
+#: model:ir.ui.menu,name:company_internships.menu_internship_line
 msgid "Internship Lines"
 msgstr "Praktika lerroak"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_crm_lead__internship_lines_students_qty
 msgid "Internship Lines Students Qty"
-msgstr "Praktika Lerroak Ikasle Kopurua"
+msgstr "Praktika lerroen ikasle kopurua"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
@@ -667,10 +866,14 @@ msgid "Internship No Assigned"
 msgstr "Praktika Ez Esleitua"
 
 #. module: company_internships
-#: model:ir.model.fields,field_description:company_internships.field_res_partner__internship_of_group_year
-#: model:ir.model.fields,field_description:company_internships.field_res_users__internship_of_group_year
-msgid "Internship Of Group Year"
-msgstr "Urteko praktikak"
+#: model:ir.model,name:company_internships.model_internship_prediction_line
+msgid "Internship Prediction Line"
+msgstr "Praktika aurreikuspen lerroa"
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_prediction_line_tree
+msgid "Internship Prediction Lines"
+msgstr "Praktika aurreikuspen lerroak"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_sale_order_line__internship_record_id
@@ -681,19 +884,24 @@ msgstr "Praktika erregistroa"
 #: model:ir.model.fields,field_description:company_internships.field_crm_lead__internship_sale_id
 #: model:ir.model.fields,field_description:company_internships.field_crm_lead__internship_sale_ids
 msgid "Internship Sale"
-msgstr "Praktika Salmenta"
+msgstr "Praktika salmenta"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_product_product__internship_students_count
 #: model:ir.model.fields,field_description:company_internships.field_product_template__internship_students_count
 msgid "Internship Students Count"
-msgstr "Praktika Ikasle Kopurua"
+msgstr "Praktika ikasle kopurua"
 
 #. module: company_internships
 #: model:ir.actions.act_window,name:company_internships.action_internship_type
+#: model:ir.model,name:company_internships.model_internship_type
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__internship_type_id
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__internship_type_id
 #: model:ir.model.fields,field_description:company_internships.field_internship_type__name
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__internship_type
 #: model:ir.model.fields,field_description:company_internships.field_sale_order_line__internship_type_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__internship_type
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_line_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_internship_type_tree
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
 msgid "Internship Type"
@@ -705,15 +913,26 @@ msgid "Internship Types"
 msgstr "Praktika motak"
 
 #. module: company_internships
+#: model:res.groups,name:company_internships.group_internship_user
+msgid "Internship User"
+msgstr "Praktika erabiltzailea"
+
+#. module: company_internships
 #: code:addons/company_internships/models/sale_order.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/sale_order.py:0
 #, python-format
 msgid "Internship line qty must be 1"
 msgstr "Praktika hilararen kantitateak 1 izen behar du"
 
 #. module: company_internships
+#: model_terms:ir.actions.act_window,help:company_internships.action_internship_line
+msgid ""
+"Internship lines represent the agreement details between companies and "
+"student groups."
+msgstr ""
+"Praktika lerroek enpresekin eta ikasle taldeen arteko hitzarmenaren xehetasunak adierazten dituzte."
+
+#. module: company_internships
 #: code:addons/company_internships/models/sale_order.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/sale_order.py:0
 #, python-format
 msgid "Internship sale must be unique per school year and customer"
 msgstr "Praktika salmenta bakarra izan behar da eskola urte eta bezero bakoitzeko"
@@ -727,9 +946,10 @@ msgid "Internships"
 msgstr "Praktikak"
 
 #. module: company_internships
-#: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_form
-msgid "Internships agreed with companies"
-msgstr "Enpresekin adostutako praktikak"
+#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
+msgid ""
+"Internships of students who have more than one internship in a academic year"
+msgstr ""
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
@@ -740,14 +960,16 @@ msgstr "Ikasleek beren ikasketak utzi ez dituzten praktikak."
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_form
 msgid "Internships pre-agreed with companies"
-msgstr "Enpresekin aurrez adostutako praktikak"
+msgstr "Praktika hitzarmenak enpresekin"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__is_active
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__is_active
 msgid "Is Active"
-msgstr "Aktiboa da"
+msgstr "Aktibo dago"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_is_follower
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_is_follower
 msgid "Is Follower"
 msgstr "Jarraitzailea da"
@@ -755,7 +977,7 @@ msgstr "Jarraitzailea da"
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_sale_order_line__internship_line
 msgid "Is Internship Line"
-msgstr "Praktika Lerroa da"
+msgstr "Praktika lerroa da"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__is_student
@@ -773,20 +995,23 @@ msgstr "Ikasle taldea da"
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__is_tutor
 #: model:ir.model.fields,field_description:company_internships.field_res_users__is_tutor
 msgid "Is Teacher"
-msgstr "Irakaslea Da"
+msgstr "Irakaslea da"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__is_active
 msgid "Is active"
-msgstr "Aktiboa da"
+msgstr "Aktibo dago"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_signer__is_internal_user
 msgid "Is internal User"
-msgstr "Barne Erabiltzailea da"
+msgstr "Barne erabiltzailea da"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_agreement_type____last_update
 #: model:ir.model.fields,field_description:company_internships.field_create_internship_document____last_update
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move____last_update
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line____last_update
 #: model:ir.model.fields,field_description:company_internships.field_crm_lead____last_update
 #: model:ir.model.fields,field_description:company_internships.field_document_stage____last_update
 #: model:ir.model.fields,field_description:company_internships.field_internship_document____last_update
@@ -795,9 +1020,13 @@ msgstr "Barne Erabiltzailea da"
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line____last_update
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_type____last_update
 #: model:ir.model.fields,field_description:company_internships.field_internship_line____last_update
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_copy_wizard____last_update
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line____last_update
 #: model:ir.model.fields,field_description:company_internships.field_internship_type____last_update
 #: model:ir.model.fields,field_description:company_internships.field_product_template____last_update
+#: model:ir.model.fields,field_description:company_internships.field_promote_student____last_update
 #: model:ir.model.fields,field_description:company_internships.field_res_partner____last_update
+#: model:ir.model.fields,field_description:company_internships.field_resignation_wizard____last_update
 #: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line____last_update
 #: model:ir.model.fields,field_description:company_internships.field_sale_order____last_update
 #: model:ir.model.fields,field_description:company_internships.field_sale_order_line____last_update
@@ -809,7 +1038,10 @@ msgid "Last Modified on"
 msgstr "Azken aldaketa"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_agreement_type__write_uid
 #: model:ir.model.fields,field_description:company_internships.field_create_internship_document__write_uid
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move__write_uid
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__write_uid
 #: model:ir.model.fields,field_description:company_internships.field_document_stage__write_uid
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__write_uid
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_signed_by__write_uid
@@ -817,7 +1049,11 @@ msgstr "Azken aldaketa"
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__write_uid
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_type__write_uid
 #: model:ir.model.fields,field_description:company_internships.field_internship_line__write_uid
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_copy_wizard__write_uid
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__write_uid
 #: model:ir.model.fields,field_description:company_internships.field_internship_type__write_uid
+#: model:ir.model.fields,field_description:company_internships.field_promote_student__write_uid
+#: model:ir.model.fields,field_description:company_internships.field_resignation_wizard__write_uid
 #: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__write_uid
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__write_uid
 #: model:ir.model.fields,field_description:company_internships.field_special_internship_reason__write_uid
@@ -826,7 +1062,10 @@ msgid "Last Updated by"
 msgstr "Azken eguneratzea"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_agreement_type__write_date
 #: model:ir.model.fields,field_description:company_internships.field_create_internship_document__write_date
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move__write_date
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__write_date
 #: model:ir.model.fields,field_description:company_internships.field_document_stage__write_date
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__write_date
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_signed_by__write_date
@@ -834,7 +1073,11 @@ msgstr "Azken eguneratzea"
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__write_date
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_type__write_date
 #: model:ir.model.fields,field_description:company_internships.field_internship_line__write_date
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_copy_wizard__write_date
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__write_date
 #: model:ir.model.fields,field_description:company_internships.field_internship_type__write_date
+#: model:ir.model.fields,field_description:company_internships.field_promote_student__write_date
+#: model:ir.model.fields,field_description:company_internships.field_resignation_wizard__write_date
 #: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__write_date
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__write_date
 #: model:ir.model.fields,field_description:company_internships.field_special_internship_reason__write_date
@@ -843,7 +1086,9 @@ msgid "Last Updated on"
 msgstr "Azken eguneratzea"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move__lead_id
 #: model:ir.model.fields,field_description:company_internships.field_internship_line__lead_id
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_line_search
 msgid "Lead"
 msgstr "Ekimena"
 
@@ -851,7 +1096,7 @@ msgstr "Ekimena"
 #: model:ir.model.fields,field_description:company_internships.field_product_product__lead_line_ids
 #: model:ir.model.fields,field_description:company_internships.field_product_template__lead_line_ids
 msgid "Lead Line"
-msgstr "Ekimena Lerroa"
+msgstr "Ekimena lerroa"
 
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_crm_lead
@@ -862,12 +1107,37 @@ msgstr "Ekimena/Aukera"
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__company_legal_agent
 #: model:ir.model.fields,field_description:company_internships.field_res_users__company_legal_agent
 msgid "Legal Agent"
-msgstr "Agente Legala"
+msgstr "Lege agentea"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move__line_ids
+msgid "Lines"
+msgstr "Lerroak"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_copy_wizard__line_ids
+msgid "Lines to Process"
+msgstr "Prozesatzeko lerroak"
+
+#. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_internship_line__partner_id
+msgid ""
+"Linked partner (optional). Usually created when converting the lead. You can"
+" find a partner by its Name, TIN, Email or Internal Reference."
+msgstr ""
+"Estekatutako kidea (aukerakoa). Normalean ekimena bihurtzean sortzen da. Kide bat aurki dezakezu bere Izena, IFZ, Helbide elektronikoa edo Barne erreferentzia erabiliz."
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_product_product__lost_qty
+#: model:ir.model.fields,field_description:company_internships.field_product_template__lost_qty
+msgid "Lost Qty"
+msgstr "Galdutako kant."
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_main_attachment_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_main_attachment_id
 msgid "Main Attachment"
-msgstr "Eranskin Nagusia"
+msgstr "Eranskin nagusia"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_tutor_form
@@ -875,11 +1145,13 @@ msgid "Meetings"
 msgstr "Bilera"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_has_error
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_has_error
 msgid "Message Delivery error"
-msgstr "Mezu Bidalketa errorea"
+msgstr "Mezu bidalketa errorea"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_ids
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_ids
 msgid "Messages"
 msgstr "Mezuak"
@@ -887,19 +1159,41 @@ msgstr "Mezuak"
 #. module: company_internships
 #: model:ir.model.constraint,message:company_internships.constraint_sale_order_line_accountable_required_fields
 msgid "Missing required fields on accountable sale order line."
-msgstr "Beharrezko eremuak falta dira kontabilizatzeko salmenta eskaera lerroan."
+msgstr "Fakturagarria den salmenta eskaera lerroan derrigorrezko eremuak falta dira."
 
 #. module: company_internships
-#: code:addons/company_internships/models/school_year_historical.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/school_year_historical.py:0
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__move_qty
+msgid "Move Qty"
+msgstr "Mugitu kant."
+
+#. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_move.py:0
 #, python-format
-msgid "Multiple internship lines for student: "
-msgstr "Ikaslearen praktika lerro anitz: "
+msgid "Move quantity cannot be negative."
+msgstr "Mugimendu kantitatea ezin da negatiboa izan."
 
 #. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_move.py:0
+#, python-format
+msgid "Move quantity cannot exceed original quantity for group %s."
+msgstr "Mugimendu kantitatea ezin da jatorrizko kantitatea gainditu %s taldearentzat."
+
+#. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_move.py:0
+#, python-format
+msgid "Move quantity cannot exceed original quantity."
+msgstr "Mugimendu kantitatea ezin da jatorrizko kantitatea gainditu."
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
+msgid "Multicompany"
+msgstr "Konpainia anitza"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__my_activity_date_deadline
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr "Nire Jarduera Epea"
+msgstr "Nire jardueraren muga-eguna"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_search
@@ -907,6 +1201,7 @@ msgid "My students"
 msgstr "Nire ikasleak"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_agreement_type__name
 #: model:ir.model.fields,field_description:company_internships.field_document_stage__name
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_signed_by__document_signer
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__name
@@ -916,19 +1211,34 @@ msgid "Name"
 msgstr "Izena"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_res_partner__personal_id
+#: model:ir.model.fields,field_description:company_internships.field_res_users__personal_id
+msgid "National ID"
+msgstr "NAN"
+
+#. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_res_partner__personal_id
+#: model:ir.model.fields,help:company_internships.field_res_users__personal_id
+msgid "National Identification Number"
+msgstr "Nortasun Agiri Zenbakia"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__activity_date_deadline
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr "Hurrengo Jarduera Epea"
+msgstr "Hurrengo jardueraren muga-eguna"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__activity_summary
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__activity_summary
 msgid "Next Activity Summary"
-msgstr "Hurrengo Jarduera Laburpena"
+msgstr "Hurrengo jardueraren laburpena"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__activity_type_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__activity_type_id
 msgid "Next Activity Type"
-msgstr "Hurrengo Jarduera Mota"
+msgstr "Hurrengo jarduera mota"
 
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__internship_document__state__started
@@ -949,7 +1259,7 @@ msgstr "Eskaerarik gabeko Ekimena"
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__no_signed_by_ids
 msgid "No Signed By"
-msgstr "Sinatuta ez dago"
+msgstr "Ez du inork sinatu"
 
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__internship_document__state__no_started
@@ -957,20 +1267,21 @@ msgid "No Started"
 msgstr "Hasi gabe"
 
 #. module: company_internships
+#: model:ir.model.fields.selection,name:company_internships.selection__resigned_internship_line__turn__0
 #: model:ir.model.fields.selection,name:company_internships.selection__school_year_historical__turn__0
 msgid "No Turn"
-msgstr "Txandarik ez"
+msgstr "Txandarik Gabe"
 
 #. module: company_internships
 #: code:addons/company_internships/models/internship_documentation.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/internship_documentation.py:0
 #, python-format
 msgid "No document type found for a model"
-msgstr "Ez da dokumentu motarik aurkitu eredu baterako"
+msgstr "Ez da dokumentu motarik aurkitu modelo baterako"
 
 #. module: company_internships
-#: model:ir.model.fields,field_description:company_internships.field_school_year_historical__special_internship_reason_text
-#: model:ir.model.fields,field_description:company_internships.field_school_year_historical__student_without_internship_reason_notes
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__notes
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__notes
+#: model:ir.model.fields,field_description:company_internships.field_school_year_historical__notes
 msgid "Notes"
 msgstr "Oharrak"
 
@@ -980,26 +1291,31 @@ msgid "Notify"
 msgstr "Jakinarazi"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_needaction_counter
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Ekintza Kopurua"
+msgstr "Ekintza kopurua"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_has_error_counter
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_has_error_counter
 msgid "Number of errors"
-msgstr "Errore Kopurua"
+msgstr "Errore kopurua"
 
 #. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_internship_line__message_needaction_counter
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr "Ekintza bat behar duten mezu kopurua"
 
 #. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_internship_line__message_has_error_counter
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Bidalketa errorea duten mezu kopurua"
 
 #. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_internship_line__message_unread_counter
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__message_unread_counter
 msgid "Number of unread messages"
 msgstr "Irakurri gabeko mezu kopurua"
@@ -1019,10 +1335,14 @@ msgstr "Ireki Aurrekontua"
 
 #. module: company_internships
 #: code:addons/company_internships/models/res_partner.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/res_partner.py:0
 #, python-format
 msgid "Operation not supported"
 msgstr "Eragiketa ez da onartzen"
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_kanban
+msgid "Opportunities:"
+msgstr "Aukerak:"
 
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__crm_lead__opportunity_type__opportunity
@@ -1032,20 +1352,24 @@ msgstr "Aukera"
 
 #. module: company_internships
 #: code:addons/company_internships/models/sale_order.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/sale_order.py:0
 #, python-format
 msgid "Opportunity has already a sale"
-msgstr "Aukerak dagoeneko salmenta bat du"
-
-#. module: company_internships
-#: model:ir.ui.menu,name:company_internships.assignments_order
-msgid "Orders"
-msgstr "Eskaerak"
+msgstr "Aukerak badu salmenta bat"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__original_document
 msgid "Original Document"
-msgstr "Jatorrizko Dokumentua"
+msgstr "Jatorrizko dokumentua"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__internship_line_id
+msgid "Original Line"
+msgstr "Jatorrizko lerroa"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__original_qty
+msgid "Original Qty"
+msgstr "Jatorrizko kant."
 
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__school_year_historical__student_without_internship_reason__other
@@ -1053,9 +1377,29 @@ msgid "Other"
 msgstr "Beste bat"
 
 #. module: company_internships
+#: model:ir.actions.act_window,name:company_internships.action_crm_internship_partial_move
+msgid "Partial Move"
+msgstr "Mugimendu partziala"
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.crm_lead_form_internship
+msgid "Partial Won"
+msgstr "Partzialki irabazia"
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_crm_internship_partial_move
+msgid "Partial move"
+msgstr "Mugimendu partziala"
+
+#. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_create_internship_document__partner_id
 msgid "Partner"
 msgstr "Bazkidea"
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_form
+msgid "Pause"
+msgstr "Pausatu"
 
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__school_year_historical__state__pause
@@ -1071,7 +1415,7 @@ msgstr "Pendiente"
 #: model:ir.model.fields,field_description:company_internships.field_product_product__pending_qty
 #: model:ir.model.fields,field_description:company_internships.field_product_template__pending_qty
 msgid "Pending Qty"
-msgstr "Pendiente Kopurua"
+msgstr "Zain dagoen kant."
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_kanban
@@ -1079,9 +1423,15 @@ msgid "Pending:"
 msgstr "Pendiente:"
 
 #. module: company_internships
+#: model:ir.actions.act_window,name:company_internships.action_internship_prediction_line
+#: model:ir.ui.menu,name:company_internships.menu_internship_prediction_line
+msgid "Prediction Lines"
+msgstr "Aurreikuspen lerroak"
+
+#. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_tree
 msgid "Product Name"
-msgstr "Produktuaren Izena"
+msgstr "Produktuaren izena"
 
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_product_template
@@ -1089,11 +1439,20 @@ msgid "Product Template"
 msgstr "Produktuaren txantiloia"
 
 #. module: company_internships
-#: model:ir.ui.menu,name:company_internships.assignments_quotation
-msgid "Quotation"
-msgstr "Aurrekontua"
+#: model_terms:ir.ui.view,arch_db:company_internships.view_promote_student_form
+msgid "Promote"
+msgstr "Sustatu"
 
 #. module: company_internships
+#: model:ir.actions.act_window,name:company_internships.action_promote_student_view
+#: model_terms:ir.ui.view,arch_db:company_internships.view_promote_student_form
+#: model_terms:ir.ui.view,arch_db:company_internships.view_res_partner_student_tutor_form
+msgid "Promote Student"
+msgstr "Ikaslea sustatu"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_resignation_wizard__reason
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__special_internship_reason_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__special_internship_reason_id
 msgid "Reason"
 msgstr "Arrazoia"
@@ -1105,32 +1464,25 @@ msgid "Record"
 msgstr "Erregistroa"
 
 #. module: company_internships
-#: code:addons/company_internships/models/school_year_historical.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/school_year_historical.py:0
-#, python-format
-msgid "Record Form"
-msgstr "Erregistro Formularioa"
-
-#. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__record_ref
 msgid "Record Referenced"
-msgstr "Erreferentziatutako Erregistroa"
+msgstr "Erreferentziatutako erregistroa"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__record_sale_line_id
 msgid "Record Sale Line"
-msgstr "Erregistro Salmenta Lerroa"
+msgstr "Erregistratu salmenta lerroa"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__res_model
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_type__res_model
 msgid "Res Model"
-msgstr "Res Eredua"
+msgstr "Res eredua"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_signer__res_user
 msgid "Res User"
-msgstr "Res Erabiltzailea"
+msgstr "Res erabiltzailea"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__res_id
@@ -1138,14 +1490,29 @@ msgid "ResId"
 msgstr "ResId"
 
 #. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_form
+msgid "Resign Internships"
+msgstr "Praktikak utzi"
+
+#. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__resignation_date
 msgid "Resignation Date"
-msgstr "Dimisio Data"
+msgstr "Uzte data"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__resignation_line_ids
 msgid "Resignation Lines"
-msgstr "Dimisio Lerroak"
+msgstr "Uzte lerroak"
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_resignation_wizard_form
+msgid "Resignation Reason"
+msgstr "Uzteko arrazoia"
+
+#. module: company_internships
+#: model:ir.model,name:company_internships.model_resignation_wizard
+msgid "Resignation Wizard"
+msgstr "Uzteko laguntzailea"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_form
@@ -1153,9 +1520,10 @@ msgid "Resignations"
 msgstr "Dimisioak"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__activity_user_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__activity_user_id
 msgid "Responsible User"
-msgstr "Erantzule Erabiltzailea"
+msgstr "Erabiltzaile arduraduna"
 
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_form
@@ -1163,16 +1531,16 @@ msgid "Resume Internship"
 msgstr "Praktikak Berrabiarazi"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_has_sms_error
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "SMS Bidalketa errorea"
+msgstr "SMS bidalketa errorea"
 
 #. module: company_internships
 #: code:addons/company_internships/models/crm_lead.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/crm_lead.py:0
 #, python-format
 msgid "Sale Form"
-msgstr "Salmenta Formularioa"
+msgstr "Salmenta inprimakia"
 
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_sale_order
@@ -1187,31 +1555,43 @@ msgstr "Salmenta-eskaera lerroa"
 #. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_editable_sale_order_line_tree
 msgid "Sales Order Lines"
-msgstr "Salmenta Eskaera Lerroak"
+msgstr "Salmenta eskaera lerroak"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_crm_lead__school_year_id
 #: model:ir.model.fields,field_description:company_internships.field_internship_line__school_year_id
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__school_year_id
 #: model:ir.model.fields,field_description:company_internships.field_product_product__school_year_id
 #: model:ir.model.fields,field_description:company_internships.field_product_template__school_year_id
+#: model:ir.model.fields,field_description:company_internships.field_promote_student__school_year_id
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__school_year
 #: model:ir.model.fields,field_description:company_internships.field_res_users__school_year
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__school_year_id
 #: model:ir.model.fields,field_description:company_internships.field_sale_order__school_year_id
 #: model:ir.model.fields,field_description:company_internships.field_sale_order_line__school_year_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__school_year_id
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_line_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_lead_with_order_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
 msgid "School Year"
 msgstr "Eskola urtea"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__school_year_historical_id
+msgid "School Year Historical"
+msgstr "Eskola urteko historikoa"
+
+#. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_form
+#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_graph
+#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_pivot
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_tree
 msgid "School Year Records"
 msgstr "Eskola urteko erregistroak"
 
 #. module: company_internships
+#: model:ir.model.fields.selection,name:company_internships.selection__resigned_internship_line__turn__2
 #: model:ir.model.fields.selection,name:company_internships.selection__school_year_historical__turn__2
 msgid "Second Turn"
 msgstr "Bigarren Txanda"
@@ -1220,17 +1600,12 @@ msgstr "Bigarren Txanda"
 #: model:ir.model.fields,field_description:company_internships.field_document_stage__sequence
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__sequence
 msgid "Sequence"
-msgstr "Segida"
+msgstr "Sekuentzia"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_crm_lead__opportunity_type
 msgid "Service Type"
-msgstr "Zerbitzu Mota"
-
-#. module: company_internships
-#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_form
-msgid "Set to Done"
-msgstr "Eginda"
+msgstr "Zerbitzu mota"
 
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__school_year_historical__student_without_internship_reason__sick_leave
@@ -1246,12 +1621,12 @@ msgstr "Sinadura Hash"
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__signed
 #: model:ir.model.fields.selection,name:company_internships.selection__internship_document__state__signed
 msgid "Signed"
-msgstr "Sinatuta"
+msgstr "Sinatua"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__signed_by_ids
 msgid "Signed By"
-msgstr "Sinatuta By"
+msgstr "Honek sinatua"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_signer__name
@@ -1259,7 +1634,9 @@ msgid "Signer"
 msgstr "Sinatzailea"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__special_internship
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__special_internship
+#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
 msgid "Special Internship"
 msgstr "Praktika Berezia"
 
@@ -1278,21 +1655,25 @@ msgstr "Enpresa Praktika Bereziak"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_type__stage_ids
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__stage_id
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_line_search
 msgid "Stage"
 msgstr "Etapa"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__stage_line_ids
 msgid "Stage Line"
-msgstr "Etapa Lerroa"
+msgstr "Etapa lerroa"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_document_stage__stage_signer_ids
 msgid "Stage Signer"
-msgstr "Etapa Sinatzailea"
+msgstr "Etapa sinatzailea"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__state
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__state
+#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
 msgid "State"
 msgstr "Egoera"
 
@@ -1303,6 +1684,7 @@ msgid "Status"
 msgstr "Egoera"
 
 #. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_internship_line__activity_state
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__activity_state
 msgid ""
 "Status based on activities\n"
@@ -1310,12 +1692,14 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
-"Egoera jardueretan oinarrituta\n"
-"Atzeratua: Epemuga igaro da\n"
+"Jardueretan oinarritutako egoera\n"
+"Epemuga: Epemuga dagoeneko igaro da\n"
 "Gaur: Jarduera data gaur da\n"
-"Planifikatua: Etorkizuneko jarduerak."
+"Planifikatuta: Etorkizuneko jarduerak." ""
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__student_id
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__student_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__student_id
 msgid "Student"
 msgstr "Ikaslea"
@@ -1327,34 +1711,46 @@ msgid "Student Active Tutor"
 msgstr "Ikaslearen tutore aktiboa"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__record_company_id
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__student_company_id
 #: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__student_company_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__student_company_id
 msgid "Student Company"
 msgstr "Ikaslearen Enpresa"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__student_delivery_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__student_delivery_id
 msgid "Student Delivery"
 msgstr "Banaketa Helbidea (Lantokia)"
 
 #. module: company_internships
 #: model:ir.actions.act_window,name:company_internships.action_student_group_product
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__student_group_id
 #: model:ir.model.fields,field_description:company_internships.field_internship_line__student_group_id
+#: model:ir.model.fields,field_description:company_internships.field_promote_student__student_group_id
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__student_group_id
 #: model:ir.model.fields,field_description:company_internships.field_res_users__student_group_id
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_line_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_lead_with_order_search
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
 msgid "Student Group"
-msgstr "Ikasle Taldea"
+msgstr "Ikasle taldea"
 
 #. module: company_internships
 #: model:ir.ui.menu,name:company_internships.menu_product_template_action
 #: model:ir.ui.menu,name:company_internships.menu_product_template_menu
 #: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_tree
 msgid "Student Groups"
-msgstr "Ikasle Taldeak"
+msgstr "Ikasle taldeak"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_prediction_line__student_small_image
+msgid "Student Image"
+msgstr "Ikaslearen irudia"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__student_instructor_id
 #: model:ir.model.fields,field_description:company_internships.field_sale_order_line__instructor_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__student_instructor_id
 msgid "Student Instructor"
@@ -1369,7 +1765,7 @@ msgstr "Ikasle kantitatea"
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__student_record_ids
 #: model:ir.model.fields,field_description:company_internships.field_res_users__student_record_ids
 msgid "Student Record"
-msgstr "Praktiken Historikoa"
+msgstr "Ikaslearen historikoa"
 
 #. module: company_internships
 #: model:ir.actions.act_window,name:company_internships.action_school_year_historical_attachments
@@ -1389,6 +1785,7 @@ msgid "Student Search View"
 msgstr "Ikasle bilaketa bista"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__student_tutor_id
 #: model:ir.model.fields,field_description:company_internships.field_sale_order_line__tutor_id
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__student_tutor_id
 msgid "Student Tutor"
@@ -1469,6 +1866,11 @@ msgid "Students without assigned internship"
 msgstr "Praktikak esleitu gabe dituzten ikasleak"
 
 #. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_resignation_wizard_form
+msgid "Submit"
+msgstr "Bidali"
+
+#. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
 msgid "Subscribed internships"
 msgstr "Harpidetzako Praktikak"
@@ -1480,16 +1882,47 @@ msgid "Tag"
 msgstr "Etiketa"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_crm_lead__tag_ids
+msgid "Tags"
+msgstr "Etiketak"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move__target_stage_id
+msgid "Target Stage"
+msgstr "Helburu etapa"
+
+#. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_form
 msgid "Teachers"
 msgstr "Irakasleak"
 
 #. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_prediction_copy_wizard_form
+msgid ""
+"The selected students records will be updated with the companies assigned\n"
+"                        in the prediction lines.\n"
+"                        This action cannot be undone immediately."
+msgstr ""
+"Hautatutako ikasleen erregistroak aurreikuspen lerroetan esleitutako enpresekin eguneratuko dira.\n"
+"                        Ekintza hau ezin da berehala desegin."
+"Hautatutako ikasleen erregistroak aurreikuspen lerroetan esleitutako enpresekin eguneratuko dira.\n"
+"                        Ekintza hau ezin da berehala desegin." ""
+
+#. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_move.py:0
+#: code:addons/company_internships/wizard/crm_internship_partial_won.py:0
+#, python-format
+msgid "There are no internship lines to process."
+msgstr "Ez dago prozesatzeko praktika lerrorik."
+
+#. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_resigned_internship_line__special_internship
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__special_internship
 msgid ""
 "This option is selected when the company is for a student who requires an "
 "alternative training experience instead of a company"
-msgstr "Aukera hau hautatzen da enpresa bat ikasle batentzat denean, enpresa baten ordez esperientzia alternatibo bat behar duena"
+msgstr ""
+"Aukera hau hautatzen da enpresa praktika ordez bestelako prestakuntza esperientzia behar duen ikasle batentzat denean"
 
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__internship_document__state__to_sign
@@ -1499,14 +1932,16 @@ msgstr "Sinatzeko"
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document_stage_line__to_sign_by
 msgid "To Sign By"
-msgstr "Sinatzeko By"
+msgstr "Honek sinatzeko"
 
 #. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_internship_line_tree
 #: model_terms:ir.ui.view,arch_db:company_internships.view_lead_tree_internship
 msgid "Total Students"
 msgstr "Ikasle Guztira"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__turn
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__turn
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
 msgid "Turn"
@@ -1532,7 +1967,7 @@ msgstr "Tutore bilaketa bista"
 #: model:ir.model.fields,field_description:company_internships.field_res_partner__tutor_user_ids
 #: model:ir.model.fields,field_description:company_internships.field_res_users__tutor_user_ids
 msgid "Tutor User"
-msgstr "Tutorea Erabiltzailea"
+msgstr "Tutore erabiltzailea"
 
 #. module: company_internships
 #: model:ir.actions.act_window,name:company_internships.action_internships_tutors
@@ -1548,24 +1983,28 @@ msgid "Type"
 msgstr "Mota"
 
 #. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_internship_line__activity_exception_decoration
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr "Erregistroan salbuespen jardueraren mota."
+msgstr "Erregistroko salbuespen jarduera mota."
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_unread
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_unread
 msgid "Unread Messages"
-msgstr "Irakurri Gabeko Mezuak"
+msgstr "Irakurri gabeko mezuak"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__message_unread_counter
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr "Irakurri Gabeko Mezuen Kontagailua"
+msgstr "Irakurri gabeko mezuen kontagailua"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_resigned_internship_line__unsubscribed
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__unsubscribed
 msgid "Unsubscribed"
-msgstr "Harpidetza Ezeztatuta"
+msgstr "Harpidetza kenduta"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_upload_new_file__document
@@ -1580,10 +2019,9 @@ msgstr "Igo"
 
 #. module: company_internships
 #: code:addons/company_internships/models/internship_documentation.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/internship_documentation.py:0
 #, python-format
 msgid "Upload File"
-msgstr "Fitxategia Igo"
+msgstr "Igo fitxategia"
 
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_upload_new_file
@@ -1596,6 +2034,11 @@ msgid "User"
 msgstr "Erabiltzailea"
 
 #. module: company_internships
+#: model:ir.module.category,description:company_internships.module_category_internship
+msgid "User Access Levels for Internships Module"
+msgstr "Erabiltzaileen sarbide mailak praktikak modulurako"
+
+#. module: company_internships
 #: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
 msgid "User Internships"
 msgstr "Erabiltzailearen praktikak"
@@ -1603,24 +2046,79 @@ msgstr "Erabiltzailearen praktikak"
 #. module: company_internships
 #: model:ir.model.fields.selection,name:company_internships.selection__school_year_historical__state__documentation
 msgid "Waitting Documentation"
-msgstr "Dokumentazioa Itxaroten"
+msgstr "Dokumentazioa itxaroten"
 
 #. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_internship_line__website_message_ids
 #: model:ir.model.fields,field_description:company_internships.field_school_year_historical__website_message_ids
 msgid "Website Messages"
-msgstr "Webgune Mezuak"
+msgstr "Webguneko mezuak"
 
 #. module: company_internships
+#: model:ir.model.fields,help:company_internships.field_internship_line__website_message_ids
 #: model:ir.model.fields,help:company_internships.field_school_year_historical__website_message_ids
 msgid "Website communication history"
-msgstr "Webgune komunikazio historia"
+msgstr "Webguneko komunikazio historia"
 
 #. module: company_internships
-#: code:addons/company_internships/models/res_partner.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/res_partner.py:0
+#: model:ir.model.fields,field_description:company_internships.field_product_product__win_qty
+#: model:ir.model.fields,field_description:company_internships.field_product_template__win_qty
+msgid "Win Qty"
+msgstr "Irabazitako kant."
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_product_template_student_group_form
+msgid "Win and lost internships"
+msgstr "Irabazitako eta galdutako praktikak"
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_school_year_historical_search
+msgid "Without Internship"
+msgstr "Praktikarik gabe"
+
+#. module: company_internships
+#: model:ir.model.fields,field_description:company_internships.field_crm_internship_partial_move_line__wizard_id
+msgid "Wizard"
+msgstr "Laguntzailea"
+
+#. module: company_internships
+#: model:ir.model,name:company_internships.model_crm_internship_partial_move_line
+msgid "Wizard line for internship partial move"
+msgstr "Praktika mugimendu partzialerako laguntzaile lerroa"
+
+#. module: company_internships
+#: model:ir.model,name:company_internships.model_internship_prediction_copy_wizard
+msgid "Wizard to copy prediction companies to school year historical"
+msgstr "Aurreikuspen enpresak eskola urteko historikora kopiatzeko laguntzailea"
+
+#. module: company_internships
+#: model:ir.model,name:company_internships.model_crm_internship_partial_move
+msgid "Wizard to mark internship opportunity as partially move"
+msgstr "Praktika aukera partzialki mugituta bezala markatzeko laguntzailea"
+
+#. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_won.py:0
+#: code:addons/company_internships/wizard/crm_internship_partial_won.py:0
 #, python-format
-msgid "can't be deleted because it has historical records"
-msgstr "ezin da ezabatu erregistro historikoak dituelako"
+msgid "Won quantity cannot be negative."
+msgstr "Irabazitako kantitatea ezin da negatiboa izan."
+
+#. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_won.py:0
+#, python-format
+msgid "Won quantity cannot exceed original quantity for group %s."
+msgstr "Irabazitako kantitatea ezin da jatorrizko kantitatea gainditu %s taldearentzat."
+
+#. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_won.py:0
+#, python-format
+msgid "Won quantity cannot exceed original quantity."
+msgstr "Irabazitako kantitatea ezin da jatorrizko kantitatea gainditu."
+
+#. module: company_internships
+#: model_terms:ir.ui.view,arch_db:company_internships.view_lead_with_order_search
+msgid "Working"
+msgstr "Lanean"
 
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_create_internship_document
@@ -1630,21 +2128,13 @@ msgstr "sortu.praktika.dokumentua"
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_document_stage
 msgid "document.stage"
-msgstr "dokumentu.etapa"
-
-#. module: company_internships
-#: code:addons/company_internships/models/res_partner.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/res_partner.py:0
-#, python-format
-msgid "has more than one internships assigned"
-msgstr "praktika bat baino gehiago esleituta ditu"
+msgstr "dokumentua.etapa"
 
 #. module: company_internships
 #: code:addons/company_internships/models/sale_order.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/sale_order.py:0
 #, python-format
 msgid "if a line has a internship all lines must be internship lines"
-msgstr "lerro batek praktika bat badu, lerro guztiak praktika lerroak izan behar dira"
+msgstr "lerro batek praktika bat badu, lerro guztiek praktika lerroak izan behar dute"
 
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_internship_document
@@ -1654,7 +2144,7 @@ msgstr "praktika.dokumentua"
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_internship_document_signed_by
 msgid "internship.document.signed.by"
-msgstr "praktika.dokumentua.sinatuta.by"
+msgstr "praktika.dokumentua.nork.sinatua"
 
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_internship_document_signer
@@ -1677,21 +2167,26 @@ msgid "internship.line"
 msgstr "praktika.lerroa"
 
 #. module: company_internships
-#: model:ir.model,name:company_internships.model_internship_type
-msgid "internship.type"
-msgstr "praktika.mota"
-
-#. module: company_internships
 #: code:addons/company_internships/models/internship_documentation.py:0
-#: code:addons/lhusurbil/odoo-addons/company_internships/models/internship_documentation.py:0
 #, python-format
 msgid "is_final must be only in one stage"
 msgstr "is_final etapa bakarrean egon behar da"
 
 #. module: company_internships
+#: code:addons/company_internships/wizard/crm_internship_partial_move.py:0
+#, python-format
+msgid "move quantity cannot be negative."
+msgstr "mugimendu kantitatea ezin da negatiboa izan."
+
+#. module: company_internships
+#: model:ir.model,name:company_internships.model_promote_student
+msgid "promote.student"
+msgstr "promozionatu.ikaslea"
+
+#. module: company_internships
 #: model:ir.model,name:company_internships.model_resigned_internship_line
 msgid "resigned.internship.line"
-msgstr "dimisioa.praktika.lerroa"
+msgstr "praktika.dimisio.lerroa"
 
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_school_year
@@ -1706,7 +2201,7 @@ msgstr "eskola.urtea.historikoa"
 #. module: company_internships
 #: model:ir.model,name:company_internships.model_special_internship_reason
 msgid "special.internship.reason"
-msgstr "practika.berezia.arrazoia"
+msgstr "praktika.bereziaren.arrazoia"
 
 #. module: company_internships
 #: model:ir.model.fields,field_description:company_internships.field_internship_document__code
