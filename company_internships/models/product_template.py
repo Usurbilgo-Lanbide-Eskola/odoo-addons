@@ -155,10 +155,8 @@ class ProductTemplate(models.Model):
         domain = [('id', 'in', line_ids.ids)]
         action['domain'] = domain
         action['context'] = {
-            'search_default_current_school_year': 1,
+            'search_default_currentwonandlost': 1,
             'search_default_allowed_group_ids': self.name,
-            'search_default_won': 1,
-            'search_default_lost': 1,
         }
         return action
     # Old behaviour

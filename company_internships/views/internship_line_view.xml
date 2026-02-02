@@ -6,14 +6,16 @@
         <field name="model">internship.line</field>
         <field name="arch" type="xml">
             <tree editable="top" create="false" delete="false">
-                <field name="lead_id" context="{'form_view_ref': 'company_internships.crm_lead_form_internship'}" readonly="True"/>
-                <field name="partner_id" readonly="1"/>
-                <field name="student_qty" sum="Total Students"/>
-                <field name="stage_id"/>
-                <field name="school_year_id"/>
-                <field name="student_group_id"/>
-                <field name="internship_type_id"/>
-                <field name="agreement_type"/>
+                <field name="lead_id"
+                    context="{'form_view_ref': 'company_internships.crm_lead_form_internship'}"
+                    readonly="True" />
+                <field name="partner_id" readonly="1" />
+                <field name="student_qty" sum="Total Students" />
+                <field name="stage_id" />
+                <field name="school_year_id" />
+                <field name="student_group_id" />
+                <field name="internship_type_id" />
+                <field name="agreement_type" />
             </tree>
         </field>
     </record>
@@ -27,16 +29,17 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="lead_id" domain="[('opportunity_type', '=', 'internship'), ('school_year_id.current_active_year', '=', True)]" />
-                            <field name="partner_id" readonly="1"/>
-                            <field name="stage_id"/>
-                            <field name="student_group_id"/>
-                            <field name="school_year_id"/>
+                            <field name="lead_id"
+                                domain="[('opportunity_type', '=', 'internship'), ('school_year_id.current_active_year', '=', True)]" />
+                            <field name="partner_id" readonly="1" />
+                            <field name="stage_id" />
+                            <field name="student_group_id" />
+                            <field name="school_year_id" />
                         </group>
                         <group>
-                            <field name="internship_type_id"/>
-                            <field name="agreement_type"/>
-                            <field name="student_qty"/>
+                            <field name="internship_type_id" />
+                            <field name="agreement_type" />
+                            <field name="student_qty" />
                         </group>
                     </group>
                 </sheet>
@@ -50,21 +53,29 @@
         <field name="model">internship.line</field>
         <field name="arch" type="xml">
             <search>
-                <field name="lead_id"/>
-                <field name="partner_id"/>
-                <field name="stage_id"/>
-                <field name="student_group_id"/>
-                <field name="school_year_id"/>
-                <field name="internship_type_id"/>
-                <field name="agreement_type"/>
+                <field name="lead_id" />
+                <field name="partner_id" />
+                <field name="stage_id" />
+                <field name="student_group_id" />
+                <field name="school_year_id" />
+                <field name="internship_type_id" />
+                <field name="agreement_type" />
                 <filter name="current_school_year" string="Current School Year"
-                    domain="[('school_year_id.current_active_year', '=', True)]"/>
+                    domain="[('school_year_id.current_active_year', '=', True)]" />
+                <filter name="won" string="Won" domain="[('stage_id.is_won', '=', True)]" />
+                <filter name="lost" string="Lost" domain="[('lead_id.probability', '=', 0)]" />
+                <filter name="currentwonandlost" string="Current Won or Lost"
+                    domain="[('school_year_id.current_active_year', '=', True), '|', ('stage_id.is_won', '=', True), ('lead_id.probability', '=', 0)]" />
+
                 <group expand="0" string="Group By">
-                    <filter name="group_by_lead" string="Lead" context="{'group_by': 'lead_id'}"/>
-                    <filter name="group_by_stage" string="Stage" context="{'group_by': 'stage_id'}"/>
-                    <filter name="group_by_school_year" string="School Year" context="{'group_by': 'school_year_id'}"/>
-                    <filter name="group_by_student_group" string="Student Group" context="{'group_by': 'student_group_id'}"/>
-                    <filter name="group_by_internship_type" string="Internship Type" context="{'group_by': 'internship_type_id'}"/>
+                    <filter name="group_by_lead" string="Lead" context="{'group_by': 'lead_id'}" />
+                    <filter name="group_by_stage" string="Stage" context="{'group_by': 'stage_id'}" />
+                    <filter name="group_by_school_year" string="School Year"
+                        context="{'group_by': 'school_year_id'}" />
+                    <filter name="group_by_student_group" string="Student Group"
+                        context="{'group_by': 'student_group_id'}" />
+                    <filter name="group_by_internship_type" string="Internship Type"
+                        context="{'group_by': 'internship_type_id'}" />
                 </group>
             </search>
         </field>
@@ -75,15 +86,16 @@
         <field name="name">Internship Lines</field>
         <field name="res_model">internship.line</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_internship_line_tree"/>
-        <field name="search_view_id" ref="view_internship_line_search"/>
+        <field name="view_id" ref="view_internship_line_tree" />
+        <field name="search_view_id" ref="view_internship_line_search" />
         <field name="context">{'search_default_current_school_year': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new internship line
             </p>
             <p>
-                Internship lines represent the agreement details between companies and student groups.
+                Internship lines represent the agreement details between companies and student
+                groups.
             </p>
         </field>
     </record>
@@ -93,10 +105,10 @@
         name="Internship Lines"
         action="action_internship_line"
         parent="assignment_menu"
-        sequence="16"/>
+        sequence="16" />
     <menuitem id="menu_crm_internship_line"
         name="Internship Lines"
         action="action_internship_line"
         parent="crm.crm_menu_root"
-        sequence="16"/>        
+        sequence="16" />
 </odoo>
