@@ -271,6 +271,8 @@ class SchoolYearHistorical(models.Model):
 
 class ResignedInternshipLine(models.Model):
     _name = "resigned.internship.line"
+    _description = "Resignation Lines"
+    _rec_name = "student_company_id"
 
     record_id = fields.Many2one(comodel_name="school.year.historical",
                                 string="Record")

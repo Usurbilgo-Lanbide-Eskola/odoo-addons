@@ -84,7 +84,8 @@ class CrmInternshipPartialMove(models.TransientModel):
                  ("student_group_id", "=", line_dict["student_group_id"]),
                  ("internship_type_id", "=", line_dict.get("internship_type_id")),
                  ("agreement_type", "=", line_dict.get("agreement_type")),
-                 ("lead_id.stage_id", "=", self.target_stage_id.id)])
+                 ("lead_id.stage_id", "=", self.target_stage_id.id)
+                 ("partner_id", "=", lead.partner_id.id)])
             if existing_line:
                 existing_line.student_qty += line_dict["student_qty"]
             else:           

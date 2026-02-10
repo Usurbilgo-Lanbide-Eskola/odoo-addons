@@ -29,7 +29,8 @@ class InternshipPredictionLine(models.Model):
     student_small_image = fields.Image(
         related="student_id.image_128", string="Student Image")
     group_id = fields.Many2one(comodel_name="product.template",
-                               related='school_year_historical_id.group_id', store=True)
+                               related='school_year_historical_id.group_id',
+                               store=True)
     school_year_id = fields.Many2one(
         related="school_year_historical_id.school_year_id", store=True)
     student_company_id = fields.Many2one(comodel_name="res.partner")
@@ -40,14 +41,50 @@ class InternshipPredictionLine(models.Model):
     record_company_id = fields.Many2one(
         related="school_year_historical_id.student_company_id",
         store=True)
+    company_assignable_qty = fields.Integer(
+        compute="_compute_company_assignable_qty",
+        string="Assignable Quantity",
+        help="Number of students that can be assigned to the company. "
+             "Negative values indicate students must be unassigned"
+    )
+
+
+    def _get_company(partner_id):
+        if partner_id.ensure_one():
+            if partner_id.is_company:
+                return partner_id
+            elif partner_id.parent_id:
+                partner_id.parent_id        
+    
+    @api.depends("")
+    def _compute_company_assignable_qty(self):
+        for internship in self:
+            not_lost_lead = self.env["crm.lead"].search(
+                [("probability", ">", 0), ''])
+            if internship.student_company_id:
+                company_id = self._get_company(internship.student_company_id)
+                internship_lines = self.env["internship.line"].search([
+                    ('lead_id', 'in', not_lost_lead.ids),
+                    ('school_year_id', '=', internship.school_year_id.id),
+                    ('student_group_id', '=', internship.group_id.id)
+                    ('lead_id.partner_id', 'child_of', company_id)])
+                internship.company_assignable_qty = sum(
+                    lambda x: x.student_qty, internship_lines)
+                company_qty = {}
+                for line in internship_lines:
+                    company_id = self._get_company(line.lead_id.partner_id)
+                    company_qty[company_id] = company_qty.get(
+                        company_id, 0) + line.student_qty
+            
+
 
     @api.depends("group_id")
     def _compute_group_possible_companies(self):
         for internship in self:
-            lost_lead = self.env["crm.lead"].search(
+            not_lost_lead = self.env["crm.lead"].search(
                 [("probability", ">", 0)])
             internship_lines = self.env["internship.line"].search([
-                ('lead_id', 'in', lost_lead.ids),
+                ('lead_id', 'in', not_lost_lead.ids),
                 ('school_year_id', '=', internship.school_year_id.id),
                 ('student_group_id', '=', internship.group_id.id)])
             partners = internship_lines.mapped('lead_id.partner_id')
@@ -60,3 +97,45 @@ class InternshipPredictionLine(models.Model):
                 elif partner.parent_id:
                     company_ids.append(partner.parent_id.id)
             internship.group_possible_company_ids = [(6, 0, company_ids)]
+
+    def button_read_company_internship_lines_info(self):
+        internship_line_obj = self.env['internship.line']
+        for record in self:
+            internship_line_obj.read_group([
+                ('partner_id', 'child_of', record.student_company_id.id),
+                ('school_year_id', '=', record.school_year_id.id),
+                ('student_group_id', '=', record.group_id.id)],
+                ['partner_id', 'agreement_type',
+                    'internship_type_id', 'student_qty:sum'],
+                ['partner_id', 'agreement_type', 'internship_type_id'])
+
+            company_groups = {}
+            for result in results:
+                partner = self.env['res.partner'].browse(
+                    result['partner_id'][0])
+                company = partner.parent_id if partner.parent_id else partner
+
+                key = (company.id, result.get('agreement_type'), result.get(
+                    'internship_type_id')[0] if result.get('internship_type_id') else False)
+
+                if key not in company_groups:
+                    company_groups[key] = {
+                        'company_id': company.id,
+                        'company_name': company.name,
+                        'agreement_type': result.get('agreement_type'),
+                        'internship_type_id': result.get('internship_type_id'),
+                        'student_qty': 0
+                    }
+                company_groups[key]['student_qty'] += result.get(
+                    'student_qty', 0)
+
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Info',
+                    'message': 'This is your alert message',
+                    'type': 'info',  # 'warning', 'danger', 'success', 'info'
+                    'sticky': False,  
+                }
+            }

@@ -139,7 +139,6 @@ class ProductTemplate(models.Model):
         domain = [('id', 'in', line_ids.ids)]
         action['domain'] = domain
         action['context'] = {
-            'search_default_current_school_year': 1,
             'search_default_allowed_group_ids': self.name,
             'search_default_working': 1,
         }
@@ -185,7 +184,8 @@ class ProductTemplate(models.Model):
     def create_prediction_lines(self):
         for group in self:
             records = self.env["school.year.historical"].search([
-                ("group_id", "=", group.id)])
+                ("group_id", "=", group.id),
+                ("student_without_internship", "=", False)])
             for record in records:
                 search = self.env["internship.prediction.line"].search([
                     ("school_year_historical_id", "=", record.id)

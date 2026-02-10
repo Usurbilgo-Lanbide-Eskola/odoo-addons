@@ -16,12 +16,14 @@
                 <field name="city" />
                 <field name="student_company_id"
                     domain="[('id', 'in', group_possible_company_ids)]" />
+                <field name="company_assignable_qty" />
                 <field name="company_city" />
                 <field name="delivery_address_id"
                     domain="[('id', 'child_of', student_company_id), ('type', '=', 'delivery')]" />
                 <field name="delivery_city" />
                 <field name="group_possible_company_ids" invisible="1" />
                 <field name="group_id" />
+                <field name="record_company_id" />
             </tree>
         </field>
     </record>

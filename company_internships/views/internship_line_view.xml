@@ -66,6 +66,8 @@
                 <filter name="lost" string="Lost" domain="[('lead_id.probability', '=', 0)]" />
                 <filter name="currentwonandlost" string="Current Won or Lost"
                     domain="[('school_year_id.current_active_year', '=', True), '|', ('stage_id.is_won', '=', True), ('lead_id.probability', '=', 0)]" />
+                <filter name="working" string="Current Working"
+                    domain="[('school_year_id.current_active_year', '=', True), ('lead_id.probability', '&lt;', 100), ('lead_id.probability', '&gt;', 0), ]" />                    
 
                 <group expand="0" string="Group By">
                     <filter name="group_by_lead" string="Lead" context="{'group_by': 'lead_id'}" />
