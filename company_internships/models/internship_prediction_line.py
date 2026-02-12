@@ -48,35 +48,35 @@ class InternshipPredictionLine(models.Model):
              "Negative values indicate students must be unassigned"
     )
 
-
-    def _get_company(partner_id):
+    def _get_company(self, partner_id):
         if partner_id.ensure_one():
             if partner_id.is_company:
                 return partner_id
             elif partner_id.parent_id:
-                partner_id.parent_id        
+                return partner_id.parent_id
+        return False
     
-    @api.depends("")
     def _compute_company_assignable_qty(self):
         for internship in self:
+            internship.company_assignable_qty = 0
             not_lost_lead = self.env["crm.lead"].search(
-                [("probability", ">", 0), ''])
+                [("probability", ">", 0)])
             if internship.student_company_id:
                 company_id = self._get_company(internship.student_company_id)
+                if not company_id:
+                    continue
                 internship_lines = self.env["internship.line"].search([
                     ('lead_id', 'in', not_lost_lead.ids),
                     ('school_year_id', '=', internship.school_year_id.id),
-                    ('student_group_id', '=', internship.group_id.id)
-                    ('lead_id.partner_id', 'child_of', company_id)])
+                    ('student_group_id', '=', internship.group_id.id),
+                    ('lead_id.partner_id', 'child_of', company_id.id)])
                 internship.company_assignable_qty = sum(
-                    lambda x: x.student_qty, internship_lines)
+                    line.student_qty for line in internship_lines)
                 company_qty = {}
                 for line in internship_lines:
                     company_id = self._get_company(line.lead_id.partner_id)
                     company_qty[company_id] = company_qty.get(
                         company_id, 0) + line.student_qty
-            
-
 
     @api.depends("group_id")
     def _compute_group_possible_companies(self):
@@ -101,13 +101,16 @@ class InternshipPredictionLine(models.Model):
     def button_read_company_internship_lines_info(self):
         internship_line_obj = self.env['internship.line']
         for record in self:
-            internship_line_obj.read_group([
-                ('partner_id', 'child_of', record.student_company_id.id),
+            company = record.student_company_id.parent_id if record.student_company_id.parent_id else record.student_company_id
+            company_name = company.name
+            results = internship_line_obj.read_group([
+                ('partner_id', 'child_of', company.id),
                 ('school_year_id', '=', record.school_year_id.id),
                 ('student_group_id', '=', record.group_id.id)],
                 ['partner_id', 'agreement_type',
                     'internship_type_id', 'student_qty:sum'],
-                ['partner_id', 'agreement_type', 'internship_type_id'])
+                ['partner_id', 'agreement_type', 'internship_type_id'],
+                lazy=False)
 
             company_groups = {}
             for result in results:
@@ -115,15 +118,13 @@ class InternshipPredictionLine(models.Model):
                     result['partner_id'][0])
                 company = partner.parent_id if partner.parent_id else partner
 
-                key = (company.id, result.get('agreement_type'), result.get(
+                key = (company.id, result.get('agreement_type')[0] if result.get('agreement_type') else False, result.get(
                     'internship_type_id')[0] if result.get('internship_type_id') else False)
 
                 if key not in company_groups:
                     company_groups[key] = {
-                        'company_id': company.id,
-                        'company_name': company.name,
-                        'agreement_type': result.get('agreement_type'),
-                        'internship_type_id': result.get('internship_type_id'),
+                        'agreement_type': result.get('agreement_type')[1] if result.get('agreement_type') else False,
+                        'internship_type_id': result.get('internship_type_id')[1] if result.get('internship_type_id') else False,
                         'student_qty': 0
                     }
                 company_groups[key]['student_qty'] += result.get(
@@ -134,7 +135,7 @@ class InternshipPredictionLine(models.Model):
                 'tag': 'display_notification',
                 'params': {
                     'title': 'Info',
-                    'message': 'This is your alert message',
+                    'message': str(f"{company_name}: {[x for x in company_groups.values()]}"),
                     'type': 'info',  # 'warning', 'danger', 'success', 'info'
                     'sticky': False,  
                 }
