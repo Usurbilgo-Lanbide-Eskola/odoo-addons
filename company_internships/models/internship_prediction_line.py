@@ -48,6 +48,17 @@ class InternshipPredictionLine(models.Model):
              "Negative values indicate students must be unassigned"
     )
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('student_company_id'):
+                partner = self.env['res.partner'].browse(
+                    vals['student_company_id'])
+                company = self._get_company(partner)
+                if company:
+                    vals['student_company_id'] = company.id
+        return super().create(vals_list)
+
     def _get_company(self, partner_id):
         if partner_id.ensure_one():
             if partner_id.is_company:
@@ -70,13 +81,13 @@ class InternshipPredictionLine(models.Model):
                     ('school_year_id', '=', internship.school_year_id.id),
                     ('student_group_id', '=', internship.group_id.id),
                     ('lead_id.partner_id', 'child_of', company_id.id)])
+                already_assigned_qty = self.search_count([
+                    ("school_year_id", "=", internship.school_year_id.id),
+                    ("student_group_id", "=", internship.group_id.id),
+                    ("student_company_id", "=", internship.student_company_id.id)])
                 internship.company_assignable_qty = sum(
-                    line.student_qty for line in internship_lines)
-                company_qty = {}
-                for line in internship_lines:
-                    company_id = self._get_company(line.lead_id.partner_id)
-                    company_qty[company_id] = company_qty.get(
-                        company_id, 0) + line.student_qty
+                    line.student_qty for line in internship_lines) - already_assigned_qty
+
 
     @api.depends("group_id")
     def _compute_group_possible_companies(self):
@@ -123,8 +134,8 @@ class InternshipPredictionLine(models.Model):
 
                 if key not in company_groups:
                     company_groups[key] = {
-                        'agreement_type': result.get('agreement_type')[1] if result.get('agreement_type') else False,
-                        'internship_type_id': result.get('internship_type_id')[1] if result.get('internship_type_id') else False,
+                        'internship_type_id': str(result.get('internship_type_id')[1]) if result.get('internship_type_id') else False,
+                        'agreement_type': str(result.get('agreement_type')[1]) if result.get('agreement_type') else False,
                         'student_qty': 0
                     }
                 company_groups[key]['student_qty'] += result.get(
@@ -135,7 +146,7 @@ class InternshipPredictionLine(models.Model):
                 'tag': 'display_notification',
                 'params': {
                     'title': 'Info',
-                    'message': str(f"{company_name}: {[x for x in company_groups.values()]}"),
+                    'message': str(f"{company_name}: {[[y for y in x.values()] for x in company_groups.values()]}"),
                     'type': 'info',  # 'warning', 'danger', 'success', 'info'
                     'sticky': False,  
                 }
