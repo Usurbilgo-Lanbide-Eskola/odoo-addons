@@ -17,7 +17,8 @@
                 <field name="city" />
                 <field name="student_company_id"
                     domain="[('id', 'in', group_possible_company_ids)]" />
-                <button name="button_read_company_internship_lines_info" type="object" icon="fa-info-circle" title="Read Info" />
+                <field name="button_lines_info" invisible="1"/>
+                <button name="button_read_company_internship_lines_info" title="button_lines_info" type="object" icon="fa-info-circle" />
                 <field name="company_assignable_qty" />
                 <field name="company_city" />
                 <field name="delivery_address_id"

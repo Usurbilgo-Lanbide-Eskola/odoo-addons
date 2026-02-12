@@ -47,6 +47,7 @@ class InternshipPredictionLine(models.Model):
         help="Number of students that can be assigned to the company. "
              "Negative values indicate students must be unassigned"
     )
+    button_lines_info = fields.Char(compute="_compute_button_lines_info", store=False)
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -151,3 +152,36 @@ class InternshipPredictionLine(models.Model):
                     'sticky': False,  
                 }
             }
+        
+    def _compute_button_lines_info(self):
+        internship_line_obj = self.env['internship.line']
+        for record in self:
+            company = record.student_company_id.parent_id if record.student_company_id.parent_id else record.student_company_id
+            company_name = company.name
+            results = internship_line_obj.read_group([
+                ('partner_id', 'child_of', company.id),
+                ('school_year_id', '=', record.school_year_id.id),
+                ('student_group_id', '=', record.group_id.id)],
+                ['partner_id', 'agreement_type',
+                    'internship_type_id', 'student_qty:sum'],
+                ['partner_id', 'agreement_type', 'internship_type_id'],
+                lazy=False)
+
+            company_groups = {}
+            for result in results:
+                partner = self.env['res.partner'].browse(
+                    result['partner_id'][0])
+                company = partner.parent_id if partner.parent_id else partner
+
+                key = (company.id, result.get('agreement_type')[0] if result.get('agreement_type') else False, result.get(
+                    'internship_type_id')[0] if result.get('internship_type_id') else False)
+
+                if key not in company_groups:
+                    company_groups[key] = {
+                        'internship_type_id': str(result.get('internship_type_id')[1]) if result.get('internship_type_id') else False,
+                        'agreement_type': str(result.get('agreement_type')[1]) if result.get('agreement_type') else False,
+                        'student_qty': 0
+                    }
+                company_groups[key]['student_qty'] += result.get(
+                    'student_qty', 0)
+            record.button_lines_info = str(f"{company_name}: {[[y for y in x.values()] for x in company_groups.values()]}")
