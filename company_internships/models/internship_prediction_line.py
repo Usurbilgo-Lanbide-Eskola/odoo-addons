@@ -83,7 +83,7 @@ class InternshipPredictionLine(models.Model):
                     ('lead_id.partner_id', 'child_of', company_id.id)])
                 already_assigned_qty = self.search_count([
                     ("school_year_id", "=", internship.school_year_id.id),
-                    ("student_group_id", "=", internship.group_id.id),
+                    ("group_id", "=", internship.group_id.id),
                     ("student_company_id", "=", internship.student_company_id.id)])
                 internship.company_assignable_qty = sum(
                     line.student_qty for line in internship_lines) - already_assigned_qty

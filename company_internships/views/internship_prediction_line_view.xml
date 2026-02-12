@@ -5,7 +5,8 @@
         <field name="name">internship.prediction.line.tree</field>
         <field name="model">internship.prediction.line</field>
         <field name="arch" type="xml">
-            <tree string="Internship Prediction Lines" editable="bottom">
+            <tree string="Internship Prediction Lines" editable="bottom"
+                  decoration-danger="company_assignable_qty &lt; 0">
                 <field name="student_small_image" widget="image" class="oe_avatar"
                     options='{"size": [0, 40]}' />
                 <field name="school_year_historical_id" invisible="1" />
