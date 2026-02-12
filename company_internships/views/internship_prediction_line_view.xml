@@ -6,7 +6,7 @@
         <field name="model">internship.prediction.line</field>
         <field name="arch" type="xml">
             <tree string="Internship Prediction Lines" editable="bottom"
-                  decoration-danger="company_assignable_qty &lt; 0">
+                decoration-danger="company_assignable_qty &lt; 0">
                 <field name="student_small_image" widget="image" class="oe_avatar"
                     options='{"size": [0, 40]}' />
                 <field name="school_year_historical_id" invisible="1" />
@@ -17,8 +17,10 @@
                 <field name="city" />
                 <field name="student_company_id"
                     domain="[('id', 'in', group_possible_company_ids)]" />
-                <field name="button_lines_info" invisible="1"/>
-                <button name="button_read_company_internship_lines_info" title="button_lines_info" type="object" icon="fa-info-circle" />
+                <field name="button_lines_info" invisible="1" />
+                <button name="button_read_company_internship_lines_info"
+                    attrs="{'title': button_lines_info}" type="object"
+                    icon="fa-info-circle" />
                 <field name="company_assignable_qty" />
                 <field name="company_city" />
                 <field name="delivery_address_id"
