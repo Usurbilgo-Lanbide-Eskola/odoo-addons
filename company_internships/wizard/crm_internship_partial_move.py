@@ -86,6 +86,9 @@ class CrmInternshipPartialMove(models.TransientModel):
                  ("agreement_type", "=", line_dict.get("agreement_type")),
                  ("lead_id.stage_id", "=", self.target_stage_id.id),
                  ("partner_id", "=", lead.partner_id.id)])
+            if len(existing_line) > 1:
+                raise ValidationError(_("Multiple existing lines found for customer %s %s in target stage. Please check your data.") % 
+                    (lead.partner_id.display_name, lead.school_year_id.name))                 
             if existing_line:
                 existing_line.student_qty += line_dict["student_qty"]
             else:           
