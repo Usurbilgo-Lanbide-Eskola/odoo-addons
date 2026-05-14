@@ -24,6 +24,7 @@
         "wizard/generate_new_group_view.xml",
         "wizard/assign_course_tutor_view.xml",
         "wizard/crm_internship_partial_move_view.xml",
+        "wizard/promote_student_group_view.xml",
     ],
     "installable": True,
     "auto_install": True,

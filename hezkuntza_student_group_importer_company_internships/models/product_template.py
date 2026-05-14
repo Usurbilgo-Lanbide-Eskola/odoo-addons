@@ -7,7 +7,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     hezkuntza_student_group_id = fields.Many2one(
-        comodel_name="hezkuntza.student.group")
+        comodel_name="hezkuntza.student.group", copy=True)
     course_id = fields.Many2one(comodel_name="hezkuntza.course",
                                 related="hezkuntza_student_group_id.course_id",
                                 store=True)
