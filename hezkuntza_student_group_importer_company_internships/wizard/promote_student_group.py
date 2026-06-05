@@ -27,5 +27,6 @@ class PromoteStudentGroup(models.TransientModel):
                     'type': 'consu',
                     'school_year_id': self.school_year_id.id,
                     'hezkuntza_student_group_id': student_group.id,
+                    'tutor_ids': [(6, 0, product.tutor_ids.ids)],
                 })
                 student_group.product_ids = [(4, new_product.id)]

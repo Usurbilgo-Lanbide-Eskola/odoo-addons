@@ -168,8 +168,11 @@ class SendCompanySatisfactionSurvey(models.TransientModel):
         record_ids = self._context.get("active_ids")
         records = self.env['school.year.historical'].search([
             ('id', 'in', record_ids),
-            ('school_year_id', '=', self.school_year.id)
+            ('school_year_id', '=', self.school_year.id),
+            ('student_wihout_internship', '=', False)
         ])
+        if any(record.student_instructor_id is False for record in records):
+            raise UserError(_("All the records must have an instructor"))
         answers = self._create_instructor_surveys_answers(records)
         answer_bundle = self.env['instructor.answer.bundle']
         for instructor, answer_id in answers.items():
