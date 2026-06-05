@@ -19,7 +19,7 @@
                     domain="[('id', 'in', group_possible_company_ids)]" />
                 <field name="button_lines_info" invisible="1" />
                 <button name="button_read_company_internship_lines_info"
-                    attrs="{'title': button_lines_info}" type="object"
+                    type="object"
                     icon="fa-info-circle" />
                 <field name="company_assignable_qty" />
                 <field name="company_city" />
