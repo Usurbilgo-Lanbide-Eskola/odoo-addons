@@ -169,7 +169,7 @@ class SendCompanySatisfactionSurvey(models.TransientModel):
         records = self.env['school.year.historical'].search([
             ('id', 'in', record_ids),
             ('school_year_id', '=', self.school_year.id),
-            ('student_wihout_internship', '=', False)
+            ('student_without_internship', '=', False)
         ])
         if any(record.student_instructor_id is False for record in records):
             raise UserError(_("All the records must have an instructor"))
