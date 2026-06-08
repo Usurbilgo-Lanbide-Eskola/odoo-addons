@@ -171,7 +171,7 @@ class SendCompanySatisfactionSurvey(models.TransientModel):
             ('school_year_id', '=', self.school_year.id),
             ('student_without_internship', '=', False)
         ])
-        if any(record.student_instructor_id is False for record in records):
+        if any(not record.student_instructor_id for record in records):
             raise UserError(_("All the records must have an instructor"))
         answers = self._create_instructor_surveys_answers(records)
         answer_bundle = self.env['instructor.answer.bundle']
